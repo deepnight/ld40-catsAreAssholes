@@ -1,0 +1,9 @@
+-cp src
+-swf bin/client.swf
+-swf-header 960:720:30:000000
+-swf-version 17.0
+-main Boot
+-lib castle
+-lib heaps
+-dce full
+-D standalone

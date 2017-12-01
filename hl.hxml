@@ -1,0 +1,8 @@
+-cp src
+-hl bin/client.hl
+-main Boot
+-lib hlsdl
+-lib castle
+-lib heaps
+-dce full
+-D standalone
