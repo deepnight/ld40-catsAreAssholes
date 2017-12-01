@@ -22,9 +22,9 @@
     <option directives="" />
     <option flashStrict="False" />
     <option noInlineOnDebug="False" />
-    <option mainClass="Boot" />
+    <option mainClass="" />
     <option enabledebug="False" />
-    <option additional="-lib castle&#xA;-lib heaps&#xA;-lib hlsdl&#xA;-dce full&#xA;-D standalone&#xA;-hl bin/client.hl" />
+    <option additional="hl.hxml" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>
