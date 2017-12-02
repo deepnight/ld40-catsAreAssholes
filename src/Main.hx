@@ -18,6 +18,7 @@ class Main extends mt.Process {
 
 		Assets.init();
 		Data.load( hxd.Res.data.entry.getText() );
+		hxd.Timer.wantedFPS = Const.FPS;
 
 		#if debug
 		hxd.Res.data.watch( function() {
