@@ -58,9 +58,8 @@ class Hero extends Entity {
 
 			// Roll
 			if( stamina>0 && Key.isDown(Key.SPACE) && !cd.has("rollLock") ) {
-				cd.setS("rollLock",0.5);
+				//cd.setS("rollLock",0.5);
 				cd.setS("locked",0.4);
-				//cd.setS("postRoll",cd.getS("locked"));
 				cd.setS("rolling",0.4);
 				useStamina(0.2);
 			}

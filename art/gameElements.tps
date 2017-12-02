@@ -213,6 +213,8 @@
                 <false/>
             </struct>
             <key type="filename">export/heart0.png</key>
+            <key type="filename">export/heartBack0.png</key>
+            <key type="filename">export/heartFront0.png</key>
             <key type="filename">export/heroIdle0.png</key>
             <key type="filename">export/heroPostRoll0.png</key>
             <key type="filename">export/heroPostRollEnd0.png</key>
