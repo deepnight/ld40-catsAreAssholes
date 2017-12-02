@@ -1,4 +1,5 @@
 import mt.deepnight.CdbHelper;
+import mt.deepnight.PathFinder;
 
 class Level extends mt.Process {
 	var lInfos : Data.LevelMap;
@@ -6,6 +7,7 @@ class Level extends mt.Process {
 	var collMap : Map<Int,Bool>;
 	public var wid : Int;
 	public var hei : Int;
+	public var pf : PathFinder;
 
 	public function new(id:Data.LevelMapKind) {
 		super(Game.ME);
@@ -14,6 +16,7 @@ class Level extends mt.Process {
 		collMap = new Map();
 		wid = lInfos.width;
 		hei = lInfos.height;
+		pf = new mt.deepnight.PathFinder(wid, hei);
 
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
 		var sheet = hxd.Res.cdbTiles.toTile();
@@ -25,8 +28,10 @@ class Level extends mt.Process {
 
 			if( l.name=="coll" ) {
 				// Collisions
-				for(t in tiles)
+				for(t in tiles) {
+					pf.setCollision(t.cx, t.cy);
 					collMap.set(coordToId(t.cx,t.cy), true);
+				}
 			}
 			else {
 				// Tiles

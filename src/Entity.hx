@@ -7,11 +7,13 @@ class Entity {
 
 	public var game(get,never) : Game; inline function get_game() return Game.ME;
 	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
+	public var hero(get,never) : en.Hero; inline function get_hero() return Game.ME.hero;
 	public var destroyed(default,null) = false;
 	public var cd : mt.Cooldown;
 
 	public var spr : HSprite;
 	public var shadow : Null<HSprite>;
+	var label : Null<h2d.Text>;
 	var dt : Float;
 
 	public var cx = 0;
@@ -61,9 +63,24 @@ class Entity {
 		yr = 0.5;
 	}
 
+	public function setLabel(?str:String, ?c=0xFFFFFF) {
+		if( str==null && label!=null ) {
+			label.remove();
+			label = null;
+		}
+		if( str!=null ) {
+			if( label==null ) {
+				label = new h2d.Text(Assets.font);
+				game.scroller.add(label, Const.DP_UI);
+			}
+			label.text = str;
+			label.textColor = c;
+		}
+	}
+
 	public inline function rnd(min,max,?sign) return Lib.rnd(min,max,sign);
 	public inline function irnd(min,max,?sign) return Lib.irnd(min,max,sign);
-	public inline function pretty(v,?p) return Lib.prettyFloat(v,p);
+	public inline function pretty(v,?p=1) return Lib.prettyFloat(v,p);
 
 	public inline function distCase(e:Entity) {
 		return Lib.distance(cx+xr, cy+yr, e.cx+e.xr, e.cy+e.yr);
@@ -71,6 +88,16 @@ class Entity {
 
 	public inline function distPx(e:Entity) {
 		return Lib.distance(footX, footY, e.footX, e.footY);
+	}
+
+	function canSeeThrough(x,y) return !level.hasColl(x,y);
+
+	public inline function sightCheck(e:Entity) {
+		return mt.deepnight.Bresenham.checkThinLine(cx, cy, e.cx, e.cy, canSeeThrough);
+	}
+
+	public inline function sightCheckCase(x,y) {
+		return mt.deepnight.Bresenham.checkThinLine(cx, cy, x, y, canSeeThrough);
 	}
 
 	public inline function getMoveAng() {
@@ -89,6 +116,8 @@ class Entity {
 		spr.remove(); spr = null;
 		if( shadow!=null )
 			shadow.remove();
+		if( label!=null )
+			label.remove();
 	}
 
 	public function preUpdate() {
@@ -101,7 +130,11 @@ class Entity {
 		//spr.x = Std.int((cx+xr)*Const.GRID);
 		//spr.y = Std.int((cy+yr)*Const.GRID);
 		spr.scaleX = dir;
+
 		shadow.setPos(spr.x, spr.y-1);
+
+		if( label!=null )
+			label.setPos(footX-label.textWidth*0.5, footY+2);
 	}
 
 	function hasCircColl() {

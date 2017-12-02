@@ -1,96 +1,159 @@
 
 gameElements.png
-size: 64,128
+size: 128,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+bcatIdle0
+  rotate: false
+  xy: 91, 1
+  size: 27, 24
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bcatIdleRecent0
+  rotate: false
+  xy: 1, 51
+  size: 25, 17
+  orig: 32, 32
+  offset: 3, 0
+  index: -1
+bcatLick0
+  rotate: false
+  xy: 90, 27
+  size: 26, 22
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bcatLick1
+  rotate: false
+  xy: 61, 25
+  size: 27, 22
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bcatLick2
+  rotate: false
+  xy: 61, 1
+  size: 28, 22
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bcatLick3
+  rotate: false
+  xy: 1, 1
+  size: 28, 23
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bcatLickLook0
+  rotate: false
+  xy: 31, 1
+  size: 28, 23
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bcatLickLookBack0
+  rotate: false
+  xy: 1, 26
+  size: 25, 23
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bcatWalk0
+  rotate: false
+  xy: 28, 48
+  size: 25, 18
+  orig: 32, 32
+  offset: 3, 3
+  index: -1
+bcatWalk1
+  rotate: false
+  xy: 28, 26
+  size: 25, 20
+  orig: 32, 32
+  offset: 3, 0
+  index: -1
 charShadow0
   rotate: false
-  xy: 1, 53
+  xy: 1, 117
   size: 16, 7
   orig: 16, 16
   offset: 0, 4
   index: -1
-heart0
-  rotate: false
-  xy: 1, 1
-  size: 22, 28
-  orig: 32, 32
-  offset: 5, 3
-  index: -1
 heartBack0
   rotate: false
-  xy: 47, 1
+  xy: 20, 92
   size: 16, 23
   orig: 32, 32
   offset: 8, 7
   index: -1
 heartFront0
   rotate: false
-  xy: 46, 26
+  xy: 1, 92
   size: 17, 23
   orig: 32, 32
   offset: 8, 5
   index: -1
 heroIdle0
   rotate: false
-  xy: 1, 62
+  xy: 56, 84
   size: 14, 21
   orig: 32, 32
   offset: 11, 0
   index: -1
 heroPostRoll0
   rotate: false
-  xy: 25, 1
+  xy: 55, 49
   size: 20, 18
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroPostRollEnd0
   rotate: false
-  xy: 25, 21
+  xy: 28, 68
   size: 19, 19
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroRoll0
   rotate: false
-  xy: 39, 51
+  xy: 64, 69
   size: 14, 12
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroRoll1
   rotate: false
-  xy: 39, 65
+  xy: 38, 113
   size: 13, 13
   orig: 32, 32
   offset: 8, 0
   index: -1
 heroRoll2
   rotate: false
-  xy: 17, 66
+  xy: 53, 113
   size: 13, 13
   orig: 32, 32
   offset: 9, 1
   index: -1
 heroRoll3
   rotate: false
-  xy: 32, 80
+  xy: 49, 69
   size: 13, 13
   orig: 32, 32
   offset: 10, 0
   index: -1
 heroWalk0
   rotate: false
-  xy: 1, 31
+  xy: 1, 70
   size: 18, 20
   orig: 32, 32
   offset: 10, 3
   index: -1
 heroWalk1
   rotate: false
-  xy: 21, 42
+  xy: 38, 89
   size: 16, 22
   orig: 32, 32
   offset: 12, 0

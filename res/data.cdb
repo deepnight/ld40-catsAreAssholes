@@ -100,134 +100,15 @@
 					},
 					"markers": [
 						{
-							"x": 24,
-							"y": 2,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 25,
-							"y": 2,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 28,
-							"y": 2,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 30,
-							"y": 2,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 11,
-							"y": 3,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 26,
-							"y": 3,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 29,
-							"y": 3,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 21,
-							"y": 4,
+							"x": 12,
+							"y": 5,
 							"marker": "Hero",
 							"width": 1,
 							"height": 1
 						},
 						{
-							"x": 24,
-							"y": 4,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 27,
-							"y": 4,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 28,
-							"y": 4,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 18,
+							"x": 17,
 							"y": 5,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 23,
-							"y": 5,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 26,
-							"y": 5,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 29,
-							"y": 5,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 30,
-							"y": 5,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 12,
-							"y": 9,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 3,
-							"y": 11,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 23,
-							"y": 13,
 							"marker": "Cat",
 							"width": 1,
 							"height": 1

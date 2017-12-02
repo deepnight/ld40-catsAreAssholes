@@ -29,12 +29,12 @@ class Main extends mt.Process {
 			delayer.addS("reload", function() {
 				trace("reloaded");
 				Data.load( hxd.Res.data.entry.getBytes().toString() );
-				startGame();
+				restartGame();
 			},1);
 		});
 		#end
 
-		startGame();
+		restartGame();
 	}
 
 	override public function onDispose() {
@@ -43,7 +43,7 @@ class Main extends mt.Process {
 			ME = null;
 	}
 
-	function startGame() {
+	public function restartGame() {
 		if( Game.ME!=null ) {
 			tw.createS(Game.ME.root.alpha, 0, 0.5).end( function() {
 				Game.ME.destroy();

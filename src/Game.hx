@@ -55,5 +55,8 @@ class Game extends mt.Process {
 			if( !e.destroyed ) e.postUpdate();
 		}
 		gc();
+
+		if( hxd.Key.isPressed(hxd.Key.R) )
+			Main.ME.restartGame();
 	}
 }
