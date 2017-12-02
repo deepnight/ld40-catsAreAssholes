@@ -12,6 +12,8 @@ class Hero extends Entity {
 
 	override public function update() {
 		super.update();
+
+		// Movement
 		var spd = 0.03;
 		if( Key.isDown(Key.RIGHT) ) {
 			dir = 1;

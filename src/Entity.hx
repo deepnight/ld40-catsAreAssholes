@@ -7,8 +7,10 @@ class Entity {
 	public var game(get,never) : Game; inline function get_game() return Game.ME;
 	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
 	public var destroyed(default,null) = false;
+	public var cd : mt.Cooldown;
 
 	public var spr : HSprite;
+	var dt : Float;
 
 	public var cx = 0;
 	public var cy = 0;
@@ -26,6 +28,8 @@ class Entity {
 		ALL.push(this);
 
 		setPosCase(x,y);
+
+		cd = new mt.Cooldown(Const.FPS);
 
 		spr = new mt.heaps.slib.HSprite(Assets.gameElements);
 		game.scroller.add(spr, Const.DP_HERO);
@@ -50,11 +54,12 @@ class Entity {
 
 	public function dispose() {
 		ALL.remove(this);
-		spr.remove();
-		spr = null;
+		cd.destroy(); cd = null;
+		spr.remove(); spr = null;
 	}
 
 	public function preUpdate() {
+		cd.update(dt);
 	}
 
 	public function postUpdate() {

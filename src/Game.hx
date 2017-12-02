@@ -30,6 +30,7 @@ class Game extends mt.Process {
 
 		// Updates
 		for(e in Entity.ALL) {
+			@:privateAccess e.dt = dt;
 			if( !e.destroyed ) e.preUpdate();
 			if( !e.destroyed ) e.update();
 			if( !e.destroyed ) e.postUpdate();
