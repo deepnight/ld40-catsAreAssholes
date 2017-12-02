@@ -1,4 +1,4 @@
 -swf bin/client.swf
--swf-header 960:720:30:000000
+-swf-header 960:720:60:000000
 -swf-version 17.0
 base.hxml

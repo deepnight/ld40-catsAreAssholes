@@ -1,1 +1,4 @@
 /bin/*.hl
+/art/export/*.png
+/bin/*.js
+/bin/*.swf

@@ -6,7 +6,7 @@ import hxd.Key;
 
 class Hero extends Entity {
 	public function new() {
-		super(1,1);
+		super(1,2);
 		spr.set("ghost");
 	}
 

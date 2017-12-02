@@ -3,6 +3,8 @@ import mt.MLib;
 
 class Game extends mt.Process {
 	public static var ME : Game;
+	public var scroller : h2d.Layers;
+	public var vp : Viewport;
 	public var level : Level;
 	public var hero : en.Hero;
 
@@ -11,8 +13,12 @@ class Game extends mt.Process {
 		ME = this;
 		createRoot(ctx);
 		root.scale(Const.SCALE);
+		scroller = new h2d.Layers(root);
+		vp = new Viewport();
+
 		level = new Level(Home);
 		hero = new en.Hero();
+		vp.target = hero;
 	}
 
 	override public function onDispose() {

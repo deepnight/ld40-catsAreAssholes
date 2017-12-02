@@ -15,7 +15,7 @@ class Level extends mt.Process {
 		wid = lInfos.width;
 		hei = lInfos.height;
 
-		createRootInLayers(Game.ME.root, Const.DP_BG);
+		createRootInLayers(Game.ME.scroller, Const.DP_BG);
 		var sheet = hxd.Res.cdbTiles.toTile();
 		bg = new h2d.TileGroup(sheet, root);
 

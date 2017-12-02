@@ -19,13 +19,16 @@ class Entity {
 	public var frict = 0.7;
 	public var dir(default,set) = 1;
 
+	public var footX(get,never) : Float; inline function get_footX() return (cx+xr)*Const.GRID;
+	public var footY(get,never) : Float; inline function get_footY() return (cy+yr)*Const.GRID;
+
 	private function new(x,y) {
 		ALL.push(this);
 
 		setPosCase(x,y);
 
 		spr = new mt.heaps.slib.HSprite(Assets.gameElements);
-		game.root.add(spr, Const.DP_HERO);
+		game.scroller.add(spr, Const.DP_HERO);
 		spr.setCenterRatio(0.5,1);
 	}
 
@@ -55,7 +58,10 @@ class Entity {
 	}
 
 	public function postUpdate() {
-		spr.setPos( (cx+xr)*Const.GRID, (cy+yr)*Const.GRID );
+		spr.x = (cx+xr)*Const.GRID;
+		spr.y = (cy+yr)*Const.GRID;
+		//spr.x = Std.int((cx+xr)*Const.GRID);
+		//spr.y = Std.int((cy+yr)*Const.GRID);
 		spr.scaleX = dir;
 	}
 
