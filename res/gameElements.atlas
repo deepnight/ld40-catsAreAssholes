@@ -1,0 +1,13 @@
+
+gameElements.png
+size: 16,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghost0
+  rotate: false
+  xy: 1, 1
+  size: 9, 18
+  orig: 16, 32
+  offset: 4, 0
+  index: -1
