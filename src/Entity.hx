@@ -1,5 +1,6 @@
 import mt.MLib;
 import mt.heaps.slib.*;
+import mt.deepnight.Lib;
 
 class Entity {
 	public static var ALL : Array<Entity> = [];
@@ -20,17 +21,20 @@ class Entity {
 	public var dx = 0.;
 	public var dy = 0.;
 	public var frict = 0.7;
+	public var weight = 1.;
+	public var radius : Float;
 	public var dir(default,set) = 1;
 
+	public var z(get,never) : Float; inline function get_z() return footY;
 	public var footX(get,never) : Float; inline function get_footX() return (cx+xr)*Const.GRID;
 	public var footY(get,never) : Float; inline function get_footY() return (cy+yr)*Const.GRID;
 
 	private function new(x,y) {
 		ALL.push(this);
 
-		setPosCase(x,y);
-
 		cd = new mt.Cooldown(Const.FPS);
+		radius = Const.GRID*0.4;
+		setPosCase(x,y);
 
 		spr = new mt.heaps.slib.HSprite(Assets.gameElements);
 		game.scroller.add(spr, Const.DP_HERO);
@@ -55,6 +59,18 @@ class Entity {
 		cy = y;
 		xr = 0.5;
 		yr = 0.5;
+	}
+
+	public inline function rnd(min,max,?sign) return Lib.rnd(min,max,sign);
+	public inline function irnd(min,max,?sign) return Lib.irnd(min,max,sign);
+	public inline function pretty(v,?p) return Lib.prettyFloat(v,p);
+
+	public inline function distCase(e:Entity) {
+		return Lib.distance(cx+xr, cy+yr, e.cx+e.xr, e.cy+e.yr);
+	}
+
+	public inline function distPx(e:Entity) {
+		return Lib.distance(footX, footY, e.footX, e.footY);
 	}
 
 	public inline function destroy() {
@@ -82,7 +98,31 @@ class Entity {
 		shadow.setPos(spr.x, spr.y-1);
 	}
 
+	function hasCircColl() {
+		return !destroyed && weight>=0 && !cd.has("rolling");
+	}
+
 	public function update() {
+		// Circular collisions
+		if( hasCircColl() )
+			for(e in ALL)
+				if( e!=this && e.hasCircColl() ) {
+					var d = distPx(e);
+					if( d<=radius+e.radius ) {
+						var repel = 0.05;
+						var a = Math.atan2(e.footY-footY, e.footX-footX);
+
+						var r = e.weight / (weight+e.weight);
+						if( r<=0.1 ) r = 0;
+						dx-=Math.cos(a)*repel * r;
+						dy-=Math.sin(a)*repel * r;
+
+						r = weight / (weight+e.weight);
+						if( r<=0.1 ) r = 0;
+						e.dx+=Math.cos(a)*repel * weight / (weight+e.weight);
+						e.dy+=Math.sin(a)*repel * weight / (weight+e.weight);
+					}
+				}
 
 		// X
 		xr+=dx;

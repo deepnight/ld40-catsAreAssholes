@@ -6,42 +6,49 @@ filter: Linear,Linear
 repeat: none
 charShadow0
   rotate: false
-  xy: 46, 1
+  xy: 40, 15
   size: 16, 7
   orig: 16, 16
   offset: 0, 4
   index: -1
 heroIdle0
   rotate: false
-  xy: 1, 25
+  xy: 1, 22
   size: 14, 21
   orig: 32, 32
   offset: 11, 0
   index: -1
 heroPostRoll0
   rotate: false
-  xy: 37, 10
-  size: 20, 19
+  xy: 17, 25
+  size: 20, 18
   orig: 32, 32
-  offset: 11, 0
+  offset: 9, 0
+  index: -1
+heroPostRollEnd0
+  rotate: false
+  xy: 1, 1
+  size: 19, 19
+  orig: 32, 32
+  offset: 9, 0
   index: -1
 heroRoll0
   rotate: false
-  xy: 19, 10
+  xy: 40, 1
   size: 14, 12
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroRoll1
   rotate: false
-  xy: 1, 48
+  xy: 1, 45
   size: 13, 13
   orig: 32, 32
   offset: 8, 0
   index: -1
 heroRoll2
   rotate: false
-  xy: 16, 48
+  xy: 16, 45
   size: 13, 13
   orig: 32, 32
   offset: 9, 1
@@ -55,14 +62,14 @@ heroRoll3
   index: -1
 heroWalk0
   rotate: false
-  xy: 17, 25
+  xy: 39, 25
   size: 18, 20
   orig: 32, 32
   offset: 10, 3
   index: -1
 heroWalk1
   rotate: false
-  xy: 1, 1
+  xy: 22, 1
   size: 16, 22
   orig: 32, 32
   offset: 12, 0

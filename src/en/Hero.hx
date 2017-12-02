@@ -7,12 +7,15 @@ import hxd.Key;
 class Hero extends Entity {
 	var rollAng = 0.;
 
-	public function new() {
-		super(1,2);
+	public function new(x,y) {
+		super(x,y);
 		enableShadow();
-		spr.anim.registerStateAnim("heroPostRoll",3, function() return cd.has("postRoll") && cd.getRatio("rolling")<=0.3 );
-		spr.anim.registerStateAnim("heroRoll",2, 0.2, function() return cd.has("rolling") );
-		spr.anim.registerStateAnim("heroWalk",1, 0.2, function() return MLib.fabs(dx)>=0.03 || MLib.fabs(dy)>=0.03 );
+		weight = 0.33;
+		spr.anim.registerStateAnim("heroPostRollEnd",4, function() return cd.has("rolling") && cd.getRatio("rolling")<0.2 );
+		spr.anim.registerStateAnim("heroPostRoll",3, function() return cd.getRatio("rolling")>=0.2 && cd.getRatio("rolling")<0.7 );
+		spr.anim.registerStateAnim("heroRoll",2, 0.2, function() return cd.getRatio("rolling")>=0.7 );
+		spr.anim.registerStateAnim("heroWalk",1, 0.2, function() return cd.has("walking") );
+		//spr.anim.registerStateAnim("heroWalk",1, 0.2, function() return MLib.fabs(dx)>=0.03 || MLib.fabs(dy)>=0.03 );
 		spr.anim.registerStateAnim("heroIdle",0);
 	}
 
@@ -27,28 +30,32 @@ class Hero extends Entity {
 				dir = 1;
 				dx += dir*spd;
 				rollAng = 0;
+				cd.setS("walking",0.1);
 			}
 			else if( Key.isDown(Key.LEFT) ) {
 				dir = -1;
 				dx += dir*spd;
 				rollAng = 3.14;
+				cd.setS("walking",0.1);
 			}
 
 			if( Key.isDown(Key.UP) ) {
 				dy -= spd;
 				rollAng = -1.57;
+				cd.setS("walking",0.1);
 			}
 			else if( Key.isDown(Key.DOWN) ) {
 				dy += spd;
 				rollAng = 1.57;
+				cd.setS("walking",0.1);
 			}
 
 			// Roll
 			if( Key.isDown(Key.SPACE) && !cd.has("rollLock") ) {
-				cd.setS("rollLock",1.5);
-				cd.setS("locked",0.6);
-				cd.setS("postRoll",cd.getS("locked"));
-				cd.setS("rolling",0.5);
+				cd.setS("rollLock",0.7);
+				cd.setS("locked",0.4);
+				//cd.setS("postRoll",cd.getS("locked"));
+				cd.setS("rolling",0.4);
 			}
 		}
 
@@ -57,8 +64,8 @@ class Hero extends Entity {
 
 		// Roll effect
 		if( cd.has("rolling") ) {
-			dx += Math.cos(rollAng)*0.08 * (0.3+0.7*cd.getRatio("rolling"));
-			dy += Math.sin(rollAng)*0.08 * (0.3+0.7*cd.getRatio("rolling"));
+			dx += Math.cos(rollAng)*0.095 * (0.+1*cd.getRatio("rolling"));
+			dy += Math.sin(rollAng)*0.095 * (0.+1*cd.getRatio("rolling"));
 		}
 
 		// Assist movement near collisions

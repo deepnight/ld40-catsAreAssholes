@@ -199,16 +199,37 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">export/ghost0.png</key>
+            <key type="filename">export/charShadow0.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>4,8,8,16</rect>
+                <rect>4,4,8,8</rect>
                 <key>scale9Paddings</key>
-                <rect>4,8,8,16</rect>
+                <rect>4,4,8,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/heroIdle0.png</key>
+            <key type="filename">export/heroPostRoll0.png</key>
+            <key type="filename">export/heroPostRollEnd0.png</key>
+            <key type="filename">export/heroRoll0.png</key>
+            <key type="filename">export/heroRoll1.png</key>
+            <key type="filename">export/heroRoll2.png</key>
+            <key type="filename">export/heroRoll3.png</key>
+            <key type="filename">export/heroWalk0.png</key>
+            <key type="filename">export/heroWalk1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,8,16,16</rect>
+                <key>scale9Paddings</key>
+                <rect>8,8,16,16</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

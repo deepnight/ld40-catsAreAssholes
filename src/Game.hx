@@ -17,7 +17,6 @@ class Game extends mt.Process {
 		vp = new Viewport();
 
 		level = new Level(Home);
-		hero = new en.Hero();
 		vp.target = hero;
 	}
 
@@ -28,8 +27,11 @@ class Game extends mt.Process {
 	override public function update() {
 		super.update();
 
+		// Z sort
+		Entity.ALL.sort( function(a,b) return Reflect.compare(a.z, b.z) );
 		// Updates
 		for(e in Entity.ALL) {
+			scroller.over(e.spr);
 			@:privateAccess e.dt = dt;
 			if( !e.destroyed ) e.preUpdate();
 			if( !e.destroyed ) e.update();

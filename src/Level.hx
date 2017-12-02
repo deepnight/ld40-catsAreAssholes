@@ -34,6 +34,12 @@ class Level extends mt.Process {
 					bg.add(t.x, t.y, t.t);
 			}
 		}
+
+		for(m in lInfos.markers)
+			switch( m.markerId ) {
+				case Data.MarkerKind.Hero : Game.ME.hero = new en.Hero(m.x,m.y);
+				case Data.MarkerKind.Cat : new en.Cat(m.x,m.y);
+			}
 	}
 
 	public inline function hasColl(cx:Int, cy:Int) {
