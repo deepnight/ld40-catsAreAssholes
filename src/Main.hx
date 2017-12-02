@@ -29,7 +29,6 @@ class Main extends mt.Process {
 			delayer.addS("reload", function() {
 				trace("reloaded");
 				Data.load( hxd.Res.data.entry.getBytes().toString() );
-				Game.ME.destroy();
 				startGame();
 			},1);
 		});
@@ -38,7 +37,25 @@ class Main extends mt.Process {
 		startGame();
 	}
 
+	override public function onDispose() {
+		super.onDispose();
+		if( ME==this )
+			ME = null;
+	}
+
 	function startGame() {
-		new Game( new h2d.Sprite(root) );
+		if( Game.ME!=null ) {
+			tw.createS(Game.ME.root.alpha, 0, 0.5).end( function() {
+				Game.ME.destroy();
+				delayer.addF(function() {
+					new Game( new h2d.Sprite(root) );
+					tw.createS(Game.ME.root.alpha, 0>1, 0.4);
+				},1);
+			});
+		}
+		else {
+			new Game( new h2d.Sprite(root) );
+			tw.createS(Game.ME.root.alpha, 0>1, 0.4);
+		}
 	}
 }

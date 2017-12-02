@@ -73,9 +73,15 @@ class Entity {
 		return Lib.distance(footX, footY, e.footX, e.footY);
 	}
 
+	public inline function getMoveAng() {
+		return Math.atan2(dy,dx);
+	}
+
 	public inline function destroy() {
 		destroyed = true;
 	}
+
+	public function is<T>(c:Class<T>) return Std.is(this, c);
 
 	public function dispose() {
 		ALL.remove(this);
@@ -102,11 +108,15 @@ class Entity {
 		return !destroyed && weight>=0 && !cd.has("rolling");
 	}
 
+	function hasCircCollWith(e:Entity) {
+		return true;
+	}
+
 	public function update() {
 		// Circular collisions
 		if( hasCircColl() )
 			for(e in ALL)
-				if( e!=this && e.hasCircColl() ) {
+				if( e!=this && e.hasCircColl() && hasCircCollWith(e) ) {
 					var d = distPx(e);
 					if( d<=radius+e.radius ) {
 						var repel = 0.05;

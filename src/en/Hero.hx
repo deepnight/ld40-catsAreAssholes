@@ -6,23 +6,29 @@ import hxd.Key;
 
 class Hero extends Entity {
 	var rollAng = 0.;
+	public var stamina = 1.0;
 
 	public function new(x,y) {
 		super(x,y);
 		enableShadow();
 		weight = 0.33;
 		spr.anim.registerStateAnim("heroPostRollEnd",4, function() return cd.has("rolling") && cd.getRatio("rolling")<0.2 );
-		spr.anim.registerStateAnim("heroPostRoll",3, function() return cd.getRatio("rolling")>=0.2 && cd.getRatio("rolling")<0.7 );
-		spr.anim.registerStateAnim("heroRoll",2, 0.2, function() return cd.getRatio("rolling")>=0.7 );
+		spr.anim.registerStateAnim("heroPostRoll",3, function() return cd.getRatio("rolling")>=0.2 && cd.getRatio("rolling")<0.5 );
+		spr.anim.registerStateAnim("heroRoll",2, 0.2, function() return cd.getRatio("rolling")>=0.5 );
 		spr.anim.registerStateAnim("heroWalk",1, 0.2, function() return cd.has("walking") );
 		//spr.anim.registerStateAnim("heroWalk",1, 0.2, function() return MLib.fabs(dx)>=0.03 || MLib.fabs(dy)>=0.03 );
 		spr.anim.registerStateAnim("heroIdle",0);
 	}
 
+	function useStamina(v:Float) {
+		stamina-=v;
+		cd.setS("stamRegen", stamina<=0 ? 2.5 : 1);
+	}
+
 	override public function update() {
 		super.update();
 
-		var spd = 0.03;
+		var spd = 0.03 * (stamina<=0 ? 0.5 : 1);
 
 		if( !cd.has("locked") ) {
 			// Movement
@@ -51,11 +57,12 @@ class Hero extends Entity {
 			}
 
 			// Roll
-			if( Key.isDown(Key.SPACE) && !cd.has("rollLock") ) {
-				cd.setS("rollLock",0.7);
+			if( stamina>0 && Key.isDown(Key.SPACE) && !cd.has("rollLock") ) {
+				cd.setS("rollLock",0.5);
 				cd.setS("locked",0.4);
 				//cd.setS("postRoll",cd.getS("locked"));
 				cd.setS("rolling",0.4);
+				useStamina(0.2);
 			}
 		}
 
@@ -89,5 +96,11 @@ class Hero extends Entity {
 			if( xr>=0.5 && yr>=0.7 && level.hasColl(cx,cy+1) && !level.hasColl(cx+1,cy+1) ) dx+=spd*0.5;
 			if( xr<=0.5 && yr>=0.7 && level.hasColl(cx,cy+1) && !level.hasColl(cx-1,cy+1) ) dx-=spd*0.5;
 		}
+
+		if( stamina<1 && !cd.has("stamRegen") ) {
+			stamina+=0.01;
+		}
+		stamina = MLib.fclamp(stamina,-0.2,1);
+		ui.Stamina.ME.set(stamina);
 	}
 }

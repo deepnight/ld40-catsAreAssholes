@@ -12,10 +12,15 @@ class Viewport extends mt.Process {
 	public var dy = 0.;
 	public var wid(get,never) : Int;
 	public var hei(get,never) : Int;
+	public var screenWid(get,never) : Int;
+	public var screenHei(get,never) : Int;
 
 	public function new() {
 		super(Game.ME);
 	}
+
+	inline function get_screenWid() return Boot.ME.s2d.width;
+	inline function get_screenHei() return Boot.ME.s2d.height;
 
 	inline function get_wid() {
 		return MLib.ceil( Boot.ME.s2d.width / Const.SCALE );
@@ -27,9 +32,14 @@ class Viewport extends mt.Process {
 
 	function set_target(e:Entity) {
 		target = e;
-		x = target.footX;
-		y = target.footY;
 		return target;
+	}
+
+	public function repos() {
+		if( target!=null ) {
+			x = target.footX;
+			y = target.footY;
+		}
 	}
 
 	override public function update() {
