@@ -10,6 +10,7 @@ class Entity {
 	public var cd : mt.Cooldown;
 
 	public var spr : HSprite;
+	public var shadow : Null<HSprite>;
 	var dt : Float;
 
 	public var cx = 0;
@@ -36,6 +37,14 @@ class Entity {
 		spr.setCenterRatio(0.5,1);
 	}
 
+	public function enableShadow() {
+		if( shadow!=null )
+			shadow.remove();
+		shadow = Assets.gameElements.h_get("charShadow",0, 0.5,0.5);
+		game.scroller.add(shadow, Const.DP_BG);
+		shadow.alpha = 0.2;
+	}
+
 
 	inline function set_dir(v) {
 		return dir = v>0 ? 1 : v<0 ? -1 : dir;
@@ -56,6 +65,8 @@ class Entity {
 		ALL.remove(this);
 		cd.destroy(); cd = null;
 		spr.remove(); spr = null;
+		if( shadow!=null )
+			shadow.remove();
 	}
 
 	public function preUpdate() {
@@ -68,6 +79,7 @@ class Entity {
 		//spr.x = Std.int((cx+xr)*Const.GRID);
 		//spr.y = Std.int((cy+yr)*Const.GRID);
 		spr.scaleX = dir;
+		shadow.setPos(spr.x, spr.y-1);
 	}
 
 	public function update() {
@@ -92,6 +104,7 @@ class Entity {
 		dx*=frict;
 		while( xr>1 ) { xr--; cx++; }
 		while( xr<0 ) { xr++; cx--; }
+		if( MLib.fabs(dx)<=0.001 ) dx = 0;
 
 		// Y
 		yr+=dy;
@@ -106,5 +119,6 @@ class Entity {
 		dy*=frict;
 		while( yr>1 ) { yr--; cy++; }
 		while( yr<0 ) { yr++; cy--; }
+		if( MLib.fabs(dy)<=0.001 ) dy = 0;
 	}
 }

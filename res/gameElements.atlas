@@ -1,13 +1,69 @@
 
 gameElements.png
-size: 16,32
+size: 64,64
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-ghost0
+charShadow0
+  rotate: false
+  xy: 46, 1
+  size: 16, 7
+  orig: 16, 16
+  offset: 0, 4
+  index: -1
+heroIdle0
+  rotate: false
+  xy: 1, 25
+  size: 14, 21
+  orig: 32, 32
+  offset: 11, 0
+  index: -1
+heroPostRoll0
+  rotate: false
+  xy: 37, 10
+  size: 20, 19
+  orig: 32, 32
+  offset: 11, 0
+  index: -1
+heroRoll0
+  rotate: false
+  xy: 19, 10
+  size: 14, 12
+  orig: 32, 32
+  offset: 9, 0
+  index: -1
+heroRoll1
+  rotate: false
+  xy: 1, 48
+  size: 13, 13
+  orig: 32, 32
+  offset: 8, 0
+  index: -1
+heroRoll2
+  rotate: false
+  xy: 16, 48
+  size: 13, 13
+  orig: 32, 32
+  offset: 9, 1
+  index: -1
+heroRoll3
+  rotate: false
+  xy: 31, 47
+  size: 13, 13
+  orig: 32, 32
+  offset: 10, 0
+  index: -1
+heroWalk0
+  rotate: false
+  xy: 17, 25
+  size: 18, 20
+  orig: 32, 32
+  offset: 10, 3
+  index: -1
+heroWalk1
   rotate: false
   xy: 1, 1
-  size: 9, 18
-  orig: 16, 32
-  offset: 4, 0
+  size: 16, 22
+  orig: 32, 32
+  offset: 12, 0
   index: -1
