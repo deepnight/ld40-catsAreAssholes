@@ -3,6 +3,8 @@ import mt.MLib;
 
 class Main extends mt.Process {
 	public static var ME : Main;
+	public var console : Console;
+
 	public function new() {
 		super();
 
@@ -19,6 +21,7 @@ class Main extends mt.Process {
 		Assets.init();
 		Data.load( hxd.Res.data.entry.getText() );
 		hxd.Timer.wantedFPS = Const.FPS;
+		console = new Console();
 
 		#if debug
 		hxd.Res.data.watch( function() {

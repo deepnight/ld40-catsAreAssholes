@@ -100,13 +100,6 @@
 					},
 					"markers": [
 						{
-							"x": 2,
-							"y": 3,
-							"marker": "Hero",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 11,
 							"y": 3,
 							"marker": "Cat",
@@ -124,6 +117,13 @@
 							"x": 18,
 							"y": 5,
 							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 14,
+							"y": 8,
+							"marker": "Hero",
 							"width": 1,
 							"height": 1
 						},

@@ -4,7 +4,7 @@ import mt.MLib;
 class Viewport extends mt.Process {
 	var game(get,never) : Game; inline function get_game() return Game.ME;
 	var level(get,never) : Level; inline function get_level() return Game.ME.level;
-	public var target : Null<Entity>;
+	public var target(default,set) : Null<Entity>;
 
 	public var x = 0.;
 	public var y = 0.;
@@ -23,6 +23,13 @@ class Viewport extends mt.Process {
 
 	inline function get_hei() {
 		return MLib.ceil( Boot.ME.s2d.height / Const.SCALE );
+	}
+
+	function set_target(e:Entity) {
+		target = e;
+		x = target.footX;
+		y = target.footY;
+		return target;
 	}
 
 	override public function update() {
