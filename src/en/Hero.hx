@@ -44,7 +44,8 @@ class Hero extends Entity {
 			}
 
 			// Roll
-			if( Key.isPressed(Key.SPACE) ) {
+			if( Key.isDown(Key.SPACE) && !cd.has("rollLock") ) {
+				cd.setS("rollLock",1.5);
 				cd.setS("locked",0.6);
 				cd.setS("postRoll",cd.getS("locked"));
 				cd.setS("rolling",0.5);
