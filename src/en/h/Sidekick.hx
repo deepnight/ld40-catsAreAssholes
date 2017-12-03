@@ -179,6 +179,9 @@ class Sidekick extends en.Hero {
 					var t = pickTrashCan();
 					actions = [ GoInter(e), GoInter(t) ];
 
+				case CatBox :
+					actions = [ GoInter(e) ];
+
 				default :
 					say("eQuestion");
 			}

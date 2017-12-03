@@ -35,14 +35,30 @@ class Hero extends Entity {
 		if( item==null )
 			return;
 
-		var a = getThrowAng() + rnd(0,0.1,true);
-		var e = new en.inter.ItemDrop(item, cx,cy);
-		e.dx = Math.cos(a) * 0.3;
-		e.dy = Math.sin(a) * 0.3;
+		switch( item ) {
+			case TrayBox :
+				var e = new en.inter.FoodTray(cx,cy);
+				e.stock = 0;
+				destroyItem();
 
-		item = null;
-		itemIcon.remove();
-		itemIcon = null;
+			case CatBox :
+				var e = new en.Cat(cx,cy);
+				e.jump(1);
+				e.cd.setS("lock", 0.7);
+				e.cd.setS("fear", e.cd.getS("lock"));
+				e.flee(this);
+				destroyItem();
+
+			default :
+				var a = getThrowAng() + rnd(0,0.1,true);
+				var e = new en.inter.ItemDrop(item, cx,cy);
+				e.dx = Math.cos(a) * 0.3;
+				e.dy = Math.sin(a) * 0.3;
+
+				item = null;
+				itemIcon.remove();
+				itemIcon = null;
+		}
 	}
 
 }

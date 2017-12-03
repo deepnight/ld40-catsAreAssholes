@@ -59,6 +59,7 @@ class ItemDrop extends en.Interactive {
 		destroy();
 	}
 
+
 	override public function update() {
 		super.update();
 		if( !onGround )

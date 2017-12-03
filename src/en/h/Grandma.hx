@@ -33,28 +33,6 @@ class Grandma extends en.Hero {
 		focus.remove();
 	}
 
-	override public function dropItem() {
-		if( item!=null ) {
-			switch( item ) {
-				case TrayBox :
-					var e = new en.inter.FoodTray(cx,cy);
-					e.stock = 0;
-					destroyItem();
-
-				case CatBox :
-					var e = new en.Cat(cx,cy);
-					e.jump(1);
-					e.cd.setS("lock", 0.7);
-					e.cd.setS("fear", e.cd.getS("lock"));
-					e.flee(this);
-					destroyItem();
-
-				default :
-			}
-		}
-		super.dropItem();
-	}
-
 	override public function update() {
 		super.update();
 

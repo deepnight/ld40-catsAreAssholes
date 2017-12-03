@@ -61,7 +61,8 @@ class ShopWindow extends mt.Process {
 
 		if( door.hasAnyEvent() ) {
 			var tf = new h2d.Text(Assets.font, iFlow);
-			tf.text = "Livraison en cours, vous ne pouvez rien commander d'autre en attendant.";
+			tf.text = "Delivery in progress, you can't order anything for now.";
+			//tf.text = "Livraison en cours, vous ne pouvez rien commander d'autre en attendant.";
 			tf.maxWidth = 200;
 		}
 		else {
