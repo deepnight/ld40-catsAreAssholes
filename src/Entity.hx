@@ -7,6 +7,7 @@ class Entity {
 
 	public var game(get,never) : Game; inline function get_game() return Game.ME;
 	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
+	public var fx(get,never) : Fx; inline function get_fx() return Game.ME.fx;
 	public var hero(get,never) : en.h.Grandma; inline function get_hero() return Game.ME.hero;
 	public var side(get,never) : en.h.Sidekick; inline function get_side() return Game.ME.side;
 	public var destroyed(default,null) = false;
@@ -287,8 +288,8 @@ class Entity {
 			yr = 1;
 			onTouchWallY();
 		}
-		if( yr<0.1 && level.hasColl(cx,cy-1) ) {
-			yr = 0.1;
+		if( yr<0.3 && level.hasColl(cx,cy-1) ) {
+			yr = 0.3;
 			onTouchWallY();
 		}
 		dy*=frict;

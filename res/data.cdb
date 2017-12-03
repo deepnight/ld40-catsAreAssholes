@@ -121,6 +121,27 @@
 							"height": 1
 						},
 						{
+							"x": 24,
+							"y": 3,
+							"marker": "Litter",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 26,
+							"y": 3,
+							"marker": "Litter",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 28,
+							"y": 3,
+							"marker": "Litter",
+							"width": 1,
+							"height": 1
+						},
+						{
 							"x": 18,
 							"y": 4,
 							"marker": "Sidekick",
@@ -128,7 +149,21 @@
 							"height": 1
 						},
 						{
-							"x": 29,
+							"x": 24,
+							"y": 5,
+							"marker": "Litter",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 26,
+							"y": 5,
+							"marker": "Litter",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 28,
 							"y": 5,
 							"marker": "Litter",
 							"width": 1,
@@ -156,13 +191,6 @@
 							"height": 1
 						},
 						{
-							"x": 29,
-							"y": 11,
-							"marker": "FoodTray",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 2,
 							"y": 13,
 							"marker": "Ball",
@@ -185,6 +213,20 @@
 						},
 						{
 							"x": 21,
+							"y": 15,
+							"marker": "FoodTray",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 23,
+							"y": 15,
+							"marker": "FoodTray",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 25,
 							"y": 15,
 							"marker": "FoodTray",
 							"width": 1,

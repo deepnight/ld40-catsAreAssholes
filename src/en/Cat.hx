@@ -97,6 +97,7 @@ class Cat extends Entity {
 		rlist.add( startHeroFollow, 2 );
 		rlist.add( startLick, 4 );
 		rlist.add( startPlay, 3 );
+		//rlist.add( startPlay, 30 ); // HACK
 		rlist.add( startWait.bind(), 3 );
 		rlist.add( startCatAttack.bind(), 2 );
 		if( !rlist.draw()() )
@@ -143,6 +144,7 @@ class Cat extends Entity {
 	}
 
 	function startHeroAttack(r:String) {
+		return false; // HACK
 		say(r, 2);
 		startJob( Fight(hero,r), 999 );
 		return true;
@@ -286,6 +288,7 @@ class Cat extends Entity {
 
 		switch( job ) {
 			case Play(pe) :
+				// Touch the entity he is playing with
 				if( pe==e && e.onGround )
 					e.jump(rnd(0.6,1));
 				if( pe==e && !cd.hasSetS("playKick",0.4) ) {
@@ -402,7 +405,7 @@ class Cat extends Entity {
 					if( cd.has("observing") )
 						lookAt(e);
 					if( distCase(e)>3 )
-						gotoNearby(e,1,3);
+						gotoNearby(e,1,2);
 					else if( !cd.has("observeLock") ) {
 						cd.setS("lock",1);
 						cd.setS("observing", 1);
@@ -440,14 +443,21 @@ class Cat extends Entity {
 			dy+=Math.sin(dashAng)*0.08;
 		}
 
+		#if debug
+		if( path!=null && Console.ME.has("path") ) {
+			for(pt in path)
+				fx.markerCase(pt.x,pt.y,true);
+		}
+		#end
+
 		if( !cd.has("lock") && onGround ) {
 			// Track target
 			if( !atTarget() ) {
-				if( sightCheckCase(target.cx,target.cy) ) {
+				if( sightCheckCase(target.cx,target.cy) && target.distEnt(this)<=5 ) {
 					// Target is on sight
 					if( path!=null )
 						path = null;
-					var a = Math.atan2(target.cy-cy, target.cx-cx);
+					var a = Math.atan2((target.cy+0.5)-(cy+yr), (target.cx+0.5)-(cx+xr));
 					dx += Math.cos(a)*spd;
 					dy += Math.sin(a)*spd;
 					dir = Math.cos(a)>=0.1 ? 1 : Math.cos(a)<=-0.1 ? -1 : dir;
@@ -471,7 +481,7 @@ class Cat extends Entity {
 								cd.setS("stareLock", rnd(0.5,1), true);
 							}
 							if( next!=null && ( cx!=next.x || cy!=next.y ) ) {
-								var a = Math.atan2(next.y-cy, next.x-cx);
+								var a = Math.atan2((next.y+0.5)-(cy+yr), (next.x+0.5)-(cx+xr)) + rnd(0,0.2,true);
 								dx += Math.cos(a)*spd;
 								dy += Math.sin(a)*spd;
 								dir = Math.cos(a)>=0.1 ? 1 : Math.cos(a)<=-0.1 ? -1 : dir;
@@ -507,6 +517,7 @@ class Cat extends Entity {
 								startEat();
 						}
 						cd.setS("eating",0.3);
+						e.cd.setS("eating",0.3);
 						lookAt(e);
 					case Fight(e) :
 					case Follow(_) :

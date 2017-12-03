@@ -46,6 +46,12 @@ class Fridge extends en.Interactive {
 			stock--;
 		}
 	}
+
+	override public function postUpdate() {
+		super.postUpdate();
+		label.x+=3;
+		label.y -= 32;
+	}
 	override public function update() {
 		super.update();
 		setLabel(stock+"/"+max);

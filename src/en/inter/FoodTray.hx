@@ -12,11 +12,12 @@ class FoodTray extends en.Interactive {
 	public function new(x,y) {
 		super(x,y);
 		radius = Const.GRID*0.3;
-		zPrio = -99;
+		zPrio = -6;
 		ALL.push(this);
 		stock = max;
-		weight = 50;
+		weight = 6;
 		reqItem = FishCan;
+		enableShadow(1.5);
 	}
 
 	public static function pickOne() : Null<FoodTray> {
@@ -59,7 +60,7 @@ class FoodTray extends en.Interactive {
 	}
 
 	override function canBeActivated(by:Hero) {
-		return super.canBeActivated(by) && stock<max;
+		return super.canBeActivated(by) && !isFull();
 	}
 
 	override public function onActivate(by) {
@@ -70,10 +71,11 @@ class FoodTray extends en.Interactive {
 	override public function update() {
 		super.update();
 
-		if( cd.has("eating") && !cd.hasSetS("push",rnd(0.1,0.2)) ) {
+		if( cd.has("eating") && !cd.hasSetS("push",rnd(0.2,0.6)) ) {
 			dx+=rnd(0,0.03,true);
 			dy+=rnd(0,0.03,true);
 			spr.rotation = rnd(0,0.2,true);
+			jump(rnd(0,0.1));
 		}
 	}
 }

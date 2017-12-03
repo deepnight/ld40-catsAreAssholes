@@ -87,6 +87,11 @@ class Grandma extends en.Hero {
 					side.callOn(e);
 			}
 
+			// Cancel sidekick
+			if( Key.isPressed(Key.ESCAPE) ) {
+				side.reset();
+			}
+
 			// Roll
 			if( Key.isDown(Key.CTRL) && !cd.has("rollLock") ) {
 				//cd.setS("rollLock",0.5);

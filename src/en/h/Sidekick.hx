@@ -20,7 +20,8 @@ class Sidekick extends en.Hero {
 	var tries = 0;
 	var path : mt.deepnight.PathFinder.Path;
 
-	var queued : Null<Entity>;
+	var maxQueue = 2;
+	var queue : Array<Entity>;
 	var pointers : Array<HSprite>;
 
 	public function new(x,y) {
@@ -28,13 +29,14 @@ class Sidekick extends en.Hero {
 
 		path = [];
 		actions = [];
+		queue = [];
 		weight = -1;
 
 		spr.anim.registerStateAnim("sideWalk",3, 0.2, function() return MLib.fabs(dx)>0 || MLib.fabs(dy)>0 );
 		spr.anim.registerStateAnim("sideIdle",0);
 
 		pointers = [];
-		for(i in 0...2) {
+		for(i in 0...3) {
 			var e = Assets.gameElements.h_get("pointer",i, 0.5,1);
 			game.scroller.add(e, Const.DP_UI);
 			pointers.push(e);
@@ -84,12 +86,17 @@ class Sidekick extends en.Hero {
 	}
 
 	public function callOn(e:Entity) {
-		if( actions.length>0 && queued!=e ) {
-			queued = e;
+		for(qe in queue)
+			if( qe==e )
+				return;
+
+		if( actions.length>0 ) {
+			say("eQuestion",0.5);
+			if( queue.length<maxQueue )
+				queue.push(e);
 			return;
 		}
 		clearActions();
-		trace(e);
 
 		if( e.is(en.inter.Litter) ) {
 			var e = e.as(en.inter.Litter);
@@ -111,32 +118,38 @@ class Sidekick extends en.Hero {
 		}
 
 		if( e.is(en.inter.Fridge) ) {
-			var f = e.as(en.inter.Fridge);
-			var t = pickFoodTray();
-			if( t!=null ) {
-				say("eFood");
-				actions = [
-					GoInter(f),
-					RepeatPrevIf(function() return item==null, 4),
-					GoInter(t),
-				];
-			}
+			say("eQuestion");
+			//var f = e.as(en.inter.Fridge);
+			//var t = pickFoodTray();
+			//if( t!=null ) {
+				//say("eFood");
+				//actions = [
+					//GoInter(f),
+					//RepeatPrevIf(function() return item==null, 4),
+					//GoInter(t),
+				//];
+			//}
 		}
 
 		if( e.is(en.inter.FoodTray) ) {
-			var from : en.Interactive = pickFridge(true,e);
-			if( from==null )
-				from = pickItem(FishCan);
-			if( from==null )
-				say("eError");
+			if( e.as(en.inter.FoodTray).isFull() ) {
+				say("eQuestion");
+			}
 			else {
-				var t = e.as(en.inter.FoodTray);
-				say("eFood");
-				actions = [
-					GoInter(from),
-					RepeatPrevIf(function() return item==null, 4),
-					GoInter(t),
-				];
+				var from : en.Interactive = pickFridge(true,e);
+				if( from==null )
+					from = pickItem(FishCan);
+				if( from==null )
+					say("eError");
+				else {
+					var t = e.as(en.inter.FoodTray);
+					say("eFood");
+					actions = [
+						GoInter(from),
+						RepeatPrevIf(function() return item==null, 4),
+						GoInter(t),
+					];
+				}
 			}
 		}
 
@@ -189,6 +202,11 @@ class Sidekick extends en.Hero {
 		onDone();
 	}
 
+	public function reset() {
+		queue = [];
+		abandon();
+	}
+
 	function nextAction() {
 		var a = actions[actionIdx];
 		actionIdx++;
@@ -209,11 +227,8 @@ class Sidekick extends en.Hero {
 	function onDone() {
 		dropItem();
 		cd.setS("lock", 0.5);
-		if( queued!=null ) {
-			var e = queued;
-			queued = null;
-			callOn(e);
-		}
+		if( queue.length>0 )
+			callOn( queue.shift() );
 		else
 			goto(10,10);
 	}
@@ -248,8 +263,8 @@ class Sidekick extends en.Hero {
 			}
 		}
 
-		if( queued!=null )
-			setPointer(1, queued.footX, queued.footY);
+		for( i in 0...queue.length )
+			setPointer(i+1, queue[i].footX, queue[i].footY);
 	}
 
 	override public function update() {
@@ -258,7 +273,7 @@ class Sidekick extends en.Hero {
 		if( actionIdx<actions.length && !cd.has("lock") ) {
 			var a = actions[actionIdx];
 			if( Console.ME.has("side") )
-				setLabel(Std.string(a)+" tries="+tries);
+				setLabel(Std.string(a)+" tries="+tries+" q="+queue.length);
 
 			switch( a ) {
 				case GoCoord(x,y,cb) :
@@ -332,7 +347,7 @@ class Sidekick extends en.Hero {
 				next = path[0];
 			}
 			if( next!=null && ( cx!=next.x || cy!=next.y ) ) {
-				var a = Math.atan2(next.y-cy, next.x-cx);
+				var a = Math.atan2(next.y+0.5-(cy+yr), (next.x+0.5)-(cx+xr));
 				dx += Math.cos(a)*spd;
 				dy += Math.sin(a)*spd;
 				dir = Math.cos(a)>=0.1 ? 1 : Math.cos(a)<=-0.1 ? -1 : dir;

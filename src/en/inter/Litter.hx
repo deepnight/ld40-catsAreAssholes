@@ -14,7 +14,6 @@ class Litter extends en.Interactive {
 		ALL.push(this);
 		zPrio = -99;
 		weight = -1;
-		stock = 3;
 	}
 
 	public function isEmpty() return stock==0;
