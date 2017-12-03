@@ -16,7 +16,6 @@ class FoodTray extends en.Interactive {
 		ALL.push(this);
 		stock = max;
 		weight = 6;
-		reqItem = FishCan;
 		enableShadow(1.5);
 	}
 
@@ -63,9 +62,15 @@ class FoodTray extends en.Interactive {
 		return super.canBeActivated(by) && !isFull();
 	}
 
-	override public function onActivate(by) {
+	override public function onActivate(by:Hero) {
 		super.onActivate(by);
-		stock = max;
+		if( by.item==FishCan ) {
+			by.destroyItem();
+			stock = max;
+		}
+		else {
+			by.say("eFishCan");
+		}
 	}
 
 	override public function update() {

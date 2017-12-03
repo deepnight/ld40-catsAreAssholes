@@ -23,13 +23,13 @@ class Shop extends en.Interactive {
 		ALL.remove(this);
 	}
 
-	override public function canBeActivated(by:Hero) {
-		return super.canBeActivated(by) && !door.hasEvent(FoodDelivery);
-	}
+	//override public function canBeActivated(by:Hero) {
+		//return super.canBeActivated(by) && !door.hasEvent(Deliver);
+	//}
 
 	override public function onActivate(by:Hero) {
 		super.onActivate(by);
-		door.addEvent(FoodDelivery, 20);
+		new ui.ShopWindow();
 	}
 
 	override public function update() {

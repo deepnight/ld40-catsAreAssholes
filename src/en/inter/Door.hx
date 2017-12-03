@@ -5,7 +5,7 @@ import mt.heaps.slib.*;
 import hxd.Key;
 
 enum DoorEvent {
-	FoodDelivery;
+	Deliver(k:Data.ItemKind);
 }
 
 class Door extends en.Interactive {
@@ -22,6 +22,10 @@ class Door extends en.Interactive {
 		weight = -1;
 		footOffsetY = -4;
 		zPrio = -99;
+	}
+
+	public function hasAnyEvent() {
+		return events.length>0;
 	}
 
 	public function hasEvent(k:DoorEvent) {
@@ -50,10 +54,10 @@ class Door extends en.Interactive {
 
 	function doEvent(k:DoorEvent) {
 		switch( k ) {
-			case FoodDelivery :
-				var e = new en.inter.ItemDrop(FoodBox, cx,cy);
+			case Deliver(ik) :
+				var e = new en.inter.ItemDrop(ik, cx,cy);
 				e.dx = rnd(0,0.2,true);
-				e.dy = 0.5;
+				e.dy = 0.3;
 				jump(1);
 		}
 	}
@@ -68,5 +72,7 @@ class Door extends en.Interactive {
 				doEvent(e.k);
 			}
 		}
+		else
+			setLabel();
 	}
 }

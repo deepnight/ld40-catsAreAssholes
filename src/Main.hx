@@ -4,7 +4,7 @@ import mt.MLib;
 class Main extends mt.Process {
 	public static var ME : Main;
 	public var console : Console;
-	var cached : h2d.CachedBitmap;
+	public var cached : h2d.CachedBitmap;
 
 	public function new() {
 		super();

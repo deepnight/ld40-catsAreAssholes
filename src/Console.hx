@@ -11,8 +11,8 @@ class Console extends h2d.Console {
 
 		flags = new Map();
 		#if debug
-		set("path",true);
-		set("job",true);
+		//set("path",true);
+		//set("job",true);
 		#end
 
 		this.addCommand("set", [{ name:"k", t:AString }], function(k:String) {

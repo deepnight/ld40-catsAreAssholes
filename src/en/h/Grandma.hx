@@ -8,6 +8,8 @@ class Grandma extends en.Hero {
 	var rollAng = 0.;
 	var focus : HSprite;
 
+	public var money = 100;
+
 	public function new(x,y) {
 		super(x,y);
 
@@ -29,6 +31,28 @@ class Grandma extends en.Hero {
 	override public function dispose() {
 		super.dispose();
 		focus.remove();
+	}
+
+	override public function dropItem() {
+		if( item!=null ) {
+			switch( item ) {
+				case TrayBox :
+					var e = new en.inter.FoodTray(cx,cy);
+					e.stock = 0;
+					destroyItem();
+
+				case CatBox :
+					var e = new en.Cat(cx,cy);
+					e.jump(1);
+					e.cd.setS("lock", 0.7);
+					e.cd.setS("fear", e.cd.getS("lock"));
+					e.flee(this);
+					destroyItem();
+
+				default :
+			}
+		}
+		super.dropItem();
 	}
 
 	override public function update() {
@@ -77,20 +101,12 @@ class Grandma extends en.Hero {
 			}
 
 			// Call sidekick
-			if( Key.isPressed(Key.C) ) {
-				var dh = new DecisionHelper(en.Interactive.ALL);
-				dh.remove( function(e) return !sightCheck(e) || distCase(e)>2.5 );
-				dh.score( function(e) return isLookingAt(e) ? 5 : 0 );
-				dh.score( function(e) return -distCase(e) );
-				var e = dh.getBest();
-				if( e!=null )
-					side.callOn(e);
-			}
+			if( Key.isPressed(Key.C) && useTarget!=null )
+				side.callOn(useTarget);
 
 			// Cancel sidekick
-			if( Key.isPressed(Key.ESCAPE) ) {
+			if( Key.isPressed(Key.ESCAPE) )
 				side.reset();
-			}
 
 			// Roll
 			if( Key.isDown(Key.CTRL) && !cd.has("rollLock") ) {

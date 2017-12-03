@@ -121,20 +121,6 @@
 							"height": 1
 						},
 						{
-							"x": 24,
-							"y": 3,
-							"marker": "Litter",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 26,
-							"y": 3,
-							"marker": "Litter",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 28,
 							"y": 3,
 							"marker": "Litter",
@@ -149,44 +135,9 @@
 							"height": 1
 						},
 						{
-							"x": 24,
-							"y": 5,
-							"marker": "Litter",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 26,
-							"y": 5,
-							"marker": "Litter",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 28,
-							"y": 5,
-							"marker": "Litter",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 17,
 							"y": 7,
 							"marker": "Grandma",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 5,
-							"y": 10,
-							"marker": "Ball",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 5,
-							"y": 11,
-							"marker": "Ball",
 							"width": 1,
 							"height": 1
 						},
@@ -205,21 +156,7 @@
 							"height": 1
 						},
 						{
-							"x": 5,
-							"y": 12,
-							"marker": "Ball",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 2,
-							"y": 13,
-							"marker": "Ball",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 5,
 							"y": 13,
 							"marker": "Ball",
 							"width": 1,
@@ -233,13 +170,6 @@
 							"height": 1
 						},
 						{
-							"x": 5,
-							"y": 14,
-							"marker": "Ball",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 4,
 							"y": 15,
 							"marker": "Ball",
@@ -247,44 +177,9 @@
 							"height": 1
 						},
 						{
-							"x": 5,
-							"y": 15,
-							"marker": "Ball",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 21,
-							"y": 15,
-							"marker": "FoodTray",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 23,
 							"y": 15,
 							"marker": "FoodTray",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 25,
-							"y": 15,
-							"marker": "FoodTray",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 5,
-							"y": 16,
-							"marker": "Ball",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 5,
-							"y": 17,
-							"marker": "Ball",
 							"width": 1,
 							"height": 1
 						}
@@ -445,13 +340,13 @@
 					}
 				},
 				{
-					"color": 12954767,
+					"color": 11287808,
 					"id": "Door",
 					"icon": {
 						"file": "cdbTiles.png",
 						"size": 16,
-						"x": 0,
-						"y": 3
+						"x": 15,
+						"y": 0
 					}
 				},
 				{
@@ -460,7 +355,7 @@
 					"icon": {
 						"file": "cdbTiles.png",
 						"size": 16,
-						"x": 0,
+						"x": 15,
 						"y": 0
 					}
 				}
@@ -529,7 +424,7 @@
 						"x": 0,
 						"y": 0
 					},
-					"decayS": 0
+					"decayS": 12
 				},
 				{
 					"id": "Shit",
@@ -558,6 +453,26 @@
 						"file": "items.png",
 						"size": 32,
 						"x": 3,
+						"y": 0
+					}
+				},
+				{
+					"id": "TrayBox",
+					"decayS": 0,
+					"icon": {
+						"file": "items.png",
+						"size": 32,
+						"x": 4,
+						"y": 0
+					}
+				},
+				{
+					"id": "CatBox",
+					"decayS": 0,
+					"icon": {
+						"file": "items.png",
+						"size": 32,
+						"x": 4,
 						"y": 0
 					}
 				}

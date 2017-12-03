@@ -6,7 +6,6 @@ import hxd.Key;
 
 class Interactive extends Entity {
 	public static var ALL : Array<Interactive> = [];
-	var reqItem : Null<Data.ItemKind>;
 
 	public function new(x,y) {
 		super(x,y);
@@ -18,7 +17,7 @@ class Interactive extends Entity {
 	}
 
 	public function canBeActivated(by:Hero) {
-		return !cd.has("lock") && ( reqItem==null || by.item==reqItem );
+		return !cd.has("lock");
 	}
 
 	override public function dispose() {
@@ -31,8 +30,6 @@ class Interactive extends Entity {
 	}
 
 	public function activate(by:Hero) {
-		if( reqItem!=null )
-			by.destroyItem();
 		onActivate(by);
 	}
 

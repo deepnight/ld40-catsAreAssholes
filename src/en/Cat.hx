@@ -99,22 +99,18 @@ class Cat extends Entity {
 		//startPlay(); return; // HACK
 
 		var rlist = new mt.RandList();
-		rlist.add( startPlay, 1 ); // HACK
-		rlist.add( startEat, 1 );
-
-		//rlist.add( startShit, 5*shitStock );
-		//rlist.add( startEat, 19-4*shitStock );
-		//rlist.add( startHeroFollow, 2 );
-		//rlist.add( startLick, 4 );
-		//rlist.add( startPlay, 3 );
-		//rlist.add( startWait.bind(), 3 );
-		//rlist.add( startCatAttack.bind(), 2 );
+		rlist.add( startShit, 5*shitStock );
+		rlist.add( startEat, 19-4*shitStock );
+		rlist.add( startHeroFollow, 2 );
+		rlist.add( startLick, 4 );
+		rlist.add( startPlay, 3 );
+		rlist.add( startWait.bind(), 3 );
+		rlist.add( startCatAttack.bind(), 2 );
 		if( !rlist.draw()() )
 			startWait(1);
 	}
 
 	function startJob(j:Job, d:Float) {
-		trace("start job: "+j);
 		stop();
 		job = j;
 		jobDurationS = d;
@@ -154,7 +150,6 @@ class Cat extends Entity {
 	}
 
 	function startHeroAttack(r:String) {
-		return false; // HACK
 		say(r, 2);
 		startJob( Fight(hero,r), 999 );
 		return true;
@@ -179,7 +174,7 @@ class Cat extends Entity {
 		return true;
 	}
 
-	function startHeroFollow() {
+	public function startHeroFollow() {
 		startJob( Follow(hero), rnd(7,10) );
 		return true;
 	}
@@ -272,7 +267,6 @@ class Cat extends Entity {
 	}
 
 	function stop() {
-		trace("stopped");
 		path = null;
 		target = null;
 	}
@@ -362,6 +356,7 @@ class Cat extends Entity {
 					case "eReqFood" :
 						for(e in en.inter.FoodTray.ALL)
 							if( !e.isEmpty() && sightCheck(e) ) {
+								clearSay();
 								startEat();
 								break;
 							}
@@ -369,6 +364,7 @@ class Cat extends Entity {
 					case "eReqShit" :
 						for(e in en.inter.Litter.ALL)
 							if( !e.isFull() && sightCheck(e) ) {
+								clearSay();
 								startWait(1);
 								break;
 							}
@@ -463,11 +459,12 @@ class Cat extends Entity {
 		}
 
 		#if debug
-		if( target!=null )
-			fx.markerCase(target.cx,target.cy,0x0080FF,true);
-		if( path!=null && Console.ME.has("path") ) {
-			for(pt in path)
-				fx.markerCase(pt.x,pt.y,true);
+		if( Console.ME.has("path") ) {
+			if( target!=null )
+				fx.markerCase(target.cx,target.cy,0x0080FF,true);
+			if( path!=null )
+				for(pt in path)
+					fx.markerCase(pt.x,pt.y,true);
 		}
 		#end
 

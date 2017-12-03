@@ -66,7 +66,10 @@ class ItemDrop extends en.Interactive {
 		else
 			frict = 0.75;
 
-		if( cd.has("alive") &&  cd.getS("alive")<=1 && !cd.hasSetS("blink",0.06) )
-			spr.alpha = spr.alpha==1 ? 0.1 : 1;
+
+		if( cd.has("alive") && cd.getS("alive")<=1 && !cd.hasSetS("blink",0.06) )
+			spr.alpha = spr.alpha==0.6 ? 0 : 0.6;
+		else if( cd.has("alive") && cd.getS("alive")>1 && cd.getS("alive")<=3 && !cd.hasSetS("blink",0.09) )
+			spr.alpha = spr.alpha==1 ? 0.3 : 1;
 	}
 }

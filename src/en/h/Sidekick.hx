@@ -110,11 +110,12 @@ class Sidekick extends en.Hero {
 		}
 
 		if( e.is(en.inter.Shop) ) {
-			var e = e.as(en.inter.Shop);
-			say("eCall");
-			actions = [
-				GoInter(e),
-			];
+			say("eQuestion");
+			//var e = e.as(en.inter.Shop);
+			//say("eCall");
+			//actions = [
+				//GoInter(e),
+			//];
 		}
 
 		if( e.is(en.inter.Fridge) ) {
@@ -155,29 +156,31 @@ class Sidekick extends en.Hero {
 
 		if( e.is(en.inter.ItemDrop) ) {
 			var e = e.as(en.inter.ItemDrop);
-			dropItem();
-			actions = [
-				GoInter(e),
-			];
 			switch( e.k ) {
 				case Data.ItemKind.FishCan :
 					var t = pickFoodTray();
 					say("eFood");
-					if( t!=null ) actions.push( GoInter(t) );
+					if( t!=null )
+						actions = [ GoInter(e), GoInter(t) ];
+					else
+						say("eQuestion");
 
 				case Data.ItemKind.FoodBox :
 					var t = pickFridge(false);
 					if( t!=null ) {
 						say("eFood");
-						actions.push( GoInter(t) );
+						actions = [ GoInter(e), GoInter(t) ];
 					}
+					else
+						say("eQuestion");
 
 				case Data.ItemKind.Trash, Data.ItemKind.Shit :
 					say("eShit");
 					var t = pickTrashCan();
-					actions.push( GoInter(t) );
+					actions = [ GoInter(e), GoInter(t) ];
 
 				default :
+					say("eQuestion");
 			}
 		}
 	}

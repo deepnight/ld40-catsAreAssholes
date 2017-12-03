@@ -34,6 +34,11 @@ class Fridge extends en.Interactive {
 	override public function onActivate(by:Hero) {
 		super.onActivate(by);
 		if( by.item==FoodBox ) {
+			for(i in 0...stock) {
+				var e = new en.inter.ItemDrop(FishCan,cx,cy);
+				e.dx = rnd(0,0.2,true);
+				e.dy = rnd(0.2,0.6);
+			}
 			stock = max;
 			by.destroyItem();
 		}
