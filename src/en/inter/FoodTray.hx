@@ -19,11 +19,11 @@ class FoodTray extends en.Interactive {
 		enableShadow(1.5);
 	}
 
-	public static function pickOne() : Null<FoodTray> {
-		var all = ALL.filter( function(e) return !e.isEmpty() );
-		if( all.length==0 )
-			return null;
-		return all[Std.random(all.length)];
+	public static function pickOne() : FoodTray {
+		var dh = new DecisionHelper(ALL);
+		dh.score( function(e) return e.isEmpty() ? -5 : 0 );
+		dh.score( function(e) return e.rnd(0,1) );
+		return dh.getBest();
 	}
 
 	override public function dispose() {

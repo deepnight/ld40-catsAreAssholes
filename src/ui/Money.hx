@@ -46,9 +46,8 @@ class Money extends mt.Process {
 
 	override public function update() {
 		super.update();
-		if( cd.has("shake") ) {
+		if( cd.has("shake") )
 			flow.y = Math.cos(ftime*0.7)*2 * cd.getRatio("shake");
-		}
 		cAdd.r*=0.8;
 		cAdd.g*=0.8;
 		cAdd.b*=0.8;

@@ -121,6 +121,13 @@
 							"height": 1
 						},
 						{
+							"x": 5,
+							"y": 4,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
 							"x": 28,
 							"y": 4,
 							"marker": "Litter",
@@ -128,9 +135,9 @@
 							"height": 1
 						},
 						{
-							"x": 5,
-							"y": 4,
-							"marker": "Cat",
+							"x": 6,
+							"y": 5,
+							"marker": "Ball",
 							"width": 1,
 							"height": 1
 						},
@@ -184,16 +191,16 @@
 							"height": 1
 						},
 						{
-							"x": 4,
+							"x": 23,
 							"y": 15,
-							"marker": "Ball",
+							"marker": "FoodTray",
 							"width": 1,
 							"height": 1
 						},
 						{
-							"x": 23,
-							"y": 15,
-							"marker": "FoodTray",
+							"x": 13,
+							"y": 16,
+							"marker": "Ball",
 							"width": 1,
 							"height": 1
 						}
@@ -528,6 +535,20 @@
 					]
 				},
 				{
+					"id": "Heal",
+					"desc": "Calm your heart.",
+					"scaledCosts": [],
+					"deliveryS": 3,
+					"decayS": 12,
+					"icon": {
+						"file": "items.png",
+						"size": 32,
+						"x": 7,
+						"y": 0
+					},
+					"cost": 20
+				},
+				{
 					"id": "FoodBox",
 					"decayS": 0,
 					"icon": {
@@ -550,7 +571,7 @@
 						"x": 4,
 						"y": 0
 					},
-					"desc": "An extra food Bowl.",
+					"desc": "Extra food Bowl.",
 					"deliveryS": 10,
 					"scaledCosts": [
 						{
@@ -564,7 +585,7 @@
 				},
 				{
 					"id": "LitterBox",
-					"desc": "An extra Litter box.",
+					"desc": "Extra Litter box.",
 					"scaledCosts": [
 						{
 							"v": 50
@@ -579,13 +600,13 @@
 						"file": "items.png",
 						"size": 32,
 						"x": 4,
-						"y": 0
+						"y": 1
 					},
 					"maxBuy": 2
 				},
 				{
 					"id": "FridgeUp",
-					"desc": "Better Fridge capacity.",
+					"desc": "Uprgade Fridge capacity.",
 					"deliveryS": 10,
 					"decayS": 0,
 					"icon": {
@@ -645,25 +666,25 @@
 				{
 					"id": "FightCat",
 					"cd": 0,
-					"value": 5,
+					"value": 10,
 					"index": 1
 				},
 				{
 					"id": "NewCat",
 					"cd": 0,
-					"value": 10,
+					"value": 15,
 					"index": 2
 				},
 				{
 					"id": "PoopLitter",
 					"cd": 0,
-					"value": 1,
+					"value": 2,
 					"index": 3,
 					"maxValue": 3
 				},
 				{
 					"id": "Lick",
-					"cd": 5,
+					"cd": 2,
 					"value": 1,
 					"index": 4
 				},
@@ -671,7 +692,8 @@
 					"id": "Love",
 					"cd": 0,
 					"value": 5,
-					"index": 5
+					"index": 5,
+					"maxValue": 7
 				}
 			],
 			"separators": [],

@@ -20,7 +20,7 @@ class Game extends mt.Process {
 		scroller = new h2d.Layers(root);
 		vp = new Viewport();
 		fx = new Fx();
-		//new ui.Stamina();
+		new ui.Life();
 		new ui.Money();
 		moneyMan = new MoneyMan();
 

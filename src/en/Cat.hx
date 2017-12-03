@@ -27,6 +27,7 @@ class Cat extends Entity {
 	var target : Null<CPoint>;
 	var path : Null<mt.deepnight.PathFinder.Path>;
 	var pathEnd : Null<{ x:Int, y:Int }>;
+	var rebootF = 0.;
 
 	public function new(x,y) {
 		super(x,y);
@@ -96,6 +97,7 @@ class Cat extends Entity {
 
 
 	function startRandom() {
+		rebootF = 0;
 		//startPlay(); return; // HACK
 
 		var rlist = new mt.RandList();
@@ -118,10 +120,7 @@ class Cat extends Entity {
 
 	function startEat() {
 		var e = FoodTray.pickOne();
-		if( e==null )
-			return startHeroAttack("eReqFood");
-		else
-			startJob( Eat(e), rnd(5,8) );
+		startJob( Eat(e), rnd(5,8) );
 		return true;
 	}
 
@@ -150,10 +149,10 @@ class Cat extends Entity {
 	}
 
 	function startHeroAttack(r:String) {
-		say(r, 2);
-		cd.setS("lock", rnd(1.5,2));
+		say(r, 6);
 		lookAt(game.hero);
 		startJob( Fight(hero,r), 999 );
+		cd.setS("lock", rnd(2.5,3.5));
 		return true;
 	}
 
@@ -165,6 +164,7 @@ class Cat extends Entity {
 	}
 
 	function startWait(?t:Float) {
+		clearSay();
 		var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(cx,cy, 2) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
 		dh.score( function(pt) return -Lib.distance(cx,cy,pt.x,pt.y) );
@@ -320,10 +320,6 @@ class Cat extends Entity {
 		if( cd.has("dashing") && !e.cd.hasSetS("hit"+uid,1.5) ) {
 			switch( job ) {
 				case Fight(te) :
-					if( te.is(Hero) && e.is(Hero) ) {
-						if( e.onGround )
-							e.jump(0.5);
-					}
 					if( te.is(Cat) && e.is(Cat) ) {
 						var e : Cat = Std.instance(e,Cat);
 						e.flee(this);
@@ -346,7 +342,18 @@ class Cat extends Entity {
 
 	inline function isAngry() {
 		return job!=null && job.getIndex()==Type.enumIndex(Fight(null));
+	}
 
+	override public function postUpdate() {
+		super.postUpdate();
+		if( isAngry() ) {
+			//spr.x+=Math.cos(game.ftime*0.6)*1;
+			spr.y+=Math.cos(game.ftime*0.6)*1;
+		}
+	}
+
+	public inline function isOnJob(k:Job) {
+		return job.getIndex() == k.getIndex();
 	}
 
 	override public function update() {
@@ -453,6 +460,7 @@ class Cat extends Entity {
 
 		// Dash movement
 		if( cd.has("dashing") ) {
+			rebootF = 0;
 			switch( job ) {
 				case Fight(e) :
 					dashAng += Lib.angularSubstractionRad(Math.atan2(e.footY-footY, e.footX-footX), dashAng)*0.04;
@@ -474,6 +482,8 @@ class Cat extends Entity {
 		#end
 
 		if( !cd.has("lock") && onGround ) {
+			rebootF = 0;
+
 			// Track target
 			if( !atTarget() && target!=null ) {
 				if( sightCheckCase(target.cx,target.cy) && target.distEnt(this)<=5 ) {
@@ -535,13 +545,20 @@ class Cat extends Entity {
 							if( e.eat() ) {
 								shitStock++;
 								job = Eat(e,true);
+								cd.setS("eating",0.1);
 							}
-							else
-								startEat();
+							else {
+								if( en.inter.FoodTray.ALL.filter(function(e) return !e.isEmpty()).length==0 )
+									startHeroAttack("eReqFood");
+								else
+									startEat();
+							}
 						}
-						cd.setS("eating",0.3);
-						e.cd.setS("eating",0.3);
-						lookAt(e);
+						if( cd.has("eating") ) {
+							cd.setS("eating",0.3);
+							e.cd.setS("eating",0.3);
+							lookAt(e);
+						}
 					case Fight(e) :
 					case Follow(_) :
 					case Wait :
@@ -572,6 +589,18 @@ class Cat extends Entity {
 			if( Console.ME.has("job") )
 				setLabel("lock="+pretty(cd.getS("lock"))+"s onGround="+onGround);
 			#end
+			rebootF+=dt;
+			if( rebootF>=Const.FPS*5 ) {
+				trace("Rebooted "+this);
+				cd.unset("lock");
+				startRandom();
+			}
+		}
+
+
+		// Dash hit
+		if( cd.has("dashing") && distCase(hero)<=1 && !hero.cd.hasSetS("hit",1) ) {
+			hero.hit(this, 1);
 		}
 
 	}

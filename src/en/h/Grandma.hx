@@ -8,11 +8,14 @@ class Grandma extends en.Hero {
 	var rollAng = 0.;
 	var focus : HSprite;
 
+	public var life : Int;
+	public var maxLife = 10;
 	public var money = 100;
 
 	public function new(x,y) {
 		super(x,y);
 
+		life = maxLife;
 		weight = 2;
 
 		spr.anim.registerStateAnim("heroPostRollEnd",4, function() return cd.has("rolling") && cd.getRatio("rolling")<0.2 );
@@ -42,6 +45,28 @@ class Grandma extends en.Hero {
 	override public function postUpdate() {
 		super.postUpdate();
 		ui.Money.ME.set(money);
+		ui.Life.ME.set(life/maxLife);
+	}
+
+	public function hit(from:Entity, dmg:Int) {
+		if( life<=0 )
+			return;
+
+		life-=dmg;
+		if( life<=0 )
+			life = 0;
+		ui.Life.ME.blink();
+		blink();
+		jump(0.5);
+
+		var a = from.angTo(this);
+		var s = 0.5;
+		dx+=Math.cos(a)*s;
+		dy+=Math.sin(a)*s;
+
+		if( life<=0 )
+			destroy();
+		ui.Life.ME.set(life/maxLife);
 	}
 
 	override public function update() {
@@ -118,7 +143,7 @@ class Grandma extends en.Hero {
 
 		#if debug
 		if( Key.isPressed(Key.NUMPAD_ENTER) )
-			jump(rnd(0.5,1));
+			hit(this, 1);
 			//new en.Coin(5, cx+3, cy);
 		#end
 

@@ -200,6 +200,11 @@
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">export/ball.png</key>
+            <key type="filename">export/coin0.png</key>
+            <key type="filename">export/coin1.png</key>
+            <key type="filename">export/coin3.png</key>
+            <key type="filename">export/coin4.png</key>
+            <key type="filename">export/coin5.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -214,6 +219,11 @@
             </struct>
             <key type="filename">export/ballFlat.png</key>
             <key type="filename">export/charShadow0.png</key>
+            <key type="filename">export/gameElements_33.png</key>
+            <key type="filename">export/pointer0.png</key>
+            <key type="filename">export/pointer1.png</key>
+            <key type="filename">export/pointer2.png</key>
+            <key type="filename">export/use.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -235,6 +245,7 @@
             <key type="filename">export/bcatEat0.png</key>
             <key type="filename">export/bcatEat1.png</key>
             <key type="filename">export/bcatEat2.png</key>
+            <key type="filename">export/bcatFall0.png</key>
             <key type="filename">export/bcatFear0.png</key>
             <key type="filename">export/bcatFearJump0.png</key>
             <key type="filename">export/bcatIdle0.png</key>
@@ -254,11 +265,16 @@
             <key type="filename">export/bcatShit2.png</key>
             <key type="filename">export/bcatWalk0.png</key>
             <key type="filename">export/bcatWalk1.png</key>
+            <key type="filename">export/circle.png</key>
             <key type="filename">export/foodBox.png</key>
             <key type="filename">export/foodEmpty.png</key>
             <key type="filename">export/foodFull0.png</key>
             <key type="filename">export/foodFull1.png</key>
             <key type="filename">export/foodFull2.png</key>
+            <key type="filename">export/gameElements_100.png</key>
+            <key type="filename">export/gameElements_101.png</key>
+            <key type="filename">export/gameElements_84.png</key>
+            <key type="filename">export/gameElements_85.png</key>
             <key type="filename">export/heartBack0.png</key>
             <key type="filename">export/heartFront0.png</key>
             <key type="filename">export/heroIdle0.png</key>
@@ -290,10 +306,71 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">export/box.png</key>
+            <key type="filename">export/window.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>20,20,40,40</rect>
+                <key>scale9Paddings</key>
+                <rect>20,20,40,40</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/coin2.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,2,3,3</rect>
+                <key>scale9Paddings</key>
+                <rect>2,2,3,3</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/doorOpen.png</key>
+            <key type="filename">export/gameElements_50.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,8,8,16</rect>
+                <key>scale9Paddings</key>
+                <rect>4,8,8,16</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/dot.png</key>
+            <key type="filename">export/empty.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>1,1,2,2</rect>
+                <key>scale9Paddings</key>
+                <rect>1,1,2,2</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/eCall.png</key>
             <key type="filename">export/eError.png</key>
+            <key type="filename">export/eFishCan.png</key>
             <key type="filename">export/eFood.png</key>
             <key type="filename">export/eLove.png</key>
+            <key type="filename">export/eQuestion.png</key>
+            <key type="filename">export/eReqFood.png</key>
+            <key type="filename">export/eReqShit.png</key>
             <key type="filename">export/eShit.png</key>
+            <key type="filename">export/eUp.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -306,16 +383,313 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">export/empty.png</key>
+            <key type="filename">export/gameElements_10.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>1,1,2,2</rect>
+                <rect>56,12,112,24</rect>
                 <key>scale9Paddings</key>
-                <rect>1,1,2,2</rect>
+                <rect>56,12,112,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_104.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>21,68,42,136</rect>
+                <key>scale9Paddings</key>
+                <rect>21,68,42,136</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_105.png</key>
+            <key type="filename">export/gameElements_106.png</key>
+            <key type="filename">export/gameElements_89.png</key>
+            <key type="filename">export/gameElements_93.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>24,60,48,120</rect>
+                <key>scale9Paddings</key>
+                <rect>24,60,48,120</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_107.png</key>
+            <key type="filename">export/gameElements_108.png</key>
+            <key type="filename">export/gameElements_92.png</key>
+            <key type="filename">export/gameElements_95.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>20,40,40,80</rect>
+                <key>scale9Paddings</key>
+                <rect>20,40,40,80</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_13.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>67,4,134,8</rect>
+                <key>scale9Paddings</key>
+                <rect>67,4,134,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_14.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>1,3,2,6</rect>
+                <key>scale9Paddings</key>
+                <rect>1,3,2,6</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_29.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>24,4,48,8</rect>
+                <key>scale9Paddings</key>
+                <rect>24,4,48,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_35.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>12,12,24,24</rect>
+                <key>scale9Paddings</key>
+                <rect>12,12,24,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_66.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,100,16,200</rect>
+                <key>scale9Paddings</key>
+                <rect>8,100,16,200</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_75.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>80,12,160,24</rect>
+                <key>scale9Paddings</key>
+                <rect>80,12,160,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_76.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>40,4,80,9</rect>
+                <key>scale9Paddings</key>
+                <rect>40,4,80,9</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_77.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>45,4,90,9</rect>
+                <key>scale9Paddings</key>
+                <rect>45,4,90,9</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_78.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>12,4,23,8</rect>
+                <key>scale9Paddings</key>
+                <rect>12,4,23,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_79.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>31,16,63,32</rect>
+                <key>scale9Paddings</key>
+                <rect>31,16,63,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_80.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>1,15,2,31</rect>
+                <key>scale9Paddings</key>
+                <rect>1,15,2,31</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_81.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>44,80,88,160</rect>
+                <key>scale9Paddings</key>
+                <rect>44,80,88,160</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_82.png</key>
+            <key type="filename">export/gameElements_96.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>39,80,78,160</rect>
+                <key>scale9Paddings</key>
+                <rect>39,80,78,160</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_83.png</key>
+            <key type="filename">export/gameElements_86.png</key>
+            <key type="filename">export/gameElements_98.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>16,80,32,160</rect>
+                <key>scale9Paddings</key>
+                <rect>16,80,32,160</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_87.png</key>
+            <key type="filename">export/gameElements_99.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,8,8,17</rect>
+                <key>scale9Paddings</key>
+                <rect>4,8,8,17</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_88.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>16,68,32,136</rect>
+                <key>scale9Paddings</key>
+                <rect>16,68,32,136</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_90.png</key>
+            <key type="filename">export/gameElements_91.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>20,60,40,120</rect>
+                <key>scale9Paddings</key>
+                <rect>20,60,40,120</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_94.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>1,16,1,32</rect>
+                <key>scale9Paddings</key>
+                <rect>1,16,1,32</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/gameElements_97.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>34,80,68,160</rect>
+                <key>scale9Paddings</key>
+                <rect>34,80,68,160</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

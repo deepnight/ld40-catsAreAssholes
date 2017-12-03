@@ -46,6 +46,8 @@ class ItemDrop extends en.Interactive {
 	}
 
 	override function canBeActivated(by:Hero) {
+		if( k==Heal && hero.life>=hero.maxLife )
+			return false;
 		return super.canBeActivated(by) && by.item!=k;
 	}
 
@@ -66,6 +68,10 @@ class ItemDrop extends en.Interactive {
 				e.cd.setS("fear", e.cd.getS("lock"));
 				e.flee(this);
 				game.moneyMan.trigger(this,NewCat);
+
+			case Heal :
+				hero.life = hero.maxLife;
+				ui.Life.ME.blink();
 
 			case Shit :
 				by.pick(Trash);

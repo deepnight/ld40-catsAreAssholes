@@ -18,6 +18,7 @@ class Entity {
 	var debug : Null<h2d.Graphics>;
 	var emote : Null<HSprite>;
 	var label : Null<h2d.Text>;
+	var cAdd : h3d.Vector;
 	var dt : Float;
 	public var zPrio = 0.;
 
@@ -55,6 +56,11 @@ class Entity {
 		spr = new mt.heaps.slib.HSprite(Assets.gameElements);
 		game.scroller.add(spr, Const.DP_HERO);
 		spr.setCenterRatio(0.5,1);
+		spr.colorAdd = cAdd = new h3d.Vector();
+	}
+
+	public function toString() {
+		return Type.getClassName(Type.getClass(this))+"#"+uid;
 	}
 
 	public function enableShadow(?scale=1.0) {
@@ -157,7 +163,6 @@ class Entity {
 	public inline function isLookingAt(e:Entity) return dirTo(e)==dir;
 
 	public inline function destroy() {
-		trace(this+" destroyed");
 		destroyed = true;
 	}
 
@@ -166,8 +171,8 @@ class Entity {
 
 	public function dispose() {
 		ALL.remove(this);
-		cd.destroy(); cd = null;
-		spr.remove(); spr = null;
+		cd.destroy();
+		spr.remove();
 		if( shadow!=null )
 			shadow.remove();
 		if( label!=null )
@@ -219,6 +224,10 @@ class Entity {
 			debug.remove();
 			debug = null;
 		}
+
+		cAdd.r*=0.7;
+		cAdd.g*=0.7;
+		cAdd.b*=0.7;
 	}
 
 	function hasCircColl() {
@@ -236,6 +245,12 @@ class Entity {
 	}
 	function onTouchWallY() {
 		dy*=0.5;
+	}
+
+	public function blink() {
+		cAdd.r = 1;
+		cAdd.g = 1;
+		cAdd.b = 1;
 	}
 
 	public function update() {

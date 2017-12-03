@@ -9,7 +9,6 @@ class Coin extends Entity {
 
 	public var value : Int;
 	var grabDist = 7;
-	var bounces = 0;
 
 	public function new(v:Int, x,y) {
 		super(x,y);
@@ -19,18 +18,20 @@ class Coin extends Entity {
 		value = v;
 		radius = Const.GRID*0.2;
 		footOffsetY = 2;
-		altitude = 10;
+		bounceFrict = 0.97;
 		frict = 0.9;
-		gravity*=0.5;
+		gravity*=0.8;
 		enableShadow(0.5);
 		weight = 0.1;
 		zPrio = -99;
 
+		altitude = rnd(5,10);
+		jump(rnd(0.4,0.7));
 		dx = rnd(0,0.1,true);
 		dy = rnd(0,0.1,true);
 
 		cd.setS("lock", rnd(0.4,0.8));
-		spr.anim.playAndLoop("coin").setSpeed(0.1);
+		spr.anim.playAndLoop(Std.random(2)==0?"coin":"scoin").setSpeed(rnd(0.1,0.2)).unsync();
 		cd.setS("alive", 15);
 	}
 
@@ -50,19 +51,14 @@ class Coin extends Entity {
 		shadow.y+=1;
 	}
 
-	override function onBounce(pow:Float) {
-		super.onBounce(pow);
-		bounces++;
-		dalt = 0;
-		jump( 0.6 * MLib.fmax(1-bounces/7, 0) );
-	}
-
 	override public function update() {
 		super.update();
 
 		var magnet = false;
 		var d = distCase(hero);
 		if( !cd.has("lock") && d<=grabDist && ( sightCheck(hero) || level.hasColl(cx,cy) ) ) {
+			if( !cd.hasSetS("magnetBounce",3) )
+				jump(rnd(0.4,0.7));
 			hasColl = false;
 			magnet = true;
 			var a = angTo(hero);
