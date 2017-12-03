@@ -199,6 +199,35 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">export/ball.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>2,2,4,3</rect>
+                <key>scale9Paddings</key>
+                <rect>2,2,4,3</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/ballFlat.png</key>
+            <key type="filename">export/charShadow0.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,4,8,8</rect>
+                <key>scale9Paddings</key>
+                <rect>4,4,8,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/bcatAngryWalk0.png</key>
+            <key type="filename">export/bcatAngryWalk1.png</key>
             <key type="filename">export/bcatCharge0.png</key>
             <key type="filename">export/bcatCharge1.png</key>
             <key type="filename">export/bcatDash0.png</key>
@@ -207,6 +236,7 @@
             <key type="filename">export/bcatEat1.png</key>
             <key type="filename">export/bcatEat2.png</key>
             <key type="filename">export/bcatFear0.png</key>
+            <key type="filename">export/bcatFearJump0.png</key>
             <key type="filename">export/bcatIdle0.png</key>
             <key type="filename">export/bcatIdleAngry0.png</key>
             <key type="filename">export/bcatIdleRecent0.png</key>
@@ -216,6 +246,9 @@
             <key type="filename">export/bcatLick3.png</key>
             <key type="filename">export/bcatLickLook0.png</key>
             <key type="filename">export/bcatLickLookBack0.png</key>
+            <key type="filename">export/bcatObserve0.png</key>
+            <key type="filename">export/bcatObserve1.png</key>
+            <key type="filename">export/bcatObserve2.png</key>
             <key type="filename">export/bcatShit0.png</key>
             <key type="filename">export/bcatShit1.png</key>
             <key type="filename">export/bcatShit2.png</key>
@@ -241,6 +274,7 @@
             <key type="filename">export/litter1.png</key>
             <key type="filename">export/litter2.png</key>
             <key type="filename">export/litter3.png</key>
+            <key type="filename">export/trashCan.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -253,16 +287,30 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">export/charShadow0.png</key>
+            <key type="filename">export/emoteFood.png</key>
+            <key type="filename">export/emoteShit.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>4,4,8,8</rect>
+                <rect>5,4,10,8</rect>
                 <key>scale9Paddings</key>
-                <rect>4,4,8,8</rect>
+                <rect>5,4,10,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">export/emoteLove.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>0,0,0,0</rect>
+                <key>scale9Paddings</key>
+                <rect>0,0,0,0</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

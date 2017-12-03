@@ -50,6 +50,7 @@ class Level extends mt.Process {
 				case Data.MarkerKind.FoodBox : new en.inter.FoodBox(m.x,m.y);
 				case Data.MarkerKind.Litter : new en.inter.Litter(m.x,m.y);
 				case Data.MarkerKind.TrashCan : new en.inter.TrashCan(m.x,m.y);
+				case Data.MarkerKind.Ball : new en.f.Ball(m.x,m.y);
 			}
 	}
 

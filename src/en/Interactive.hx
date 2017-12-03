@@ -6,7 +6,6 @@ import hxd.Key;
 
 class Interactive extends Entity {
 	public static var ALL : Array<Interactive> = [];
-	var activationS = 0.75;
 	var reqItem : Null<Data.ItemKind>;
 
 	public function new(x,y) {

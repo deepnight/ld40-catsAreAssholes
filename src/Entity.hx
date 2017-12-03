@@ -13,6 +13,8 @@ class Entity {
 
 	public var spr : HSprite;
 	public var shadow : Null<HSprite>;
+	var debug : Null<h2d.Graphics>;
+	var emote : Null<HSprite>;
 	var label : Null<h2d.Text>;
 	var dt : Float;
 	public var zPrio = 0.;
@@ -25,6 +27,8 @@ class Entity {
 	public var dx = 0.;
 	public var dy = 0.;
 	public var frict = 0.7;
+	public var bounceFrict = 0.7;
+	public var gravity = 0.2;
 	public var weight = 1.;
 	public var radius : Float;
 	public var altitude = 0.;
@@ -36,8 +40,6 @@ class Entity {
 	public var footY(get,never) : Float; inline function get_footY() return (cy+yr)*Const.GRID-5+footOffsetY;
 	public var onGround(get,never) : Bool; inline function get_onGround() return altitude==0 && dalt==0;
 	var footOffsetY = 0;
-
-	var debug : Null<h2d.Graphics>;
 
 	private function new(x,y) {
 		uid = Const.UNIQ++;
@@ -62,7 +64,22 @@ class Entity {
 	}
 
 	public function jump(pow:Float) {
-		dalt = -4*pow;
+		dalt = 4*pow;
+		altitude++;
+	}
+
+	function clearSay() {
+		if( emote!=null ) {
+			emote.remove();
+			emote = null;
+		}
+	}
+
+	public function say(id:String, sec:Float) {
+		clearSay();
+		emote = Assets.gameElements.h_get(id,0, 0.5,1);
+		game.scroller.add(emote, Const.DP_UI);
+		cd.setS("saying",sec);
 	}
 
 	public static function countNearby(?except:Entity, x,y, d) {
@@ -126,11 +143,13 @@ class Entity {
 		return Math.atan2(dy,dx);
 	}
 
+	public inline function angTo(e:Entity) return Math.atan2(e.footY-footY, e.footX-footX);
 	public inline function dirTo(e:Entity) return e.footX<=footX ? -1 : 1;
 	public inline function lookAt(e:Entity) dir = dirTo(e);
 	public inline function isLookingAt(e:Entity) return dirTo(e)==dir;
 
 	public inline function destroy() {
+		trace(this+" destroyed");
 		destroyed = true;
 	}
 
@@ -165,6 +184,16 @@ class Entity {
 		if( label!=null )
 			label.setPos(footX-label.textWidth*0.5, footY+2);
 
+		if( emote!=null ) {
+			emote.setPos(footX, footY-20);
+			if( !cd.has("saying") ) {
+				emote.alpha-=0.03;
+				if( emote.alpha<=0 )
+					clearSay();
+			}
+
+		}
+
 		if( Console.ME.has("bounds") ) {
 			if( debug==null ) {
 				debug = new h2d.Graphics();
@@ -191,7 +220,14 @@ class Entity {
 		return true;
 	}
 
-	function onTouch(e:Entity) {}
+	function onTouch(e:Entity) { }
+	function onBounce(pow:Float) {}
+	function onTouchWallX() {
+		dx*=0.5;
+	}
+	function onTouchWallY() {
+		dy*=0.5;
+	}
 
 	public function update() {
 		// Circular collisions
@@ -203,15 +239,15 @@ class Entity {
 						var repel = 0.05;
 						var a = Math.atan2(e.footY-footY, e.footX-footX);
 
-						var r = e.weight / (weight+e.weight);
+						var r = e.weight==weight ? 0.5 : e.weight / (weight+e.weight);
 						if( r<=0.1 ) r = 0;
 						dx-=Math.cos(a)*repel * r;
 						dy-=Math.sin(a)*repel * r;
 
-						r = weight / (weight+e.weight);
+						var r = e.weight==weight ? 0.5 : weight / (weight+e.weight);
 						if( r<=0.1 ) r = 0;
-						e.dx+=Math.cos(a)*repel * weight / (weight+e.weight);
-						e.dy+=Math.sin(a)*repel * weight / (weight+e.weight);
+						e.dx+=Math.cos(a)*repel * r;
+						e.dy+=Math.sin(a)*repel * r;
 
 						onTouch(e);
 						e.onTouch(this);
@@ -222,7 +258,8 @@ class Entity {
 		xr+=dx;
 		if( xr>1 && level.hasColl(cx+1,cy) ) {
 			xr = 1;
-			dx*=0.5;
+			dx-=0.05;
+			onTouchWallX();
 		}
 		if( xr>=0.8 && level.hasColl(cx+1,cy) ) {
 			dx-=0.03;
@@ -230,7 +267,7 @@ class Entity {
 		if( xr<0 && level.hasColl(cx-1,cy) ) {
 			xr = 0;
 			dx+=0.05;
-			dx*=0.5;
+			onTouchWallX();
 		}
 		if( xr<0.2 && level.hasColl(cx-1,cy) ) {
 			dx+=0.03;
@@ -244,11 +281,11 @@ class Entity {
 		yr+=dy;
 		if( yr>1 && level.hasColl(cx,cy+1) ) {
 			yr = 1;
-			dy*=0.5;
+			onTouchWallY();
 		}
 		if( yr<0.1 && level.hasColl(cx,cy-1) ) {
 			yr = 0.1;
-			dy*=0.5;
+			onTouchWallY();
 		}
 		dy*=frict;
 		while( yr>1 ) { yr--; cy++; }
@@ -257,14 +294,16 @@ class Entity {
 
 		// Gravity
 		if( altitude>0 || dalt!=0 ) {
-			dalt+=-0.2;
+			dalt+=-gravity;
 			altitude+=dalt;
 			dalt*=0.95;
 			if( altitude<=0 ) {
 				if( MLib.fabs(dalt)<=0.1 )
 					dalt = 0;
-				else
-					dalt = MLib.fabs(dalt)*0.7;
+				else {
+					dalt = MLib.fabs(dalt)*bounceFrict;
+					onBounce( MLib.fclamp(MLib.fabs(dalt)/1.6, 0, 1) );
+				}
 				altitude = 0;
 			}
 		}

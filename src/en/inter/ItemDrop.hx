@@ -5,9 +5,13 @@ import mt.heaps.slib.*;
 import hxd.Key;
 
 class ItemDrop extends en.Interactive {
+	public static var ALL : Array<ItemDrop> = [];
+
 	var k : Data.ItemKind;
+
 	public function new(k:Data.ItemKind, x,y) {
 		super(x,y);
+		ALL.push(this);
 		radius = Const.GRID*0.3;
 		this.k = k;
 		altitude = 20;
@@ -24,6 +28,7 @@ class ItemDrop extends en.Interactive {
 
 	override public function dispose() {
 		super.dispose();
+		ALL.remove(this);
 	}
 	override function canBeActivated() {
 		return super.canBeActivated() && hero.item!=k;

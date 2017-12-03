@@ -13,7 +13,7 @@ class Hero extends Entity {
 	public function new(x,y) {
 		super(x,y);
 		enableShadow();
-		weight = 0.33;
+		weight = 2;
 		spr.anim.registerStateAnim("heroPostRollEnd",4, function() return cd.has("rolling") && cd.getRatio("rolling")<0.2 );
 		spr.anim.registerStateAnim("heroPostRoll",3, function() return cd.getRatio("rolling")>=0.2 && cd.getRatio("rolling")<0.5 );
 		spr.anim.registerStateAnim("heroRoll",2, 0.2, function() return cd.getRatio("rolling")>=0.5 );
@@ -92,7 +92,7 @@ class Hero extends Entity {
 			// Use
 			if( stamina>0 && Key.isPressed(Key.SPACE) ) {
 				var dh = new DecisionHelper(en.Interactive.ALL);
-				dh.remove( function(e) return !e.canBeActivated() || !sightCheck(e) || distCase(e)>2 );
+				dh.remove( function(e) return !e.canBeActivated() || !sightCheck(e) || distCase(e)>2.5 );
 				dh.score( function(e) return isLookingAt(e) ? 5 : 0 );
 				dh.score( function(e) return -distCase(e) );
 				var e = dh.getBest();

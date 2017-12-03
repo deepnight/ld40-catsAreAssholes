@@ -102,7 +102,7 @@
 						{
 							"x": 13,
 							"y": 2,
-							"marker": "FoodBox",
+							"marker": "Ball",
 							"width": 1,
 							"height": 1
 						},
@@ -114,37 +114,51 @@
 							"height": 1
 						},
 						{
-							"x": 27,
+							"x": 29,
+							"y": 2,
+							"marker": "Litter",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 4,
+							"y": 3,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 26,
+							"y": 3,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 28,
 							"y": 4,
 							"marker": "Food",
 							"width": 1,
 							"height": 1
 						},
 						{
-							"x": 2,
+							"x": 6,
 							"y": 5,
 							"marker": "Litter",
 							"width": 1,
 							"height": 1
 						},
 						{
-							"x": 19,
+							"x": 18,
 							"y": 5,
 							"marker": "Cat",
 							"width": 1,
 							"height": 1
 						},
 						{
-							"x": 10,
-							"y": 6,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 14,
-							"y": 6,
-							"marker": "Cat",
+							"x": 29,
+							"y": 5,
+							"marker": "Ball",
 							"width": 1,
 							"height": 1
 						},
@@ -156,7 +170,42 @@
 							"height": 1
 						},
 						{
-							"x": 14,
+							"x": 2,
+							"y": 8,
+							"marker": "TrashCan",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 28,
+							"y": 8,
+							"marker": "FoodBox",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 5,
+							"y": 9,
+							"marker": "Ball",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 3,
+							"y": 10,
+							"marker": "Ball",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 19,
+							"y": 11,
+							"marker": "FoodBox",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 4,
 							"y": 12,
 							"marker": "Cat",
 							"width": 1,
@@ -164,14 +213,28 @@
 						},
 						{
 							"x": 26,
+							"y": 12,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 11,
 							"y": 13,
+							"marker": "Ball",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 24,
+							"y": 14,
 							"marker": "Food",
 							"width": 1,
 							"height": 1
 						},
 						{
-							"x": 29,
-							"y": 13,
+							"x": 27,
+							"y": 14,
 							"marker": "Food",
 							"width": 1,
 							"height": 1
@@ -303,7 +366,17 @@
 					"icon": {
 						"file": "cdbTiles.png",
 						"size": 16,
-						"x": 13,
+						"x": 14,
+						"y": 0
+					}
+				},
+				{
+					"color": 13902857,
+					"id": "Ball",
+					"icon": {
+						"file": "cdbTiles.png",
+						"size": 16,
+						"x": 9,
 						"y": 0
 					}
 				}

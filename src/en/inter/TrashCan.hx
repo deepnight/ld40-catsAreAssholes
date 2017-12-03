@@ -10,8 +10,8 @@ class TrashCan extends en.Interactive {
 		radius = Const.GRID*0.3;
 		footOffsetY = -4;
 		zPrio = -99;
-		weight = 999;
-		spr.set("litter");
+		weight = 15;
+		spr.set("trashCan");
 	}
 
 	override public function onActivate() {

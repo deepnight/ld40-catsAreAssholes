@@ -6,16 +6,15 @@ import hxd.Key;
 
 class Litter extends en.Interactive {
 	public static var ALL : Array<Litter> = [];
-	var max = 4;
+	var max = 8;
 	var stock = 0;
 
 	public function new(x,y) {
 		super(x,y);
 		ALL.push(this);
-		footOffsetY = -10;
+		//footOffsetY = -10;
 		zPrio = -99;
 		weight = -1;
-		stock = 2;
 	}
 
 	public function isFull() return stock>=max;
@@ -33,17 +32,18 @@ class Litter extends en.Interactive {
 		}
 	}
 
-	public function addShit() {
-		stock++;
+	public function addShit(n) {
+		stock = MLib.min(stock+n, max);
 	}
 
 	override public function postUpdate() {
 		super.postUpdate();
-		spr.set("litter", stock>=max ? 3 : stock>=max-2 ? 2 : stock>0 ? 1 : 0);
+		spr.y+=10;
+		spr.set("litter", stock>=max ? 3 : stock>=max*0.5 ? 2 : stock>0 ? 1 : 0);
 	}
 
-	override public function update() {
-		super.update();
-		setLabel(stock+"/"+max);
-	}
+	//override public function update() {
+		//super.update();
+		//setLabel(stock+"/"+max);
+	//}
 }
