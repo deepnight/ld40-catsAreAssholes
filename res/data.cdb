@@ -411,6 +411,21 @@
 					"display": null
 				},
 				{
+					"typeStr": "1",
+					"name": "desc",
+					"kind": "localizable"
+				},
+				{
+					"typeStr": "3",
+					"name": "cost",
+					"opt": true,
+					"display": null
+				},
+				{
+					"typeStr": "4",
+					"name": "deliveryS"
+				},
+				{
 					"typeStr": "4",
 					"name": "decayS"
 				}
@@ -424,7 +439,9 @@
 						"x": 0,
 						"y": 0
 					},
-					"decayS": 12
+					"decayS": 12,
+					"desc": "",
+					"deliveryS": 0
 				},
 				{
 					"id": "Shit",
@@ -434,7 +451,9 @@
 						"x": 1,
 						"y": 0
 					},
-					"decayS": 0
+					"decayS": 0,
+					"desc": "",
+					"deliveryS": 0
 				},
 				{
 					"id": "Trash",
@@ -444,7 +463,9 @@
 						"x": 2,
 						"y": 0
 					},
-					"decayS": 0
+					"decayS": 0,
+					"desc": "",
+					"deliveryS": 0
 				},
 				{
 					"id": "FoodBox",
@@ -454,7 +475,10 @@
 						"size": 32,
 						"x": 3,
 						"y": 0
-					}
+					},
+					"desc": "Fish refill for the fridge",
+					"cost": 10,
+					"deliveryS": 10
 				},
 				{
 					"id": "TrayBox",
@@ -464,7 +488,10 @@
 						"size": 32,
 						"x": 4,
 						"y": 0
-					}
+					},
+					"desc": "Extra food tray",
+					"cost": 30,
+					"deliveryS": 20
 				},
 				{
 					"id": "CatBox",
@@ -472,9 +499,12 @@
 					"icon": {
 						"file": "items.png",
 						"size": 32,
-						"x": 4,
+						"x": 5,
 						"y": 0
-					}
+					},
+					"desc": "Get an extra cat!",
+					"cost": 0,
+					"deliveryS": 10
 				}
 			],
 			"separators": [],

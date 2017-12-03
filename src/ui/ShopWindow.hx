@@ -6,6 +6,7 @@ import mt.heaps.slib.*;
 import hxd.Key;
 
 class ShopWindow extends mt.Process {
+	public static var ME : ShopWindow;
 	var mask : h2d.Graphics;
 	//var bg : h2d.ScaleGrid;
 	var wFlow : h2d.Flow;
@@ -18,6 +19,7 @@ class ShopWindow extends mt.Process {
 
 	public function new() {
 		super(Main.ME);
+		ME = this;
 
 		createRootInLayers(Main.ME.root, Const.DP_UI);
 		root.setScale(Const.SCALE);
@@ -41,6 +43,7 @@ class ShopWindow extends mt.Process {
 
 		iFlow = new h2d.Flow(wFlow);
 		iFlow.isVertical = true;
+		iFlow.verticalSpacing = 1;
 
 		wFlow.addSpacing(8);
 		var tf = new h2d.Text(Assets.font, wFlow);
@@ -66,15 +69,20 @@ class ShopWindow extends mt.Process {
 			tf.maxWidth = 200;
 		}
 		else {
-			addItem( Assets.getItem(FoodBox), "Fish refill for the fridge", 10, function() {
-				door.addEvent( Deliver(FoodBox), 10 );
-			} );
-			addItem( Assets.getItem(CatBox), "A new cat!", 30, function() {
-				door.addEvent( Deliver(CatBox), 10 );
-			} );
-			addItem( Assets.getItem(TrayBox), "Extra bowl", 30, function() {
-				door.addEvent( Deliver(TrayBox), 20 );
-			} );
+			for(i in Data.item.all) {
+				if( i.cost!=null )
+					addItem(i.id);
+			}
+
+			//addItem( Assets.getItem(FoodBox), "Fish refill for the fridge", 10, function() {
+				//door.addEvent( Deliver(FoodBox), 10 );
+			//} );
+			//addItem( Assets.getItem(CatBox), "A new cat!", 30, function() {
+				//door.addEvent( Deliver(CatBox), 10 );
+			//} );
+			//addItem( Assets.getItem(TrayBox), "Extra bowl", 30, function() {
+				//door.addEvent( Deliver(TrayBox), 20 );
+			//} );
 		}
 
 		cursor = Assets.gameElements.h_get("use",0, 0.5,0.5, iFlow);
@@ -83,28 +91,46 @@ class ShopWindow extends mt.Process {
 		onResize();
 	}
 
-	function addItem(t:h2d.Tile, str:String, cost:Int, cb:Void->Void) {
+	function addItem(k:Data.ItemKind) {
+		var door = en.inter.Door.ALL[0];
+		var inf = Data.item.get(k);
 		var f = new h2d.Flow(iFlow);
+		//f.debug = true;
 		f.verticalAlign = Middle;
 		f.horizontalSpacing = 4;
+		f.backgroundTile = Assets.gameElements.getTile("box");
+		f.borderHeight = f.borderWidth = 4;
+		f.minWidth = 250;
 
-		var icon = new h2d.Bitmap(t, f);
+		var icon = new h2d.Bitmap(Assets.getItem(k), f);
+		icon.tile.setCenterRatio(0,0.25);
+
 
 		var w = new h2d.Flow(f);
+		w.minHeight = 2;
 		w.minWidth = 50;
-		var tf = new h2d.Text(Assets.font, w);
-		tf.text = "$"+cost;
-		tf.textColor = 0xFF9900;
+		if( inf.cost>0 ) {
+			var tf = new h2d.Text(Assets.font, w);
+			tf.text = "$"+inf.cost;
+			tf.textColor = 0xFF9900;
+		}
+		else {
+			var tf = new h2d.Text(Assets.font, w);
+			tf.text = "FREE";
+			tf.textColor = 0x8CD12E;
+		}
 
 		f.addSpacing(8);
 
 		var tf = new h2d.Text(Assets.font, f);
-		tf.text = str;
+		tf.text = inf.desc;
 
 		items.push( {
 			f:f,
-			p:cost,
-			cb:cb,
+			p:inf.cost,
+			cb:function() {
+				door.addEvent( Deliver(k), 10 );
+			},
 		});
 	}
 
@@ -124,6 +150,8 @@ class ShopWindow extends mt.Process {
 
 	override public function onDispose() {
 		super.onDispose();
+		if( ME==this )
+			ME = null;
 		Game.ME.resume();
 	}
 
@@ -136,15 +164,22 @@ class ShopWindow extends mt.Process {
 	}
 
 	override public function update() {
+		if( Game.ME.destroyed )
+			destroy();
+
 		super.update();
+
 		if( cd.has("closing") )
 			return;
 
 		money.text = "You have $"+Game.ME.hero.money;
 
+		for(i in items)
+			i.f.alpha = 0.7;
 		var i = items[curIdx];
 		cursor.visible = i!=null;
 		if( i!=null ) {
+			i.f.alpha = 1;
 			cursor.x = 5 - MLib.fabs(Math.sin(ftime*0.2)*5);
 			cursor.y += ( i.f.y + i.f.outerHeight*0.5 - cursor.y ) * 0.3;
 
