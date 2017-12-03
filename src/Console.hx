@@ -11,7 +11,7 @@ class Console extends h2d.Console {
 
 		flags = new Map();
 		#if debug
-		set("side",true);
+		//set("side",true);
 		#end
 
 		this.addCommand("set", [{ name:"k", t:AString }], function(k:String) {

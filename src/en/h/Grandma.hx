@@ -60,7 +60,7 @@ class Grandma extends en.Hero {
 
 			// Use
 			var dh = new DecisionHelper(en.Interactive.ALL);
-			dh.remove( function(e) return !e.canBeActivated(this) || !sightCheck(e) || distCase(e)>1.75 );
+			dh.remove( function(e) return !e.canBeActivated(this) || !sightCheck(e) || distCase(e)>1.5 );
 			dh.score( function(e) return isLookingAt(e) ? 2 : 0 );
 			dh.score( function(e) return distCase(e)<=1.5 ? 5 : 0 );
 			dh.score( function(e) return -distCase(e) );

@@ -260,20 +260,20 @@ class Entity {
 
 		// X
 		xr+=dx;
-		if( xr>1 && level.hasColl(cx+1,cy) ) {
-			xr = 1;
+		if( xr>0.7 && level.hasColl(cx+1,cy) ) {
+			xr = 0.7;
 			dx-=0.05;
 			onTouchWallX();
 		}
-		if( xr>=0.8 && level.hasColl(cx+1,cy) ) {
+		if( xr>=0.6 && level.hasColl(cx+1,cy) ) {
 			dx-=0.03;
 		}
-		if( xr<0 && level.hasColl(cx-1,cy) ) {
-			xr = 0;
+		if( xr<0.3 && level.hasColl(cx-1,cy) ) {
+			xr = 0.3;
 			dx+=0.05;
 			onTouchWallX();
 		}
-		if( xr<0.2 && level.hasColl(cx-1,cy) ) {
+		if( xr<0.4 && level.hasColl(cx-1,cy) ) {
 			dx+=0.03;
 		}
 		dx*=frict;

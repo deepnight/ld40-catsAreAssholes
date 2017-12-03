@@ -19,7 +19,6 @@ class Hero extends Entity {
 		itemIcon = new h2d.Bitmap(Assets.getItem(item), spr);
 		itemIcon.tile.setCenterRatio(0.5,1);
 		itemIcon.y = -20;
-		trace("picked "+item);
 	}
 
 	public function destroyItem() {
