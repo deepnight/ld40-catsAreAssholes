@@ -12,7 +12,7 @@ class Shop extends en.Interactive {
 		super(x,y);
 		yr = 1;
 		ALL.push(this);
-		spr.set("foodBox");
+		spr.set("empty");
 		radius = Const.GRID*0.3;
 		weight = -1;
 		zPrio = -99;

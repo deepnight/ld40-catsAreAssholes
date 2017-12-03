@@ -61,12 +61,19 @@ class Door extends en.Interactive {
 				jump(1);
 		}
 	}
+
+	override public function postUpdate() {
+		super.postUpdate();
+		if( label!=null )
+			label.y-=32;
+	}
+
 	override public function update() {
 		super.update();
 
 		if( events.length>0 ) {
 			var e = events[0];
-			setLabel(pretty((e.t-game.ftime)/Const.FPS)+"s");
+			setLabel(MLib.ceil((e.t-game.ftime)/Const.FPS)+"s");
 			if( game.ftime>=e.t ) {
 				events.shift();
 				doEvent(e.k);
