@@ -36,7 +36,9 @@ class Sidekick extends en.Hero {
 	}
 
 	function pickTrashCan() : en.inter.TrashCan {
-		return cast pickOne( Entity.ALL.filter(function(e) return e.is(en.inter.TrashCan)) );
+		var dh = new DecisionHelper(en.inter.TrashCan.ALL);
+		dh.score( function(e) return -distCase(e) );
+		return dh.getBest();
 	}
 
 	function pickFridge(?prio:Entity) : en.inter.Fridge {
@@ -61,6 +63,7 @@ class Sidekick extends en.Hero {
 		if( e.is(en.inter.Litter) ) {
 			var e = e.as(en.inter.Litter);
 			var t = pickTrashCan();
+			say("eShit");
 			actions = [
 				GoInter(e),
 				AbandonIf(function() return item==null),
@@ -72,6 +75,7 @@ class Sidekick extends en.Hero {
 			var f = e.as(en.inter.Fridge);
 			var t = pickFoodTrail();
 			if( t!=null ) {
+				say("eFood");
 				actions = [
 					GoInter(f),
 					RepeatPrevIf(function() return item==null, 4),
@@ -83,6 +87,7 @@ class Sidekick extends en.Hero {
 		if( e.is(en.inter.Food) ) {
 			var f = pickFridge(e);
 			var t = e.as(en.inter.Food);
+			say("eFood");
 			actions = [
 				GoInter(f),
 				RepeatPrevIf(function() return item==null, 4),
@@ -99,9 +104,11 @@ class Sidekick extends en.Hero {
 			switch( e.k ) {
 				case Data.ItemKind.Fish :
 					var t = pickFoodTrail();
+					say("eFood");
 					if( t!=null ) actions.push( GoInter(t) );
 
 				case Data.ItemKind.Trash, Data.ItemKind.Shit :
+					say("eShit");
 					var t = pickTrashCan();
 					actions.push( GoInter(t) );
 

@@ -76,7 +76,7 @@ class Entity {
 		}
 	}
 
-	public function say(id:String, sec:Float) {
+	public function say(id:String, ?sec=2.0) {
 		clearSay();
 		emote = Assets.gameElements.h_get(id,0, 0.5,1);
 		game.scroller.add(emote, Const.DP_UI);

@@ -111,7 +111,7 @@ class Cat extends Entity {
 	function startEat() {
 		var e = Food.pickOne();
 		if( e==null )
-			return startHeroAttack("eFood");
+			return startHeroAttack("eReqFood");
 		else
 			startJob( Eat(e), rnd(5,8) );
 		return true;
@@ -327,14 +327,14 @@ class Cat extends Entity {
 		switch( job ) {
 			case Fight(e,r) :
 				switch( r ) {
-					case "eFood" :
+					case "eReqFood" :
 						for(e in en.inter.Food.ALL)
 							if( !e.isEmpty() && sightCheck(e) ) {
 								startEat();
 								break;
 							}
 
-					case "eShit" :
+					case "eReqShit" :
 						for(e in en.inter.Litter.ALL)
 							if( !e.isFull() && sightCheck(e) ) {
 								startWait(1);

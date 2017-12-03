@@ -274,6 +274,9 @@
             <key type="filename">export/litter1.png</key>
             <key type="filename">export/litter2.png</key>
             <key type="filename">export/litter3.png</key>
+            <key type="filename">export/sideIdle0.png</key>
+            <key type="filename">export/sideWalk0.png</key>
+            <key type="filename">export/sideWalk1.png</key>
             <key type="filename">export/trashCan.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -287,8 +290,10 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">export/emoteFood.png</key>
-            <key type="filename">export/emoteShit.png</key>
+            <key type="filename">export/eError.png</key>
+            <key type="filename">export/eFood.png</key>
+            <key type="filename">export/eLove.png</key>
+            <key type="filename">export/eShit.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -298,19 +303,6 @@
                 <rect>5,4,10,8</rect>
                 <key>scale9Paddings</key>
                 <rect>5,4,10,8</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">export/emoteLove.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>0,0,0,0</rect>
-                <key>scale9Paddings</key>
-                <rect>0,0,0,0</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

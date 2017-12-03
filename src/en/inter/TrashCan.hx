@@ -5,13 +5,20 @@ import mt.heaps.slib.*;
 import hxd.Key;
 
 class TrashCan extends en.Interactive {
+	public static var ALL : Array<TrashCan> = [];
 	public function new(x,y) {
 		super(x,y);
+		ALL.push(this);
 		radius = Const.GRID*0.3;
 		footOffsetY = -4;
 		zPrio = -99;
 		weight = 15;
 		spr.set("trashCan");
+	}
+
+	override public function dispose() {
+		super.dispose();
+		ALL.remove(this);
 	}
 
 	override public function onActivate(by:Hero) {
