@@ -567,6 +567,12 @@ class Cat extends Entity {
 				setLabel(job+"("+doingIt+") "+pretty(jobDurationS)+"s");
 			#end
 		}
+		else {
+			#if debug
+			if( Console.ME.has("job") )
+				setLabel("lock="+pretty(cd.getS("lock"))+"s onGround="+onGround);
+			#end
+		}
 
 	}
 }

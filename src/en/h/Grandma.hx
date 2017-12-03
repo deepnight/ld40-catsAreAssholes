@@ -13,6 +13,8 @@ class Grandma extends en.Hero {
 	public function new(x,y) {
 		super(x,y);
 
+		weight = 2;
+
 		spr.anim.registerStateAnim("heroPostRollEnd",4, function() return cd.has("rolling") && cd.getRatio("rolling")<0.2 );
 		spr.anim.registerStateAnim("heroPostRoll",3, function() return cd.getRatio("rolling")>=0.2 && cd.getRatio("rolling")<0.5 );
 		spr.anim.registerStateAnim("heroRoll",2, 0.2, function() return cd.getRatio("rolling")>=0.5 );
@@ -22,6 +24,10 @@ class Grandma extends en.Hero {
 		focus = Assets.gameElements.h_get("use",0, 0.5,0.5);
 		focus.scaleY = -1;
 		game.scroller.add(focus, Const.DP_UI);
+	}
+
+	override function hasCircCollWith(e:Entity) {
+		return super.hasCircCollWith(e) && e.is(en.f.Ball);
 	}
 
 	override function getThrowAng() {
@@ -112,7 +118,8 @@ class Grandma extends en.Hero {
 
 		#if debug
 		if( Key.isPressed(Key.NUMPAD_ENTER) )
-			new en.Coin(5, cx+3, cy);
+			jump(rnd(0.5,1));
+			//new en.Coin(5, cx+3, cy);
 		#end
 
 		// Roll effect

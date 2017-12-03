@@ -285,6 +285,13 @@ class Sidekick extends en.Hero {
 	override public function update() {
 		super.update();
 
+		#if debug
+		if( Console.ME.has("path") ) {
+			for(pt in path)
+				fx.markerCase(pt.x,pt.y,0xFF8000, true);
+		}
+		#end
+
 		if( actionIdx<actions.length && !cd.has("lock") ) {
 			var a = actions[actionIdx];
 			if( Console.ME.has("side") )
@@ -366,6 +373,8 @@ class Sidekick extends en.Hero {
 				dx += Math.cos(a)*spd;
 				dy += Math.sin(a)*spd;
 				dir = Math.cos(a)>=0.1 ? 1 : Math.cos(a)<=-0.1 ? -1 : dir;
+				if( !sightCheckCase(next.x,next.y) )
+					path = [];
 			}
 		}
 

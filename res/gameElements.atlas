@@ -6,17 +6,17 @@ filter: Linear,Linear
 repeat: none
 ball
   rotate: false
-  xy: 193, 273
-  size: 9, 8
+  xy: 77, 254
+  size: 11, 10
   orig: 16, 16
   offset: 3, 0
   index: -1
 ballFlat
   rotate: false
-  xy: 168, 286
-  size: 10, 6
+  xy: 155, 270
+  size: 13, 8
   orig: 16, 16
-  offset: 2, 0
+  offset: 1, 0
   index: -1
 bcatAngryWalk0
   rotate: false
@@ -573,7 +573,7 @@ gameElements_89
   index: -1
 gameElements_90
   rotate: false
-  xy: 181, 273
+  xy: 90, 254
   size: 10, 33
   orig: 13, 73
   offset: 3, 30
@@ -811,7 +811,7 @@ pointer1
   index: -1
 pointer2
   rotate: false
-  xy: 155, 270
+  xy: 170, 270
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
@@ -846,7 +846,7 @@ trashCan
   index: -1
 use
   rotate: false
-  xy: 168, 270
+  xy: 183, 273
   size: 11, 14
   orig: 16, 16
   offset: 3, 1

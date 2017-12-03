@@ -122,7 +122,7 @@
 						},
 						{
 							"x": 28,
-							"y": 3,
+							"y": 4,
 							"marker": "Litter",
 							"width": 1,
 							"height": 1
@@ -504,7 +504,7 @@
 						"x": 5,
 						"y": 0
 					},
-					"desc": "Get an extra cat!",
+					"desc": "Moar cats!",
 					"deliveryS": 5,
 					"scaledCosts": [
 						{
@@ -543,14 +543,14 @@
 				},
 				{
 					"id": "TrayBox",
-					"decayS": 4,
+					"decayS": 0,
 					"icon": {
 						"file": "items.png",
 						"size": 32,
 						"x": 4,
 						"y": 0
 					},
-					"desc": "An extra food tray.",
+					"desc": "An extra food Bowl.",
 					"deliveryS": 10,
 					"scaledCosts": [
 						{
@@ -559,11 +559,33 @@
 						{
 							"v": 60
 						}
-					]
+					],
+					"maxBuy": 4
+				},
+				{
+					"id": "LitterBox",
+					"desc": "An extra Litter box.",
+					"scaledCosts": [
+						{
+							"v": 50
+						},
+						{
+							"v": 100
+						}
+					],
+					"deliveryS": 10,
+					"decayS": 0,
+					"icon": {
+						"file": "items.png",
+						"size": 32,
+						"x": 4,
+						"y": 0
+					},
+					"maxBuy": 2
 				},
 				{
 					"id": "FridgeUp",
-					"desc": "Better fridge capacity.",
+					"desc": "Better Fridge capacity.",
 					"deliveryS": 10,
 					"decayS": 0,
 					"icon": {
@@ -615,9 +637,10 @@
 			"lines": [
 				{
 					"id": "Ball",
-					"cd": 3,
-					"value": 1,
-					"index": 0
+					"cd": 5,
+					"value": 2,
+					"index": 0,
+					"maxValue": 4
 				},
 				{
 					"id": "FightCat",

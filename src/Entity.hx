@@ -242,7 +242,7 @@ class Entity {
 		// Circular collisions
 		if( hasCircColl() )
 			for(e in ALL)
-				if( e!=this && e.hasCircColl() && hasCircCollWith(e) ) {
+				if( e!=this && e.hasCircColl() && hasCircCollWith(e) && e.hasCircCollWith(this) ) {
 					var d = distPx(e);
 					if( d<=radius+e.radius ) {
 						var repel = 0.05;

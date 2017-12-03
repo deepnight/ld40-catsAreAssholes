@@ -13,7 +13,11 @@ class Litter extends en.Interactive {
 		super(x,y);
 		ALL.push(this);
 		zPrio = -99;
-		weight = -1;
+		weight = 1;
+	}
+
+	override function hasCircCollWith(e:Entity) {
+		return super.hasCircCollWith(e) && e.is(Litter);
 	}
 
 	public function isEmpty() return stock==0;

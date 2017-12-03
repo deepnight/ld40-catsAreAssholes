@@ -41,6 +41,10 @@ class Hero extends Entity {
 				e.stock = 0;
 				destroyItem();
 
+			case LitterBox :
+				var e = new en.inter.Litter(cx,cy);
+				destroyItem();
+
 			default :
 				var a = getThrowAng() + rnd(0,0.1,true);
 				var e = new en.inter.ItemDrop(item, cx,cy);

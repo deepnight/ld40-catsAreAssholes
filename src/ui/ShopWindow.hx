@@ -118,7 +118,7 @@ class ShopWindow extends mt.Process {
 		var cost = inf.cost!=null ? inf.cost : 0;
 		if( inf.scaledCosts.length>0 ) {
 			var n = en.inter.Shop.ME.countPreviousBoughts(k);
-			cost = inf.scaledCosts[ MLib.min(n, inf.scaledCosts.length) ].v;
+			cost = inf.scaledCosts[ MLib.min(n, inf.scaledCosts.length-1) ].v;
 		}
 		if( cost>0 ) {
 			var tf = new h2d.Text(Assets.font, w);
@@ -142,7 +142,7 @@ class ShopWindow extends mt.Process {
 			p:cost,
 			cb:function() {
 				en.inter.Shop.ME.boughts.push(k);
-				door.addEvent( Deliver(k), inf.deliveryS );
+				door.addEvent( Deliver(k), #if debug 0 #else inf.deliveryS #end );
 			},
 		});
 	}
