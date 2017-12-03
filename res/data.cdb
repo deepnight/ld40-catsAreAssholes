@@ -128,13 +128,6 @@
 							"height": 1
 						},
 						{
-							"x": 21,
-							"y": 5,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 29,
 							"y": 5,
 							"marker": "Litter",
@@ -145,13 +138,6 @@
 							"x": 17,
 							"y": 7,
 							"marker": "Grandma",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 12,
-							"y": 10,
-							"marker": "Cat",
 							"width": 1,
 							"height": 1
 						},
@@ -170,6 +156,13 @@
 							"height": 1
 						},
 						{
+							"x": 29,
+							"y": 11,
+							"marker": "FoodTray",
+							"width": 1,
+							"height": 1
+						},
+						{
 							"x": 2,
 							"y": 13,
 							"marker": "Ball",
@@ -184,23 +177,16 @@
 							"height": 1
 						},
 						{
-							"x": 10,
-							"y": 14,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 29,
-							"y": 14,
-							"marker": "FoodTray",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 4,
 							"y": 15,
 							"marker": "Ball",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 21,
+							"y": 15,
+							"marker": "FoodTray",
 							"width": 1,
 							"height": 1
 						}
@@ -473,7 +459,7 @@
 					"icon": {
 						"file": "items.png",
 						"size": 32,
-						"x": 2,
+						"x": 3,
 						"y": 0
 					}
 				}
