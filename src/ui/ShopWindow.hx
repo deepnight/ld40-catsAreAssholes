@@ -16,10 +16,13 @@ class ShopWindow extends mt.Process {
 
 	var curIdx = 0;
 	var items : Array<{ f:h2d.Flow, p:Int, cb:Void->Void } >;
+	var door : en.inter.Door;
 
 	public function new() {
 		super(Main.ME);
 		ME = this;
+
+		door = en.inter.Door.ALL[0];
 
 		createRootInLayers(Main.ME.root, Const.DP_UI);
 		root.setScale(Const.SCALE);
@@ -39,7 +42,7 @@ class ShopWindow extends mt.Process {
 
 		money = new h2d.Text(Assets.font, wFlow);
 		money.textColor = 0xFF9900;
-		wFlow.addSpacing(8);
+		wFlow.getProperties(money).paddingBottom = 8;
 
 		iFlow = new h2d.Flow(wFlow);
 		iFlow.isVertical = true;
@@ -59,10 +62,10 @@ class ShopWindow extends mt.Process {
 
 	function refresh() {
 		items = [];
-		var door = en.inter.Door.ALL[0];
 		iFlow.removeChildren();
 
 		if( door.hasAnyEvent() ) {
+			money.visible = false;
 			var tf = new h2d.Text(Assets.font, iFlow);
 			tf.text = "Delivery in progress, you can't order anything for now.";
 			//tf.text = "Livraison en cours, vous ne pouvez rien commander d'autre en attendant.";
@@ -92,7 +95,6 @@ class ShopWindow extends mt.Process {
 	}
 
 	function addItem(k:Data.ItemKind) {
-		var door = en.inter.Door.ALL[0];
 		var inf = Data.item.get(k);
 		var f = new h2d.Flow(iFlow);
 		//f.debug = true;

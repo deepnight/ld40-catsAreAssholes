@@ -8,6 +8,7 @@ class ItemDrop extends en.Interactive {
 	public static var ALL : Array<ItemDrop> = [];
 
 	public var k : Data.ItemKind;
+	public var skew = 0.;
 
 	public function new(k:Data.ItemKind, x,y) {
 		super(x,y);
@@ -20,6 +21,7 @@ class ItemDrop extends en.Interactive {
 		zPrio = -8;
 
 		spr.set("empty");
+		cd.setS("shake",rnd(1,2.5));
 
 		var icon = new h2d.Bitmap(Assets.getItem(k), spr);
 		icon.tile.setCenterRatio(0.5,1);
@@ -47,9 +49,23 @@ class ItemDrop extends en.Interactive {
 		return super.canBeActivated(by) && by.item!=k;
 	}
 
+	override public function postUpdate() {
+		super.postUpdate();
+		spr.scaleX = (1-skew)*dir;
+		spr.scaleY = (1-skew);
+		skew += (0-skew)*0.3;
+	}
+
 	override public function onActivate(by:Hero) {
 		super.onActivate(by);
 		switch( k ) {
+			case CatBox :
+				var e = new en.Cat(cx,cy);
+				e.jump(1);
+				e.cd.setS("lock", 0.7);
+				e.cd.setS("fear", e.cd.getS("lock"));
+				e.flee(this);
+
 			case Shit :
 				by.pick(Trash);
 
@@ -67,6 +83,11 @@ class ItemDrop extends en.Interactive {
 		else
 			frict = 0.75;
 
+		if( k==CatBox && !cd.hasSetS("shake",rnd(0.2,0.5)) ) {
+			dx+=rnd(0,0.02,true);
+			dy+=rnd(0,0.02,true);
+			jump(rnd(0.2,0.4));
+		}
 
 		if( cd.has("alive") && cd.getS("alive")<=1 && !cd.hasSetS("blink",0.06) )
 			spr.alpha = spr.alpha==0.6 ? 0 : 0.6;

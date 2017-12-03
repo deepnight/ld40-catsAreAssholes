@@ -11,7 +11,7 @@ enum DoorEvent {
 class Door extends en.Interactive {
 	public static var ALL : Array<Door> = [];
 
-	var events : Array<{ k:DoorEvent, t:Float }>;
+	var events : Array<{ k:DoorEvent, frames:Float }>;
 
 	public function new(x,y) {
 		super(x,y);
@@ -22,6 +22,10 @@ class Door extends en.Interactive {
 		weight = -1;
 		footOffsetY = -4;
 		zPrio = -99;
+
+		addEvent( Deliver(CatBox), 2 );
+		addEvent( Deliver(CatBox), 2 );
+		addEvent( Deliver(CatBox), 2 );
 	}
 
 	public function hasAnyEvent() {
@@ -36,7 +40,7 @@ class Door extends en.Interactive {
 	}
 
 	public function addEvent(k:DoorEvent, sec:Float) {
-		events.push( { k:k, t:game.ftime+sec*Const.FPS } );
+		events.push( { k:k, frames:sec*Const.FPS } );
 	}
 
 	override public function dispose() {
@@ -56,10 +60,23 @@ class Door extends en.Interactive {
 		switch( k ) {
 			case Deliver(ik) :
 				var e = new en.inter.ItemDrop(ik, cx,cy);
+				e.skew = 1;
 				e.dx = rnd(0,0.2,true);
-				e.dy = 0.3;
+				e.dy = rnd(0.3,0.5);
 				jump(1);
 		}
+	}
+
+	public function open() {
+		var s = Assets.gameElements.h_get("doorOpen",0, 0.5,1);
+		s.x = footX;
+		s.y = footY+16;
+		game.scroller.add(s, Const.DP_BG);
+		game.tw.createS(s.alpha, 0>1, 0.2)
+			.chainMs(1000|0)
+			.end( function() {
+				s.remove();
+			});
 	}
 
 	override public function postUpdate() {
@@ -73,10 +90,12 @@ class Door extends en.Interactive {
 
 		if( events.length>0 ) {
 			var e = events[0];
-			setLabel(MLib.ceil((e.t-game.ftime)/Const.FPS)+"s");
-			if( game.ftime>=e.t ) {
+			e.frames -= dt;
+			setLabel(MLib.ceil(e.frames/Const.FPS)+"s");
+			if( e.frames<=0 ) {
 				events.shift();
-				doEvent(e.k);
+				game.delayer.addS( doEvent.bind(e.k), 0.3 );
+				open();
 			}
 		}
 		else

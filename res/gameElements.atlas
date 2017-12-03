@@ -1,246 +1,253 @@
 
 gameElements.png
-size: 256,256
+size: 256,512
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 ball
   rotate: false
-  xy: 245, 125
+  xy: 246, 96
   size: 9, 8
   orig: 16, 16
   offset: 3, 0
   index: -1
 ballFlat
   rotate: false
-  xy: 245, 117
+  xy: 146, 81
   size: 10, 6
   orig: 16, 16
   offset: 2, 0
   index: -1
 bcatAngryWalk0
   rotate: false
-  xy: 48, 178
+  xy: 166, 185
   size: 25, 18
   orig: 32, 32
   offset: 5, 3
   index: -1
 bcatAngryWalk1
   rotate: false
-  xy: 28, 235
+  xy: 110, 194
   size: 25, 20
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatCharge0
   rotate: false
-  xy: 28, 38
+  xy: 170, 157
   size: 25, 26
   orig: 32, 32
   offset: 1, 0
   index: -1
 bcatCharge1
   rotate: false
-  xy: 1, 199
+  xy: 158, 80
   size: 22, 26
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatDash0
   rotate: false
-  xy: 213, 117
+  xy: 214, 96
   size: 30, 23
   orig: 32, 32
   offset: 2, 5
   index: -1
 bcatDash1
   rotate: false
-  xy: 115, 120
+  xy: 115, 81
   size: 29, 26
   orig: 32, 32
   offset: 2, 1
   index: -1
 bcatEat0
   rotate: false
-  xy: 136, 227
+  xy: 166, 205
   size: 25, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatEat1
   rotate: false
-  xy: 113, 173
+  xy: 176, 114
   size: 28, 15
   orig: 32, 32
   offset: 2, 0
   index: -1
 bcatEat2
   rotate: false
-  xy: 103, 190
+  xy: 83, 163
   size: 26, 15
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatFall0
   rotate: false
-  xy: 109, 229
+  xy: 224, 179
   size: 25, 18
   orig: 32, 32
   offset: 3, 4
   index: -1
 bcatFear0
   rotate: false
-  xy: 83, 137
+  xy: 83, 91
   size: 29, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatFearJump0
   rotate: false
-  xy: 181, 109
+  xy: 182, 87
   size: 30, 25
   orig: 32, 32
   offset: 0, 4
   index: -1
 bcatIdle0
   rotate: false
-  xy: 26, 69
+  xy: 176, 131
   size: 27, 24
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatIdleAngry0
   rotate: false
-  xy: 75, 185
+  xy: 111, 158
   size: 26, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatIdleRecent0
   rotate: false
-  xy: 156, 199
+  xy: 137, 206
   size: 25, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatLick0
   rotate: false
-  xy: 55, 38
+  xy: 83, 139
   size: 26, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLick1
   rotate: false
-  xy: 176, 161
+  xy: 144, 133
   size: 27, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLick2
   rotate: false
-  xy: 83, 161
+  xy: 83, 115
   size: 28, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLick3
   rotate: false
-  xy: 180, 136
+  xy: 146, 108
   size: 28, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLickLook0
   rotate: false
-  xy: 114, 148
+  xy: 114, 109
   size: 28, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLickLookBack0
   rotate: false
-  xy: 1, 227
+  xy: 139, 181
   size: 25, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatObserve0
   rotate: false
-  xy: 72, 204
+  xy: 111, 177
   size: 26, 15
   orig: 32, 32
   offset: 6, 0
   index: -1
 bcatObserve1
   rotate: false
-  xy: 210, 142
+  xy: 206, 121
   size: 28, 15
   orig: 32, 32
   offset: 4, 0
   index: -1
 bcatObserve2
   rotate: false
-  xy: 83, 120
+  xy: 83, 74
   size: 30, 15
   orig: 32, 32
   offset: 2, 0
   index: -1
 bcatShit0
   rotate: false
-  xy: 55, 62
+  xy: 142, 157
   size: 26, 22
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatShit1
   rotate: false
-  xy: 55, 62
+  xy: 142, 157
   size: 26, 22
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatShit2
   rotate: false
-  xy: 143, 175
+  xy: 113, 134
   size: 27, 22
   orig: 32, 32
   offset: 4, 0
   index: -1
 bcatWalk0
   rotate: false
-  xy: 109, 229
+  xy: 224, 179
   size: 25, 18
   orig: 32, 32
   offset: 3, 3
   index: -1
 bcatWalk1
   rotate: false
-  xy: 55, 235
+  xy: 83, 211
   size: 25, 20
   orig: 32, 32
   offset: 3, 0
   index: -1
 box
   rotate: false
-  xy: 1, 96
+  xy: 1, 74
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 charShadow0
   rotate: false
-  xy: 165, 69
+  xy: 105, 240
   size: 16, 11
   orig: 16, 16
   offset: 0, 2
   index: -1
 circle
   rotate: false
-  xy: 25, 199
+  xy: 110, 216
   size: 22, 22
   orig: 32, 32
   offset: 5, 5
+  index: -1
+doorOpen
+  rotate: false
+  xy: 165, 20
+  size: 16, 31
+  orig: 16, 31
+  offset: 0, 0
   index: -1
 dot
   rotate: false
@@ -251,35 +258,35 @@ dot
   index: -1
 eCall
   rotate: false
-  xy: 163, 218
+  xy: 83, 233
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eError
   rotate: false
-  xy: 183, 196
+  xy: 220, 199
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eFishCan
   rotate: false
-  xy: 163, 235
+  xy: 193, 206
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eFood
   rotate: false
-  xy: 205, 185
+  xy: 215, 216
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eLove
   rotate: false
-  xy: 227, 196
+  xy: 193, 223
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
@@ -293,28 +300,28 @@ empty
   index: -1
 eQuestion
   rotate: false
-  xy: 205, 202
+  xy: 215, 233
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eReqFood
   rotate: false
-  xy: 227, 213
+  xy: 164, 224
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eReqShit
   rotate: false
-  xy: 198, 219
+  xy: 186, 240
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eShit
   rotate: false
-  xy: 185, 236
+  xy: 208, 250
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
@@ -328,28 +335,28 @@ foodBox
   index: -1
 foodEmpty
   rotate: false
-  xy: 49, 198
+  xy: 234, 142
   size: 21, 15
   orig: 32, 32
   offset: 5, 0
   index: -1
 foodFull0
   rotate: false
-  xy: 183, 66
+  xy: 125, 38
   size: 31, 20
   orig: 32, 32
   offset: 1, 0
   index: -1
 foodFull1
   rotate: false
-  xy: 182, 88
+  xy: 125, 60
   size: 31, 19
   orig: 32, 32
   offset: 1, 0
   index: -1
 foodFull2
   rotate: false
-  xy: 215, 96
+  xy: 183, 66
   size: 31, 19
   orig: 32, 32
   offset: 1, 0
@@ -377,7 +384,7 @@ gameElements_14
   index: -1
 gameElements_29
   rotate: false
-  xy: 165, 82
+  xy: 152, 241
   size: 15, 10
   orig: 96, 16
   offset: 23, 6
@@ -412,14 +419,14 @@ gameElements_66
   index: -1
 gameElements_75
   rotate: false
-  xy: 1, 69
+  xy: 158, 53
   size: 23, 25
   orig: 320, 48
   offset: 0, 4
   index: -1
 gameElements_76
   rotate: false
-  xy: 1, 38
+  xy: 83, 180
   size: 25, 29
   orig: 300, 48
   offset: 0, 16
@@ -440,10 +447,10 @@ gameElements_79
   index: -1
 gameElements_80
   rotate: false
-  xy: 22, 185
-  size: 24, 12
-  orig: 145, 64
-  offset: 121, 52
+  xy: 251, 13
+  size: 3, 3
+  orig: 2, 64
+  offset: 0, 61
   index: -1
 gameElements_81
   rotate: false
@@ -454,23 +461,23 @@ gameElements_81
   index: -1
 gameElements_82
   rotate: false
-  xy: 251, 13
-  size: 3, 3
-  orig: 156, 320
-  offset: 0, 317
+  xy: 1, 38
+  size: 122, 34
+  orig: 127, 64
+  offset: 5, 30
   index: -1
 gameElements_83
   rotate: false
   xy: 251, 13
   size: 3, 3
-  orig: 64, 320
-  offset: 0, 317
+  orig: 3, 61
+  offset: 0, 58
   index: -1
 gameElements_84
   rotate: false
   xy: 251, 13
   size: 3, 3
-  orig: 64, 320
+  orig: 156, 320
   offset: 0, 317
   index: -1
 gameElements_85
@@ -480,12 +487,26 @@ gameElements_85
   orig: 32, 32
   offset: 0, 29
   index: -1
+gameElements_86
+  rotate: false
+  xy: 251, 13
+  size: 3, 3
+  orig: 64, 320
+  offset: 0, 317
+  index: -1
+gameElements_87
+  rotate: false
+  xy: 251, 13
+  size: 3, 3
+  orig: 16, 33
+  offset: 0, 30
+  index: -1
 gameElements_88
   rotate: false
   xy: 251, 13
   size: 3, 3
-  orig: 64, 272
-  offset: 0, 269
+  orig: 32, 32
+  offset: 0, 29
   index: -1
 gameElements_89
   rotate: false
@@ -512,82 +533,96 @@ gameElements_92
   rotate: false
   xy: 251, 13
   size: 3, 3
+  orig: 84, 272
+  offset: 0, 269
+  index: -1
+gameElements_93
+  rotate: false
+  xy: 251, 13
+  size: 3, 3
+  orig: 96, 240
+  offset: 0, 237
+  index: -1
+gameElements_95
+  rotate: false
+  xy: 251, 13
+  size: 3, 3
   orig: 80, 160
   offset: 0, 157
   index: -1
 heartBack0
   rotate: false
-  xy: 165, 20
+  xy: 230, 264
   size: 16, 23
   orig: 32, 32
   offset: 8, 7
   index: -1
 heartFront0
   rotate: false
-  xy: 146, 120
+  xy: 237, 239
   size: 17, 23
   orig: 32, 32
   offset: 8, 5
   index: -1
 heroIdle0
   rotate: false
-  xy: 165, 94
+  xy: 169, 241
   size: 14, 21
   orig: 32, 32
   offset: 11, 0
   index: -1
 heroPostRoll0
   rotate: false
-  xy: 49, 215
+  xy: 234, 159
   size: 20, 18
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroPostRollEnd0
   rotate: false
-  xy: 1, 178
+  xy: 236, 121
   size: 19, 19
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroRoll0
   rotate: false
-  xy: 165, 117
+  xy: 185, 257
   size: 14, 12
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroRoll1
   rotate: false
-  xy: 146, 145
+  xy: 201, 267
   size: 13, 13
   orig: 32, 32
   offset: 8, 0
   index: -1
 heroRoll2
   rotate: false
-  xy: 161, 149
+  xy: 123, 249
   size: 13, 13
   orig: 32, 32
   offset: 9, 1
   index: -1
 heroRoll3
   rotate: false
-  xy: 144, 160
+  xy: 151, 253
   size: 13, 13
   orig: 32, 32
   offset: 10, 0
   index: -1
 heroWalk0
   rotate: false
-  xy: 109, 207
+  xy: 237, 217
   size: 18, 20
   orig: 32, 32
   offset: 10, 3
   index: -1
 heroWalk1
   rotate: false
-  xy: 165, 45
+  xy: 134, 225
   size: 16, 22
   orig: 32, 32
   offset: 12, 0
@@ -622,63 +657,63 @@ litter3
   index: -1
 pointer0
   rotate: false
-  xy: 240, 142
+  xy: 216, 267
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
   index: -1
 pointer1
   rotate: false
-  xy: 239, 160
+  xy: 138, 249
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
   index: -1
 pointer2
   rotate: false
-  xy: 239, 178
+  xy: 166, 264
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
   index: -1
 sideIdle0
   rotate: false
-  xy: 210, 159
+  xy: 205, 138
   size: 27, 24
   orig: 32, 32
   offset: 3, 0
   index: -1
 sideWalk0
   rotate: false
-  xy: 129, 207
+  xy: 193, 186
   size: 25, 18
   orig: 32, 32
   offset: 6, 3
   index: -1
 sideWalk1
   rotate: false
-  xy: 82, 221
+  xy: 197, 164
   size: 25, 20
   orig: 32, 32
   offset: 6, 0
   index: -1
 trashCan
   rotate: false
-  xy: 165, 131
+  xy: 242, 199
   size: 13, 16
   orig: 32, 32
   offset: 10, 0
   index: -1
 use
   rotate: false
-  xy: 185, 213
+  xy: 179, 271
   size: 11, 14
   orig: 16, 16
   offset: 3, 1
   index: -1
 window
   rotate: false
-  xy: 83, 38
+  xy: 1, 156
   size: 80, 80
   orig: 80, 80
   offset: 0, 0

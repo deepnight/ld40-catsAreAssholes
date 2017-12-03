@@ -41,14 +41,6 @@ class Hero extends Entity {
 				e.stock = 0;
 				destroyItem();
 
-			case CatBox :
-				var e = new en.Cat(cx,cy);
-				e.jump(1);
-				e.cd.setS("lock", 0.7);
-				e.cd.setS("fear", e.cd.getS("lock"));
-				e.flee(this);
-				destroyItem();
-
 			default :
 				var a = getThrowAng() + rnd(0,0.1,true);
 				var e = new en.inter.ItemDrop(item, cx,cy);
