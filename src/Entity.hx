@@ -7,7 +7,8 @@ class Entity {
 
 	public var game(get,never) : Game; inline function get_game() return Game.ME;
 	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
-	public var hero(get,never) : en.Hero; inline function get_hero() return Game.ME.hero;
+	public var hero(get,never) : en.h.Grandma; inline function get_hero() return Game.ME.hero;
+	public var side(get,never) : en.h.Sidekick; inline function get_side() return Game.ME.side;
 	public var destroyed(default,null) = false;
 	public var cd : mt.Cooldown;
 
@@ -153,7 +154,8 @@ class Entity {
 		destroyed = true;
 	}
 
-	public function is<T>(c:Class<T>) return Std.is(this, c);
+	public function is<T:Entity>(c:Class<T>) return Std.is(this, c);
+	public function as<T:Entity>(c:Class<T>) : T return Std.instance(this, c);
 
 	public function dispose() {
 		ALL.remove(this);
@@ -213,7 +215,7 @@ class Entity {
 	}
 
 	function hasCircColl() {
-		return !destroyed && weight>=0 && !cd.has("rolling");
+		return !destroyed && weight>=0 && !cd.has("rolling") && altitude<=5;
 	}
 
 	function hasCircCollWith(e:Entity) {

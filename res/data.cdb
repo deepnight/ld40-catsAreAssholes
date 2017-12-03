@@ -100,6 +100,13 @@
 					},
 					"markers": [
 						{
+							"x": 4,
+							"y": 2,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
 							"x": 17,
 							"y": 2,
 							"marker": "TrashCan",
@@ -107,9 +114,16 @@
 							"height": 1
 						},
 						{
-							"x": 28,
+							"x": 29,
 							"y": 2,
 							"marker": "Litter",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 10,
+							"y": 4,
+							"marker": "Sidekick",
 							"width": 1,
 							"height": 1
 						},
@@ -128,14 +142,21 @@
 							"height": 1
 						},
 						{
-							"x": 14,
+							"x": 10,
 							"y": 6,
-							"marker": "Hero",
+							"marker": "Cat",
 							"width": 1,
 							"height": 1
 						},
 						{
-							"x": 19,
+							"x": 14,
+							"y": 6,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 20,
 							"y": 7,
 							"marker": "Food",
 							"width": 1,
@@ -149,16 +170,23 @@
 							"height": 1
 						},
 						{
-							"x": 28,
-							"y": 8,
-							"marker": "FoodBox",
+							"x": 5,
+							"y": 9,
+							"marker": "Ball",
 							"width": 1,
 							"height": 1
 						},
 						{
-							"x": 5,
+							"x": 12,
 							"y": 9,
-							"marker": "Ball",
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 29,
+							"y": 9,
+							"marker": "Cat",
 							"width": 1,
 							"height": 1
 						},
@@ -170,16 +198,30 @@
 							"height": 1
 						},
 						{
-							"x": 19,
-							"y": 11,
-							"marker": "FoodBox",
+							"x": 25,
+							"y": 10,
+							"marker": "Cat",
 							"width": 1,
 							"height": 1
 						},
 						{
-							"x": 26,
+							"x": 19,
+							"y": 11,
+							"marker": "Fridge",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 14,
 							"y": 12,
 							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 21,
+							"y": 12,
+							"marker": "Grandma",
 							"width": 1,
 							"height": 1
 						},
@@ -198,7 +240,14 @@
 							"height": 1
 						},
 						{
-							"x": 22,
+							"x": 6,
+							"y": 13,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 24,
 							"y": 13,
 							"marker": "Food",
 							"width": 1,
@@ -276,8 +325,18 @@
 			],
 			"lines": [
 				{
-					"id": "Hero",
+					"id": "Grandma",
 					"color": 65287,
+					"icon": {
+						"file": "cdbTiles.png",
+						"size": 16,
+						"x": 9,
+						"y": 0
+					}
+				},
+				{
+					"color": 16760576,
+					"id": "Sidekick",
 					"icon": {
 						"file": "cdbTiles.png",
 						"size": 16,
@@ -307,7 +366,7 @@
 				},
 				{
 					"color": 4041674,
-					"id": "FoodBox",
+					"id": "Fridge",
 					"icon": {
 						"file": "cdbTiles.png",
 						"size": 16,
@@ -395,6 +454,10 @@
 					"typeStr": "0",
 					"name": "id",
 					"display": null
+				},
+				{
+					"typeStr": "4",
+					"name": "decayS"
 				}
 			],
 			"lines": [
@@ -405,7 +468,8 @@
 						"size": 32,
 						"x": 0,
 						"y": 0
-					}
+					},
+					"decayS": 4
 				},
 				{
 					"id": "Shit",
@@ -414,7 +478,8 @@
 						"size": 32,
 						"x": 1,
 						"y": 0
-					}
+					},
+					"decayS": 0
 				},
 				{
 					"id": "Trash",
@@ -423,7 +488,8 @@
 						"size": 32,
 						"x": 2,
 						"y": 0
-					}
+					},
+					"decayS": 0
 				}
 			],
 			"separators": [],

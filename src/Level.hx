@@ -44,10 +44,11 @@ class Level extends mt.Process {
 	public function attachEntities() {
 		for(m in lInfos.markers)
 			switch( m.markerId ) {
-				case Data.MarkerKind.Hero : Game.ME.hero = new en.Hero(m.x,m.y);
+				case Data.MarkerKind.Grandma : Game.ME.hero = new en.h.Grandma(m.x,m.y);
+				case Data.MarkerKind.Sidekick : Game.ME.side = new en.h.Sidekick(m.x,m.y);
 				case Data.MarkerKind.Cat : new en.Cat(m.x,m.y);
 				case Data.MarkerKind.Food : new en.inter.Food(m.x,m.y);
-				case Data.MarkerKind.FoodBox : new en.inter.FoodBox(m.x,m.y);
+				case Data.MarkerKind.Fridge : new en.inter.Fridge(m.x,m.y);
 				case Data.MarkerKind.Litter : new en.inter.Litter(m.x,m.y);
 				case Data.MarkerKind.TrashCan : new en.inter.TrashCan(m.x,m.y);
 				case Data.MarkerKind.Ball : new en.f.Ball(m.x,m.y);

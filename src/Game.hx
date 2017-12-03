@@ -6,7 +6,8 @@ class Game extends mt.Process {
 	public var scroller : h2d.Layers;
 	public var vp : Viewport;
 	public var level : Level;
-	public var hero : en.Hero;
+	public var hero : en.h.Grandma;
+	public var side : en.h.Sidekick;
 
 	public function new(ctx:h2d.Sprite) {
 		super(Main.ME);
@@ -16,7 +17,7 @@ class Game extends mt.Process {
 		//root.scale(Const.SCALE);
 		scroller = new h2d.Layers(root);
 		vp = new Viewport();
-		new ui.Stamina();
+		//new ui.Stamina();
 
 		level = new Level(Home);
 		level.attachEntities();

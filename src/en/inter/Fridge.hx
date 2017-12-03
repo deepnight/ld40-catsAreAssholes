@@ -4,9 +4,11 @@ import mt.MLib;
 import mt.heaps.slib.*;
 import hxd.Key;
 
-class FoodBox extends en.Interactive {
+class Fridge extends en.Interactive {
+	public static var ALL : Array<Fridge> = [];
 	public function new(x,y) {
 		super(x,y);
+		ALL.push(this);
 		spr.set("foodBox");
 		radius = Const.GRID*0.3;
 		weight = 999;
@@ -16,11 +18,11 @@ class FoodBox extends en.Interactive {
 
 	override public function dispose() {
 		super.dispose();
+		ALL.remove(this);
 	}
 
 	override public function onActivate(by:Hero) {
 		super.onActivate(by);
-		trace("activate box");
 		by.pick(Fish);
 		cd.setS("lock", 6);
 	}

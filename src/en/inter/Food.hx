@@ -8,11 +8,11 @@ class Food extends en.Interactive {
 	public static var ALL : Array<Food> = [];
 
 	var max = 4;
-	var stock : Int;
+	public var stock : Int;
 	public function new(x,y) {
 		super(x,y);
 		radius = Const.GRID*0.3;
-		zPrio = -4;
+		zPrio = -8;
 		ALL.push(this);
 		stock = max;
 		weight = 50;
@@ -46,6 +46,7 @@ class Food extends en.Interactive {
 	}
 
 	public function isEmpty() return stock<=0;
+	public function isFull() return stock==max;
 
 	public function eat() {
 		if( stock>0 ) {

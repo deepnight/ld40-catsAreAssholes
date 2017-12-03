@@ -6,17 +6,18 @@ import hxd.Key;
 
 class Litter extends en.Interactive {
 	public static var ALL : Array<Litter> = [];
-	var max = 7;
+	var max = 5;
 	var stock = 0;
 
 	public function new(x,y) {
 		super(x,y);
 		ALL.push(this);
-		//footOffsetY = -10;
 		zPrio = -99;
 		weight = -1;
+		stock = 3;
 	}
 
+	public function isEmpty() return stock==0;
 	public function isFull() return stock>=max;
 
 	override public function dispose() {

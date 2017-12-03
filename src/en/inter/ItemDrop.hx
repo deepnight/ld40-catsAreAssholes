@@ -14,16 +14,20 @@ class ItemDrop extends en.Interactive {
 		ALL.push(this);
 		radius = Const.GRID*0.3;
 		this.k = k;
-		altitude = 20;
+		altitude = 10;
 		enableShadow(1.5);
-		weight = 0.2;
-		zPrio = -4;
+		weight = -1;
+		zPrio = -8;
 
 		spr.set("empty");
 
 		var icon = new h2d.Bitmap(Assets.getItem(k), spr);
 		icon.tile.setCenterRatio(0.5,1);
-		cd.setS("lock",0.3);
+
+		if( Data.item.get(k).decayS>0 )
+			cd.setS("alive", Data.item.get(k).decayS, function() {
+				destroy();
+			});
 	}
 
 	override public function dispose() {
@@ -45,7 +49,13 @@ class ItemDrop extends en.Interactive {
 
 	override public function onActivate(by:Hero) {
 		super.onActivate(by);
-		by.pick(k);
+		switch( k ) {
+			case Shit :
+				by.pick(Trash);
+
+			default :
+				by.pick(k);
+		}
 		destroy();
 	}
 
@@ -55,5 +65,8 @@ class ItemDrop extends en.Interactive {
 			frict = 0.92;
 		else
 			frict = 0.75;
+
+		if( cd.has("alive") &&  cd.getS("alive")<=1 && !cd.hasSetS("blink",0.06) )
+			spr.alpha = spr.alpha==1 ? 0.1 : 1;
 	}
 }

@@ -10,6 +10,9 @@ class Console extends h2d.Console {
 		Main.ME.root.add(this, Const.DP_UI);
 
 		flags = new Map();
+		#if debug
+		set("side",true);
+		#end
 
 		this.addCommand("set", [{ name:"k", t:AString }], function(k:String) {
 			set(k,true);
