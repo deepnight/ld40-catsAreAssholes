@@ -59,8 +59,17 @@ class Sidekick extends en.Hero {
 		return dh.getBest();
 	}
 
-	function pickFridge(?prio:Entity) : en.inter.Fridge {
+	function pickItem(k:Data.ItemKind) : en.inter.ItemDrop {
+		var dh = new DecisionHelper(en.inter.ItemDrop.ALL);
+		dh.remove( function(e) return e.k!=k );
+		dh.score( function(e) return -distCase(e) );
+		dh.score( function(e) return rnd(0,0.9) );
+		return dh.getBest();
+	}
+
+	function pickFridge(mustHaveFish:Bool, ?prio:Entity) : en.inter.Fridge {
 		var dh = new DecisionHelper(en.inter.Fridge.ALL);
+		dh.remove( function(e) return mustHaveFish && e.isEmpty() );
 		dh.score( function(e) return !e.cd.has("lock") ? 1 : 0 );
 		dh.score( function(e) return e==prio ? 1 : 0 );
 		dh.score( function(e) return rnd(0,0.9) );
@@ -93,6 +102,14 @@ class Sidekick extends en.Hero {
 			];
 		}
 
+		if( e.is(en.inter.Shop) ) {
+			var e = e.as(en.inter.Shop);
+			say("eCall");
+			actions = [
+				GoInter(e),
+			];
+		}
+
 		if( e.is(en.inter.Fridge) ) {
 			var f = e.as(en.inter.Fridge);
 			var t = pickFoodTray();
@@ -107,14 +124,20 @@ class Sidekick extends en.Hero {
 		}
 
 		if( e.is(en.inter.FoodTray) ) {
-			var f = pickFridge(e);
-			var t = e.as(en.inter.FoodTray);
-			say("eFood");
-			actions = [
-				GoInter(f),
-				RepeatPrevIf(function() return item==null, 4),
-				GoInter(t),
-			];
+			var from : en.Interactive = pickFridge(true,e);
+			if( from==null )
+				from = pickItem(Fish);
+			if( from==null )
+				say("eError");
+			else {
+				var t = e.as(en.inter.FoodTray);
+				say("eFood");
+				actions = [
+					GoInter(from),
+					RepeatPrevIf(function() return item==null, 4),
+					GoInter(t),
+				];
+			}
 		}
 
 		if( e.is(en.inter.ItemDrop) ) {
@@ -130,9 +153,11 @@ class Sidekick extends en.Hero {
 					if( t!=null ) actions.push( GoInter(t) );
 
 				case Data.ItemKind.FoodBox :
-					var t = pickFridge();
-					say("eFood");
-					if( t!=null ) actions.push( GoInter(t) );
+					var t = pickFridge(false);
+					if( t!=null ) {
+						say("eFood");
+						actions.push( GoInter(t) );
+					}
 
 				case Data.ItemKind.Trash, Data.ItemKind.Shit :
 					say("eShit");

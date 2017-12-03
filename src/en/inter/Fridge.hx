@@ -25,6 +25,8 @@ class Fridge extends en.Interactive {
 		ALL.remove(this);
 	}
 
+	public function isEmpty() return stock==0;
+
 	override public function canBeActivated(by:Hero) {
 		return super.canBeActivated(by) && ( by.item==null && stock>0 || by.item==FoodBox && stock<max ) ;
 	}

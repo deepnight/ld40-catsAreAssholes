@@ -13,7 +13,7 @@ ball
   index: -1
 ballFlat
   rotate: false
-  xy: 136, 117
+  xy: 215, 105
   size: 10, 6
   orig: 16, 16
   offset: 2, 0
@@ -223,28 +223,35 @@ bcatWalk1
   index: -1
 charShadow0
   rotate: false
-  xy: 167, 112
+  xy: 105, 133
   size: 16, 11
   orig: 16, 16
   offset: 0, 2
   index: -1
-eError
+eCall
   rotate: false
   xy: 171, 95
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
-eFood
+eError
   rotate: false
   xy: 145, 100
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
-eLove
+eFood
   rotate: false
   xy: 114, 116
+  size: 20, 15
+  orig: 20, 15
+  offset: 0, 0
+  index: -1
+eLove
+  rotate: false
+  xy: 83, 120
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
@@ -256,23 +263,30 @@ empty
   orig: 4, 4
   offset: 0, 1
   index: -1
-eReqFood
-  rotate: false
-  xy: 83, 120
-  size: 20, 15
-  orig: 20, 15
-  offset: 0, 0
-  index: -1
-eReqShit
+eQuestion
   rotate: false
   xy: 55, 136
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
-eShit
+eReqFood
   rotate: false
   xy: 28, 151
+  size: 20, 15
+  orig: 20, 15
+  offset: 0, 0
+  index: -1
+eReqShit
+  rotate: false
+  xy: 1, 153
+  size: 20, 15
+  orig: 20, 15
+  offset: 0, 0
+  index: -1
+eShit
+  rotate: false
+  xy: 193, 105
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
@@ -328,7 +342,7 @@ heartFront0
   index: -1
 heroIdle0
   rotate: false
-  xy: 211, 105
+  xy: 77, 137
   size: 14, 21
   orig: 32, 32
   offset: 11, 0
@@ -342,35 +356,35 @@ heroPostRoll0
   index: -1
 heroPostRollEnd0
   rotate: false
-  xy: 1, 153
+  xy: 167, 112
   size: 19, 19
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroRoll0
   rotate: false
-  xy: 227, 115
+  xy: 50, 153
   size: 14, 12
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroRoll1
   rotate: false
-  xy: 226, 129
+  xy: 108, 146
   size: 13, 13
   orig: 32, 32
   offset: 8, 0
   index: -1
 heroRoll2
   rotate: false
-  xy: 241, 133
+  xy: 66, 160
   size: 13, 13
   orig: 32, 32
   offset: 9, 1
   index: -1
 heroRoll3
   rotate: false
-  xy: 226, 144
+  xy: 50, 167
   size: 13, 13
   orig: 32, 32
   offset: 10, 0
@@ -384,7 +398,7 @@ heroWalk0
   index: -1
 heroWalk1
   rotate: false
-  xy: 193, 105
+  xy: 136, 117
   size: 16, 22
   orig: 32, 32
   offset: 12, 0
@@ -419,14 +433,14 @@ litter3
   index: -1
 pointer0
   rotate: false
-  xy: 243, 115
+  xy: 154, 117
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
   index: -1
 pointer1
   rotate: false
-  xy: 241, 148
+  xy: 123, 133
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
@@ -454,7 +468,7 @@ sideWalk1
   index: -1
 trashCan
   rotate: false
-  xy: 211, 128
+  xy: 93, 146
   size: 13, 16
   orig: 32, 32
   offset: 10, 0

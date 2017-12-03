@@ -22,9 +22,6 @@ class Door extends en.Interactive {
 		weight = -1;
 		footOffsetY = -4;
 		zPrio = -99;
-
-		addEvent(FoodDelivery, 3);
-		addEvent(FoodDelivery, 6);
 	}
 
 	public function hasEvent(k:DoorEvent) {

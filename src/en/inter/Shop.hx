@@ -29,7 +29,7 @@ class Shop extends en.Interactive {
 
 	override public function onActivate(by:Hero) {
 		super.onActivate(by);
-		door.addEvent(FoodDelivery, 10);
+		door.addEvent(FoodDelivery, 20);
 	}
 
 	override public function update() {
