@@ -9,6 +9,7 @@ class Game extends mt.Process {
 	public var hero : en.h.Grandma;
 	public var side : en.h.Sidekick;
 	public var fx : Fx;
+	public var moneyMan : MoneyMan;
 
 	public function new(ctx:h2d.Sprite) {
 		super(Main.ME);
@@ -20,6 +21,8 @@ class Game extends mt.Process {
 		vp = new Viewport();
 		fx = new Fx();
 		//new ui.Stamina();
+		new ui.Money();
+		moneyMan = new MoneyMan();
 
 		level = new Level(Home);
 		level.attachEntities();

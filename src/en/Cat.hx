@@ -151,6 +151,8 @@ class Cat extends Entity {
 
 	function startHeroAttack(r:String) {
 		say(r, 2);
+		cd.setS("lock", rnd(1.5,2));
+		lookAt(game.hero);
 		startJob( Fight(hero,r), 999 );
 		return true;
 	}
@@ -247,6 +249,7 @@ class Cat extends Entity {
 				jump(0.4);
 				if( e!=null ) {
 					// In box
+					game.moneyMan.trigger(this, PoopLitter);
 					e.addShit(shitStock);
 				}
 				else {
@@ -318,7 +321,6 @@ class Cat extends Entity {
 			switch( job ) {
 				case Fight(te) :
 					if( te.is(Hero) && e.is(Hero) ) {
-						//e.setLabel("hit "+game.ftime+"!", 0xFF0000);
 						if( e.onGround )
 							e.jump(0.5);
 					}
@@ -328,6 +330,7 @@ class Cat extends Entity {
 						e.cd.setS("lock", rnd(1.2,1.6));
 						e.cd.setS("fear", e.cd.getS("lock"));
 						e.jump(rnd(1,1.7));
+						game.moneyMan.trigger(this, FightCat);
 
 						var a = Math.atan2(e.footY-footY, e.footX-footX);
 						e.dx+=Math.cos(a)*0.3;
@@ -380,8 +383,10 @@ class Cat extends Entity {
 					startRandom();
 				else {
 					if( distCase(e)<=2 && sightCheck(e) ) {
-						if( !cd.hasSetS("love",rnd(25,50)) )
+						if( !cd.hasSetS("love",rnd(25,50)) ) {
+							game.moneyMan.trigger(this, Love);
 							say("eLove", 1);
+						}
 						stop();
 					}
 					else
@@ -540,7 +545,7 @@ class Cat extends Entity {
 					case Fight(e) :
 					case Follow(_) :
 					case Wait :
-					case Lick :
+					case Lick : game.moneyMan.trigger(this, Lick);
 					case Play(_) :
 					case Shit : cd.setS("shitting", 0.3);
 				}

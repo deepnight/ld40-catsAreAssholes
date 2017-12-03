@@ -65,6 +65,7 @@ class ItemDrop extends en.Interactive {
 				e.cd.setS("lock", 0.7);
 				e.cd.setS("fear", e.cd.getS("lock"));
 				e.flee(this);
+				game.moneyMan.trigger(this,NewCat);
 
 			case Shit :
 				by.pick(Trash);

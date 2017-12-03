@@ -33,6 +33,11 @@ class Grandma extends en.Hero {
 		focus.remove();
 	}
 
+	override public function postUpdate() {
+		super.postUpdate();
+		ui.Money.ME.set(money);
+	}
+
 	override public function update() {
 		super.update();
 
@@ -107,7 +112,7 @@ class Grandma extends en.Hero {
 
 		#if debug
 		if( Key.isPressed(Key.NUMPAD_ENTER) )
-			jump(1);
+			new en.Coin(5, cx+3, cy);
 		#end
 
 		// Roll effect

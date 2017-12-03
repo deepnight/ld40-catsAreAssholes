@@ -6,8 +6,9 @@ import hxd.Key;
 
 class Fridge extends en.Interactive {
 	public static var ALL : Array<Fridge> = [];
-	var max = 5;
+	var max(get,never) : Int;
 	var stock = 0;
+	var upgrade = 0;
 
 	public function new(x,y) {
 		super(x,y);
@@ -20,6 +21,8 @@ class Fridge extends en.Interactive {
 		stock = max;
 	}
 
+	inline function get_max() return 5 + upgrade*2;
+
 	override public function dispose() {
 		super.dispose();
 		ALL.remove(this);
@@ -28,7 +31,7 @@ class Fridge extends en.Interactive {
 	public function isEmpty() return stock==0;
 
 	override public function canBeActivated(by:Hero) {
-		return super.canBeActivated(by) && ( by.item==null && stock>0 || by.item==FishCan && stock<max || by.item==FoodBox && stock<max ) ;
+		return super.canBeActivated(by) && ( by.item==null && stock>0 || by.item==FishCan && stock<max || by.item==FoodBox && stock<max || by.item==FridgeUp ) ;
 	}
 
 	override public function onActivate(by:Hero) {
@@ -40,6 +43,10 @@ class Fridge extends en.Interactive {
 				e.dy = rnd(0.2,0.6);
 			}
 			stock = max;
+			by.destroyItem();
+		}
+		else if( by.item==FridgeUp ) {
+			upgrade++;
 			by.destroyItem();
 		}
 		else if( by.item==FishCan ) {

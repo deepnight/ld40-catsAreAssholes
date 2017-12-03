@@ -36,6 +36,7 @@ class Entity {
 	public var altitude = 0.;
 	public var dalt = 0.;
 	public var dir(default,set) = 1;
+	public var hasColl = true;
 
 	public var z(get,never) : Float; inline function get_z() return footY+zPrio;
 	public var footX(get,never) : Float; inline function get_footX() return (cx+xr)*Const.GRID;
@@ -66,6 +67,9 @@ class Entity {
 	}
 
 	public function jump(pow:Float) {
+		if( pow<=0 )
+			return;
+
 		dalt = 4*pow;
 		altitude++;
 	}
@@ -261,21 +265,23 @@ class Entity {
 
 		// X
 		xr+=dx;
-		if( xr>0.7 && level.hasColl(cx+1,cy) ) {
-			xr = 0.7;
-			dx-=0.05;
-			onTouchWallX();
-		}
-		if( xr>=0.6 && level.hasColl(cx+1,cy) ) {
-			dx-=0.03;
-		}
-		if( xr<0.3 && level.hasColl(cx-1,cy) ) {
-			xr = 0.3;
-			dx+=0.05;
-			onTouchWallX();
-		}
-		if( xr<0.4 && level.hasColl(cx-1,cy) ) {
-			dx+=0.03;
+		if( hasColl ) {
+			if( xr>0.7 && level.hasColl(cx+1,cy) ) {
+				xr = 0.7;
+				dx-=0.05;
+				onTouchWallX();
+			}
+			if( xr>=0.6 && level.hasColl(cx+1,cy) ) {
+				dx-=0.03;
+			}
+			if( xr<0.3 && level.hasColl(cx-1,cy) ) {
+				xr = 0.3;
+				dx+=0.05;
+				onTouchWallX();
+			}
+			if( xr<0.4 && level.hasColl(cx-1,cy) ) {
+				dx+=0.03;
+			}
 		}
 		dx*=frict;
 		while( xr>1 ) { xr--; cx++; }
@@ -284,13 +290,15 @@ class Entity {
 
 		// Y
 		yr+=dy;
-		if( yr>1 && level.hasColl(cx,cy+1) ) {
-			yr = 1;
-			onTouchWallY();
-		}
-		if( yr<0.3 && level.hasColl(cx,cy-1) ) {
-			yr = 0.3;
-			onTouchWallY();
+		if( hasColl ) {
+			if( yr>1 && level.hasColl(cx,cy+1) ) {
+				yr = 1;
+				onTouchWallY();
+			}
+			if( yr<0.3 && level.hasColl(cx,cy-1) ) {
+				yr = 0.3;
+				onTouchWallY();
+			}
 		}
 		dy*=frict;
 		while( yr>1 ) { yr--; cy++; }

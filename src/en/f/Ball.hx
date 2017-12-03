@@ -23,6 +23,8 @@ class Ball extends en.Furn {
 			dx+=rnd(0,0.2,true);
 			dy+=rnd(0,0.2,true);
 			jump(rnd(0.6,1));
+			if( e.is(Cat) )
+				game.moneyMan.trigger(this, Ball);
 		}
 	}
 

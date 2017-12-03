@@ -5,27 +5,35 @@ import mt.heaps.slib.*;
 import hxd.Key;
 
 class Shop extends en.Interactive {
-	public static var ALL : Array<Shop> = [];
+	public static var ME : Shop;
 	var door(get,never) : en.inter.Door; inline function get_door() return en.inter.Door.ALL[0];
+
+	public var boughts : Array<Data.ItemKind>;
 
 	public function new(x,y) {
 		super(x,y);
+		ME = this;
 		yr = 1;
-		ALL.push(this);
+		boughts = [];
 		spr.set("empty");
 		radius = Const.GRID*0.3;
 		weight = -1;
 		zPrio = -99;
 	}
 
-	override public function dispose() {
-		super.dispose();
-		ALL.remove(this);
+	public function countPreviousBoughts(k:Data.ItemKind) {
+		var n = 0;
+		for(i in boughts)
+			if( i==k )
+				n++;
+		return n;
 	}
 
-	//override public function canBeActivated(by:Hero) {
-		//return super.canBeActivated(by) && !door.hasEvent(Deliver);
-	//}
+	override public function dispose() {
+		super.dispose();
+		if( ME==this )
+			ME = null;
+	}
 
 	override public function onActivate(by:Hero) {
 		super.onActivate(by);

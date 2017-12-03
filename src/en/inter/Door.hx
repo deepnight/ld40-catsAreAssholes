@@ -23,9 +23,9 @@ class Door extends en.Interactive {
 		footOffsetY = -4;
 		zPrio = -99;
 
-		addEvent( Deliver(CatBox), 2 );
-		addEvent( Deliver(CatBox), 2 );
-		addEvent( Deliver(CatBox), 2 );
+		//addEvent( Deliver(CatBox), 2 );
+		//addEvent( Deliver(CatBox), 2 );
+		//addEvent( Deliver(CatBox), 2 );
 	}
 
 	public function hasAnyEvent() {

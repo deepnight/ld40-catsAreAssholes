@@ -25,7 +25,7 @@ class TrashCan extends en.Interactive {
 		return switch( k ) {
 			case Data.ItemKind.Trash, Data.ItemKind.Shit : true;
 			case Data.ItemKind.FishCan : false;
-			case TrayBox, FoodBox, CatBox : false;
+			case TrayBox, FoodBox, CatBox, FridgeUp : false;
 		}
 	}
 

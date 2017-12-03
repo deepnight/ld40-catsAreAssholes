@@ -174,6 +174,15 @@ class Sidekick extends en.Hero {
 					else
 						say("eQuestion");
 
+				case Data.ItemKind.FridgeUp :
+					var t = pickFridge(false);
+					if( t!=null ) {
+						say("eUp");
+						actions = [ GoInter(e), GoInter(t) ];
+					}
+					else
+						say("eQuestion");
+
 				case Data.ItemKind.Trash, Data.ItemKind.Shit :
 					say("eShit");
 					var t = pickTrashCan();

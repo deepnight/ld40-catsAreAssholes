@@ -50,7 +50,10 @@ class ShopWindow extends mt.Process {
 
 		wFlow.addSpacing(8);
 		var tf = new h2d.Text(Assets.font, wFlow);
-		tf.text = "ESCAPE to cancel";
+		if( door.hasAnyEvent() )
+			tf.text = "SPACE to continue";
+		else
+			tf.text = "SPACE to buy, ESCAPE to cancel";
 		tf.textColor = 0x805337;
 
 		cd.setS("lock", 0.2);
@@ -73,19 +76,19 @@ class ShopWindow extends mt.Process {
 		}
 		else {
 			for(i in Data.item.all) {
-				if( i.cost!=null )
+				if( i.cost!=null || i.scaledCosts.length>0 ) {
+					if( i.maxBuy!=null ) {
+						// Buy limit
+						var n = 0;
+						for(k in en.inter.Shop.ME.boughts)
+							if(k==i.id)
+								n++;
+						if( n>=i.maxBuy )
+							continue;
+					}
 					addItem(i.id);
+				}
 			}
-
-			//addItem( Assets.getItem(FoodBox), "Fish refill for the fridge", 10, function() {
-				//door.addEvent( Deliver(FoodBox), 10 );
-			//} );
-			//addItem( Assets.getItem(CatBox), "A new cat!", 30, function() {
-				//door.addEvent( Deliver(CatBox), 10 );
-			//} );
-			//addItem( Assets.getItem(TrayBox), "Extra bowl", 30, function() {
-				//door.addEvent( Deliver(TrayBox), 20 );
-			//} );
 		}
 
 		cursor = Assets.gameElements.h_get("use",0, 0.5,0.5, iFlow);
@@ -110,11 +113,17 @@ class ShopWindow extends mt.Process {
 
 		var w = new h2d.Flow(f);
 		w.minHeight = 2;
-		w.minWidth = 50;
-		if( inf.cost>0 ) {
+		w.minWidth = 40;
+		w.horizontalAlign = Middle;
+		var cost = inf.cost!=null ? inf.cost : 0;
+		if( inf.scaledCosts.length>0 ) {
+			var n = en.inter.Shop.ME.countPreviousBoughts(k);
+			cost = inf.scaledCosts[ MLib.min(n, inf.scaledCosts.length) ].v;
+		}
+		if( cost>0 ) {
 			var tf = new h2d.Text(Assets.font, w);
-			tf.text = "$"+inf.cost;
-			tf.textColor = 0xFF9900;
+			tf.text = "$"+cost;
+			tf.textColor = cost<=Game.ME.hero.money ? 0xFF9900 : 0xD20000;
 		}
 		else {
 			var tf = new h2d.Text(Assets.font, w);
@@ -126,12 +135,14 @@ class ShopWindow extends mt.Process {
 
 		var tf = new h2d.Text(Assets.font, f);
 		tf.text = inf.desc;
+		tf.textColor = cost<=Game.ME.hero.money ? 0xFFFFFF : 0xE77272;
 
 		items.push( {
 			f:f,
-			p:inf.cost,
+			p:cost,
 			cb:function() {
-				door.addEvent( Deliver(k), 10 );
+				en.inter.Shop.ME.boughts.push(k);
+				door.addEvent( Deliver(k), inf.deliveryS );
 			},
 		});
 	}
@@ -200,6 +211,8 @@ class ShopWindow extends mt.Process {
 			}
 		}
 
+		if( door.hasAnyEvent() && Key.isPressed(Key.SPACE) )
+			close();
 
 		if( Key.isPressed(Key.ESCAPE) )
 			close();

@@ -56,6 +56,9 @@ class Main extends mt.Process {
 	}
 
 	public function restartGame() {
+		if( ui.ShopWindow.ME!=null )
+			ui.ShopWindow.ME.destroy();
+
 		if( Game.ME!=null ) {
 			tw.createS(Game.ME.root.alpha, 0, 0.5).end( function() {
 				Game.ME.destroy();
