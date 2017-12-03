@@ -6,665 +6,497 @@ filter: Linear,Linear
 repeat: none
 ball
   rotate: false
-  xy: 187, 152
+  xy: 160, 49
   size: 9, 8
   orig: 16, 16
   offset: 3, 0
   index: -1
 ballFlat
   rotate: false
-  xy: 133, 148
+  xy: 105, 105
   size: 10, 6
   orig: 16, 16
   offset: 2, 0
   index: -1
 bcatAngryWalk0
   rotate: false
-  xy: 150, 127
+  xy: 130, 97
   size: 25, 18
   orig: 32, 32
   offset: 5, 3
   index: -1
 bcatAngryWalk1
   rotate: false
-  xy: 123, 109
+  xy: 227, 102
   size: 25, 20
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatCharge0
   rotate: false
-  xy: 198, 87
+  xy: 160, 74
   size: 25, 26
   orig: 32, 32
   offset: 1, 0
   index: -1
 bcatCharge1
   rotate: false
-  xy: 233, 1
+  xy: 227, 143
   size: 22, 26
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatDash0
   rotate: false
-  xy: 130, 50
+  xy: 203, 43
   size: 30, 23
   orig: 32, 32
   offset: 2, 5
   index: -1
 bcatDash1
   rotate: false
-  xy: 99, 37
+  xy: 35, 34
   size: 29, 26
   orig: 32, 32
   offset: 2, 1
   index: -1
 bcatEat0
   rotate: false
-  xy: 225, 139
+  xy: 227, 124
   size: 25, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatEat1
   rotate: false
-  xy: 97, 65
+  xy: 31, 62
   size: 28, 15
   orig: 32, 32
   offset: 2, 0
   index: -1
 bcatEat2
   rotate: false
-  xy: 126, 92
+  xy: 228, 68
   size: 26, 15
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatFall0
   rotate: false
-  xy: 225, 119
+  xy: 157, 102
   size: 25, 18
   orig: 32, 32
   offset: 3, 4
   index: -1
 bcatFear0
   rotate: false
-  xy: 1, 58
+  xy: 1, 35
   size: 29, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatFearJump0
   rotate: false
-  xy: 67, 37
+  xy: 171, 23
   size: 30, 25
   orig: 32, 32
   offset: 0, 4
   index: -1
 bcatIdle0
   rotate: false
-  xy: 97, 82
+  xy: 131, 49
   size: 27, 24
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatIdleAngry0
   rotate: false
-  xy: 157, 83
+  xy: 200, 68
   size: 26, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatIdleRecent0
   rotate: false
-  xy: 58, 112
+  xy: 200, 132
   size: 25, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatLick0
   rotate: false
-  xy: 30, 109
+  xy: 31, 79
   size: 26, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLick1
   rotate: false
-  xy: 1, 107
+  xy: 171, 50
   size: 27, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLick2
   rotate: false
-  xy: 67, 64
+  xy: 66, 49
   size: 28, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLick3
   rotate: false
-  xy: 32, 58
+  xy: 1, 59
   size: 28, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLickLook0
   rotate: false
-  xy: 1, 82
+  xy: 101, 32
   size: 28, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLickLookBack0
   rotate: false
-  xy: 154, 102
+  xy: 200, 87
   size: 25, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatObserve0
   rotate: false
-  xy: 95, 108
+  xy: 228, 85
   size: 26, 15
   orig: 32, 32
   offset: 6, 0
   index: -1
 bcatObserve1
   rotate: false
-  xy: 127, 75
+  xy: 131, 32
   size: 28, 15
   orig: 32, 32
   offset: 4, 0
   index: -1
 bcatObserve2
   rotate: false
-  xy: 162, 66
+  xy: 69, 32
   size: 30, 15
   orig: 32, 32
   offset: 2, 0
   index: -1
 bcatShit0
   rotate: false
-  xy: 1, 131
+  xy: 1, 84
   size: 26, 22
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatShit1
   rotate: false
-  xy: 1, 131
+  xy: 1, 84
   size: 26, 22
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatShit2
   rotate: false
-  xy: 66, 88
+  xy: 61, 73
   size: 27, 22
   orig: 32, 32
   offset: 4, 0
   index: -1
 bcatWalk0
   rotate: false
-  xy: 225, 119
+  xy: 157, 102
   size: 25, 18
   orig: 32, 32
   offset: 3, 3
   index: -1
 bcatWalk1
   rotate: false
-  xy: 225, 97
+  xy: 130, 75
   size: 25, 20
   orig: 32, 32
   offset: 3, 0
   index: -1
 charShadow0
   rotate: false
-  xy: 235, 182
+  xy: 1, 159
   size: 16, 11
   orig: 16, 16
   offset: 0, 2
   index: -1
 circle
   rotate: false
-  xy: 233, 29
+  xy: 59, 97
   size: 22, 22
   orig: 32, 32
   offset: 5, 5
   index: -1
 dot
   rotate: false
-  xy: 62, 58
+  xy: 96, 49
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
 eCall
   rotate: false
-  xy: 58, 131
+  xy: 1, 108
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eError
   rotate: false
-  xy: 80, 145
+  xy: 83, 105
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eFood
   rotate: false
-  xy: 123, 131
+  xy: 23, 120
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eLove
   rotate: false
-  xy: 29, 133
+  xy: 1, 125
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 empty
   rotate: false
-  xy: 62, 63
+  xy: 96, 54
   size: 3, 3
   orig: 4, 4
   offset: 0, 1
   index: -1
 eQuestion
   rotate: false
-  xy: 51, 148
+  xy: 45, 121
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eReqFood
   rotate: false
-  xy: 29, 150
+  xy: 23, 137
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eReqShit
   rotate: false
-  xy: 1, 155
+  xy: 1, 142
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eShit
   rotate: false
-  xy: 145, 147
+  xy: 105, 117
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 foodBox
   rotate: false
-  xy: 199, 1
+  xy: 35, 1
   size: 32, 31
   orig: 32, 32
   offset: 0, 0
   index: -1
 foodEmpty
   rotate: false
-  xy: 233, 53
+  xy: 29, 103
   size: 21, 15
   orig: 32, 32
   offset: 5, 0
   index: -1
 foodFull0
   rotate: false
-  xy: 198, 65
+  xy: 171, 1
   size: 31, 20
   orig: 32, 32
   offset: 1, 0
   index: -1
 foodFull1
   rotate: false
-  xy: 1, 37
+  xy: 204, 1
   size: 31, 19
   orig: 32, 32
   offset: 1, 0
   index: -1
 foodFull2
   rotate: false
-  xy: 34, 37
+  xy: 204, 22
   size: 31, 19
   orig: 32, 32
   offset: 1, 0
   index: -1
-gameElements_10
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 224, 48
-  offset: 0, 45
-  index: -1
-gameElements_13
-  rotate: false
-  xy: 1, 1
-  size: 162, 16
-  orig: 268, 16
-  offset: 5, 0
-  index: -1
-gameElements_14
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 4, 12
-  offset: 0, 9
-  index: -1
-gameElements_29
-  rotate: false
-  xy: 181, 119
-  size: 15, 10
-  orig: 96, 16
-  offset: 23, 6
-  index: -1
-gameElements_33
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 16, 16
-  offset: 0, 13
-  index: -1
-gameElements_35
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 48, 48
-  offset: 0, 45
-  index: -1
-gameElements_48
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 64, 32
-  offset: 0, 29
-  index: -1
-gameElements_50
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 16, 32
-  offset: 0, 29
-  index: -1
-gameElements_64
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 32, 400
-  offset: 0, 397
-  index: -1
-gameElements_66
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 32, 400
-  offset: 0, 397
-  index: -1
-gameElements_73
-  rotate: false
-  xy: 231, 70
-  size: 23, 25
-  orig: 320, 368
-  offset: 0, 324
-  index: -1
-gameElements_74
-  rotate: false
-  xy: 1, 19
-  size: 127, 16
-  orig: 160, 17
-  offset: 0, 1
-  index: -1
-gameElements_75
-  rotate: false
-  xy: 231, 70
-  size: 23, 25
-  orig: 320, 368
-  offset: 0, 324
-  index: -1
-gameElements_76
-  rotate: false
-  xy: 1, 19
-  size: 127, 16
-  orig: 160, 17
-  offset: 0, 1
-  index: -1
-gameElements_77
-  rotate: false
-  xy: 60, 83
-  size: 4, 5
-  orig: 125, 64
-  offset: 121, 52
-  index: -1
-gameElements_78
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 3, 61
-  offset: 0, 58
-  index: -1
-gameElements_79
-  rotate: false
-  xy: 60, 83
-  size: 4, 5
-  orig: 125, 64
-  offset: 121, 52
-  index: -1
-gameElements_80
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 3, 61
-  offset: 0, 58
-  index: -1
-gameElements_81
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 32, 32
-  offset: 0, 29
-  index: -1
-gameElements_82
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 96, 240
-  offset: 0, 237
-  index: -1
-gameElements_83
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 64, 272
-  offset: 0, 269
-  index: -1
-gameElements_84
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 96, 240
-  offset: 0, 237
-  index: -1
-gameElements_85
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 64, 272
-  offset: 0, 269
-  index: -1
-gameElements_86
-  rotate: false
-  xy: 62, 63
-  size: 3, 3
-  orig: 96, 240
-  offset: 0, 237
-  index: -1
 heartBack0
   rotate: false
-  xy: 217, 158
+  xy: 45, 138
   size: 16, 23
   orig: 32, 32
   offset: 8, 7
   index: -1
 heartFront0
   rotate: false
-  xy: 198, 157
+  xy: 237, 23
   size: 17, 23
   orig: 32, 32
   offset: 8, 5
   index: -1
 heroIdle0
   rotate: false
-  xy: 107, 125
+  xy: 184, 110
   size: 14, 21
   orig: 32, 32
   offset: 11, 0
   index: -1
 heroPostRoll0
   rotate: false
-  xy: 85, 125
+  xy: 235, 48
   size: 20, 18
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroPostRollEnd0
   rotate: false
-  xy: 177, 131
+  xy: 83, 122
   size: 19, 19
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroRoll0
   rotate: false
-  xy: 102, 148
+  xy: 67, 121
   size: 14, 12
   orig: 32, 32
   offset: 9, 0
   index: -1
 heroRoll1
   rotate: false
-  xy: 133, 164
+  xy: 1, 172
   size: 13, 13
   orig: 32, 32
   offset: 8, 0
   index: -1
 heroRoll2
   rotate: false
-  xy: 148, 164
+  xy: 127, 117
   size: 13, 13
   orig: 32, 32
   offset: 9, 1
   index: -1
 heroRoll3
   rotate: false
-  xy: 163, 174
+  xy: 142, 117
   size: 13, 13
   orig: 32, 32
   offset: 10, 0
   index: -1
 heroWalk0
   rotate: false
-  xy: 167, 152
+  xy: 237, 1
   size: 18, 20
   orig: 32, 32
   offset: 10, 3
   index: -1
 heroWalk1
   rotate: false
-  xy: 235, 158
+  xy: 23, 154
   size: 16, 22
   orig: 32, 32
   offset: 12, 0
   index: -1
 litter0
   rotate: false
-  xy: 199, 34
+  xy: 69, 1
   size: 32, 29
   orig: 32, 32
   offset: 0, 1
   index: -1
 litter1
   rotate: false
-  xy: 130, 19
+  xy: 103, 1
   size: 32, 29
   orig: 32, 32
   offset: 0, 1
   index: -1
 litter2
   rotate: false
-  xy: 164, 35
+  xy: 137, 1
   size: 32, 29
   orig: 32, 32
   offset: 0, 1
   index: -1
 litter3
   rotate: false
-  xy: 165, 1
+  xy: 1, 1
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 pointer0
   rotate: false
-  xy: 185, 83
+  xy: 187, 74
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
   index: -1
 pointer1
   rotate: false
-  xy: 185, 101
+  xy: 187, 92
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
   index: -1
 pointer2
   rotate: false
-  xy: 178, 174
+  xy: 117, 83
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
   index: -1
 sideIdle0
   rotate: false
-  xy: 31, 83
+  xy: 101, 57
   size: 27, 24
   orig: 32, 32
   offset: 3, 0
   index: -1
 sideWalk0
   rotate: false
-  xy: 198, 137
+  xy: 200, 112
   size: 25, 18
   orig: 32, 32
   offset: 6, 3
   index: -1
 sideWalk1
   rotate: false
-  xy: 198, 115
+  xy: 90, 83
   size: 25, 20
   orig: 32, 32
   offset: 6, 0
   index: -1
 trashCan
   rotate: false
-  xy: 118, 148
+  xy: 67, 135
   size: 13, 16
   orig: 32, 32
   offset: 10, 0
   index: -1
 use
   rotate: false
-  xy: 191, 182
+  xy: 117, 101
   size: 11, 14
   orig: 16, 16
   offset: 3, 1

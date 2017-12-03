@@ -24,14 +24,14 @@ class Cat extends Entity {
 	var ang = 0.;
 	var dashAng = 0.;
 	var shitStock = 0;
-	var target : CPoint;
+	var target : Null<CPoint>;
 	var path : Null<mt.deepnight.PathFinder.Path>;
+	var pathEnd : Null<{ x:Int, y:Int }>;
 
 	public function new(x,y) {
 		super(x,y);
 		ALL.push(this);
 		path = null;
-		target = new CPoint(cx,cy);
 		radius = Const.GRID*0.4;
 
 		enableShadow();
@@ -81,8 +81,15 @@ class Cat extends Entity {
 		return mt.deepnight.Lib.angularDistanceRad(getMoveAng(), e.getMoveAng())<=0.7;
 	}
 
+	function get_pathEnd() {
+		if( path==null )
+			return null;
+		else
+			return path[path.length-1];
+	}
+
 	inline function atTarget() {
-		return target!=null && cx==target.cx && cy==target.cy;
+		return target==null || cx==target.cx && cy==target.cy;
 	}
 
 
@@ -92,19 +99,22 @@ class Cat extends Entity {
 		//startPlay(); return; // HACK
 
 		var rlist = new mt.RandList();
-		rlist.add( startShit, 5*shitStock );
-		rlist.add( startEat, 19-4*shitStock );
-		rlist.add( startHeroFollow, 2 );
-		rlist.add( startLick, 4 );
-		rlist.add( startPlay, 3 );
-		//rlist.add( startPlay, 30 ); // HACK
-		rlist.add( startWait.bind(), 3 );
-		rlist.add( startCatAttack.bind(), 2 );
+		rlist.add( startPlay, 1 ); // HACK
+		rlist.add( startEat, 1 );
+
+		//rlist.add( startShit, 5*shitStock );
+		//rlist.add( startEat, 19-4*shitStock );
+		//rlist.add( startHeroFollow, 2 );
+		//rlist.add( startLick, 4 );
+		//rlist.add( startPlay, 3 );
+		//rlist.add( startWait.bind(), 3 );
+		//rlist.add( startCatAttack.bind(), 2 );
 		if( !rlist.draw()() )
 			startWait(1);
 	}
 
 	function startJob(j:Job, d:Float) {
+		trace("start job: "+j);
 		stop();
 		job = j;
 		jobDurationS = d;
@@ -262,25 +272,34 @@ class Cat extends Entity {
 	}
 
 	function stop() {
+		trace("stopped");
 		path = null;
-		target.set(cx,cy);
+		target = null;
 	}
 
 	function goto(x,y) {
-		target.set(x,y);
+		setTarget(x,y);
+	}
+
+	function setTarget(x,y) {
+		if( target==null )
+			target = new CPoint(x,y);
+		else
+			target.set(x,y);
+
 	}
 
 	function gotoNearby(e:Entity, minDist:Int, maxDist:Int) {
-		var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(cx,cy, maxDist) );
+		var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(e.cx,e.cy, maxDist) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) || !e.sightCheckCase(pt.x,pt.y) || Lib.distance(e.cx,e.cy,pt.x,pt.y)<=minDist );
 		dh.score( function(pt) return -Lib.distance(e.cx,e.cy,pt.x,pt.y) );
 		dh.score( function(pt) return rnd(0,2) );
 
 		var pt = dh.getBest();
 		if( pt!=null )
-			target.set(pt.x, pt.y);
+			setTarget(pt.x, pt.y);
 		else
-			target.set(e.cx,e.cy);
+			setTarget(e.cx,e.cy);
 	}
 
 	override function onTouch(e:Entity) {
@@ -444,6 +463,8 @@ class Cat extends Entity {
 		}
 
 		#if debug
+		if( target!=null )
+			fx.markerCase(target.cx,target.cy,0x0080FF,true);
 		if( path!=null && Console.ME.has("path") ) {
 			for(pt in path)
 				fx.markerCase(pt.x,pt.y,true);
@@ -452,7 +473,7 @@ class Cat extends Entity {
 
 		if( !cd.has("lock") && onGround ) {
 			// Track target
-			if( !atTarget() ) {
+			if( !atTarget() && target!=null ) {
 				if( sightCheckCase(target.cx,target.cy) && target.distEnt(this)<=5 ) {
 					// Target is on sight
 					if( path!=null )
