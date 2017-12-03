@@ -18,10 +18,10 @@ class FoodBox extends en.Interactive {
 		super.dispose();
 	}
 
-	override public function onActivate() {
-		super.onActivate();
+	override public function onActivate(by:Hero) {
+		super.onActivate(by);
 		trace("activate box");
-		hero.pick(Fish);
+		by.pick(Fish);
 		cd.setS("lock", 6);
 	}
 }

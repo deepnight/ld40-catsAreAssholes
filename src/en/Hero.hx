@@ -36,7 +36,7 @@ class Hero extends Entity {
 		trace("picked "+item);
 	}
 
-	public function consumeItem() {
+	public function destroyItem() {
 		item = null;
 		itemIcon.remove();
 		itemIcon = null;
@@ -45,8 +45,6 @@ class Hero extends Entity {
 	public function dropItem() {
 		if( item==null )
 			return;
-
-		trace("dropped "+item);
 
 		var a = rollAng+rnd(0,0.1,true);
 		var e = new en.inter.ItemDrop(item, cx,cy);
@@ -92,12 +90,12 @@ class Hero extends Entity {
 			// Use
 			if( stamina>0 && Key.isPressed(Key.SPACE) ) {
 				var dh = new DecisionHelper(en.Interactive.ALL);
-				dh.remove( function(e) return !e.canBeActivated() || !sightCheck(e) || distCase(e)>2.5 );
+				dh.remove( function(e) return !e.canBeActivated(this) || !sightCheck(e) || distCase(e)>2.5 );
 				dh.score( function(e) return isLookingAt(e) ? 5 : 0 );
 				dh.score( function(e) return -distCase(e) );
 				var e = dh.getBest();
 				if( e!=null && ( !e.is(en.inter.ItemDrop) || item==null ) )
-					e.activate();
+					e.activate(this);
 				else
 					dropItem();
 			}

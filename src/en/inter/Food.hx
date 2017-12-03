@@ -57,12 +57,12 @@ class Food extends en.Interactive {
 			return false;
 	}
 
-	override function canBeActivated() {
-		return super.canBeActivated() && stock<max;
+	override function canBeActivated(by:Hero) {
+		return super.canBeActivated(by) && stock<max;
 	}
 
-	override public function onActivate() {
-		super.onActivate();
+	override public function onActivate(by) {
+		super.onActivate(by);
 		stock = max;
 	}
 

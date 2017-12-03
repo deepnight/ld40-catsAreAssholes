@@ -14,11 +14,11 @@ class Interactive extends Entity {
 		weight = -1;
 	}
 
-	function onActivate() {
+	function onActivate(by:Hero) {
 	}
 
-	public function canBeActivated() {
-		return !cd.has("lock") && ( reqItem==null || hero.item==reqItem );
+	public function canBeActivated(by:Hero) {
+		return !cd.has("lock") && ( reqItem==null || by.item==reqItem );
 	}
 
 	override public function dispose() {
@@ -30,10 +30,10 @@ class Interactive extends Entity {
 		super.postUpdate();
 	}
 
-	public function activate() {
+	public function activate(by:Hero) {
 		if( reqItem!=null )
-			hero.consumeItem();
-		onActivate();
+			by.destroyItem();
+		onActivate(by);
 	}
 
 	override public function update() {

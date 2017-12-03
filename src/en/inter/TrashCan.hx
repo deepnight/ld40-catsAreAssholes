@@ -14,10 +14,10 @@ class TrashCan extends en.Interactive {
 		spr.set("trashCan");
 	}
 
-	override public function onActivate() {
-		super.onActivate();
-		if( game.hero.item!=null )
-			game.hero.consumeItem();
+	override public function onActivate(by:Hero) {
+		super.onActivate(by);
+		if( by.item!=null )
+			by.destroyItem();
 	}
 
 	override public function postUpdate() {

@@ -24,10 +24,10 @@ class Litter extends en.Interactive {
 		ALL.remove(this);
 	}
 
-	override public function onActivate() {
-		super.onActivate();
+	override public function onActivate(by:Hero) {
+		super.onActivate(by);
 		if( stock>0 ) {
-			hero.pick(Trash);
+			by.pick(Trash);
 			stock = 0;
 		}
 	}

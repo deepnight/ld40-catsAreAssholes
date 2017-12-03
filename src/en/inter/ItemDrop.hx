@@ -39,13 +39,13 @@ class ItemDrop extends en.Interactive {
 		return n;
 	}
 
-	override function canBeActivated() {
-		return super.canBeActivated() && hero.item!=k;
+	override function canBeActivated(by:Hero) {
+		return super.canBeActivated(by) && by.item!=k;
 	}
 
-	override public function onActivate() {
-		super.onActivate();
-		hero.pick(k);
+	override public function onActivate(by:Hero) {
+		super.onActivate(by);
+		by.pick(k);
 		destroy();
 	}
 
