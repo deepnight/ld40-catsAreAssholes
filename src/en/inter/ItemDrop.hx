@@ -16,7 +16,7 @@ class ItemDrop extends en.Interactive {
 		this.k = k;
 		altitude = 10;
 		enableShadow(1.5);
-		weight = -1;
+		weight = 5;
 		zPrio = -8;
 
 		spr.set("empty");

@@ -10,7 +10,7 @@ class Hero extends Entity {
 	private function new(x,y) {
 		super(x,y);
 		enableShadow();
-		weight = 2;
+		weight = -1;
 	}
 
 	public function pick(i:Data.ItemKind) {

@@ -13,7 +13,7 @@ ball
   index: -1
 ballFlat
   rotate: false
-  xy: 243, 115
+  xy: 136, 117
   size: 10, 6
   orig: 16, 16
   offset: 2, 0
@@ -80,6 +80,13 @@ bcatEat2
   size: 26, 15
   orig: 32, 32
   offset: 3, 0
+  index: -1
+bcatFall0
+  rotate: false
+  xy: 1, 133
+  size: 25, 18
+  orig: 32, 32
+  offset: 3, 4
   index: -1
 bcatFear0
   rotate: false
@@ -356,7 +363,7 @@ heroRoll1
   index: -1
 heroRoll2
   rotate: false
-  xy: 241, 129
+  xy: 241, 133
   size: 13, 13
   orig: 32, 32
   offset: 9, 1
@@ -409,6 +416,20 @@ litter3
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
+  index: -1
+pointer0
+  rotate: false
+  xy: 243, 115
+  size: 11, 16
+  orig: 16, 16
+  offset: 2, 0
+  index: -1
+pointer1
+  rotate: false
+  xy: 241, 148
+  size: 11, 16
+  orig: 16, 16
+  offset: 2, 0
   index: -1
 sideIdle0
   rotate: false

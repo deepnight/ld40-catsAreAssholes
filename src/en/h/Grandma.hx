@@ -53,7 +53,8 @@ class Grandma extends en.Hero {
 			if( Key.isPressed(Key.SPACE) ) {
 				var dh = new DecisionHelper(en.Interactive.ALL);
 				dh.remove( function(e) return !e.canBeActivated(this) || !sightCheck(e) || distCase(e)>2.5 );
-				dh.score( function(e) return isLookingAt(e) ? 5 : 0 );
+				dh.score( function(e) return isLookingAt(e) ? 2 : 0 );
+				dh.score( function(e) return distCase(e)<=1.5 ? 5 : 0 );
 				dh.score( function(e) return -distCase(e) );
 				var e = dh.getBest();
 				if( e!=null && ( !e.is(en.inter.ItemDrop) || item==null ) )

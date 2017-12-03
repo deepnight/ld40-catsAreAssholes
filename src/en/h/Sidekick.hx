@@ -20,6 +20,9 @@ class Sidekick extends en.Hero {
 	var tries = 0;
 	var path : mt.deepnight.PathFinder.Path;
 
+	var queued : Null<Entity>;
+	var pointers : Array<HSprite>;
+
 	public function new(x,y) {
 		super(x,y);
 
@@ -29,6 +32,21 @@ class Sidekick extends en.Hero {
 
 		spr.anim.registerStateAnim("sideWalk",3, 0.2, function() return MLib.fabs(dx)>0 || MLib.fabs(dy)>0 );
 		spr.anim.registerStateAnim("sideIdle",0);
+
+		pointers = [];
+		for(i in 0...2) {
+			var e = Assets.gameElements.h_get("pointer",i, 0.5,1);
+			game.scroller.add(e, Const.DP_UI);
+			pointers.push(e);
+			e.visible = false;
+		}
+	}
+
+	override public function dispose() {
+		super.dispose();
+		for(e in pointers)
+			e.remove();
+		pointers = null;
 	}
 
 	function pickOne<T>(all:Array<T>) : T {
@@ -49,14 +67,18 @@ class Sidekick extends en.Hero {
 		return dh.getBest();
 	}
 
-	function pickFoodTrail() : en.inter.Food {
-		var dh = new DecisionHelper(en.inter.Food.ALL);
+	function pickFoodTray() : en.inter.FoodTray {
+		var dh = new DecisionHelper(en.inter.FoodTray.ALL);
 		dh.remove( function(e) return e.isFull() );
 		dh.score( function(e) return -e.stock );
 		return dh.getBest();
 	}
 
 	public function callOn(e:Entity) {
+		if( actions.length>0 && queued!=e ) {
+			queued = e;
+			return;
+		}
 		clearActions();
 		trace(e);
 
@@ -73,7 +95,7 @@ class Sidekick extends en.Hero {
 
 		if( e.is(en.inter.Fridge) ) {
 			var f = e.as(en.inter.Fridge);
-			var t = pickFoodTrail();
+			var t = pickFoodTray();
 			if( t!=null ) {
 				say("eFood");
 				actions = [
@@ -84,9 +106,9 @@ class Sidekick extends en.Hero {
 			}
 		}
 
-		if( e.is(en.inter.Food) ) {
+		if( e.is(en.inter.FoodTray) ) {
 			var f = pickFridge(e);
-			var t = e.as(en.inter.Food);
+			var t = e.as(en.inter.FoodTray);
 			say("eFood");
 			actions = [
 				GoInter(f),
@@ -103,7 +125,12 @@ class Sidekick extends en.Hero {
 			];
 			switch( e.k ) {
 				case Data.ItemKind.Fish :
-					var t = pickFoodTrail();
+					var t = pickFoodTray();
+					say("eFood");
+					if( t!=null ) actions.push( GoInter(t) );
+
+				case Data.ItemKind.FoodBox :
+					var t = pickFridge();
 					say("eFood");
 					if( t!=null ) actions.push( GoInter(t) );
 
@@ -155,7 +182,47 @@ class Sidekick extends en.Hero {
 	function onDone() {
 		dropItem();
 		cd.setS("lock", 0.5);
-		goto(hero.cx, hero.cy);
+		if( queued!=null ) {
+			var e = queued;
+			queued = null;
+			callOn(e);
+		}
+		else
+			goto(10,10);
+	}
+
+
+	function setPointer(id:Int, x:Float, y:Float) {
+		var e = pointers[id];
+		e.visible = true;
+		e.x = x;
+		e.y = y - 8 - MLib.fabs( Math.sin(game.ftime*0.1)*9 );
+	}
+
+
+	override public function postUpdate() {
+		super.postUpdate();
+
+		for(e in pointers)
+			e.visible = false;
+
+		if( actionIdx<actions.length ) {
+			var a = actions[actionIdx];
+			switch( a ) {
+				case GoInter(e) :
+					if( e.is(en.inter.Fridge) )
+						a = actions[actions.length-1];
+				default :
+			}
+			switch( a ) {
+				case GoInter(e) : setPointer(0, e.footX, e.footY);
+				case GoCoord(x,y,_) : setPointer(0, (x+0.5)*Const.GRID,(y+1)*Const.GRID);
+				default :
+			}
+		}
+
+		if( queued!=null )
+			setPointer(1, queued.footX, queued.footY);
 	}
 
 	override public function update() {

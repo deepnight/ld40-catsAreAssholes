@@ -36,6 +36,10 @@ class Interactive extends Entity {
 		onActivate(by);
 	}
 
+	override function onTouch(e:Entity) {
+		super.onTouch(e);
+	}
+
 	override public function update() {
 		super.update();
 	}

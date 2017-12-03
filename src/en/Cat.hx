@@ -4,14 +4,14 @@ import mt.MLib;
 import mt.heaps.slib.*;
 import hxd.Key;
 import mt.deepnight.Lib;
-import en.inter.Food;
+import en.inter.FoodTray;
 
 enum Job {
 	Wait;
 	Follow(e:Entity);
 	Fight(e:Entity, ?reason:String);
 	Lick;
-	Eat(e:en.inter.Food, ?done:Bool);
+	Eat(e:en.inter.FoodTray, ?done:Bool);
 	Shit;
 	Play(e:Entity);
 }
@@ -53,6 +53,7 @@ class Cat extends Entity {
 		spr.anim.registerStateAnim("bcatAngryWalk",4, 0.25, function() return isAngry() && ( MLib.fabs(dx)>0 || MLib.fabs(dy)>0 ) );
 		spr.anim.registerStateAnim("bcatWalk",3, 0.2, function() return MLib.fabs(dx)>0 || MLib.fabs(dy)>0 );
 
+		spr.anim.registerStateAnim("bcatFall",15, function() return altitude>=3);
 		spr.anim.registerStateAnim("bcatObserve",2, 0.5, function() return cd.has("observing"));
 		spr.anim.registerStateAnim("bcatIdleRecent",1, function() return cd.has("recentWalk"));
 		spr.anim.registerStateAnim("bcatIdleAngry",0, function() return isAngry());
@@ -109,7 +110,7 @@ class Cat extends Entity {
 	}
 
 	function startEat() {
-		var e = Food.pickOne();
+		var e = FoodTray.pickOne();
 		if( e==null )
 			return startHeroAttack("eReqFood");
 		else
@@ -228,6 +229,8 @@ class Cat extends Entity {
 		switch( job ) {
 			case Shit :
 				var e = en.inter.Litter.ALL.filter( function(e) return distCase(e)<=1 && !e.isFull() )[0];
+				cd.unset("shitting");
+				jump(0.4);
 				if( e!=null ) {
 					// In box
 					e.addShit(shitStock);
@@ -328,7 +331,7 @@ class Cat extends Entity {
 			case Fight(e,r) :
 				switch( r ) {
 					case "eReqFood" :
-						for(e in en.inter.Food.ALL)
+						for(e in en.inter.FoodTray.ALL)
 							if( !e.isEmpty() && sightCheck(e) ) {
 								startEat();
 								break;
@@ -372,7 +375,7 @@ class Cat extends Entity {
 					dy+=Math.sin(dashAng)*0.2;
 					dir = dx>0 ? 1 : -1;
 					cd.setS("dashLock", rnd(1.6,2));
-					cd.setS("lock", rnd(1,1.5));
+					cd.setS("lock", rnd(1.5,3.5));
 					cd.setS("dashCharge", 0.3, function() {
 						cd.setS("dashing", 0.45);
 					});

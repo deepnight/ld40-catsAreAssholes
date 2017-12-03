@@ -4,8 +4,8 @@ import mt.MLib;
 import mt.heaps.slib.*;
 import hxd.Key;
 
-class Food extends en.Interactive {
-	public static var ALL : Array<Food> = [];
+class FoodTray extends en.Interactive {
+	public static var ALL : Array<FoodTray> = [];
 
 	var max = 4;
 	public var stock : Int;
@@ -19,7 +19,7 @@ class Food extends en.Interactive {
 		reqItem = Fish;
 	}
 
-	public static function pickOne() : Null<Food> {
+	public static function pickOne() : Null<FoodTray> {
 		var all = ALL.filter( function(e) return !e.isEmpty() );
 		if( all.length==0 )
 			return null;

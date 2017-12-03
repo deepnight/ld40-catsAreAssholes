@@ -47,11 +47,13 @@ class Level extends mt.Process {
 				case Data.MarkerKind.Grandma : Game.ME.hero = new en.h.Grandma(m.x,m.y);
 				case Data.MarkerKind.Sidekick : Game.ME.side = new en.h.Sidekick(m.x,m.y);
 				case Data.MarkerKind.Cat : new en.Cat(m.x,m.y);
-				case Data.MarkerKind.Food : new en.inter.Food(m.x,m.y);
+				case Data.MarkerKind.FoodTray : new en.inter.FoodTray(m.x,m.y);
 				case Data.MarkerKind.Fridge : new en.inter.Fridge(m.x,m.y);
 				case Data.MarkerKind.Litter : new en.inter.Litter(m.x,m.y);
 				case Data.MarkerKind.TrashCan : new en.inter.TrashCan(m.x,m.y);
 				case Data.MarkerKind.Ball : new en.f.Ball(m.x,m.y);
+				case Data.MarkerKind.Shop : new en.inter.Shop(m.x,m.y);
+				case Data.MarkerKind.Door : new en.inter.Door(m.x,m.y);
 			}
 	}
 

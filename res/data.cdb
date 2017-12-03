@@ -100,6 +100,13 @@
 					},
 					"markers": [
 						{
+							"x": 13,
+							"y": 1,
+							"marker": "Door",
+							"width": 1,
+							"height": 1
+						},
+						{
 							"x": 4,
 							"y": 2,
 							"marker": "Cat",
@@ -107,9 +114,9 @@
 							"height": 1
 						},
 						{
-							"x": 17,
+							"x": 15,
 							"y": 2,
-							"marker": "TrashCan",
+							"marker": "Shop",
 							"width": 1,
 							"height": 1
 						},
@@ -158,12 +165,19 @@
 						{
 							"x": 20,
 							"y": 7,
-							"marker": "Food",
+							"marker": "FoodTray",
 							"width": 1,
 							"height": 1
 						},
 						{
 							"x": 2,
+							"y": 8,
+							"marker": "TrashCan",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 18,
 							"y": 8,
 							"marker": "TrashCan",
 							"width": 1,
@@ -228,7 +242,7 @@
 						{
 							"x": 28,
 							"y": 12,
-							"marker": "Food",
+							"marker": "FoodTray",
 							"width": 1,
 							"height": 1
 						},
@@ -249,7 +263,7 @@
 						{
 							"x": 24,
 							"y": 13,
-							"marker": "Food",
+							"marker": "FoodTray",
 							"width": 1,
 							"height": 1
 						}
@@ -356,7 +370,7 @@
 				},
 				{
 					"color": 11479751,
-					"id": "Food",
+					"id": "FoodTray",
 					"icon": {
 						"file": "cdbTiles.png",
 						"size": 16,
@@ -401,6 +415,26 @@
 						"file": "cdbTiles.png",
 						"size": 16,
 						"x": 9,
+						"y": 0
+					}
+				},
+				{
+					"color": 12954767,
+					"id": "Door",
+					"icon": {
+						"file": "cdbTiles.png",
+						"size": 16,
+						"x": 0,
+						"y": 3
+					}
+				},
+				{
+					"color": 16773562,
+					"id": "Shop",
+					"icon": {
+						"file": "cdbTiles.png",
+						"size": 16,
+						"x": 0,
 						"y": 0
 					}
 				}
@@ -469,7 +503,7 @@
 						"x": 0,
 						"y": 0
 					},
-					"decayS": 4
+					"decayS": 0
 				},
 				{
 					"id": "Shit",
@@ -490,6 +524,16 @@
 						"y": 0
 					},
 					"decayS": 0
+				},
+				{
+					"id": "FoodBox",
+					"decayS": 0,
+					"icon": {
+						"file": "items.png",
+						"size": 32,
+						"x": 2,
+						"y": 0
+					}
 				}
 			],
 			"separators": [],
