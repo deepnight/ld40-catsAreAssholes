@@ -199,6 +199,60 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">export/bcatCharge0.png</key>
+            <key type="filename">export/bcatCharge1.png</key>
+            <key type="filename">export/bcatDash0.png</key>
+            <key type="filename">export/bcatDash1.png</key>
+            <key type="filename">export/bcatEat0.png</key>
+            <key type="filename">export/bcatEat1.png</key>
+            <key type="filename">export/bcatEat2.png</key>
+            <key type="filename">export/bcatFear0.png</key>
+            <key type="filename">export/bcatIdle0.png</key>
+            <key type="filename">export/bcatIdleAngry0.png</key>
+            <key type="filename">export/bcatIdleRecent0.png</key>
+            <key type="filename">export/bcatLick0.png</key>
+            <key type="filename">export/bcatLick1.png</key>
+            <key type="filename">export/bcatLick2.png</key>
+            <key type="filename">export/bcatLick3.png</key>
+            <key type="filename">export/bcatLickLook0.png</key>
+            <key type="filename">export/bcatLickLookBack0.png</key>
+            <key type="filename">export/bcatShit0.png</key>
+            <key type="filename">export/bcatShit1.png</key>
+            <key type="filename">export/bcatShit2.png</key>
+            <key type="filename">export/bcatWalk0.png</key>
+            <key type="filename">export/bcatWalk1.png</key>
+            <key type="filename">export/foodBox.png</key>
+            <key type="filename">export/foodEmpty.png</key>
+            <key type="filename">export/foodFull0.png</key>
+            <key type="filename">export/foodFull1.png</key>
+            <key type="filename">export/foodFull2.png</key>
+            <key type="filename">export/heartBack0.png</key>
+            <key type="filename">export/heartFront0.png</key>
+            <key type="filename">export/heroIdle0.png</key>
+            <key type="filename">export/heroPostRoll0.png</key>
+            <key type="filename">export/heroPostRollEnd0.png</key>
+            <key type="filename">export/heroRoll0.png</key>
+            <key type="filename">export/heroRoll1.png</key>
+            <key type="filename">export/heroRoll2.png</key>
+            <key type="filename">export/heroRoll3.png</key>
+            <key type="filename">export/heroWalk0.png</key>
+            <key type="filename">export/heroWalk1.png</key>
+            <key type="filename">export/litter0.png</key>
+            <key type="filename">export/litter1.png</key>
+            <key type="filename">export/litter2.png</key>
+            <key type="filename">export/litter3.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,8,16,16</rect>
+                <key>scale9Paddings</key>
+                <rect>8,8,16,16</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">export/charShadow0.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -212,27 +266,16 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">export/heart0.png</key>
-            <key type="filename">export/heartBack0.png</key>
-            <key type="filename">export/heartFront0.png</key>
-            <key type="filename">export/heroIdle0.png</key>
-            <key type="filename">export/heroPostRoll0.png</key>
-            <key type="filename">export/heroPostRollEnd0.png</key>
-            <key type="filename">export/heroRoll0.png</key>
-            <key type="filename">export/heroRoll1.png</key>
-            <key type="filename">export/heroRoll2.png</key>
-            <key type="filename">export/heroRoll3.png</key>
-            <key type="filename">export/heroWalk0.png</key>
-            <key type="filename">export/heroWalk1.png</key>
+            <key type="filename">export/empty.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>8,8,16,16</rect>
+                <rect>1,1,2,2</rect>
                 <key>scale9Paddings</key>
-                <rect>8,8,16,16</rect>
+                <rect>1,1,2,2</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

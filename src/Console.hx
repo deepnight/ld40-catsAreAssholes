@@ -1,10 +1,12 @@
 import mt.MLib;
 
 class Console extends h2d.Console {
+	public static var ME : Console;
 
 	var flags : Map<String,Bool>;
 	public function new() {
 		super(Assets.font);
+		ME = this;
 		Main.ME.root.add(this, Const.DP_UI);
 
 		flags = new Map();

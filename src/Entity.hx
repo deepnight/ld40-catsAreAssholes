@@ -15,7 +15,9 @@ class Entity {
 	public var shadow : Null<HSprite>;
 	var label : Null<h2d.Text>;
 	var dt : Float;
+	public var zPrio = 0.;
 
+	public var uid : Int;
 	public var cx = 0;
 	public var cy = 0;
 	public var xr = 0.;
@@ -25,17 +27,24 @@ class Entity {
 	public var frict = 0.7;
 	public var weight = 1.;
 	public var radius : Float;
+	public var altitude = 0.;
+	public var dalt = 0.;
 	public var dir(default,set) = 1;
 
-	public var z(get,never) : Float; inline function get_z() return footY;
+	public var z(get,never) : Float; inline function get_z() return footY+zPrio;
 	public var footX(get,never) : Float; inline function get_footX() return (cx+xr)*Const.GRID;
-	public var footY(get,never) : Float; inline function get_footY() return (cy+yr)*Const.GRID;
+	public var footY(get,never) : Float; inline function get_footY() return (cy+yr)*Const.GRID-5+footOffsetY;
+	public var onGround(get,never) : Bool; inline function get_onGround() return altitude==0 && dalt==0;
+	var footOffsetY = 0;
+
+	var debug : Null<h2d.Graphics>;
 
 	private function new(x,y) {
+		uid = Const.UNIQ++;
 		ALL.push(this);
 
 		cd = new mt.Cooldown(Const.FPS);
-		radius = Const.GRID*0.4;
+		radius = Const.GRID*0.6;
 		setPosCase(x,y);
 
 		spr = new mt.heaps.slib.HSprite(Assets.gameElements);
@@ -43,12 +52,25 @@ class Entity {
 		spr.setCenterRatio(0.5,1);
 	}
 
-	public function enableShadow() {
+	public function enableShadow(?scale=1.0) {
 		if( shadow!=null )
 			shadow.remove();
 		shadow = Assets.gameElements.h_get("charShadow",0, 0.5,0.5);
 		game.scroller.add(shadow, Const.DP_BG);
+		shadow.scaleX = scale;
 		shadow.alpha = 0.2;
+	}
+
+	public function jump(pow:Float) {
+		dalt = -4*pow;
+	}
+
+	public static function countNearby(?except:Entity, x,y, d) {
+		var n = 0;
+		for(e in ALL)
+			if( e!=except && Lib.distanceSqr(e.cx,e.cy,x,y)<=d*d )
+				n++;
+		return n;
 	}
 
 
@@ -104,6 +126,10 @@ class Entity {
 		return Math.atan2(dy,dx);
 	}
 
+	public inline function dirTo(e:Entity) return e.footX<=footX ? -1 : 1;
+	public inline function lookAt(e:Entity) dir = dirTo(e);
+	public inline function isLookingAt(e:Entity) return dirTo(e)==dir;
+
 	public inline function destroy() {
 		destroyed = true;
 	}
@@ -118,6 +144,8 @@ class Entity {
 			shadow.remove();
 		if( label!=null )
 			label.remove();
+		if( debug!=null )
+			debug.remove();
 	}
 
 	public function preUpdate() {
@@ -126,15 +154,33 @@ class Entity {
 
 	public function postUpdate() {
 		spr.x = (cx+xr)*Const.GRID;
-		spr.y = (cy+yr)*Const.GRID;
+		spr.y = (cy+yr)*Const.GRID - altitude;
 		//spr.x = Std.int((cx+xr)*Const.GRID);
 		//spr.y = Std.int((cy+yr)*Const.GRID);
 		spr.scaleX = dir;
 
-		shadow.setPos(spr.x, spr.y-1);
+		if( shadow!=null )
+			shadow.setPos(spr.x, (cy+yr)*Const.GRID-2);
 
 		if( label!=null )
 			label.setPos(footX-label.textWidth*0.5, footY+2);
+
+		if( Console.ME.has("bounds") ) {
+			if( debug==null ) {
+				debug = new h2d.Graphics();
+				game.scroller.add(debug, Const.DP_UI);
+			}
+			if( !cd.hasSetS("debugRedraw",1) ) {
+				debug.beginFill(0xFFFF00,0.3);
+				debug.lineStyle(1,0xFFFF00,0.7);
+				debug.drawCircle(0,0,radius);
+			}
+			debug.setPos(footX, footY);
+		}
+		if( !Console.ME.has("bounds") && debug!=null ) {
+			debug.remove();
+			debug = null;
+		}
 	}
 
 	function hasCircColl() {
@@ -144,6 +190,8 @@ class Entity {
 	function hasCircCollWith(e:Entity) {
 		return true;
 	}
+
+	function onTouch(e:Entity) {}
 
 	public function update() {
 		// Circular collisions
@@ -164,6 +212,9 @@ class Entity {
 						if( r<=0.1 ) r = 0;
 						e.dx+=Math.cos(a)*repel * weight / (weight+e.weight);
 						e.dy+=Math.sin(a)*repel * weight / (weight+e.weight);
+
+						onTouch(e);
+						e.onTouch(this);
 					}
 				}
 
@@ -203,5 +254,19 @@ class Entity {
 		while( yr>1 ) { yr--; cy++; }
 		while( yr<0 ) { yr++; cy--; }
 		if( MLib.fabs(dy)<=0.001 ) dy = 0;
+
+		// Gravity
+		if( altitude>0 || dalt!=0 ) {
+			dalt+=-0.2;
+			altitude+=dalt;
+			dalt*=0.95;
+			if( altitude<=0 ) {
+				if( MLib.fabs(dalt)<=0.1 )
+					dalt = 0;
+				else
+					dalt = MLib.fabs(dalt)*0.7;
+				altitude = 0;
+			}
+		}
 	}
 }

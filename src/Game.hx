@@ -13,12 +13,14 @@ class Game extends mt.Process {
 
 		ME = this;
 		createRoot(ctx);
-		root.scale(Const.SCALE);
+		//root.scale(Const.SCALE);
 		scroller = new h2d.Layers(root);
 		vp = new Viewport();
 		new ui.Stamina();
 
 		level = new Level(Home);
+		level.attachEntities();
+
 		vp.target = hero;
 		vp.repos();
 	}
@@ -36,7 +38,7 @@ class Game extends mt.Process {
 		var i = 0;
 		while( i<Entity.ALL.length )
 			if( Entity.ALL[i].destroyed )
-				Entity.ALL.splice(i,1);
+				Entity.ALL[i].dispose();
 			else
 				i++;
 	}

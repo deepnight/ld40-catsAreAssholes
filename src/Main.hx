@@ -4,12 +4,17 @@ import mt.MLib;
 class Main extends mt.Process {
 	public static var ME : Main;
 	public var console : Console;
+	var cached : h2d.CachedBitmap;
 
 	public function new() {
 		super();
 
 		ME = this;
+
 		createRoot(Boot.ME.s2d);
+
+		cached = new h2d.CachedBitmap(root, 1,1);
+		cached.scaleX = cached.scaleY = Const.SCALE;
 
 		#if debug
 		hxd.Res.initLocal();
@@ -35,6 +40,13 @@ class Main extends mt.Process {
 		#end
 
 		restartGame();
+		onResize();
+	}
+
+	override public function onResize() {
+		super.onResize();
+		cached.width = MLib.ceil(Boot.ME.s2d.width/cached.scaleX);
+		cached.height = MLib.ceil(Boot.ME.s2d.height/cached.scaleY);
 	}
 
 	override public function onDispose() {
@@ -47,14 +59,14 @@ class Main extends mt.Process {
 		if( Game.ME!=null ) {
 			tw.createS(Game.ME.root.alpha, 0, 0.5).end( function() {
 				Game.ME.destroy();
-				delayer.addF(function() {
-					new Game( new h2d.Sprite(root) );
+				delayer.addS(function() {
+					new Game( new h2d.Sprite(cached) );
 					tw.createS(Game.ME.root.alpha, 0>1, 0.4);
-				},1);
+				},0.5);
 			});
 		}
 		else {
-			new Game( new h2d.Sprite(root) );
+			new Game( new h2d.Sprite(cached) );
 			tw.createS(Game.ME.root.alpha, 0>1, 0.4);
 		}
 	}

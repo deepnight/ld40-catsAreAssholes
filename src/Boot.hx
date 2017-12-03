@@ -33,7 +33,7 @@ class Boot extends hxd.App {
 			speed = speed==1 ? 0.35 : speed==0.35 ? 0.1 : 1;
 
 		if( Key.isDown(Key.NUMPAD_ADD) )
-			speed = 3;
+			speed = 6;
 		else if( speed>1 )
 			speed = 1;
 

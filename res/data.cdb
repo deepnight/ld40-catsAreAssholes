@@ -24,13 +24,13 @@
 					"typeStr": "8"
 				},
 				{
+					"name": "layers",
+					"typeStr": "8"
+				},
+				{
 					"typeStr": "8",
 					"name": "markers",
 					"display": null
-				},
-				{
-					"name": "layers",
-					"typeStr": "8"
 				}
 			],
 			"lines": [
@@ -100,16 +100,79 @@
 					},
 					"markers": [
 						{
-							"x": 12,
-							"y": 5,
-							"marker": "Hero",
+							"x": 13,
+							"y": 2,
+							"marker": "FoodBox",
 							"width": 1,
 							"height": 1
 						},
 						{
 							"x": 17,
+							"y": 2,
+							"marker": "TrashCan",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 27,
+							"y": 4,
+							"marker": "Food",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 2,
+							"y": 5,
+							"marker": "Litter",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 19,
 							"y": 5,
 							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 10,
+							"y": 6,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 14,
+							"y": 6,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 18,
+							"y": 7,
+							"marker": "Hero",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 14,
+							"y": 12,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 26,
+							"y": 13,
+							"marker": "Food",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 29,
+							"y": 13,
+							"marker": "Food",
 							"width": 1,
 							"height": 1
 						}
@@ -169,13 +232,13 @@
 			"name": "marker",
 			"columns": [
 				{
-					"typeStr": "14",
-					"name": "icon",
+					"typeStr": "11",
+					"name": "color",
 					"display": null
 				},
 				{
-					"typeStr": "11",
-					"name": "color",
+					"typeStr": "14",
+					"name": "icon",
 					"display": null
 				},
 				{
@@ -196,11 +259,51 @@
 				},
 				{
 					"id": "Cat",
-					"color": 16754944,
+					"color": 16731904,
 					"icon": {
 						"file": "cdbTiles.png",
 						"size": 16,
 						"x": 10,
+						"y": 0
+					}
+				},
+				{
+					"color": 11479751,
+					"id": "Food",
+					"icon": {
+						"file": "cdbTiles.png",
+						"size": 16,
+						"x": 12,
+						"y": 0
+					}
+				},
+				{
+					"color": 4041674,
+					"id": "FoodBox",
+					"icon": {
+						"file": "cdbTiles.png",
+						"size": 16,
+						"x": 11,
+						"y": 0
+					}
+				},
+				{
+					"color": 9253642,
+					"id": "Litter",
+					"icon": {
+						"file": "cdbTiles.png",
+						"size": 16,
+						"x": 13,
+						"y": 0
+					}
+				},
+				{
+					"color": 644237,
+					"id": "TrashCan",
+					"icon": {
+						"file": "cdbTiles.png",
+						"size": 16,
+						"x": 13,
 						"y": 0
 					}
 				}
@@ -242,6 +345,51 @@
 					"display": null
 				}
 			]
+		},
+		{
+			"name": "item",
+			"columns": [
+				{
+					"typeStr": "14",
+					"name": "icon"
+				},
+				{
+					"typeStr": "0",
+					"name": "id",
+					"display": null
+				}
+			],
+			"lines": [
+				{
+					"id": "Fish",
+					"icon": {
+						"file": "items.png",
+						"size": 32,
+						"x": 0,
+						"y": 0
+					}
+				},
+				{
+					"id": "Shit",
+					"icon": {
+						"file": "items.png",
+						"size": 32,
+						"x": 1,
+						"y": 0
+					}
+				},
+				{
+					"id": "Trash",
+					"icon": {
+						"file": "items.png",
+						"size": 32,
+						"x": 2,
+						"y": 0
+					}
+				}
+			],
+			"separators": [],
+			"props": {}
 		}
 	],
 	"customTypes": [],
