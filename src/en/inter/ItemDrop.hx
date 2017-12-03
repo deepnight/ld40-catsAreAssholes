@@ -7,7 +7,7 @@ import hxd.Key;
 class ItemDrop extends en.Interactive {
 	public static var ALL : Array<ItemDrop> = [];
 
-	var k : Data.ItemKind;
+	public var k : Data.ItemKind;
 
 	public function new(k:Data.ItemKind, x,y) {
 		super(x,y);
@@ -30,6 +30,15 @@ class ItemDrop extends en.Interactive {
 		super.dispose();
 		ALL.remove(this);
 	}
+
+	public static function countNearby(k:Data.ItemKind, x,y, d) {
+		var n = 0;
+		for(e in ALL)
+			if( e.k==k && mt.deepnight.Lib.distanceSqr(e.cx,e.cy,x,y)<=d*d )
+				n++;
+		return n;
+	}
+
 	override function canBeActivated() {
 		return super.canBeActivated() && hero.item!=k;
 	}

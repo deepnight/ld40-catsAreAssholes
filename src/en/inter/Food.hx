@@ -7,7 +7,7 @@ import hxd.Key;
 class Food extends en.Interactive {
 	public static var ALL : Array<Food> = [];
 
-	var max = 5;
+	var max = 4;
 	var stock : Int;
 	public function new(x,y) {
 		super(x,y);

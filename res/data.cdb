@@ -100,13 +100,6 @@
 					},
 					"markers": [
 						{
-							"x": 13,
-							"y": 2,
-							"marker": "Ball",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 17,
 							"y": 2,
 							"marker": "TrashCan",
@@ -114,30 +107,9 @@
 							"height": 1
 						},
 						{
-							"x": 29,
+							"x": 28,
 							"y": 2,
 							"marker": "Litter",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 4,
-							"y": 3,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 26,
-							"y": 3,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 28,
-							"y": 4,
-							"marker": "Food",
 							"width": 1,
 							"height": 1
 						},
@@ -149,13 +121,6 @@
 							"height": 1
 						},
 						{
-							"x": 18,
-							"y": 5,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 29,
 							"y": 5,
 							"marker": "Ball",
@@ -163,9 +128,16 @@
 							"height": 1
 						},
 						{
-							"x": 18,
-							"y": 7,
+							"x": 14,
+							"y": 6,
 							"marker": "Hero",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 19,
+							"y": 7,
+							"marker": "Food",
 							"width": 1,
 							"height": 1
 						},
@@ -205,13 +177,6 @@
 							"height": 1
 						},
 						{
-							"x": 4,
-							"y": 12,
-							"marker": "Cat",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 26,
 							"y": 12,
 							"marker": "Cat",
@@ -219,22 +184,22 @@
 							"height": 1
 						},
 						{
-							"x": 11,
+							"x": 28,
+							"y": 12,
+							"marker": "Food",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 4,
 							"y": 13,
 							"marker": "Ball",
 							"width": 1,
 							"height": 1
 						},
 						{
-							"x": 24,
-							"y": 14,
-							"marker": "Food",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 27,
-							"y": 14,
+							"x": 22,
+							"y": 13,
 							"marker": "Food",
 							"width": 1,
 							"height": 1

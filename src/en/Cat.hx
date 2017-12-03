@@ -32,6 +32,7 @@ class Cat extends Entity {
 		ALL.push(this);
 		path = null;
 		target = new CPoint(cx,cy);
+		radius = Const.GRID*0.4;
 
 		enableShadow();
 
@@ -91,7 +92,7 @@ class Cat extends Entity {
 
 		var rlist = new mt.RandList();
 		rlist.add( startShit, 5*shitStock );
-		rlist.add( startEat, 16-4*shitStock );
+		rlist.add( startEat, 19-4*shitStock );
 		rlist.add( startHeroFollow, 2 );
 		rlist.add( startLick, 4 );
 		rlist.add( startPlay, 3 );
@@ -149,7 +150,7 @@ class Cat extends Entity {
 	function startPlay() {
 		var targets = Entity.ALL.filter( function(e) return e.is(en.inter.ItemDrop) || e.is(Furn) );
 		var e = targets[Std.random(targets.length)];
-		startJob(Play(e), rnd(5,10));
+		startJob(Play(e), rnd(5,7));
 		return true;
 	}
 

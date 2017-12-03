@@ -6,7 +6,7 @@ import hxd.Key;
 
 class Litter extends en.Interactive {
 	public static var ALL : Array<Litter> = [];
-	var max = 8;
+	var max = 7;
 	var stock = 0;
 
 	public function new(x,y) {
