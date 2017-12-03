@@ -12,10 +12,10 @@ class Fridge extends en.Interactive {
 	public function new(x,y) {
 		super(x,y);
 		ALL.push(this);
-		spr.set("foodBox");
+		spr.set("empty");
+		yr = 1;
 		radius = Const.GRID*0.3;
 		weight = 999;
-		footOffsetY = -4;
 		zPrio = -99;
 		stock = max;
 	}
@@ -28,7 +28,7 @@ class Fridge extends en.Interactive {
 	public function isEmpty() return stock==0;
 
 	override public function canBeActivated(by:Hero) {
-		return super.canBeActivated(by) && ( by.item==null && stock>0 || by.item==FoodBox && stock<max ) ;
+		return super.canBeActivated(by) && ( by.item==null && stock>0 || by.item==FishCan && stock<max || by.item==FoodBox && stock<max ) ;
 	}
 
 	override public function onActivate(by:Hero) {
@@ -37,8 +37,12 @@ class Fridge extends en.Interactive {
 			stock = max;
 			by.destroyItem();
 		}
+		else if( by.item==FishCan ) {
+			stock++;
+			by.destroyItem();
+		}
 		else {
-			by.pick(Fish);
+			by.pick(FishCan);
 			stock--;
 		}
 	}

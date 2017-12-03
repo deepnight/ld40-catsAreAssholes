@@ -12,11 +12,11 @@ class FoodTray extends en.Interactive {
 	public function new(x,y) {
 		super(x,y);
 		radius = Const.GRID*0.3;
-		zPrio = -8;
+		zPrio = -99;
 		ALL.push(this);
 		stock = max;
 		weight = 50;
-		reqItem = Fish;
+		reqItem = FishCan;
 	}
 
 	public static function pickOne() : Null<FoodTray> {

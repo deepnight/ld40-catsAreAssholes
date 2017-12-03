@@ -133,6 +133,8 @@ class Entity {
 	function canSeeThrough(x,y) return !level.hasColl(x,y);
 
 	public inline function sightCheck(e:Entity) {
+		if( level.hasColl(cx,cy) || level.hasColl(e.cx,e.cy) )
+			return true;
 		return mt.deepnight.Bresenham.checkThinLine(cx, cy, e.cx, e.cy, canSeeThrough);
 	}
 

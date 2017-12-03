@@ -10,11 +10,11 @@ class Shop extends en.Interactive {
 
 	public function new(x,y) {
 		super(x,y);
+		yr = 1;
 		ALL.push(this);
 		spr.set("foodBox");
 		radius = Const.GRID*0.3;
 		weight = -1;
-		footOffsetY = -4;
 		zPrio = -99;
 	}
 

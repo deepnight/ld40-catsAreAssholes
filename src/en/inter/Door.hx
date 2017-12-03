@@ -17,7 +17,7 @@ class Door extends en.Interactive {
 		super(x,y);
 		ALL.push(this);
 		events = [];
-		spr.set("foodBox");
+		spr.set("empty");
 		radius = Const.GRID*0.3;
 		weight = -1;
 		footOffsetY = -4;
@@ -41,7 +41,7 @@ class Door extends en.Interactive {
 	}
 
 	override public function canBeActivated(by:Hero) {
-		return super.canBeActivated(by);
+		return false;
 	}
 
 	override public function onActivate(by:Hero) {

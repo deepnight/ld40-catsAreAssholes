@@ -3,7 +3,6 @@ import mt.deepnight.PathFinder;
 
 class Level extends mt.Process {
 	var lInfos : Data.LevelMap;
-	var bg : h2d.TileGroup;
 	var collMap : Map<Int,Bool>;
 	public var wid : Int;
 	public var hei : Int;
@@ -19,11 +18,12 @@ class Level extends mt.Process {
 		pf = new mt.deepnight.PathFinder(wid, hei);
 
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
-		var sheet = hxd.Res.cdbTiles.toTile();
-		bg = new h2d.TileGroup(sheet, root);
+		//var sheet = hxd.Res.cdbTiles.toTile();
 
 		for(l in lInfos.layers) {
 			var tileSet = lInfos.props.getTileset(Data.levelMap, l.data.file);
+			var sheet = hxd.Res.load(l.data.file).toTile();
+			var bg = new h2d.TileGroup(sheet, root);
 			var tiles = CdbHelper.getLayerTiles(l.data, sheet, lInfos.width, tileSet);
 
 			if( l.name=="coll" ) {
@@ -68,6 +68,5 @@ class Level extends mt.Process {
 
 	override public function onDispose() {
 		super.onDispose();
-		bg.remove();
 	}
 }

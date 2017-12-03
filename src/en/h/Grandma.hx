@@ -6,6 +6,7 @@ import hxd.Key;
 
 class Grandma extends en.Hero {
 	var rollAng = 0.;
+	var focus : HSprite;
 
 	public function new(x,y) {
 		super(x,y);
@@ -15,12 +16,20 @@ class Grandma extends en.Hero {
 		spr.anim.registerStateAnim("heroRoll",2, 0.2, function() return cd.getRatio("rolling")>=0.5 );
 		spr.anim.registerStateAnim("heroWalk",1, 0.2, function() return cd.has("walking") );
 		spr.anim.registerStateAnim("heroIdle",0);
+
+		focus = Assets.gameElements.h_get("use",0, 0.5,0.5);
+		focus.scaleY = -1;
+		game.scroller.add(focus, Const.DP_UI);
 	}
 
 	override function getThrowAng() {
 		return rollAng;
 	}
 
+	override public function dispose() {
+		super.dispose();
+		focus.remove();
+	}
 
 	override public function update() {
 		super.update();
@@ -50,15 +59,19 @@ class Grandma extends en.Hero {
 			}
 
 			// Use
+			var dh = new DecisionHelper(en.Interactive.ALL);
+			dh.remove( function(e) return !e.canBeActivated(this) || !sightCheck(e) || distCase(e)>1.75 );
+			dh.score( function(e) return isLookingAt(e) ? 2 : 0 );
+			dh.score( function(e) return distCase(e)<=1.5 ? 5 : 0 );
+			dh.score( function(e) return -distCase(e) );
+			var useTarget = dh.getBest();
+			focus.visible = useTarget!=null;
+			if( useTarget!=null )
+				focus.setPos(useTarget.footX, useTarget.footY-10 - MLib.fabs( Math.sin(game.ftime*0.2)*6) );
+
 			if( Key.isPressed(Key.SPACE) ) {
-				var dh = new DecisionHelper(en.Interactive.ALL);
-				dh.remove( function(e) return !e.canBeActivated(this) || !sightCheck(e) || distCase(e)>2.5 );
-				dh.score( function(e) return isLookingAt(e) ? 2 : 0 );
-				dh.score( function(e) return distCase(e)<=1.5 ? 5 : 0 );
-				dh.score( function(e) return -distCase(e) );
-				var e = dh.getBest();
-				if( e!=null && ( !e.is(en.inter.ItemDrop) || item==null ) )
-					e.activate(this);
+				if( useTarget!=null && ( !useTarget.is(en.inter.ItemDrop) || item==null ) )
+					useTarget.activate(this);
 				else
 					dropItem();
 			}

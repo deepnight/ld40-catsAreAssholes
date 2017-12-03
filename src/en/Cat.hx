@@ -156,6 +156,13 @@ class Cat extends Entity {
 	}
 
 	function startWait(?t:Float) {
+		var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(cx,cy, 2) );
+		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
+		dh.score( function(pt) return -Lib.distance(cx,cy,pt.x,pt.y) );
+		dh.score( function(pt) return Entity.countNearby(pt.x,pt.y, 1)==0 ? 3 : 0 );
+		var pt = dh.getBest();
+		if( pt!=null )
+			goto(pt.x, pt.y);
 		startJob( Wait, t!=null ? t : rnd(2,5) );
 		return true;
 	}

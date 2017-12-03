@@ -100,6 +100,20 @@
 					},
 					"markers": [
 						{
+							"x": 12,
+							"y": 2,
+							"marker": "Door",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 15,
+							"y": 2,
+							"marker": "Shop",
+							"width": 1,
+							"height": 1
+						},
+						{
 							"x": 17,
 							"y": 3,
 							"marker": "TrashCan",
@@ -143,7 +157,7 @@
 						},
 						{
 							"x": 18,
-							"y": 12,
+							"y": 11,
 							"marker": "Fridge",
 							"width": 1,
 							"height": 1

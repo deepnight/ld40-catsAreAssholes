@@ -126,7 +126,7 @@ class Sidekick extends en.Hero {
 		if( e.is(en.inter.FoodTray) ) {
 			var from : en.Interactive = pickFridge(true,e);
 			if( from==null )
-				from = pickItem(Fish);
+				from = pickItem(FishCan);
 			if( from==null )
 				say("eError");
 			else {
@@ -147,7 +147,7 @@ class Sidekick extends en.Hero {
 				GoInter(e),
 			];
 			switch( e.k ) {
-				case Data.ItemKind.Fish :
+				case Data.ItemKind.FishCan :
 					var t = pickFoodTray();
 					say("eFood");
 					if( t!=null ) actions.push( GoInter(t) );
@@ -170,6 +170,8 @@ class Sidekick extends en.Hero {
 	}
 
 	function goto(x,y) {
+		if( level.hasColl(x,y) )
+			y++;
 		path = level.pf.getPath( { x:cx, y:cy, } , { x:x, y:y } );
 		path = level.pf.smooth(path);
 	}
