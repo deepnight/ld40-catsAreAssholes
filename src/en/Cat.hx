@@ -20,6 +20,7 @@ enum Job {
 class Cat extends Entity {
 	public static var ALL : Array<Cat> = [];
 
+	public var catIdx : Int;
 	var skin : String;
 	var job : Job;
 	var jobDurationS = 0.;
@@ -33,6 +34,7 @@ class Cat extends Entity {
 
 	public function new(x,y) {
 		super(x,y);
+		catIdx = game.catIdx++;
 		ALL.push(this);
 		path = null;
 		radius = Const.GRID*0.4;
@@ -114,15 +116,14 @@ class Cat extends Entity {
 
 	function startRandom() {
 		rebootF = 0;
-		//startPlay(); return; // HACK
 
 		var rlist = new mt.RandList();
 		rlist.add( startShit, 5*shitStock );
-		rlist.add( startEat, 19-4*shitStock );
+		rlist.add( startEat, 17-4*shitStock );
 		rlist.add( startHeroFollow, 2 );
 		rlist.add( startLick, 4 );
-		rlist.add( startPlay, 3 );
-		rlist.add( startWait.bind(), 3 );
+		rlist.add( startPlay, 5 );
+		rlist.add( startWait.bind(), 2 );
 		rlist.add( startCatAttack.bind(), 2 );
 		if( !rlist.draw()() )
 			startWait(1);
@@ -281,6 +282,7 @@ class Cat extends Entity {
 					e.altitude = 3;
 					e.dalt = 2;
 					e.dy = -0.1;
+					fx.dirt(footX, footY, 30, 0x691D18, 0x723510);
 				}
 				shitStock = 0;
 				cd.setS("lock", rnd(1,2));

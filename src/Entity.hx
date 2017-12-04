@@ -246,8 +246,10 @@ class Entity {
 		if( shadow!=null )
 			shadow.setPos(spr.x, (cy+yr)*Const.GRID-2);
 
-		if( label!=null )
-			label.setPos(footX-label.textWidth*0.5, footY+2);
+		if( label!=null ) {
+			label.visible = !game.hasCinematic();
+			label.setPos( Std.int(footX-label.textWidth*0.5), Std.int(footY+2));
+		}
 
 		if( talkTf!=null ) {
 			talkTf.x = Std.int(footX-talkTf.textWidth*0.5);

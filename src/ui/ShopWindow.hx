@@ -84,11 +84,7 @@ class ShopWindow extends mt.Process {
 				if( i.cost!=null || i.scaledCosts.length>0 ) {
 					if( i.maxBuy!=null ) {
 						// Buy limit
-						var n = 0;
-						for(k in en.inter.Shop.ME.boughts)
-							if(k==i.id)
-								n++;
-						if( n>=i.maxBuy )
+						if( en.inter.Shop.ME.countPreviousBoughts(i.id)>=i.maxBuy )
 							continue;
 					}
 					addItem(i.id);
@@ -148,7 +144,7 @@ class ShopWindow extends mt.Process {
 			f:f,
 			p:cost,
 			cb:function() {
-				en.inter.Shop.ME.boughts.push(k);
+				en.inter.Shop.ME.register(k);
 				door.addEvent( Deliver(k), #if debug 0 #else inf.deliveryS #end );
 			},
 		});

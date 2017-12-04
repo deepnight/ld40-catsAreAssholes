@@ -21,11 +21,13 @@ class Grandma extends en.Hero {
 
 		spr.anim.registerStateAnim("heroDead",11, function() return isDead() );
 		spr.anim.registerStateAnim("heroHit",10, function() return cd.has("recentHit") );
-		spr.anim.registerStateAnim("heroTalk",9,0.4, function() return cd.has("talking") );
-		spr.anim.registerStateAnim("heroPostRollEnd",4, function() return cd.has("rolling") && cd.getRatio("rolling")<0.2 );
-		spr.anim.registerStateAnim("heroPostRoll",3, function() return cd.getRatio("rolling")>=0.2 && cd.getRatio("rolling")<0.5 );
-		spr.anim.registerStateAnim("heroRoll",2, 0.17, function() return cd.getRatio("rolling")>=0.5 );
-		spr.anim.registerStateAnim("heroWalk",1, 0.25, function() return cd.has("walking") );
+
+		spr.anim.registerStateAnim("heroPostRollEnd",9, function() return cd.has("rolling") && cd.getRatio("rolling")<0.2 );
+		spr.anim.registerStateAnim("heroPostRoll",8, function() return cd.getRatio("rolling")>=0.2 && cd.getRatio("rolling")<0.5 );
+		spr.anim.registerStateAnim("heroRoll",7, 0.17, function() return cd.getRatio("rolling")>=0.5 );
+
+		spr.anim.registerStateAnim("heroWalk",2, 0.25, function() return cd.has("walking") );
+		spr.anim.registerStateAnim("heroTalk",1,0.4, function() return cd.has("talking") );
 		spr.anim.registerStateAnim("heroIdle",0, 0.6);
 
 		spr.lib.defineAnim("heroTalk", "0,1,2(2),1,0,1,0,2,1(2),2,0,1(2),2,0,2");
@@ -263,7 +265,8 @@ class Grandma extends en.Hero {
 			//Tutorial.ME.tryToStart("test", "hllow world");
 			//pop("hello");
 			//hit(this, 1);
-			new en.inter.ItemDrop(Shit, cx+3, cy);
+			//new en.inter.ItemDrop(Shit, cx+3, cy);
+			fx.dirt(footX, footY, 30, 0xA2BDCA, 0x85562C);
 		}
 		#end
 

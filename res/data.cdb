@@ -552,43 +552,19 @@
 						"x": 5,
 						"y": 0
 					},
-					"desc": "Moar cats! The moar the better?",
-					"deliveryS": 3,
-					"scaledCosts": [
-						{
-							"v": 0
-						},
-						{
-							"v": 5
-						},
-						{
-							"v": 10
-						},
-						{
-							"v": 20
-						},
-						{
-							"v": 50
-						},
-						{
-							"v": 100
-						},
-						{
-							"v": 150
-						},
-						{
-							"v": 200
-						}
-					],
+					"desc": "Moar cats! The moar the better? Use this to get next cat immediatly.",
+					"deliveryS": 0,
+					"scaledCosts": [],
 					"cond": "Kid",
 					"name": "",
-					"maxBuy": 10
+					"maxBuy": 10,
+					"cost": 0
 				},
 				{
 					"id": "Heal",
 					"desc": "Use this to avoid heart attack.",
 					"scaledCosts": [],
-					"deliveryS": 3,
+					"deliveryS": 0,
 					"decayS": 12,
 					"icon": {
 						"file": "items.png",
@@ -611,7 +587,7 @@
 					},
 					"desc": "Fish cans for your fridge.",
 					"cost": 10,
-					"deliveryS": 3,
+					"deliveryS": 0,
 					"scaledCosts": [],
 					"cond": "Kid",
 					"name": ""
@@ -626,7 +602,7 @@
 						"y": 0
 					},
 					"desc": "Extra food Bowl.",
-					"deliveryS": 5,
+					"deliveryS": 0,
 					"scaledCosts": [
 						{
 							"v": 30
@@ -650,7 +626,7 @@
 							"v": 100
 						}
 					],
-					"deliveryS": 5,
+					"deliveryS": 0,
 					"decayS": 0,
 					"icon": {
 						"file": "items.png",
@@ -665,7 +641,7 @@
 				{
 					"id": "FridgeUp",
 					"desc": "Upgrade Fridge capacity.",
-					"deliveryS": 5,
+					"deliveryS": 0,
 					"decayS": 0,
 					"icon": {
 						"file": "items.png",

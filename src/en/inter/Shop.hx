@@ -8,7 +8,7 @@ class Shop extends en.Interactive {
 	public static var ME : Shop;
 	var door(get,never) : en.inter.Door; inline function get_door() return en.inter.Door.ALL[0];
 
-	public var boughts : Array<Data.ItemKind>;
+	var boughts : Array<Data.ItemKind>;
 
 	public function new(x,y) {
 		super(x,y);
@@ -19,6 +19,12 @@ class Shop extends en.Interactive {
 		radius = Const.GRID*0.3;
 		weight = -1;
 		zPrio = -99;
+	}
+
+	public function register(k:Data.ItemKind) {
+		boughts.push(k);
+		if( k==CatBox )
+			door.onNextCat();
 	}
 
 	public function countPreviousBoughts(k:Data.ItemKind) {

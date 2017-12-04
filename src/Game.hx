@@ -11,6 +11,7 @@ class Game extends mt.Process {
 	public var fx : Fx;
 	public var moneyMan : MoneyMan;
 	public var cm : mt.deepnight.Cinematic;
+	public var catIdx = 0;
 
 	public var hudWrapper : h2d.Flow;
 

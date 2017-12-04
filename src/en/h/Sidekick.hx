@@ -280,6 +280,11 @@ class Sidekick extends en.Hero {
 	}
 
 
+	override public function sayWords(str:String, ?c = 0xFFFFFF) {
+		super.sayWords(str, c);
+		cd.setS("randTalk", 8, false);
+	}
+
 	function setPointer(id:Int, x:Float, y:Float) {
 		var e = pointers[id];
 		e.visible = true;
@@ -426,6 +431,14 @@ class Sidekick extends en.Hero {
 					path = [];
 			}
 		}
+
+		// GC queue
+		var i = 0;
+		while(i<queue.length)
+			if( queue[i].destroyed )
+				queue.splice(i,1);
+			else
+				i++;
 
 		if( cx==restX && cy==restY ) {
 			dir = -1;

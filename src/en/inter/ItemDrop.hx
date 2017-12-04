@@ -24,7 +24,7 @@ class ItemDrop extends en.Interactive {
 		zPrio = -8;
 
 		if( k==Trash )
-			cd.setS("loss",10);
+			cd.setS("loss",20);
 
 		spr.set("empty");
 		cd.setS("shake",rnd(1,2.5));
@@ -32,6 +32,9 @@ class ItemDrop extends en.Interactive {
 		var icon = new h2d.Bitmap(Assets.getItem(k), spr);
 		icon.tile.setCenterRatio(0.5,1);
 		icon.colorAdd = cAdd;
+
+		if( k==CatBox )
+			cd.setS("autoOpen", 5, onActivate.bind(hero));
 
 		if( Data.item.get(k).decayS>0 )
 			cd.setS("alive", Data.item.get(k).decayS, function() {
@@ -79,6 +82,7 @@ class ItemDrop extends en.Interactive {
 				e.flee(this);
 				hero.gainFollowers(1000);
 				game.moneyMan.trigger(this,NewCat);
+				fx.dirt(footX, footY, 80, 0xA2BDCA, 0x85562C);
 
 			case Heal :
 				hero.life = hero.maxLife;
@@ -104,10 +108,12 @@ class ItemDrop extends en.Interactive {
 		switch( k ) {
 			case Shit :
 				if( !cd.hasSetS("loss",10) ) {
+					blink();
 					game.hero.loseMoney(this,10);
 				}
 			case Trash :
 				if( !cd.hasSetS("loss",10) ) {
+					blink();
 					game.hero.loseMoney(this,2);
 				}
 			default :

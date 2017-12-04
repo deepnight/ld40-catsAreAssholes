@@ -14,6 +14,7 @@ class Ball extends en.Furn {
 		gravity*=0.6;
 		spr.anim.registerStateAnim("ballFlat",1,function() return cd.has("flat"));
 		spr.anim.registerStateAnim("ball",0);
+		spr.colorMatrix = mt.deepnight.Color.getColorizeMatrixH2d(mt.deepnight.Color.makeColorHsl(rnd(0,1),1,1), rnd(0.3,1));
 		enableShadow(0.5);
 	}
 
@@ -24,7 +25,7 @@ class Ball extends en.Furn {
 			dy+=rnd(0,0.2,true);
 			jump(rnd(0.6,1));
 			if( e.is(Cat) && e.as(Cat).isOnJob(Play(null)) )
-				game.moneyMan.trigger(this, Ball);
+				game.moneyMan.trigger(e, Ball);
 		}
 	}
 
