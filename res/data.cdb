@@ -514,6 +514,20 @@
 					"name": ""
 				},
 				{
+					"id": "Vomit",
+					"name": "",
+					"desc": "",
+					"scaledCosts": [],
+					"deliveryS": 0,
+					"decayS": 0,
+					"icon": {
+						"file": "items.png",
+						"size": 32,
+						"x": 1,
+						"y": 1
+					}
+				},
+				{
 					"id": "Trash",
 					"icon": {
 						"file": "items.png",
@@ -552,7 +566,7 @@
 						"x": 5,
 						"y": 0
 					},
-					"desc": "Moar cats! The moar the better? Use this to get next cat immediatly.",
+					"desc": "Use this to get your next cat immediately. Moar cats! The moar the better?",
 					"deliveryS": 0,
 					"scaledCosts": [],
 					"cond": "Kid",

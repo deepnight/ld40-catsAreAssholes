@@ -14,6 +14,7 @@ enum Job {
 	Eat(e:en.inter.FoodTray, ?done:Bool);
 	EatHero(e:en.Hero);
 	Shit;
+	Vomit(frames:Float);
 	Play(e:Entity);
 }
 
@@ -46,6 +47,7 @@ class Cat extends Entity {
 		spr.anim.registerStateAnim(skin+"FearJump",21, function() return altitude>1 && cd.has("fear"));
 		spr.anim.registerStateAnim(skin+"Fear",20, function() return cd.has("fear"));
 
+		spr.anim.registerStateAnim(skin+"Vomit",10, 0.2, function() return cd.has("vomiting"));
 		spr.anim.registerStateAnim(skin+"Shit",10, 0.2, function() return cd.has("shitting"));
 
 		spr.anim.registerStateAnim(skin+"Dash",11, 0.2, function() return cd.has("dashing"));
@@ -96,6 +98,7 @@ class Cat extends Entity {
 
 	override function hasCircCollWith(e:Entity) {
 		if( e.destroyed ) return false;
+		if( isOnJob(Vomit(0)) ) return false;
 		if( !e.is(Cat) || cd.has("dashing") || e.cd.has("dashing") ) return true;
 		return mt.deepnight.Lib.angularDistanceRad(getMoveAng(), e.getMoveAng())<=0.7;
 	}
@@ -119,6 +122,7 @@ class Cat extends Entity {
 
 		var rlist = new mt.RandList();
 		rlist.add( startShit, 5*shitStock );
+		rlist.add( startVomit, Std.int(shitStock * (catIdx==4 ? 3 : 0.5 )) );
 		rlist.add( startEat, 17-4*shitStock );
 		rlist.add( startHeroFollow, 2 );
 		rlist.add( startLick, 4 );
@@ -246,6 +250,24 @@ class Cat extends Entity {
 		}
 	}
 
+	public function startVomit() {
+		if( shitStock<=0 )
+			return false;
+
+		var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(cx,cy, 4) );
+		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
+		dh.score( function(pt) return Lib.distance(cx,cy,pt.x,pt.y) );
+		dh.score( function(pt) return sightCheckCase(pt.x,pt.y) ? 0 : -3 );
+		dh.score( function(pt) return Lib.distance(cx,cy, pt.x,pt.y)<=2 ? -1 : 0 );
+		dh.score( function(pt) return rnd(0,1) );
+		dh.score( function(pt) return Entity.countNearby(this, pt.x,pt.y, 2)==0 ? 3 : 0 );
+
+		var pt = dh.getBest();
+		startJob( Vomit(0.5*Const.FPS), rnd(1.5,2.5) );
+		goto(pt.x, pt.y);
+		return true;
+	}
+
 
 
 	public function flee(e:Entity) {
@@ -286,6 +308,9 @@ class Cat extends Entity {
 				}
 				shitStock = 0;
 				cd.setS("lock", rnd(1,2));
+
+			case Vomit(_) :
+				cd.unset("vomiting");
 
 			default :
 		}
@@ -485,6 +510,7 @@ class Cat extends Entity {
 
 				case Wait :
 				case Shit :
+				case Vomit(_) :
 				case Lick :
 			}
 
@@ -565,6 +591,7 @@ class Cat extends Entity {
 					case Follow(e) : distCase(e)<=6;
 					case Lick, Wait : atTarget();
 					case Shit : atTarget();
+					case Vomit(_) : atTarget();
 					case Eat(e, _) : distCase(e)<=1.8;
 					case EatHero(e) : distCase(e)<=2;
 					case Fight(e) : distCase(e)<=1;
@@ -608,6 +635,24 @@ class Cat extends Entity {
 						case Lick : game.moneyMan.trigger(this, Lick);
 						case Play(_) :
 						case Shit : cd.setS("shitting", 0.3);
+						case Vomit(frames) :
+							cd.setS("vomiting", 0.3);
+							frames-=dt;
+							if( frames<=0 ) {
+								shitStock = 0;
+								var e = new en.inter.ItemDrop(Vomit, cx,cy);
+								e.hasColl = false;
+								e.xr = xr+dir*0.45;
+								e.skew = 1;
+								e.yr = yr+0.4;
+								e.dx = dir*0.05;
+								e.dy = 0;
+								e.altitude = 5;
+								e.dalt = 0;
+								fx.dirt(footX, footY, 10, 0x415A27, 0x2C9A34);
+								frames = 99999;
+							}
+							job = Vomit(frames);
 					}
 
 					jobDurationS-=1/Const.FPS;

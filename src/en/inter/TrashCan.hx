@@ -24,8 +24,8 @@ class TrashCan extends en.Interactive {
 
 	function canBeTrashed(k:Data.ItemKind) {
 		return switch( k ) {
-			case Data.ItemKind.Trash, Data.ItemKind.Shit : true;
-			case Data.ItemKind.FishCan : false;
+			case Trash, Shit, Vomit : true;
+			case FishCan : false;
 			case Heal : false;
 			case Kid : false;
 			case TrayBox, FoodBox, CatBox, FridgeUp, LitterBox : false;

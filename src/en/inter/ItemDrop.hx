@@ -19,12 +19,16 @@ class ItemDrop extends en.Interactive {
 		radius = Const.GRID*0.3;
 		this.k = k;
 		altitude = 10;
-		enableShadow(1.5);
-		weight = 5;
+		if( k!=Vomit )
+			enableShadow(1.5);
+		weight = k==Vomit ? -1 : 5;
 		zPrio = -8;
 
 		if( k==Trash )
 			cd.setS("loss",20);
+
+		if( k==Vomit )
+			cd.setS("loss",15);
 
 		spr.set("empty");
 		cd.setS("shake",rnd(1,2.5));
@@ -88,7 +92,7 @@ class ItemDrop extends en.Interactive {
 				hero.life = hero.maxLife;
 				ui.Life.ME.blink();
 
-			case Shit :
+			case Shit, Vomit :
 				by.pick(itemUid, Trash);
 
 			default :
@@ -109,15 +113,25 @@ class ItemDrop extends en.Interactive {
 			case Shit :
 				if( !cd.hasSetS("loss",10) ) {
 					blink();
-					game.hero.loseMoney(this,10);
+					game.hero.loseMoney(this,50);
 				}
+
+			case Vomit :
+				if( !cd.hasSetS("loss",10) ) {
+					blink();
+					game.hero.loseMoney(this,15);
+				}
+
 			case Trash :
 				if( !cd.hasSetS("loss",10) ) {
 					blink();
-					game.hero.loseMoney(this,2);
+					game.hero.loseMoney(this,15);
 				}
 			default :
 		}
+
+		if( cd.has("loss") && cd.getS("loss")<=3 && !cd.hasSetS("blinkLoss",0.33) )
+			blink();
 
 		if( k==CatBox && !cd.hasSetS("shake",rnd(0.2,0.5)) ) {
 			dx+=rnd(0,0.02,true);

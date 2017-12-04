@@ -211,7 +211,7 @@ class Sidekick extends en.Hero {
 					else
 						emote("eQuestion");
 
-				case Data.ItemKind.Trash, Data.ItemKind.Shit :
+				case Data.ItemKind.Trash, Data.ItemKind.Shit, Vomit :
 					emote("eShit");
 					var t = pickTrashCan();
 					actions = [ GoInter(e), GoInter(t) ];
