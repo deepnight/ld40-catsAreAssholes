@@ -60,7 +60,7 @@ class Grandma extends en.Hero {
 			if( destroyed )
 				return;
 			followers += MLib.round(n*rnd(0.9,1.1)) ;
-			ui.Followers.ME.set(followers, major);
+			//ui.Followers.ME.set(followers, major);
 		}, rnd(0.9,1.3));
 	}
 

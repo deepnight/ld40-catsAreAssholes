@@ -97,12 +97,14 @@ class Door extends en.Interactive {
 		if( events.length>0 ) {
 			var e = events[0];
 			e.frames -= dt;
-			setLabel(MLib.ceil(e.frames/Const.FPS)+"s");
 			if( e.frames<=0 ) {
+				setLabel();
 				events.shift();
 				game.delayer.addS( doEvent.bind(e.k), 0.3 );
 				open();
 			}
+			else
+				setLabel(MLib.ceil(e.frames/Const.FPS)+"s");
 		}
 		else
 			setLabel();

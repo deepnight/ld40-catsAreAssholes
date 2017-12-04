@@ -36,6 +36,10 @@ class Litter extends en.Interactive {
 		}
 	}
 
+	override public function canBeActivated(by:Hero) {
+		return super.canBeActivated(by) && stock>0;
+	}
+
 	public function addShit(n) {
 		stock = MLib.min(stock+n, max);
 	}

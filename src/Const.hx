@@ -11,4 +11,5 @@ class Const {
 	public static var DP_HERO = _inc++;
 	public static var DP_FX_TOP = _inc++;
 	public static var DP_UI = _inc++;
+	public static var DP_TOP = _inc++;
 }

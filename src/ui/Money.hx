@@ -12,7 +12,7 @@ class Money extends mt.Process {
 	public function new() {
 		super(Game.ME);
 		ME = this;
-		createRootInLayers(Game.ME.root, Const.DP_UI);
+		createRoot(Game.ME.hudWrapper);
 
 		flow = new h2d.Flow(root);
 		flow.backgroundTile = Assets.gameElements.getTile("hudBox");
@@ -36,8 +36,6 @@ class Money extends mt.Process {
 
 	override public function postUpdate() {
 		super.postUpdate();
-		root.x = Game.ME.vp.wid*0.5 - flow.outerWidth*0.5;
-		root.y = 8;
 	}
 
 	public function blink() {

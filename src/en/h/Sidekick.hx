@@ -34,7 +34,7 @@ class Sidekick extends en.Hero {
 		game.side = this;
 		path = [];
 		actions = [];
-		quotes = ["Hey, I followed your new cat-oriented Twitch stream by the way."];
+		quotes = ["How is your \"cat shelter\" thing goin'?"];
 		queue = [];
 		weight = 0.2;
 
@@ -59,10 +59,11 @@ class Sidekick extends en.Hero {
 
 		game.cm.create( {
 			500;
-			lookAt(hero);
 			hero.lookAt(this);
+			lookAt(hero);
+			200;
 			sayWords("Hey nanny.");
-			1000;
+			800;
 			hero.sayWords("Ho, hi Mark.");
 			1300;
 			clearWords();
@@ -433,6 +434,8 @@ class Sidekick extends en.Hero {
 				if( quotes.length==0 ) {
 					quotes = [
 						"You know Pewdiedie?",
+						"Cat are assholes.",
+						"I'll make games when I'll grow up.",
 						"This new video kicks ass.",
 						"Seriously?",
 						"You really should try out 9gag nanny.",

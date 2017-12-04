@@ -12,18 +12,26 @@ class Game extends mt.Process {
 	public var moneyMan : MoneyMan;
 	public var cm : mt.deepnight.Cinematic;
 
+	public var hudWrapper : h2d.Flow;
+
 	public function new(ctx:h2d.Sprite) {
 		super(Main.ME);
 
 		ME = this;
 		createRoot(ctx);
+
+		hudWrapper = new h2d.Flow();
+		root.add(hudWrapper, Const.DP_TOP);
+		hudWrapper.verticalAlign = Middle;
+		hudWrapper.horizontalSpacing = 8;
+
 		//root.scale(Const.SCALE);
 		scroller = new h2d.Layers(root);
 		vp = new Viewport();
 		fx = new Fx();
-		new ui.Life();
 		new ui.Money();
-		new ui.Followers();
+		new ui.Life();
+		//new ui.Followers();
 		moneyMan = new MoneyMan();
 		new Tutorial();
 		cm = new mt.deepnight.Cinematic(Const.FPS);
@@ -55,6 +63,12 @@ class Game extends mt.Process {
 
 	public inline function hasCinematic() {
 		return !cm.isEmpty();
+	}
+
+	override function postUpdate() {
+		super.postUpdate();
+		hudWrapper.x = Std.int(vp.wid*0.5 - hudWrapper.outerWidth*0.5);
+		hudWrapper.y = 16;
 	}
 
 	override public function update() {

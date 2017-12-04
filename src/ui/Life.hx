@@ -19,7 +19,7 @@ class Life extends mt.Process {
 	public function new() {
 		super(Game.ME);
 		ME = this;
-		createRootInLayers(Game.ME.root, Const.DP_UI);
+		createRoot(Game.ME.hudWrapper);
 
 		cAdd = new h3d.Vector();
 
@@ -27,7 +27,7 @@ class Life extends mt.Process {
 		//bg.x = -24;
 		//bg.y = -12;
 		bg.width = barWid+32;
-		bg.height = 24;
+		bg.height = 26;
 
 		// Bar
 		var s = new h2d.Sprite(root);
@@ -75,8 +75,6 @@ class Life extends mt.Process {
 
 	override public function postUpdate() {
 		super.postUpdate();
-		root.x = Std.int(Game.ME.vp.wid*0.75);
-		root.y = 8;
 		if( cd.has("shake") )
 			root.y += Math.cos(ftime*0.7)*2 * cd.getRatio("shake");
 
