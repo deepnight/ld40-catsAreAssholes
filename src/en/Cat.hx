@@ -19,6 +19,7 @@ enum Job {
 class Cat extends Entity {
 	public static var ALL : Array<Cat> = [];
 
+	var skin : String;
 	var job : Job;
 	var jobDurationS = 0.;
 	var ang = 0.;
@@ -37,34 +38,48 @@ class Cat extends Entity {
 
 		enableShadow();
 
-		spr.anim.registerStateAnim("bcatFearJump",21, function() return altitude>1 && cd.has("fear"));
-		spr.anim.registerStateAnim("bcatFear",20, function() return cd.has("fear"));
+		skin = ALL.length%2==0 ? "bcat" : "ncat";
 
-		spr.anim.registerStateAnim("bcatShit",10, 0.2, function() return cd.has("shitting"));
+		spr.anim.registerStateAnim(skin+"FearJump",21, function() return altitude>1 && cd.has("fear"));
+		spr.anim.registerStateAnim(skin+"Fear",20, function() return cd.has("fear"));
 
-		spr.anim.registerStateAnim("bcatDash",11, 0.2, function() return cd.has("dashing"));
-		spr.anim.registerStateAnim("bcatCharge",10, 0.2, function() return cd.has("dashCharge"));
+		spr.anim.registerStateAnim(skin+"Shit",10, 0.2, function() return cd.has("shitting"));
 
-		spr.anim.registerStateAnim("bcatEat",10, 0.2, function() return cd.has("eating"));
+		spr.anim.registerStateAnim(skin+"Dash",11, 0.2, function() return cd.has("dashing"));
+		spr.anim.registerStateAnim(skin+"Charge",10, 0.2, function() return cd.has("dashCharge"));
 
-		spr.anim.registerStateAnim("bcatLickLookBack",12, function() return atTarget() && job==Lick && cd.has("stareBack"));
-		spr.anim.registerStateAnim("bcatLickLook",11, function() return atTarget() && job==Lick && cd.has("stare"));
-		spr.anim.registerStateAnim("bcatLick",10, 0.15, function() return atTarget() && job==Lick);
+		spr.anim.registerStateAnim(skin+"Eat",10, 0.2, function() return cd.has("eating"));
 
-		spr.anim.registerStateAnim("bcatAngryWalk",4, 0.25, function() return isAngry() && ( MLib.fabs(dx)>0 || MLib.fabs(dy)>0 ) );
-		spr.anim.registerStateAnim("bcatWalk",3, 0.2, function() return MLib.fabs(dx)>0 || MLib.fabs(dy)>0 );
+		spr.anim.registerStateAnim(skin+"LickLookBack",12, function() return atTarget() && job==Lick && cd.has("stareBack"));
+		spr.anim.registerStateAnim(skin+"LickLook",11, function() return atTarget() && job==Lick && cd.has("stare"));
+		spr.anim.registerStateAnim(skin+"Lick",10, 0.15, function() return atTarget() && job==Lick);
 
-		spr.anim.registerStateAnim("bcatFall",15, function() return altitude>=3);
-		spr.anim.registerStateAnim("bcatObserve",2, 0.5, function() return cd.has("observing"));
-		spr.anim.registerStateAnim("bcatIdleRecent",1, function() return cd.has("recentWalk"));
-		spr.anim.registerStateAnim("bcatIdleAngry",0, function() return isAngry());
-		spr.anim.registerStateAnim("bcatIdle",0, function() return !isAngry());
+		spr.anim.registerStateAnim(skin+"AngryWalk",4, 0.25, function() return isAngry() && ( MLib.fabs(dx)>0 || MLib.fabs(dy)>0 ) );
+		spr.anim.registerStateAnim(skin+"Walk",3, 0.2, function() return MLib.fabs(dx)>0 || MLib.fabs(dy)>0 );
+
+		spr.anim.registerStateAnim(skin+"Fall",15, function() return altitude>=3);
+		spr.anim.registerStateAnim(skin+"Observe",2, 0.5, function() return cd.has("observing"));
+		spr.anim.registerStateAnim(skin+"IdleRecent",1, function() return cd.has("recentWalk"));
+		spr.anim.registerStateAnim(skin+"IdleAngry",0, function() return isAngry());
+		spr.anim.registerStateAnim(skin+"Idle",0, function() return !isAngry());
+
 
 		spr.lib.defineAnim("bcatObserve", "0(10),1,2(16),1");
+		spr.lib.defineAnim("ncatObserve", "0(10),1,2(16),1");
+
 		spr.lib.defineAnim("bcatShit", "0(2),1,2(3),1");
+		spr.lib.defineAnim("ncatShit", "0(2),1,2(3),1");
+
 		spr.lib.defineAnim("bcatDash", "0(2),1");
+		spr.lib.defineAnim("ncatDash", "0(2),1");
+
 		spr.lib.defineAnim("bcatEat", "0(2),1,0, 1,2, 1,2, 1,2(2)");
+		spr.lib.defineAnim("ncatEat", "0(2),1,0, 1,2, 1,2, 1,2(2)");
+
 		spr.lib.defineAnim("bcatLick", "0-2(1), 3(2)");
+		spr.lib.defineAnim("ncatLick", "0-2(1), 3(2)");
+
+		spr.colorMatrix = mt.deepnight.Color.getColorizeMatrixH2d( mt.deepnight.Color.makeColorHsl(rnd(0,1), 0.5, 1), rnd(0,0.3));
 
 		shitStock = irnd(0,2);
 		startWait();

@@ -24,17 +24,28 @@ class Sidekick extends en.Hero {
 	var queue : Array<Entity>;
 	var pointers : Array<HSprite>;
 
+	var restX : Int;
+	var restY : Int;
+
 	public function new(x,y) {
 		super(x,y);
 
 		path = [];
 		actions = [];
 		queue = [];
-		weight = -1;
+		weight = 0.2;
+
+		restX = x;
+		restY = y;
 
 		spr.anim.registerStateAnim("sideWalk",3, 0.2, function() return MLib.fabs(dx)>0 || MLib.fabs(dy)>0 );
+		spr.anim.registerStateAnim("sideIdleTv",1, 0.3, function() return cx==restX && cy==restY && dir==-1);
 		spr.anim.registerStateAnim("sideIdle",0);
 
+		spr.lib.defineAnim("sideWalk", "0(2),1,2(2),1");
+		spr.lib.defineAnim("sideIdleTv", "0,1,2(2),1(3),2,1,0(2),2,1,0,2(2),1,0,1,0");
+
+		enableShadow(1.5);
 		pointers = [];
 		for(i in 0...3) {
 			var e = Assets.gameElements.h_get("pointer",i, 0.5,1);
@@ -245,7 +256,7 @@ class Sidekick extends en.Hero {
 		if( queue.length>0 )
 			callOn( queue.shift() );
 		else
-			goto(10,10);
+			goto(restX,restY);
 	}
 
 
@@ -280,6 +291,17 @@ class Sidekick extends en.Hero {
 
 		for( i in 0...queue.length )
 			setPointer(i+1, queue[i].footX, queue[i].footY);
+
+
+		if( itemIcon!=null ) {
+			itemIcon.x = 10;
+			itemIcon.y = -1;
+			if( MLib.fabs(dx)>=0.01 || MLib.fabs(dy)>=0.01 ) {
+				itemIcon.x += Math.sin(game.ftime*0.22)*1;
+				itemIcon.y += Math.cos(game.ftime*0.61)*1;
+			}
+		}
+
 	}
 
 	override public function update() {
@@ -377,6 +399,9 @@ class Sidekick extends en.Hero {
 					path = [];
 			}
 		}
+
+		if( cx==restX && cy==restY )
+			dir = -1;
 
 	}
 }

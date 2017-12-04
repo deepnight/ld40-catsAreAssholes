@@ -20,6 +20,10 @@ class Hero extends Entity {
 		itemIcon.y = -20;
 	}
 
+	override function hasCircCollWith(e:Entity) {
+		return super.hasCircCollWith(e) && ( e.is(en.f.Ball) || e.is(Hero) );
+	}
+
 	public function destroyItem() {
 		item = null;
 		itemIcon.remove();

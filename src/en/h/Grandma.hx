@@ -34,10 +34,6 @@ class Grandma extends en.Hero {
 		enableShadow(2);
 	}
 
-	override function hasCircCollWith(e:Entity) {
-		return super.hasCircCollWith(e) && e.is(en.f.Ball);
-	}
-
 	override function getThrowAng() {
 		return rollAng;
 	}
