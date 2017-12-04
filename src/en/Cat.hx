@@ -632,8 +632,11 @@ class Cat extends Entity {
 				#end
 				rebootF+=dt;
 				if( rebootF>=Const.FPS*5 ) {
+					#if debug
 					trace("Rebooted "+this);
-					cd.unset("lock");
+					#end
+					altitude = 0;
+					dalt = 0;
 					startRandom();
 				}
 			}
