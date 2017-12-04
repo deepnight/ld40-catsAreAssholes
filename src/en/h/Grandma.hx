@@ -128,6 +128,7 @@ class Grandma extends en.Hero {
 		dy+=Math.sin(a)*s;
 
 		if( life<=0 ) {
+			dropItem();
 			weight = 999;
 			cd.setS("lock", 999999);
 			zPrio = -20;
