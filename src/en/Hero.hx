@@ -9,7 +9,6 @@ class Hero extends Entity {
 
 	private function new(x,y) {
 		super(x,y);
-		enableShadow();
 		weight = -1;
 	}
 

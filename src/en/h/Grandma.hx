@@ -20,13 +20,18 @@ class Grandma extends en.Hero {
 
 		spr.anim.registerStateAnim("heroPostRollEnd",4, function() return cd.has("rolling") && cd.getRatio("rolling")<0.2 );
 		spr.anim.registerStateAnim("heroPostRoll",3, function() return cd.getRatio("rolling")>=0.2 && cd.getRatio("rolling")<0.5 );
-		spr.anim.registerStateAnim("heroRoll",2, 0.2, function() return cd.getRatio("rolling")>=0.5 );
-		spr.anim.registerStateAnim("heroWalk",1, 0.2, function() return cd.has("walking") );
+		spr.anim.registerStateAnim("heroRoll",2, 0.17, function() return cd.getRatio("rolling")>=0.5 );
+		spr.anim.registerStateAnim("heroWalk",1, 0.25, function() return cd.has("walking") );
 		spr.anim.registerStateAnim("heroIdle",0);
+
+		spr.lib.defineAnim("heroRoll", "0");
+		spr.lib.defineAnim("heroWalk", "0(2),1,2,3,4(2),3,2,1");
 
 		focus = Assets.gameElements.h_get("use",0, 0.5,0.5);
 		focus.scaleY = -1;
 		game.scroller.add(focus, Const.DP_UI);
+
+		enableShadow(2);
 	}
 
 	override function hasCircCollWith(e:Entity) {
@@ -46,6 +51,26 @@ class Grandma extends en.Hero {
 		super.postUpdate();
 		ui.Money.ME.set(money);
 		ui.Life.ME.set(life/maxLife);
+		if( spr.anim.isPlaying("heroRoll") ) {
+			spr.setCenterRatio(0.5,0.5);
+			spr.rotate(0.9*dir);
+			spr.y-=16;
+		}
+		else {
+			spr.rotation = 0;
+			spr.setCenterRatio(0.5,1);
+		}
+
+		if( itemIcon!=null ) {
+			itemIcon.x = 10;
+			itemIcon.y = -1;
+			if( MLib.fabs(dx)>=0.01 || MLib.fabs(dy)>=0.01 ) {
+				itemIcon.x += Math.sin(game.ftime*0.22)*1;
+				itemIcon.y += Math.cos(game.ftime*0.61)*2;
+			}
+		}
+
+		shadow.y+=1;
 	}
 
 	public function hit(from:Entity, dmg:Int) {
@@ -72,7 +97,11 @@ class Grandma extends en.Hero {
 	override public function update() {
 		super.update();
 
-		var spd = 0.03;
+		var spd = 0.03 * (cd.has("turbo") ? 2 : 1);
+		if( cd.has("turbo") )
+			spr.anim.setStateAnimSpeed("heroWalk",0.6);
+		else
+			spr.anim.setStateAnimSpeed("heroWalk",0.25);
 
 		if( !cd.has("locked") && onGround ) {
 			// Movement
@@ -123,10 +152,18 @@ class Grandma extends en.Hero {
 				side.reset();
 
 			// Roll
-			if( Key.isDown(Key.CTRL) && !cd.has("rollLock") ) {
+			//if( Key.isDown(Key.CTRL) && !cd.has("rollLock") ) {
 				//cd.setS("rollLock",0.5);
-				cd.setS("locked",0.4);
-				cd.setS("rolling",0.4);
+				//cd.setS("locked",0.4);
+				//cd.setS("rolling",0.4);
+			//}
+
+			// Run
+			if( ( Key.isDown(Key.SHIFT) || Key.isDown(Key.CTRL) ) && !cd.has("turboLock") ) {
+				cd.setS("turbo", 0.4);
+				cd.setS("turboLock", 1);
+				dx*=1.5;
+				dy*=1.5;
 			}
 
 			rollAng =
@@ -149,8 +186,8 @@ class Grandma extends en.Hero {
 
 		// Roll effect
 		if( cd.has("rolling") ) {
-			dx += Math.cos(rollAng)*0.095 * (0.+1*cd.getRatio("rolling"));
-			dy += Math.sin(rollAng)*0.095 * (0.+1*cd.getRatio("rolling"));
+			dx += Math.cos(rollAng)*0.098 * (0.+1*cd.getRatio("rolling"));
+			dy += Math.sin(rollAng)*0.098 * (0.+1*cd.getRatio("rolling"));
 		}
 
 		// Assist movement near collisions
