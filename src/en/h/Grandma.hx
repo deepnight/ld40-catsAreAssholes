@@ -26,7 +26,7 @@ class Grandma extends en.Hero {
 		spr.anim.registerStateAnim("heroPostRoll",3, function() return cd.getRatio("rolling")>=0.2 && cd.getRatio("rolling")<0.5 );
 		spr.anim.registerStateAnim("heroRoll",2, 0.17, function() return cd.getRatio("rolling")>=0.5 );
 		spr.anim.registerStateAnim("heroWalk",1, 0.25, function() return cd.has("walking") );
-		spr.anim.registerStateAnim("heroIdle",0);
+		spr.anim.registerStateAnim("heroIdle",0, 0.6);
 
 		spr.lib.defineAnim("heroTalk", "0,1,2(2),1,0,1,0,2,1(2),2,0,1(2),2,0,2");
 		spr.lib.defineAnim("heroRoll", "0");
@@ -153,6 +153,9 @@ class Grandma extends en.Hero {
 			spr.anim.setStateAnimSpeed("heroWalk",0.6);
 		else
 			spr.anim.setStateAnimSpeed("heroWalk",0.25);
+
+		if( game.hasCinematic() )
+			focus.visible = false;
 
 		if( !game.hasCinematic() && !cd.has("locked") && onGround && !isDead() ) {
 			// Movement
