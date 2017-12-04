@@ -17,6 +17,7 @@ class Entity {
 	public var shadow : Null<HSprite>;
 	var debug : Null<h2d.Graphics>;
 	var emote : Null<HSprite>;
+	var talk : Null<h2d.Text>;
 	var label : Null<h2d.Text>;
 	var cAdd : h3d.Vector;
 	var dt : Float;
@@ -69,7 +70,7 @@ class Entity {
 		shadow = Assets.gameElements.h_get("charShadow",0, 0.5,0.5);
 		game.scroller.add(shadow, Const.DP_BG);
 		shadow.scaleX = scale;
-		shadow.alpha = 0.2;
+		shadow.alpha = 0.3;
 	}
 
 	public function jump(pow:Float) {
@@ -80,11 +81,34 @@ class Entity {
 		altitude++;
 	}
 
-	function clearSay() {
+	function clearSay(?immediate=false) {
 		if( emote!=null ) {
 			emote.remove();
 			emote = null;
 		}
+		if( talk!=null ) {
+			if( immediate )
+				talk.remove();
+			else {
+				var e = talk;
+				game.tw.createS(e.alpha, 0, 0.3).end( e.remove );
+			}
+			talk = null;
+		}
+	}
+
+	public function sayWords(str:String, ?c=0xFFFFFF) {
+		clearSay();
+		talk = new h2d.Text(Assets.font);
+		game.scroller.add(talk, Const.DP_UI);
+		talk.text = str;
+		talk.textColor = c;
+		talk.maxWidth = 150;
+		var e = talk;
+		game.tw.createS(e.scaleX, 0>1, 0.1);
+
+		game.delayer.cancelById("clearSay"+uid);
+		game.delayer.addS("clearSay"+uid, clearSay.bind(), 2+str.length*0.05);
 	}
 
 	public function say(id:String, ?sec=2.0) {
@@ -179,6 +203,7 @@ class Entity {
 			label.remove();
 		if( debug!=null )
 			debug.remove();
+		clearSay(true);
 	}
 
 	public function preUpdate() {
@@ -197,6 +222,11 @@ class Entity {
 
 		if( label!=null )
 			label.setPos(footX-label.textWidth*0.5, footY+2);
+
+		if( talk!=null ) {
+			talk.x = Std.int(footX-talk.textWidth*0.5);
+			talk.y = Std.int(footY-24-talk.textHeight);
+		}
 
 		if( emote!=null ) {
 			emote.setPos(footX, footY-20);
@@ -225,9 +255,9 @@ class Entity {
 			debug = null;
 		}
 
-		cAdd.r*=0.7;
-		cAdd.g*=0.7;
-		cAdd.b*=0.7;
+		cAdd.r*=0.9;
+		cAdd.g*=0.75;
+		cAdd.b*=0.75;
 	}
 
 	function hasCircColl() {

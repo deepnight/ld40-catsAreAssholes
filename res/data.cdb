@@ -142,20 +142,6 @@
 							"height": 1
 						},
 						{
-							"x": 12,
-							"y": 6,
-							"marker": "Grandma",
-							"width": 1,
-							"height": 1
-						},
-						{
-							"x": 11,
-							"y": 11,
-							"marker": "Sidekick",
-							"width": 1,
-							"height": 1
-						},
-						{
 							"x": 6,
 							"y": 11,
 							"marker": "Ball",
@@ -177,9 +163,9 @@
 							"height": 1
 						},
 						{
-							"x": 14,
+							"x": 13,
 							"y": 13,
-							"marker": "Cat",
+							"marker": "Grandma",
 							"width": 1,
 							"height": 1
 						},
@@ -399,12 +385,12 @@
 				},
 				{
 					"typeStr": "3",
-					"name": "y",
+					"name": "x",
 					"display": null
 				},
 				{
 					"typeStr": "3",
-					"name": "x",
+					"name": "y",
 					"display": null
 				},
 				{
@@ -433,8 +419,19 @@
 				},
 				{
 					"typeStr": "1",
+					"name": "name",
+					"kind": "localizable"
+				},
+				{
+					"typeStr": "1",
 					"name": "desc",
 					"kind": "localizable"
+				},
+				{
+					"typeStr": "6:item",
+					"name": "cond",
+					"opt": true,
+					"display": null
 				},
 				{
 					"typeStr": "3",
@@ -474,7 +471,8 @@
 					"decayS": 12,
 					"desc": "",
 					"deliveryS": 0,
-					"scaledCosts": []
+					"scaledCosts": [],
+					"name": ""
 				},
 				{
 					"id": "Shit",
@@ -487,7 +485,8 @@
 					"decayS": 0,
 					"desc": "",
 					"deliveryS": 0,
-					"scaledCosts": []
+					"scaledCosts": [],
+					"name": ""
 				},
 				{
 					"id": "Trash",
@@ -500,7 +499,24 @@
 					"decayS": 0,
 					"desc": "",
 					"deliveryS": 0,
-					"scaledCosts": []
+					"scaledCosts": [],
+					"name": ""
+				},
+				{
+					"id": "Kid",
+					"desc": "Call your grandson. He's a little snot, always with his phone, but he'll help.",
+					"scaledCosts": [],
+					"deliveryS": 0,
+					"decayS": 0,
+					"icon": {
+						"file": "items.png",
+						"size": 32,
+						"x": 5,
+						"y": 1
+					},
+					"maxBuy": 1,
+					"cost": 0,
+					"name": "Grandson"
 				},
 				{
 					"id": "CatBox",
@@ -511,32 +527,41 @@
 						"x": 5,
 						"y": 0
 					},
-					"desc": "Moar cats!",
+					"desc": "Moar cats! The moar the better?",
 					"deliveryS": 5,
 					"scaledCosts": [
 						{
 							"v": 0
 						},
 						{
-							"v": 10
+							"v": 0
 						},
 						{
-							"v": 25
+							"v": 0
+						},
+						{
+							"v": 20
 						},
 						{
 							"v": 50
 						},
 						{
-							"v": 75
+							"v": 100
 						},
 						{
-							"v": 100
+							"v": 150
+						},
+						{
+							"v": 200
 						}
-					]
+					],
+					"cond": "Kid",
+					"name": "",
+					"maxBuy": 10
 				},
 				{
 					"id": "Heal",
-					"desc": "Calm your heart.",
+					"desc": "Use this to avoid heart attack.",
 					"scaledCosts": [],
 					"deliveryS": 3,
 					"decayS": 12,
@@ -546,7 +571,9 @@
 						"x": 7,
 						"y": 0
 					},
-					"cost": 20
+					"cost": 20,
+					"cond": "Kid",
+					"name": ""
 				},
 				{
 					"id": "FoodBox",
@@ -557,10 +584,12 @@
 						"x": 3,
 						"y": 0
 					},
-					"desc": "Fish cans for your fridge",
+					"desc": "Fish cans for your fridge.",
 					"cost": 10,
 					"deliveryS": 10,
-					"scaledCosts": []
+					"scaledCosts": [],
+					"cond": "Kid",
+					"name": ""
 				},
 				{
 					"id": "TrayBox",
@@ -581,7 +610,9 @@
 							"v": 60
 						}
 					],
-					"maxBuy": 4
+					"maxBuy": 4,
+					"cond": "Kid",
+					"name": ""
 				},
 				{
 					"id": "LitterBox",
@@ -602,11 +633,13 @@
 						"x": 4,
 						"y": 1
 					},
-					"maxBuy": 2
+					"maxBuy": 2,
+					"cond": "Kid",
+					"name": ""
 				},
 				{
 					"id": "FridgeUp",
-					"desc": "Uprgade Fridge capacity.",
+					"desc": "Upgrade Fridge capacity.",
 					"deliveryS": 10,
 					"decayS": 0,
 					"icon": {
@@ -626,7 +659,9 @@
 						{
 							"v": 200
 						}
-					]
+					],
+					"cond": "Kid",
+					"name": ""
 				}
 			],
 			"separators": [],

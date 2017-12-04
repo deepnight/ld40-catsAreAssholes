@@ -15,6 +15,8 @@ class Money extends mt.Process {
 		createRootInLayers(Game.ME.root, Const.DP_UI);
 
 		flow = new h2d.Flow(root);
+		flow.backgroundTile = Assets.gameElements.getTile("hudBox");
+		flow.borderWidth = flow.borderHeight = 8;
 		money = new h2d.Text(Assets.font,flow);
 		cAdd = new h3d.Vector();
 		money.colorAdd = cAdd;
@@ -34,7 +36,8 @@ class Money extends mt.Process {
 
 	override public function postUpdate() {
 		super.postUpdate();
-		flow.x = Game.ME.vp.wid*0.25 - flow.outerWidth*0.5;
+		root.x = Game.ME.vp.wid*0.5 - flow.outerWidth*0.5;
+		root.y = 8;
 	}
 
 	public function blink() {

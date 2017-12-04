@@ -11,6 +11,7 @@ class TrashCan extends en.Interactive {
 		ALL.push(this);
 		radius = Const.GRID*0.3;
 		footOffsetY = -4;
+		enableShadow(2);
 		zPrio = -99;
 		weight = 15;
 		spr.set("trashCan");
@@ -26,6 +27,7 @@ class TrashCan extends en.Interactive {
 			case Data.ItemKind.Trash, Data.ItemKind.Shit : true;
 			case Data.ItemKind.FishCan : false;
 			case Heal : false;
+			case Kid : false;
 			case TrayBox, FoodBox, CatBox, FridgeUp, LitterBox : false;
 		}
 	}

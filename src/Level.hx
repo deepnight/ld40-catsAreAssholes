@@ -45,7 +45,7 @@ class Level extends mt.Process {
 		for(m in lInfos.markers)
 			switch( m.markerId ) {
 				case Data.MarkerKind.Grandma : Game.ME.hero = new en.h.Grandma(m.x,m.y);
-				case Data.MarkerKind.Sidekick : Game.ME.side = new en.h.Sidekick(m.x,m.y);
+				case Data.MarkerKind.Sidekick : new en.h.Sidekick(m.x,m.y);
 				case Data.MarkerKind.Cat : new en.Cat(m.x,m.y);
 				case Data.MarkerKind.FoodTray : new en.inter.FoodTray(m.x,m.y);
 				case Data.MarkerKind.Fridge : new en.inter.Fridge(m.x,m.y);
@@ -55,6 +55,12 @@ class Level extends mt.Process {
 				case Data.MarkerKind.Shop : new en.inter.Shop(m.x,m.y);
 				case Data.MarkerKind.Door : new en.inter.Door(m.x,m.y);
 			}
+
+		if( en.Cat.ALL.length>=1 )
+			en.Cat.ALL[0].startEat();
+
+		if( en.Cat.ALL.length>=2 )
+			en.Cat.ALL[1].startPlay();
 	}
 
 	public inline function hasColl(cx:Int, cy:Int) {

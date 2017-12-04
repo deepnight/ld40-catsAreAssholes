@@ -67,6 +67,7 @@ class FoodTray extends en.Interactive {
 		if( by.item==FishCan ) {
 			by.destroyItem();
 			stock = max;
+			Tutorial.ME.complete("food");
 		}
 		else {
 			by.say("eFishCan");
@@ -82,5 +83,8 @@ class FoodTray extends en.Interactive {
 			spr.rotation = rnd(0,0.2,true);
 			jump(rnd(0,0.1));
 		}
+
+		if( stock<max )
+			Tutorial.ME.tryToStart("food", "Take some food from the FRIDGE to fill your cat food bowls. Or they will eat you.");
 	}
 }

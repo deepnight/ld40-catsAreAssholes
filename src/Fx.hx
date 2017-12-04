@@ -126,6 +126,18 @@ class Fx extends mt.Process {
 		tf.setPos(p.x-tf.textWidth*0.5, p.y-tf.textHeight*0.5);
 	}
 
+	public function flashBangS(c:UInt, a:Float, ?t=0.1) {
+		var e = new h2d.Bitmap(h2d.Tile.fromColor(c,1,1,a));
+		game.root.add(e, Const.DP_FX_TOP);
+		e.scaleX = game.w();
+		e.scaleY = game.h();
+		e.blendMode = Add;
+		game.tw.createS(e.alpha, 0, t).end( function() {
+			e.remove();
+		});
+
+	}
+
 
 	override function update() {
 		super.update();

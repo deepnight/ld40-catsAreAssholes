@@ -12,6 +12,7 @@ enum Job {
 	Fight(e:Entity, ?reason:String);
 	Lick;
 	Eat(e:en.inter.FoodTray, ?done:Bool);
+	EatHero(e:en.Hero);
 	Shit;
 	Play(e:Entity);
 }
@@ -36,9 +37,9 @@ class Cat extends Entity {
 		path = null;
 		radius = Const.GRID*0.4;
 
-		enableShadow();
+		enableShadow(1.6);
 
-		skin = ALL.length%2==0 ? "bcat" : "ncat";
+		skin = ALL.length%3==0 ? "wcat" : ALL.length%3==1 ? "bcat" : "ncat";
 
 		spr.anim.registerStateAnim(skin+"FearJump",21, function() return altitude>1 && cd.has("fear"));
 		spr.anim.registerStateAnim(skin+"Fear",20, function() return cd.has("fear"));
@@ -133,9 +134,14 @@ class Cat extends Entity {
 		jobDurationS = d;
 	}
 
-	function startEat() {
+	public function startEat() {
 		var e = FoodTray.pickOne();
 		startJob( Eat(e), rnd(5,8) );
+		return true;
+	}
+
+	function startEatHero() {
+		startJob( EatHero(game.hero), 99999 );
 		return true;
 	}
 
@@ -171,7 +177,7 @@ class Cat extends Entity {
 		return true;
 	}
 
-	function startPlay() {
+	public function startPlay() {
 		var targets = Entity.ALL.filter( function(e) return e.is(en.inter.ItemDrop) || e.is(Furn) );
 		var e = targets[Std.random(targets.length)];
 		startJob(Play(e), rnd(5,7));
@@ -374,248 +380,269 @@ class Cat extends Entity {
 	override public function update() {
 		super.update();
 
-		// Interrupt fight
-		switch( job ) {
-			case Fight(e,r) :
-				switch( r ) {
-					case "eReqFood" :
-						for(e in en.inter.FoodTray.ALL)
-							if( !e.isEmpty() && sightCheck(e) ) {
-								clearSay();
-								startEat();
-								break;
-							}
+		if( !game.hasCinematic() ) {
 
-					case "eReqShit" :
-						for(e in en.inter.Litter.ALL)
-							if( !e.isFull() && sightCheck(e) ) {
-								clearSay();
-								startWait(1);
-								break;
-							}
-				}
-			default :
-		}
+			// Attack nanny when dead
+			if( hero.isDead() && !isOnJob(EatHero(null)) )
+				startEatHero();
 
-
-		// Job effects on paths
-		switch( job ) {
-			case Follow(e) :
-				if( e.destroyed )
-					startRandom();
-				else {
-					if( distCase(e)<=2 && sightCheck(e) ) {
-						if( !cd.hasSetS("love",rnd(25,50)) ) {
-							game.moneyMan.trigger(this, Love);
-							say("eLove", 1);
-						}
-						stop();
-					}
-					else
-						gotoNearby(e,1,3);
-				}
-
-			case Fight(e,r) :
-				if( r!=null && distCase(e)<=6 )
-					say(r, 2);
-
-				if( e.destroyed )
-					startRandom();
-				else if( !cd.has("dashLock") && distCase(e)<=4 && sightCheck(e) ) {
-					dashAng = Math.atan2(e.footY-footY, e.footX-footX);
-					dx+=Math.cos(dashAng)*0.2;
-					dy+=Math.sin(dashAng)*0.2;
-					dir = dx>0 ? 1 : -1;
-					cd.setS("dashLock", rnd(1.6,2));
-					cd.setS("lock", rnd(1.5,3.5));
-					cd.setS("dashCharge", 0.3, function() {
-						cd.setS("dashing", 0.45);
-					});
-				}
-				else if( distCase(e)<=3 )
-					stop();
-				else
-					goto(e.cx, e.cy);
-
-			case Eat(e) :
-				goto(e.cx,e.cy);
-
-			case Play(e) :
-				if( e.destroyed )
-					startWait(1);
-				else {
-					if( cd.has("observing") )
-						lookAt(e);
-					if( distCase(e)>3 )
-						gotoNearby(e,1,2);
-					else if( !cd.has("observeLock") ) {
-						cd.setS("lock",1);
-						cd.setS("observing", 1);
-						cd.setS("observeLock", rnd(2,4));
-						lookAt(e);
-					}
-					else if( atTarget() ) {
-						if( !cd.hasSetS("playDash",0.3) ) {
-							var a = angTo(e);
-							dx+=Math.cos(a)*0.2;
-							dy+=Math.sin(a)*0.2;
-						}
-						gotoNearby(e, 2,3);
-					}
-					else
-						goto(e.cx,e.cy);
-				}
-
-			case Wait :
-			case Shit :
-			case Lick :
-		}
-
-		var spd = isAngry() || cd.has("fleeing") ? 0.05 : 0.03;
-
-		// Dash movement
-		if( cd.has("dashing") ) {
-			rebootF = 0;
+			// Interrupt fight
 			switch( job ) {
-				case Fight(e) :
-					dashAng += Lib.angularSubstractionRad(Math.atan2(e.footY-footY, e.footX-footX), dashAng)*0.04;
+				case Fight(e,r) :
+					switch( r ) {
+						case "eReqFood" :
+							for(e in en.inter.FoodTray.ALL)
+								if( !e.isEmpty() && sightCheck(e) ) {
+									clearSay();
+									startEat();
+									break;
+								}
 
+						case "eReqShit" :
+							for(e in en.inter.Litter.ALL)
+								if( !e.isFull() && sightCheck(e) ) {
+									clearSay();
+									startWait(1);
+									break;
+								}
+					}
 				default :
 			}
-			dx+=Math.cos(dashAng)*0.08;
-			dy+=Math.sin(dashAng)*0.08;
-		}
 
-		#if debug
-		if( Console.ME.has("path") ) {
-			if( target!=null )
-				fx.markerCase(target.cx,target.cy,0x0080FF,true);
-			if( path!=null )
-				for(pt in path)
-					fx.markerCase(pt.x,pt.y,true);
-		}
-		#end
 
-		if( !cd.has("lock") && onGround ) {
-			rebootF = 0;
-
-			// Track target
-			if( !atTarget() && target!=null ) {
-				if( sightCheckCase(target.cx,target.cy) && target.distEnt(this)<=5 ) {
-					// Target is on sight
-					if( path!=null )
-						path = null;
-					var a = Math.atan2((target.cy+0.5)-(cy+yr), (target.cx+0.5)-(cx+xr));
-					dx += Math.cos(a)*spd;
-					dy += Math.sin(a)*spd;
-					dir = Math.cos(a)>=0.1 ? 1 : Math.cos(a)<=-0.1 ? -1 : dir;
-					cd.setS("recentWalk", 1);
-					cd.setS("pfLock", rnd(0.2,0.6));
-				}
-				else {
-					// Find path
-					if( path==null && !cd.has("pfLock") ) {
-						path = level.pf.getPath( { x:cx, y:cy, } , { x:target.cx, y:target.cy } );
-						path = level.pf.smooth(path);
+			// Job effects on paths
+			switch( job ) {
+				case Follow(e) :
+					if( e.destroyed )
+						startRandom();
+					else {
+						if( distCase(e)<=2 && sightCheck(e) ) {
+							if( !cd.hasSetS("love",rnd(25,50)) ) {
+								game.moneyMan.trigger(this, Love);
+								say("eLove", 1);
+							}
+							stop();
+						}
+						else
+							gotoNearby(e,1,3);
 					}
 
-					// Follow path
-					if( path!=null ) {
-						if( path.length>0 ) {
-							var next = path[0];
-							if( cx==next.x && cy==next.y ) {
-								path.shift();
-								next = path[0];
-								cd.setS("stareLock", rnd(0.5,1), true);
-							}
-							if( next!=null && ( cx!=next.x || cy!=next.y ) ) {
-								var a = Math.atan2((next.y+0.5)-(cy+yr), (next.x+0.5)-(cx+xr)) + rnd(0,0.2,true);
-								dx += Math.cos(a)*spd;
-								dy += Math.sin(a)*spd;
-								dir = Math.cos(a)>=0.1 ? 1 : Math.cos(a)<=-0.1 ? -1 : dir;
-								cd.setS("recentWalk", 1);
-							}
-						}
+				case Fight(e,r) :
+					if( r!=null && distCase(e)<=6 )
+						say(r, 2);
 
-						if( !atTarget() && path.length==0 )
-							path = null;
+					if( e.destroyed )
+						startRandom();
+					else if( !cd.has("dashLock") && distCase(e)<=4 && sightCheck(e) ) {
+						dashAng = Math.atan2(e.footY-footY, e.footX-footX);
+						dx+=Math.cos(dashAng)*0.2;
+						dy+=Math.sin(dashAng)*0.2;
+						dir = dx>0 ? 1 : -1;
+						cd.setS("dashLock", rnd(1.6,2));
+						cd.setS("lock", rnd(1.5,3.5));
+						cd.setS("dashCharge", 0.3, function() {
+							cd.setS("dashing", 0.45);
+						});
 					}
-				}
-			}
+					else if( distCase(e)<=3 )
+						stop();
+					else
+						goto(e.cx, e.cy);
 
-			// Job update
-			var doingIt = switch( job ) {
-				case Follow(e) : distCase(e)<=6;
-				case Lick, Wait : atTarget();
-				case Shit : atTarget();
-				case Eat(e, _) : distCase(e)<=1.8;
-				case Fight(e) : distCase(e)<=1;
-				case Play(e) : distCase(e)<=5 && sightCheck(e);
-			}
-			if( doingIt ) {
-				// Job effect when doing them
-				switch( job ) {
-					case Eat(e,done) :
-						if( !done ) {
-							if( e.eat() ) {
-								shitStock++;
-								job = Eat(e,true);
-								cd.setS("eating",0.1);
-							}
-							else {
-								if( en.inter.FoodTray.ALL.filter(function(e) return !e.isEmpty()).length==0 )
-									startHeroAttack("eReqFood");
-								else
-									startEat();
-							}
-						}
-						if( cd.has("eating") ) {
-							cd.setS("eating",0.3);
-							e.cd.setS("eating",0.3);
+				case Eat(e) :
+					goto(e.cx,e.cy);
+
+				case EatHero(e) :
+					gotoNearby(e,0,1);
+
+				case Play(e) :
+					if( e.destroyed )
+						startWait(1);
+					else {
+						if( cd.has("observing") )
+							lookAt(e);
+						if( distCase(e)>3 )
+							gotoNearby(e,1,2);
+						else if( !cd.has("observeLock") ) {
+							cd.setS("lock",1);
+							cd.setS("observing", 1);
+							cd.setS("observeLock", rnd(2,4));
 							lookAt(e);
 						}
+						else if( atTarget() ) {
+							if( !cd.hasSetS("playDash",0.3) ) {
+								var a = angTo(e);
+								dx+=Math.cos(a)*0.2;
+								dy+=Math.sin(a)*0.2;
+							}
+							gotoNearby(e, 2,3);
+						}
+						else
+							goto(e.cx,e.cy);
+					}
+
+				case Wait :
+				case Shit :
+				case Lick :
+			}
+
+			var spd = isAngry() || cd.has("fleeing") ? 0.05 : 0.03;
+
+			// Dash movement
+			if( cd.has("dashing") ) {
+				rebootF = 0;
+				switch( job ) {
 					case Fight(e) :
-					case Follow(_) :
-					case Wait :
-					case Lick : game.moneyMan.trigger(this, Lick);
-					case Play(_) :
-					case Shit : cd.setS("shitting", 0.3);
+						dashAng += Lib.angularSubstractionRad(Math.atan2(e.footY-footY, e.footX-footX), dashAng)*0.04;
+
+					default :
+				}
+				dx+=Math.cos(dashAng)*0.08;
+				dy+=Math.sin(dashAng)*0.08;
+			}
+
+			#if debug
+			if( Console.ME.has("path") ) {
+				if( target!=null )
+					fx.markerCase(target.cx,target.cy,0x0080FF,true);
+				if( path!=null )
+					for(pt in path)
+						fx.markerCase(pt.x,pt.y,true);
+			}
+			#end
+
+			if( !cd.has("lock") && onGround ) {
+				rebootF = 0;
+
+				// Track target
+				if( !atTarget() && target!=null ) {
+					if( sightCheckCase(target.cx,target.cy) && target.distEnt(this)<=5 ) {
+						// Target is on sight
+						if( path!=null )
+							path = null;
+						var a = Math.atan2((target.cy+0.5)-(cy+yr), (target.cx+0.5)-(cx+xr));
+						dx += Math.cos(a)*spd;
+						dy += Math.sin(a)*spd;
+						dir = Math.cos(a)>=0.1 ? 1 : Math.cos(a)<=-0.1 ? -1 : dir;
+						cd.setS("recentWalk", 1);
+						cd.setS("pfLock", rnd(0.2,0.6));
+					}
+					else {
+						// Find path
+						if( path==null && !cd.has("pfLock") ) {
+							path = level.pf.getPath( { x:cx, y:cy, } , { x:target.cx, y:target.cy } );
+							path = level.pf.smooth(path);
+						}
+
+						// Follow path
+						if( path!=null ) {
+							if( path.length>0 ) {
+								var next = path[0];
+								if( cx==next.x && cy==next.y ) {
+									path.shift();
+									next = path[0];
+									cd.setS("stareLock", rnd(0.5,1), true);
+								}
+								if( next!=null && ( cx!=next.x || cy!=next.y ) ) {
+									var a = Math.atan2((next.y+0.5)-(cy+yr), (next.x+0.5)-(cx+xr)) + rnd(0,0.2,true);
+									dx += Math.cos(a)*spd;
+									dy += Math.sin(a)*spd;
+									dir = Math.cos(a)>=0.1 ? 1 : Math.cos(a)<=-0.1 ? -1 : dir;
+									cd.setS("recentWalk", 1);
+								}
+							}
+
+							if( !atTarget() && path.length==0 )
+								path = null;
+						}
+					}
 				}
 
-				jobDurationS-=1/Const.FPS;
-
-				if( !cd.has("stareLock") ) {
-					cd.setS("stare", rnd(0.5,0.7));
-					if( Std.random(2)==0 )
-						cd.setS("stareBack", cd.getS("stare"));
-					cd.setS("stareLock", rnd(2,4));
+				// Job update
+				var doingIt = switch( job ) {
+					case Follow(e) : distCase(e)<=6;
+					case Lick, Wait : atTarget();
+					case Shit : atTarget();
+					case Eat(e, _) : distCase(e)<=1.8;
+					case EatHero(e) : distCase(e)<=2;
+					case Fight(e) : distCase(e)<=1;
+					case Play(e) : distCase(e)<=5 && sightCheck(e);
 				}
+				if( doingIt ) {
+					// Job effect when doing them
+					switch( job ) {
+						case Eat(e,done) :
+							if( !done ) {
+								if( e.eat() ) {
+									shitStock++;
+									job = Eat(e,true);
+									cd.setS("eating",0.1);
+								}
+								else {
+									if( en.inter.FoodTray.ALL.filter(function(e) return !e.isEmpty()).length==0 )
+										startHeroAttack("eReqFood");
+									else
+										startEat();
+								}
+							}
+							if( cd.has("eating") ) {
+								cd.setS("eating",0.3);
+								e.cd.setS("eating",0.3);
+								lookAt(e);
+							}
+						case EatHero(e) :
+							stop();
+							cd.setS("eating",0.1);
+							if( !cd.hasSetS("eatBumped",rnd(0.2,0.6)) ) {
+								var a = angTo(e);
+								dx-=Math.cos(a)*rnd(0,0.4);
+								dy-=Math.sin(a)*rnd(0,0.4);
+							}
+							lookAt(e);
 
-				if( jobDurationS<=0 )
-					onJobComplete();
+						case Fight(e) :
+						case Follow(_) :
+						case Wait :
+						case Lick : game.moneyMan.trigger(this, Lick);
+						case Play(_) :
+						case Shit : cd.setS("shitting", 0.3);
+					}
+
+					jobDurationS-=1/Const.FPS;
+
+					if( !cd.has("stareLock") ) {
+						cd.setS("stare", rnd(0.5,0.7));
+						if( Std.random(2)==0 )
+							cd.setS("stareBack", cd.getS("stare"));
+						cd.setS("stareLock", rnd(2,4));
+					}
+
+					if( jobDurationS<=0 )
+						onJobComplete();
+				}
+				#if debug
+				if( Console.ME.has("job") )
+					setLabel(job+"("+doingIt+") "+pretty(jobDurationS)+"s");
+				#end
 			}
-			#if debug
-			if( Console.ME.has("job") )
-				setLabel(job+"("+doingIt+") "+pretty(jobDurationS)+"s");
-			#end
-		}
-		else {
-			#if debug
-			if( Console.ME.has("job") )
-				setLabel("lock="+pretty(cd.getS("lock"))+"s onGround="+onGround);
-			#end
-			rebootF+=dt;
-			if( rebootF>=Const.FPS*5 ) {
-				trace("Rebooted "+this);
-				cd.unset("lock");
-				startRandom();
+			else {
+				#if debug
+				if( Console.ME.has("job") )
+					setLabel("lock="+pretty(cd.getS("lock"))+"s onGround="+onGround);
+				#end
+				rebootF+=dt;
+				if( rebootF>=Const.FPS*5 ) {
+					trace("Rebooted "+this);
+					cd.unset("lock");
+					startRandom();
+				}
 			}
-		}
 
 
-		// Dash hit
-		if( cd.has("dashing") && distCase(hero)<=1 && !hero.cd.hasSetS("hit",1) ) {
-			hero.hit(this, 1);
+			// Dash hit
+			if( cd.has("dashing") && distCase(hero)<=1 && !hero.cd.hasSetS("hit",1) ) {
+				hero.hit(this, 1);
+			}
 		}
 
 	}

@@ -8,10 +8,11 @@ class Life extends mt.Process {
 	public static var ME : Life;
 
 	var barWid = 60;
-	var barHei = 4;
+	var barHei = 5;
 	var front : HSprite;
 	var back : HSprite;
 	var value = 1.0;
+	var bg : h2d.ScaleGrid;
 	var bar : h2d.Graphics;
 	var cAdd : h3d.Vector;
 
@@ -22,17 +23,24 @@ class Life extends mt.Process {
 
 		cAdd = new h3d.Vector();
 
+		bg = new h2d.ScaleGrid(Assets.gameElements.getTile("hudBox"), 8,8, root);
+		//bg.x = -24;
+		//bg.y = -12;
+		bg.width = barWid+32;
+		bg.height = 24;
+
 		// Bar
 		var s = new h2d.Sprite(root);
-		s.y = Std.int(-barHei*0.5);
+		s.x = 24;
+		s.y = 12-barHei*0.5;
 		var outline = new h2d.Graphics(s);
-		outline.beginFill(0x2D2961,1);
+		outline.beginFill(0xc86e36,1);
 		outline.drawRect(0,0,barWid+2,barHei+2);
 		var bg = new h2d.Graphics(s);
-		bg.beginFill(0x1B1D30,1);
+		bg.beginFill(0x371E0F,1);
 		bg.drawRect(1,1,barWid,barHei);
 		bar = new h2d.Graphics(s);
-		bar.beginFill(0xFFD733,1);
+		bar.beginFill(0xE62639,1);
 		bar.drawRect(1,1,barWid,barHei);
 		bar.colorAdd = cAdd;
 
@@ -48,7 +56,7 @@ class Life extends mt.Process {
 	}
 
 	function getSpeed() {
-		return 1 + (1-value)*4;
+		return value<=0 ? 0 : 1 + (1-value)*4;
 	}
 
 	override public function onDispose() {
@@ -68,19 +76,19 @@ class Life extends mt.Process {
 	override public function postUpdate() {
 		super.postUpdate();
 		root.x = Std.int(Game.ME.vp.wid*0.75);
-		root.y = 16;
+		root.y = 8;
 		if( cd.has("shake") )
 			root.y += Math.cos(ftime*0.7)*2 * cd.getRatio("shake");
 
 		bar.scaleX += ( MLib.fclamp(value,0,1) - bar.scaleX ) * 0.4;
 
 		var recalSpd = 0.1 + 0.2*(1-value);
-		front.setPos(-10,2);
+		front.setPos(17,14);
 		front.scaleX+=(getBaseScale()-front.scaleX)*recalSpd;
 		front.scaleY+=(getBaseScale()-front.scaleY)*recalSpd;
 		front.rotation+=(0-front.rotation)*recalSpd;
 
-		back.setPos(-10,2);
+		back.setPos(16,14);
 		back.scaleX+=(getBaseScale()-back.scaleX)*recalSpd;
 		back.scaleY+=(getBaseScale()-back.scaleY)*recalSpd;
 		back.rotation+=(0-back.rotation)*recalSpd;
@@ -95,7 +103,7 @@ class Life extends mt.Process {
 
 	override public function update() {
 		super.update();
-		if( !cd.has("beat") ) {
+		if( value>=0 && !cd.has("beat") ) {
 			beat(front, 1-value);
 			delayer.addS(beat.bind(back,1-value), 0.06);
 			cd.setS("beat",NORMAL_BEAT/getSpeed(), true);

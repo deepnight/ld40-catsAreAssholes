@@ -59,11 +59,17 @@ class Door extends en.Interactive {
 	function doEvent(k:DoorEvent) {
 		switch( k ) {
 			case Deliver(ik) :
-				var e = new en.inter.ItemDrop(ik, cx,cy);
-				e.skew = 1;
-				e.dx = rnd(0,0.2,true);
-				e.dy = rnd(0.3,0.5);
-				jump(1);
+				switch( ik ) {
+					case Kid :
+						new en.h.Sidekick(cx,cy+1);
+
+					default :
+						var e = new en.inter.ItemDrop(ik, cx,cy);
+						e.skew = 1;
+						e.dx = rnd(0,0.2,true);
+						e.dy = rnd(0.3,0.5);
+						jump(1);
+				}
 		}
 	}
 

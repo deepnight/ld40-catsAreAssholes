@@ -10,6 +10,7 @@ class Game extends mt.Process {
 	public var side : en.h.Sidekick;
 	public var fx : Fx;
 	public var moneyMan : MoneyMan;
+	public var cm : mt.deepnight.Cinematic;
 
 	public function new(ctx:h2d.Sprite) {
 		super(Main.ME);
@@ -22,7 +23,10 @@ class Game extends mt.Process {
 		fx = new Fx();
 		new ui.Life();
 		new ui.Money();
+		new ui.Followers();
 		moneyMan = new MoneyMan();
+		new Tutorial();
+		cm = new mt.deepnight.Cinematic(Const.FPS);
 
 		level = new Level(Home);
 		level.attachEntities();
@@ -49,11 +53,19 @@ class Game extends mt.Process {
 				i++;
 	}
 
+	public inline function hasCinematic() {
+		return !cm.isEmpty();
+	}
+
 	override public function update() {
 		super.update();
 
+		cm.update(dt);
+
 		// Z sort
-		Entity.ALL.sort( function(a,b) return Reflect.compare(a.z, b.z) );
+		if( !cd.hasSetS("zsort",0.1) )
+			Entity.ALL.sort( function(a,b) return Reflect.compare(a.z, b.z) );
+
 		// Updates
 		for(e in Entity.ALL) {
 			scroller.over(e.spr);
@@ -66,5 +78,14 @@ class Game extends mt.Process {
 
 		if( hxd.Key.isPressed(hxd.Key.R) )
 			Main.ME.restartGame();
+
+
+		Tutorial.ME.tryToStart("controls", "Use ARROWS to move.");
+
+		if( Tutorial.ME.hasDone("food") )
+			Tutorial.ME.tryToStart("shop", "You should call your grandson Mark to help you here. Use the phone.");
+
+		if( Tutorial.ME.hasDone("side") )
+			Tutorial.ME.tryToStart("shop2", "Use the phone again to get more cats, or buy items!");
 	}
 }

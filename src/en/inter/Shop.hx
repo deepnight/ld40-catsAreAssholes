@@ -37,6 +37,10 @@ class Shop extends en.Interactive {
 
 	override public function onActivate(by:Hero) {
 		super.onActivate(by);
+		if( Tutorial.ME.hasDone("shop") )
+			Tutorial.ME.complete("shop2");
+		Tutorial.ME.complete("shop");
+		Tutorial.ME.complete("food");
 		new ui.ShopWindow();
 	}
 

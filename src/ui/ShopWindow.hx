@@ -76,6 +76,11 @@ class ShopWindow extends mt.Process {
 		}
 		else {
 			for(i in Data.item.all) {
+				if( i.cond!=null && en.inter.Shop.ME.countPreviousBoughts(i.condId)==0 ) {
+					addLocked(i.id, "Item locked (need "+i.cond.name+")");
+					continue;
+				}
+
 				if( i.cost!=null || i.scaledCosts.length>0 ) {
 					if( i.maxBuy!=null ) {
 						// Buy limit
@@ -105,7 +110,8 @@ class ShopWindow extends mt.Process {
 		f.horizontalSpacing = 4;
 		f.backgroundTile = Assets.gameElements.getTile("box");
 		f.borderHeight = f.borderWidth = 4;
-		f.minWidth = 250;
+		f.paddingBottom = 3;
+		f.minWidth = 290;
 
 		var icon = new h2d.Bitmap(Assets.getItem(k), f);
 		icon.tile.setCenterRatio(0,0.25);
@@ -135,6 +141,7 @@ class ShopWindow extends mt.Process {
 
 		var tf = new h2d.Text(Assets.font, f);
 		tf.text = inf.desc;
+		tf.maxWidth = 190;
 		tf.textColor = cost<=Game.ME.hero.money ? 0xFFFFFF : 0xE77272;
 
 		items.push( {
@@ -144,6 +151,41 @@ class ShopWindow extends mt.Process {
 				en.inter.Shop.ME.boughts.push(k);
 				door.addEvent( Deliver(k), #if debug 0 #else inf.deliveryS #end );
 			},
+		});
+	}
+
+	function addLocked(k:Data.ItemKind, reason:String) {
+		var inf = Data.item.get(k);
+		var f = new h2d.Flow(iFlow);
+		f.verticalAlign = Middle;
+		f.horizontalSpacing = 4;
+		f.backgroundTile = Assets.gameElements.getTile("box");
+		f.borderHeight = f.borderWidth = 4;
+		f.minWidth = 290;
+
+		var icon = new h2d.Bitmap(Assets.getItem(k), f);
+		icon.tile.setCenterRatio(0,0.25);
+
+
+		var w = new h2d.Flow(f);
+		w.minHeight = 2;
+		w.minWidth = 40;
+		w.horizontalAlign = Middle;
+		var tf = new h2d.Text(Assets.font, w);
+		tf.text = "";
+		tf.textColor = 0x7E7B9F;
+
+		f.addSpacing(8);
+
+		var tf = new h2d.Text(Assets.font, f);
+		tf.text = reason;
+		tf.maxWidth = 200;
+		tf.textColor = 0x7E7B9F;
+
+		items.push( {
+			f:f,
+			p:999999,
+			cb:function() {},
 		});
 	}
 

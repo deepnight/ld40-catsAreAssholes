@@ -26,20 +26,23 @@ class Sidekick extends en.Hero {
 
 	var restX : Int;
 	var restY : Int;
+	var quotes : Array<String>;
 
 	public function new(x,y) {
 		super(x,y);
 
+		game.side = this;
 		path = [];
 		actions = [];
+		quotes = ["Hey, I followed your new cat-oriented Twitch stream by the way."];
 		queue = [];
 		weight = 0.2;
 
-		restX = x;
-		restY = y;
+		restX = 11;
+		restY = 11;
 
 		spr.anim.registerStateAnim("sideWalk",3, 0.2, function() return MLib.fabs(dx)>0 || MLib.fabs(dy)>0 );
-		spr.anim.registerStateAnim("sideIdleTv",1, 0.3, function() return cx==restX && cy==restY && dir==-1);
+		spr.anim.registerStateAnim("sideIdleTv",1, 0.6, function() return cx==restX && cy==restY && dir==-1);
 		spr.anim.registerStateAnim("sideIdle",0);
 
 		spr.lib.defineAnim("sideWalk", "0(2),1,2(2),1");
@@ -53,6 +56,19 @@ class Sidekick extends en.Hero {
 			pointers.push(e);
 			e.visible = false;
 		}
+
+		game.cm.create( {
+			500;
+			lookAt(hero);
+			hero.lookAt(this);
+			sayWords("Hey nanny.");
+			1000;
+			hero.sayWords("Ho, hi Mark.");
+			1300;
+			clearSay();
+			Tutorial.ME.tryToStart("side", "Press C near something useful (like a bowl, or a dirty litter box) to ask Mark to take care of it.");
+			onDone();
+		});
 	}
 
 	override public function dispose() {
@@ -206,6 +222,9 @@ class Sidekick extends en.Hero {
 					say("eQuestion");
 			}
 		}
+
+		if( actions.length>0 )
+			Tutorial.ME.complete("side");
 	}
 
 	function goto(x,y) {
@@ -295,13 +314,20 @@ class Sidekick extends en.Hero {
 
 		if( itemIcon!=null ) {
 			itemIcon.x = 10;
-			itemIcon.y = -1;
+			itemIcon.y = -3;
 			if( MLib.fabs(dx)>=0.01 || MLib.fabs(dy)>=0.01 ) {
 				itemIcon.x += Math.sin(game.ftime*0.22)*1;
 				itemIcon.y += Math.cos(game.ftime*0.61)*1;
 			}
 		}
+	}
 
+	override function onTouch(e:Entity) {
+		super.onTouch(e);
+		if( e.is(en.h.Grandma) && path.length==0 ) {
+			cd.setS("goRest", 1);
+			lookAt(e);
+		}
 	}
 
 	override public function update() {
@@ -314,7 +340,7 @@ class Sidekick extends en.Hero {
 		}
 		#end
 
-		if( actionIdx<actions.length && !cd.has("lock") ) {
+		if( actionIdx<actions.length && !cd.has("lock") && !game.hasCinematic() ) {
 			var a = actions[actionIdx];
 			if( Console.ME.has("side") )
 				setLabel(Std.string(a)+" tries="+tries+" q="+queue.length);
@@ -383,7 +409,7 @@ class Sidekick extends en.Hero {
 
 
 		// Follow path
-		if( path.length>0 && !cd.has("lock") ) {
+		if( !game.hasCinematic() && path.length>0 && !cd.has("lock") ) {
 			var spd = 0.02;
 			var next = path[0];
 			if( cx==next.x && cy==next.y ) {
@@ -400,8 +426,30 @@ class Sidekick extends en.Hero {
 			}
 		}
 
-		if( cx==restX && cy==restY )
+		if( cx==restX && cy==restY ) {
 			dir = -1;
-
+			if( !cd.hasSetS("randTalk",rnd(15,30)) ) {
+				hero.gainFollowers(1);
+				if( quotes.length==0 ) {
+					quotes = [
+						"You know Pewdiedie?",
+						"This new video kicks ass.",
+						"Seriously?",
+						"You really should try out 9gag nanny.",
+						"This show really sucks.",
+						"I'd love a cookie.",
+						"Do you have cookies?",
+						"So what's up on Facebook?",
+						"ROFL.",
+						"LOL...",
+						"Ah ah ah.",
+					];
+					Lib.shuffleArray(quotes, Std.random);
+				}
+				sayWords( quotes.shift() );
+			}
+		}
+		else if( item==null && queue.length==0 && actions.length==0 && path.length==0 && !cd.has("goRest") )
+			goto(restX, restY);
 	}
 }
