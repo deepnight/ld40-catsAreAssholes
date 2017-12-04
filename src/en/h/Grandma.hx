@@ -19,6 +19,10 @@ class Grandma extends en.Hero {
 		life = maxLife;
 		weight = 2;
 
+		#if debug
+		money = 9999;
+		#end
+
 		spr.anim.registerStateAnim("heroDead",11, function() return isDead() );
 		spr.anim.registerStateAnim("heroHit",10, function() return cd.has("recentHit") );
 
@@ -40,6 +44,16 @@ class Grandma extends en.Hero {
 		game.scroller.add(focus, Const.DP_UI);
 
 		enableShadow(2);
+	}
+
+	override public function pick(itemUid:Int, i:Data.ItemKind) {
+		super.pick(itemUid, i);
+		Assets.SBANK.pick1(1);
+	}
+
+	override public function dropItem() {
+		super.dropItem();
+		Assets.SBANK.drop0(1);
 	}
 
 	override public function sayWords(str:String, ?c = 0xFFFFFF) {

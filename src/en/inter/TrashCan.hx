@@ -42,6 +42,7 @@ class TrashCan extends en.Interactive {
 			jump(0.2);
 			cd.setS("shake",2);
 			by.destroyItem();
+			Assets.SBANK.trash0(1);
 		}
 	}
 

@@ -695,5 +695,18 @@ class Cat extends Entity {
 			}
 		}
 
+
+		if( !cd.hasSetS("meow",rnd(3,8)) ) {
+			var all = [
+				Assets.SBANK.cat0,
+				Assets.SBANK.cat1,
+				Assets.SBANK.cat2,
+				Assets.SBANK.cat3,
+				Assets.SBANK.cat4,
+			];
+			var s = all[Std.random(all.length)]();
+			s.play( (sightCheck(hero)?1:0.4) * ( 0.1 + 0.5 * MLib.fclamp(1-distCase(hero)/10,0,1) ) );
+		}
+
 	}
 }

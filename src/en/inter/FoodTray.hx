@@ -70,6 +70,7 @@ class FoodTray extends en.Interactive {
 		if( by.item==FishCan ) {
 			by.destroyItem();
 			stock = max;
+			Assets.SBANK.bleep2(1);
 			Tutorial.ME.complete("food");
 		}
 		else {

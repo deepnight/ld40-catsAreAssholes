@@ -57,6 +57,9 @@ class Sidekick extends en.Hero {
 			e.visible = false;
 		}
 
+		#if debug
+		onDone();
+		#else
 		game.cm.create( {
 			500;
 			hero.lookAt(this);
@@ -70,6 +73,7 @@ class Sidekick extends en.Hero {
 			Tutorial.ME.tryToStart("side", "Press C near something useful (like a bowl, or a dirty litter box) to ask Mark to take care of it.");
 			onDone();
 		});
+		#end
 	}
 
 	override public function dispose() {

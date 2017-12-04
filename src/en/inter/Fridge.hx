@@ -49,14 +49,17 @@ class Fridge extends en.Interactive {
 			var old = max;
 			upgrade++;
 			stock+=max-old;
+			Assets.SBANK.upgrade0(1);
 			by.destroyItem();
 		}
 		else if( by.item==FishCan ) {
 			stock++;
+			Assets.SBANK.drop1(1);
 			by.destroyItem();
 		}
 		else {
 			by.pick(-1, FishCan);
+			Assets.SBANK.fridge0(1);
 			stock--;
 		}
 	}

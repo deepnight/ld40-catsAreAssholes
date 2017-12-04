@@ -66,6 +66,7 @@ class Coin extends Entity {
 			dx+=Math.cos(a)*s;
 			dy+=Math.sin(a)*s;
 			if( d<=0.45 ) {
+				Assets.SBANK.coin0(0.5);
 				hero.money+=value;
 				ui.Money.ME.blink();
 				destroy();
