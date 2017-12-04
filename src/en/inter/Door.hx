@@ -10,7 +10,7 @@ enum DoorEvent {
 
 class Door extends en.Interactive {
 	public static var ALL : Array<Door> = [];
-	static var AUTO_CAT = [ 20, 50, 90 ];
+	static var AUTO_CAT = [ 20, 45, 60 ];
 	var events : Array<{ k:DoorEvent, frames:Float }>;
 
 	var cats = 0;

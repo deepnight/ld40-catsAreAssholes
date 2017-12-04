@@ -572,7 +572,7 @@
 						"x": 7,
 						"y": 0
 					},
-					"cost": 20,
+					"cost": 10,
 					"cond": "Kid",
 					"name": ""
 				},
@@ -586,9 +586,21 @@
 						"y": 0
 					},
 					"desc": "Fish cans for your fridge.",
-					"cost": 10,
 					"deliveryS": 0,
-					"scaledCosts": [],
+					"scaledCosts": [
+						{
+							"v": 10
+						},
+						{
+							"v": 15
+						},
+						{
+							"v": 20
+						},
+						{
+							"v": 25
+						}
+					],
 					"cond": "Kid",
 					"name": ""
 				},
@@ -608,7 +620,7 @@
 							"v": 30
 						},
 						{
-							"v": 60
+							"v": 100
 						}
 					],
 					"maxBuy": 4,
@@ -620,10 +632,10 @@
 					"desc": "Extra Litter box.",
 					"scaledCosts": [
 						{
-							"v": 50
+							"v": 100
 						},
 						{
-							"v": 100
+							"v": 200
 						}
 					],
 					"deliveryS": 0,
@@ -652,13 +664,13 @@
 					"maxBuy": 3,
 					"scaledCosts": [
 						{
-							"v": 80
+							"v": 100
 						},
 						{
-							"v": 120
+							"v": 250
 						},
 						{
-							"v": 200
+							"v": 500
 						}
 					],
 					"cond": "Kid",

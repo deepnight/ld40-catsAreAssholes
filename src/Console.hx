@@ -15,6 +15,7 @@ class Console extends h2d.Console {
 		//set("job",true);
 		#end
 
+		this.addCommand("fps", [], function(v:Int) set("fps",!has("fps")) );
 		#if debug
 		this.addCommand("gold", [{ name:"v", t:AInt}], function(v:Int) {
 			Game.ME.hero.money+=v;

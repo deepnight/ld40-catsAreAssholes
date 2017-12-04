@@ -144,6 +144,8 @@ class ShopWindow extends mt.Process {
 			f:f,
 			p:cost,
 			cb:function() {
+				if( cost>0 )
+					Game.ME.hero.pop("-$"+cost,0xFFF200);
 				en.inter.Shop.ME.register(k);
 				door.addEvent( Deliver(k), #if debug 0 #else inf.deliveryS #end );
 			},
