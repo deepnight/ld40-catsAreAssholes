@@ -1,1230 +1,1244 @@
 
 gameElements.png
-size: 256,512
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 ball
   rotate: false
-  xy: 186, 495
+  xy: 101, 986
   size: 11, 10
   orig: 16, 16
   offset: 3, 0
   index: -1
 ballFlat
   rotate: false
-  xy: 240, 289
+  xy: 114, 986
   size: 13, 8
   orig: 16, 16
   offset: 1, 0
   index: -1
 bcatAngryWalk0
   rotate: false
-  xy: 110, 405
+  xy: 195, 971
   size: 25, 18
   orig: 32, 32
   offset: 5, 3
   index: -1
 bcatAngryWalk1
   rotate: false
-  xy: 173, 384
+  xy: 423, 877
   size: 25, 20
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatCharge0
   rotate: false
-  xy: 1, 390
+  xy: 261, 803
   size: 25, 26
   orig: 32, 32
   offset: 1, 0
   index: -1
 bcatCharge1
   rotate: false
-  xy: 233, 86
+  xy: 258, 991
   size: 22, 26
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatDash0
   rotate: false
-  xy: 99, 117
+  xy: 282, 991
   size: 30, 23
   orig: 32, 32
   offset: 2, 5
   index: -1
 bcatDash1
   rotate: false
-  xy: 32, 187
+  xy: 124, 996
   size: 29, 26
   orig: 32, 32
   offset: 2, 1
   index: -1
 bcatEat0
   rotate: false
-  xy: 164, 426
+  xy: 504, 868
   size: 25, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatEat1
   rotate: false
-  xy: 154, 266
+  xy: 519, 934
   size: 28, 15
   orig: 32, 32
   offset: 2, 0
   index: -1
 bcatEat2
   rotate: false
-  xy: 30, 325
+  xy: 557, 803
   size: 26, 15
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatFall0
   rotate: false
-  xy: 82, 408
+  xy: 489, 825
   size: 25, 18
   orig: 32, 32
   offset: 3, 4
   index: -1
 bcatFear0
   rotate: false
-  xy: 1, 221
+  xy: 1, 1001
   size: 29, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatFearJump0
   rotate: false
-  xy: 67, 117
+  xy: 273, 831
   size: 30, 25
   orig: 32, 32
   offset: 0, 4
   index: -1
 bcatIdle0
   rotate: false
-  xy: 122, 284
+  xy: 282, 858
   size: 27, 24
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatIdleAngry0
   rotate: false
-  xy: 147, 348
+  xy: 478, 941
   size: 26, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatIdleRecent0
   rotate: false
-  xy: 136, 434
+  xy: 507, 845
   size: 25, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 bcatLick0
   rotate: false
-  xy: 150, 324
+  xy: 445, 927
   size: 26, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLick1
   rotate: false
-  xy: 31, 301
+  xy: 328, 941
   size: 27, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLick2
   rotate: false
-  xy: 1, 278
+  xy: 94, 1001
   size: 28, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLick3
   rotate: false
-  xy: 190, 218
+  xy: 362, 906
   size: 28, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLickLook0
   rotate: false
-  xy: 220, 228
+  xy: 374, 879
   size: 28, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatLickLookBack0
   rotate: false
-  xy: 28, 393
+  xy: 365, 959
   size: 25, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatObserve0
   rotate: false
-  xy: 1, 326
+  xy: 517, 969
   size: 26, 15
   orig: 32, 32
   offset: 6, 0
   index: -1
 bcatObserve1
   rotate: false
-  xy: 122, 267
+  xy: 528, 907
   size: 28, 15
   orig: 32, 32
   offset: 4, 0
   index: -1
 bcatObserve2
   rotate: false
-  xy: 97, 192
+  xy: 266, 948
   size: 30, 15
   orig: 32, 32
   offset: 2, 0
   index: -1
 bcatPreVomit0
   rotate: false
-  xy: 131, 117
+  xy: 298, 916
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatShit0
   rotate: false
-  xy: 119, 334
+  xy: 434, 977
   size: 26, 22
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatShit1
   rotate: false
-  xy: 119, 334
+  xy: 434, 977
   size: 26, 22
   orig: 32, 32
   offset: 5, 0
   index: -1
 bcatShit2
   rotate: false
-  xy: 1, 302
+  xy: 376, 984
   size: 27, 22
   orig: 32, 32
   offset: 4, 0
   index: -1
 bcatVomit0
   rotate: false
-  xy: 99, 142
+  xy: 301, 965
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatVomit1
   rotate: false
-  xy: 65, 144
+  xy: 310, 884
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatVomit2
   rotate: false
-  xy: 131, 142
+  xy: 311, 856
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 bcatWalk0
   rotate: false
-  xy: 82, 408
+  xy: 489, 825
   size: 25, 18
   orig: 32, 32
   offset: 3, 3
   index: -1
 bcatWalk1
   rotate: false
-  xy: 200, 402
+  xy: 447, 851
   size: 25, 20
   orig: 32, 32
   offset: 3, 0
   index: -1
 box
   rotate: false
-  xy: 1, 1
+  xy: 1, 803
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 charShadow0
   rotate: false
-  xy: 160, 464
+  xy: 83, 952
   size: 16, 11
   orig: 16, 16
   offset: 0, 2
   index: -1
 circle
   rotate: false
-  xy: 136, 453
+  xy: 423, 853
   size: 22, 22
   orig: 32, 32
   offset: 5, 5
   index: -1
 coin0
   rotate: false
-  xy: 247, 30
+  xy: 159, 983
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 coin1
   rotate: false
-  xy: 247, 38
+  xy: 168, 983
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 coin2
   rotate: false
-  xy: 138, 366
+  xy: 201, 868
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 coin3
   rotate: false
-  xy: 247, 38
+  xy: 168, 983
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 coin4
   rotate: false
-  xy: 247, 46
+  xy: 177, 983
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 coin5
   rotate: false
-  xy: 247, 54
+  xy: 186, 983
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 dirt0
   rotate: false
-  xy: 247, 21
+  xy: 149, 984
   size: 8, 7
   orig: 8, 7
   offset: 0, 0
   index: -1
 dirt1
   rotate: false
-  xy: 247, 1
+  xy: 129, 984
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 dirt2
   rotate: false
-  xy: 247, 11
+  xy: 139, 984
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 doorOpen
   rotate: false
-  xy: 168, 477
+  xy: 165, 836
   size: 16, 31
   orig: 16, 31
   offset: 0, 0
   index: -1
 dot
   rotate: false
-  xy: 155, 209
+  xy: 114, 996
   size: 3, 3
   orig: 3, 3
   offset: 0, 0
   index: -1
 eCall
   rotate: false
-  xy: 1, 495
+  xy: 551, 1003
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eError
   rotate: false
-  xy: 23, 495
+  xy: 573, 1003
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eFishCan
   rotate: false
-  xy: 45, 495
+  xy: 549, 924
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eFood
   rotate: false
-  xy: 67, 495
+  xy: 558, 904
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eLove
   rotate: false
-  xy: 89, 495
+  xy: 560, 881
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 empty
   rotate: false
-  xy: 155, 214
+  xy: 119, 996
   size: 3, 3
   orig: 4, 4
   offset: 0, 1
   index: -1
 eQuestion
   rotate: false
-  xy: 101, 477
+  xy: 561, 859
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eReqFood
   rotate: false
-  xy: 111, 495
+  xy: 564, 839
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eReqShit
   rotate: false
-  xy: 123, 477
+  xy: 573, 820
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eShit
   rotate: false
-  xy: 133, 495
+  xy: 585, 803
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 eUp
   rotate: false
-  xy: 145, 477
+  xy: 549, 941
   size: 20, 15
   orig: 20, 15
   offset: 0, 0
   index: -1
 foodBox
   rotate: false
-  xy: 199, 82
+  xy: 113, 918
   size: 32, 31
   orig: 32, 32
   offset: 0, 0
   index: -1
 foodEmpty
   rotate: false
-  xy: 234, 368
+  xy: 235, 991
   size: 21, 28
   orig: 32, 32
   offset: 5, 0
   index: -1
 foodFull0
   rotate: false
-  xy: 198, 146
+  xy: 443, 803
   size: 31, 20
   orig: 32, 32
   offset: 1, 0
   index: -1
 foodFull1
   rotate: false
-  xy: 1, 114
+  xy: 408, 1004
   size: 31, 19
   orig: 32, 32
   offset: 1, 0
   index: -1
 foodFull2
   rotate: false
-  xy: 34, 114
+  xy: 474, 847
   size: 31, 19
   orig: 32, 32
   offset: 1, 0
   index: -1
 heartBack0
   rotate: false
-  xy: 1, 428
+  xy: 405, 853
   size: 16, 23
   orig: 32, 32
   offset: 8, 7
   index: -1
 heartFront0
   rotate: false
-  xy: 236, 343
+  xy: 404, 878
   size: 17, 23
   orig: 32, 32
   offset: 8, 5
   index: -1
 heroDead0
   rotate: false
-  xy: 182, 284
+  xy: 392, 956
   size: 27, 22
   orig: 32, 32
   offset: 3, 0
   index: -1
 heroHit0
   rotate: false
-  xy: 57, 342
+  xy: 101, 952
   size: 25, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 heroIdle0
   rotate: false
-  xy: 227, 170
+  xy: 128, 951
   size: 28, 31
   orig: 32, 32
   offset: 2, 0
   index: -1
 heroIdle1
   rotate: false
-  xy: 32, 243
+  xy: 147, 884
   size: 28, 31
   orig: 32, 32
   offset: 2, 0
   index: -1
 heroPostRoll0
   rotate: false
-  xy: 165, 116
+  xy: 114, 884
   size: 31, 31
   orig: 32, 32
   offset: 1, 0
   index: -1
 heroPostRollEnd0
   rotate: false
-  xy: 165, 116
+  xy: 114, 884
   size: 31, 31
   orig: 32, 32
   offset: 1, 0
   index: -1
 heroRoll0
   rotate: false
-  xy: 1, 360
+  xy: 202, 907
   size: 25, 28
   orig: 32, 32
   offset: 5, 0
   index: -1
 heroRoll1
   rotate: false
-  xy: 62, 246
-  size: 28, 26
+  xy: 252, 965
+  size: 28, 24
   orig: 32, 32
-  offset: 0, 0
+  offset: 0, 2
   index: -1
 heroRoll2
   rotate: false
-  xy: 29, 359
-  size: 25, 32
+  xy: 213, 937
+  size: 24, 28
   orig: 32, 32
-  offset: 2, 0
+  offset: 2, 4
   index: -1
 heroRoll3
   rotate: false
-  xy: 160, 216
+  xy: 280, 890
   size: 28, 24
   orig: 32, 32
   offset: 4, 6
   index: -1
 heroTalk0
   rotate: false
-  xy: 1, 245
+  xy: 147, 917
   size: 28, 31
   orig: 32, 32
   offset: 2, 0
   index: -1
 heroTalk1
   rotate: false
-  xy: 125, 209
+  xy: 158, 950
   size: 28, 31
   orig: 32, 32
   offset: 2, 0
   index: -1
 heroTalk2
   rotate: false
-  xy: 94, 233
+  xy: 180, 991
   size: 28, 31
   orig: 32, 32
   offset: 2, 0
   index: -1
 heroWalk0
   rotate: false
-  xy: 69, 83
+  xy: 35, 967
   size: 31, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 heroWalk1
   rotate: false
-  xy: 135, 83
+  xy: 83, 918
   size: 28, 32
   orig: 32, 32
   offset: 3, 0
   index: -1
 heroWalk2
   rotate: false
-  xy: 180, 308
+  xy: 165, 803
   size: 26, 31
   orig: 32, 32
   offset: 3, 0
   index: -1
 heroWalk3
   rotate: false
-  xy: 1, 187
+  xy: 83, 884
   size: 29, 32
   orig: 32, 32
   offset: 2, 0
   index: -1
 heroWalk4
   rotate: false
-  xy: 102, 83
+  xy: 68, 967
   size: 31, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 hudBox
   rotate: false
-  xy: 165, 1
+  xy: 83, 803
   size: 80, 79
   orig: 80, 80
   offset: 0, 1
   index: -1
+introHouse
+  rotate: false
+  xy: 428, 828
+  size: 32, 21
+  orig: 32, 22
+  offset: 0, 0
+  index: -1
 litter0
   rotate: false
-  xy: 199, 115
+  xy: 193, 803
   size: 32, 29
   orig: 32, 32
   offset: 0, 1
   index: -1
 litter1
   rotate: false
-  xy: 1, 83
+  xy: 208, 834
   size: 32, 29
   orig: 32, 32
   offset: 0, 1
   index: -1
 litter2
   rotate: false
-  xy: 35, 83
+  xy: 227, 803
   size: 32, 29
   orig: 32, 32
   offset: 0, 1
   index: -1
 litter3
   rotate: false
-  xy: 165, 82
+  xy: 1, 967
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatAngryWalk0
   rotate: false
-  xy: 165, 406
+  xy: 503, 803
   size: 25, 18
   orig: 32, 32
   offset: 5, 3
   index: -1
 ncatAngryWalk1
   rotate: false
-  xy: 111, 383
+  xy: 462, 825
   size: 25, 20
   orig: 32, 32
   offset: 5, 0
   index: -1
 ncatCharge0
   rotate: false
-  xy: 84, 358
+  xy: 229, 893
   size: 25, 26
   orig: 32, 32
   offset: 1, 0
   index: -1
 ncatCharge1
   rotate: false
-  xy: 233, 114
+  xy: 256, 893
   size: 22, 26
   orig: 32, 32
   offset: 5, 0
   index: -1
 ncatDash0
   rotate: false
-  xy: 163, 149
+  xy: 334, 829
   size: 30, 23
   orig: 32, 32
   offset: 2, 5
   index: -1
 ncatDash1
   rotate: false
-  xy: 63, 194
+  xy: 227, 865
   size: 29, 26
   orig: 32, 32
   offset: 2, 1
   index: -1
 ncatEat0
   rotate: false
-  xy: 219, 430
+  xy: 516, 823
   size: 25, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 ncatEat1
   rotate: false
-  xy: 214, 253
+  xy: 530, 887
   size: 28, 15
   orig: 32, 32
   offset: 2, 0
   index: -1
 ncatEat2
   rotate: false
-  xy: 58, 325
+  xy: 523, 986
   size: 26, 15
   orig: 32, 32
   offset: 3, 0
   index: -1
 ncatFall0
   rotate: false
-  xy: 137, 414
+  xy: 473, 921
   size: 25, 18
   orig: 32, 32
   offset: 3, 4
   index: -1
 ncatFear0
   rotate: false
-  xy: 94, 209
+  xy: 32, 1001
   size: 29, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatFearJump0
   rotate: false
-  xy: 1, 135
+  xy: 288, 803
   size: 30, 25
   orig: 32, 32
   offset: 0, 4
   index: -1
 ncatIdle0
   rotate: false
-  xy: 92, 291
+  xy: 305, 830
   size: 27, 24
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatIdleAngry0
   rotate: false
-  xy: 175, 365
+  xy: 500, 915
   size: 26, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 ncatIdleRecent0
   rotate: false
-  xy: 191, 444
+  xy: 530, 803
   size: 25, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 ncatLick0
   rotate: false
-  xy: 208, 311
+  xy: 441, 1001
   size: 26, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatLick1
   rotate: false
-  xy: 151, 300
+  xy: 416, 929
   size: 27, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatLick2
   rotate: false
-  xy: 154, 242
+  xy: 222, 967
   size: 28, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatLick3
   rotate: false
-  xy: 124, 242
+  xy: 375, 853
   size: 28, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatLickLook0
   rotate: false
-  xy: 92, 266
+  xy: 398, 828
   size: 28, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatLickLookBack0
   rotate: false
-  xy: 111, 358
+  xy: 389, 931
   size: 25, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatObserve0
   rotate: false
-  xy: 86, 341
+  xy: 545, 969
   size: 26, 15
   orig: 32, 32
   offset: 6, 0
   index: -1
 ncatObserve1
   rotate: false
-  xy: 184, 267
+  xy: 531, 864
   size: 28, 15
   orig: 32, 32
   offset: 4, 0
   index: -1
 ncatObserve2
   rotate: false
-  xy: 129, 192
+  xy: 376, 1008
   size: 30, 15
   orig: 32, 32
   offset: 2, 0
   index: -1
 ncatPreVomit0
   rotate: false
-  xy: 195, 168
+  xy: 349, 803
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatShit0
   rotate: false
-  xy: 208, 335
+  xy: 450, 951
   size: 26, 22
   orig: 32, 32
   offset: 5, 0
   index: -1
 ncatShit1
   rotate: false
-  xy: 208, 335
+  xy: 450, 951
   size: 26, 22
   orig: 32, 32
   offset: 5, 0
   index: -1
 ncatShit2
   rotate: false
-  xy: 121, 310
+  xy: 419, 903
   size: 27, 22
   orig: 32, 32
   offset: 4, 0
   index: -1
 ncatVomit0
   rotate: false
-  xy: 1, 162
+  xy: 330, 909
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatVomit1
   rotate: false
-  xy: 33, 162
+  xy: 342, 881
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatVomit2
   rotate: false
-  xy: 97, 167
+  xy: 343, 854
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 ncatWalk0
   rotate: false
-  xy: 137, 414
+  xy: 473, 921
   size: 25, 18
   orig: 32, 32
   offset: 3, 3
   index: -1
 ncatWalk1
   rotate: false
-  xy: 83, 386
+  xy: 476, 803
   size: 25, 20
   orig: 32, 32
   offset: 3, 0
   index: -1
 pointer0
   rotate: false
-  xy: 244, 253
+  xy: 506, 934
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
   index: -1
 pointer1
   rotate: false
-  xy: 244, 271
+  xy: 497, 998
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
   index: -1
 pointer2
   rotate: false
-  xy: 240, 299
+  xy: 510, 998
   size: 11, 16
   orig: 16, 16
   offset: 2, 0
   index: -1
 scoin0
   rotate: false
-  xy: 247, 62
+  xy: 165, 869
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 scoin1
   rotate: false
-  xy: 247, 70
+  xy: 174, 869
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 scoin2
   rotate: false
-  xy: 138, 374
+  xy: 177, 940
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 scoin3
   rotate: false
-  xy: 247, 70
+  xy: 174, 869
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 scoin4
   rotate: false
-  xy: 247, 78
+  xy: 183, 868
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 scoin5
   rotate: false
-  xy: 138, 358
+  xy: 192, 868
   size: 7, 6
   orig: 7, 6
   offset: 0, 0
   index: -1
 sideIdle0
   rotate: false
-  xy: 1, 464
+  xy: 177, 909
   size: 23, 29
   orig: 32, 32
   offset: 5, 0
   index: -1
 sideIdleTv0
   rotate: false
-  xy: 26, 464
+  xy: 188, 940
   size: 23, 29
   orig: 32, 32
   offset: 5, 0
   index: -1
 sideIdleTv1
   rotate: false
-  xy: 51, 464
+  xy: 210, 991
   size: 23, 29
   orig: 32, 32
   offset: 5, 0
   index: -1
 sideIdleTv2
   rotate: false
-  xy: 76, 464
+  xy: 202, 876
   size: 23, 29
   orig: 32, 32
   offset: 5, 0
   index: -1
 sideWalk0
   rotate: false
-  xy: 231, 398
+  xy: 155, 993
   size: 23, 30
   orig: 32, 32
   offset: 6, 2
   index: -1
 sideWalk1
   rotate: false
-  xy: 190, 463
+  xy: 177, 877
   size: 23, 30
   orig: 32, 32
   offset: 5, 0
   index: -1
 sideWalk2
   rotate: false
-  xy: 111, 445
+  xy: 183, 836
   size: 23, 30
   orig: 32, 32
   offset: 6, 1
   index: -1
+title
+  rotate: false
+  xy: 1, 1
+  size: 800, 800
+  orig: 800, 800
+  offset: 0, 0
+  index: -1
 trashCan
   rotate: false
-  xy: 236, 317
+  xy: 282, 965
   size: 17, 24
   orig: 32, 32
   offset: 6, 0
   index: -1
 use
   rotate: false
-  xy: 155, 495
+  xy: 229, 921
   size: 11, 14
   orig: 16, 16
   offset: 3, 1
   index: -1
 wcatAngryWalk0
   rotate: false
-  xy: 109, 425
+  xy: 475, 895
   size: 25, 18
   orig: 32, 32
   offset: 5, 3
   index: -1
 wcatAngryWalk1
   rotate: false
-  xy: 55, 404
+  xy: 448, 899
   size: 25, 20
   orig: 32, 32
   offset: 5, 0
   index: -1
 wcatCharge0
   rotate: false
-  xy: 56, 376
+  xy: 239, 937
   size: 25, 26
   orig: 32, 32
   offset: 1, 0
   index: -1
 wcatCharge1
   rotate: false
-  xy: 233, 142
+  xy: 258, 862
   size: 22, 26
   orig: 32, 32
   offset: 5, 0
   index: -1
 wcatDash0
   rotate: false
-  xy: 65, 169
+  xy: 366, 828
   size: 30, 23
   orig: 32, 32
   offset: 2, 5
   index: -1
 wcatDash1
   rotate: false
-  xy: 32, 215
+  xy: 242, 834
   size: 29, 26
   orig: 32, 32
   offset: 2, 1
   index: -1
 wcatEat0
   rotate: false
-  xy: 163, 445
+  xy: 490, 960
   size: 25, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 wcatEat1
   rotate: false
-  xy: 214, 270
+  xy: 534, 842
   size: 28, 15
   orig: 32, 32
   offset: 2, 0
   index: -1
 wcatEat2
   rotate: false
-  xy: 29, 342
+  xy: 523, 1003
   size: 26, 15
   orig: 32, 32
   offset: 3, 0
   index: -1
 wcatFall0
   rotate: false
-  xy: 192, 424
+  xy: 477, 868
   size: 25, 18
   orig: 32, 32
   offset: 3, 4
   index: -1
 wcatFear0
   rotate: false
-  xy: 63, 222
+  xy: 63, 1001
   size: 29, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatFearJump0
   rotate: false
-  xy: 33, 135
+  xy: 266, 921
   size: 30, 25
   orig: 32, 32
   offset: 0, 4
   index: -1
 wcatIdle0
   rotate: false
-  xy: 61, 299
+  xy: 320, 803
   size: 27, 24
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatIdleAngry0
   rotate: false
-  xy: 203, 383
+  xy: 502, 888
   size: 26, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 wcatIdleRecent0
   rotate: false
-  xy: 218, 449
+  xy: 490, 979
   size: 25, 17
   orig: 32, 32
   offset: 3, 0
   index: -1
 wcatLick0
   rotate: false
-  xy: 178, 341
+  xy: 462, 975
   size: 26, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatLick1
   rotate: false
-  xy: 90, 317
+  xy: 405, 980
   size: 27, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatLick2
   rotate: false
-  xy: 184, 243
+  xy: 298, 941
   size: 28, 22
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatLick3
   rotate: false
-  xy: 62, 274
+  xy: 413, 803
   size: 28, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatLickLook0
   rotate: false
-  xy: 31, 276
+  xy: 346, 990
   size: 28, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatLickLookBack0
   rotate: false
-  xy: 146, 367
+  xy: 392, 904
   size: 25, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatObserve0
   rotate: false
-  xy: 1, 343
+  xy: 551, 986
   size: 26, 15
   orig: 32, 32
   offset: 6, 0
   index: -1
 wcatObserve1
   rotate: false
-  xy: 152, 283
+  xy: 543, 822
   size: 28, 15
   orig: 32, 32
   offset: 4, 0
   index: -1
 wcatObserve2
   rotate: false
-  xy: 161, 199
+  xy: 517, 952
   size: 30, 15
   orig: 32, 32
   offset: 2, 0
   index: -1
 wcatPreVomit0
   rotate: false
-  xy: 129, 167
+  xy: 381, 803
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatShit0
   rotate: false
-  xy: 206, 359
+  xy: 469, 999
   size: 26, 22
   orig: 32, 32
   offset: 5, 0
   index: -1
 wcatShit1
   rotate: false
-  xy: 206, 359
+  xy: 469, 999
   size: 26, 22
   orig: 32, 32
   offset: 5, 0
   index: -1
 wcatShit2
   rotate: false
-  xy: 211, 287
+  xy: 421, 953
   size: 27, 22
   orig: 32, 32
   offset: 4, 0
   index: -1
 wcatVomit0
   rotate: false
-  xy: 161, 174
+  xy: 314, 990
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatVomit1
   rotate: false
-  xy: 193, 193
+  xy: 333, 965
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatVomit2
   rotate: false
-  xy: 225, 203
+  xy: 357, 934
   size: 30, 23
   orig: 32, 32
   offset: 0, 0
   index: -1
 wcatWalk0
   rotate: false
-  xy: 192, 424
+  xy: 477, 868
   size: 25, 18
   orig: 32, 32
   offset: 3, 3
   index: -1
 wcatWalk1
   rotate: false
-  xy: 138, 392
+  xy: 450, 873
   size: 25, 20
   orig: 32, 32
   offset: 3, 0
   index: -1
 window
   rotate: false
-  xy: 83, 1
+  xy: 1, 885
   size: 80, 80
   orig: 80, 80
   offset: 0, 0

@@ -34,10 +34,6 @@ class Grandma extends en.Hero {
 		spr.anim.registerStateAnim("heroTalk",1,0.4, function() return cd.has("talking") );
 		spr.anim.registerStateAnim("heroIdle",0, 0.6);
 
-		spr.lib.defineAnim("heroTalk", "0,1,2(2),1,0,1,0,2,1(2),2,0,1(2),2,0,2");
-		spr.lib.defineAnim("heroRoll", "0");
-		spr.lib.defineAnim("heroWalk", "0(2),1,2,3,4(2),3,2,1");
-
 		focus = Assets.gameElements.h_get("use",0, 0.5,0.5);
 		focus.scaleY = -1;
 		focus.visible = false;

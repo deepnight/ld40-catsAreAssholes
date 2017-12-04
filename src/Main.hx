@@ -2,9 +2,11 @@ import mt.Process;
 import mt.MLib;
 
 class Main extends mt.Process {
+	public static var BG = 0x0e0829;
 	public static var ME : Main;
 	public var console : Console;
 	public var cached : h2d.CachedBitmap;
+	var black : h2d.Bitmap;
 
 	public function new() {
 		super();
@@ -39,7 +41,10 @@ class Main extends mt.Process {
 		});
 		#end
 
-		restartGame();
+		black = new h2d.Bitmap(h2d.Tile.fromColor(BG,1,1), root);
+		black.visible = false;
+
+		new ui.Title();
 		onResize();
 	}
 
@@ -55,10 +60,30 @@ class Main extends mt.Process {
 		return hxd.Key.isDown(k);
 	}
 
+	public function setBlack(on:Bool, ?cb:Void->Void) {
+		if( on ) {
+			black.visible = true;
+			tw.createS(black.alpha, 0>1, 0.6).onEnd = function() {
+				if( cb!=null )
+					cb();
+			}
+		}
+		else {
+			tw.createS(black.alpha, 0, 0.3).onEnd = function() {
+				black.visible = false;
+				if( cb!=null )
+					cb();
+			}
+		}
+
+	}
+
 	override public function onResize() {
 		super.onResize();
 		cached.width = MLib.ceil(Boot.ME.s2d.width/cached.scaleX);
 		cached.height = MLib.ceil(Boot.ME.s2d.height/cached.scaleY);
+		black.scaleX = Boot.ME.s2d.width;
+		black.scaleY = Boot.ME.s2d.height;
 	}
 
 	override public function onDispose() {
@@ -72,22 +97,26 @@ class Main extends mt.Process {
 			ui.ShopWindow.ME.destroy();
 
 		if( Game.ME!=null ) {
-			tw.createS(Game.ME.root.alpha, 0, 0.5).end( function() {
+			setBlack(true, function() {
 				Game.ME.destroy();
 				delayer.addS(function() {
 					new Game( new h2d.Sprite(cached) );
 					tw.createS(Game.ME.root.alpha, 0>1, 0.4);
+					setBlack(false);
 				},0.5);
 			});
 		}
 		else {
 			new Game( new h2d.Sprite(cached) );
 			tw.createS(Game.ME.root.alpha, 0>1, 0.4);
+			setBlack(false);
 		}
 	}
 
 	override function postUpdate() {
 		super.postUpdate();
+
+		root.over(black);
 
 		for(k in presses.keys())
 			if( !hxd.Key.isDown(k) )

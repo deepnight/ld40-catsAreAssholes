@@ -68,22 +68,6 @@ class Cat extends Entity {
 		spr.anim.registerStateAnim(skin+"IdleAngry",0, function() return isAngry());
 		spr.anim.registerStateAnim(skin+"Idle",0, function() return !isAngry());
 
-
-		spr.lib.defineAnim("bcatObserve", "0(10),1,2(16),1");
-		spr.lib.defineAnim("ncatObserve", "0(10),1,2(16),1");
-
-		spr.lib.defineAnim("bcatShit", "0(2),1,2(3),1");
-		spr.lib.defineAnim("ncatShit", "0(2),1,2(3),1");
-
-		spr.lib.defineAnim("bcatDash", "0(2),1");
-		spr.lib.defineAnim("ncatDash", "0(2),1");
-
-		spr.lib.defineAnim("bcatEat", "0(2),1,0, 1,2, 1,2, 1,2(2)");
-		spr.lib.defineAnim("ncatEat", "0(2),1,0, 1,2, 1,2, 1,2(2)");
-
-		spr.lib.defineAnim("bcatLick", "0-2(1), 3(2)");
-		spr.lib.defineAnim("ncatLick", "0-2(1), 3(2)");
-
 		spr.colorMatrix = mt.deepnight.Color.getColorizeMatrixH2d( mt.deepnight.Color.makeColorHsl(rnd(0,1), 0.5, 1), rnd(0,0.3));
 
 		shitStock = irnd(0,2);
@@ -698,12 +682,23 @@ class Cat extends Entity {
 
 		if( !cd.hasSetS("meow",rnd(3,8)) ) {
 			var all = [
-				Assets.SBANK.cat0,
-				Assets.SBANK.cat1,
-				Assets.SBANK.cat2,
-				Assets.SBANK.cat3,
-				Assets.SBANK.cat4,
+				Assets.SBANK.kat0,
+				Assets.SBANK.kat1,
+				Assets.SBANK.kat2,
+				Assets.SBANK.kat3,
+				Assets.SBANK.kat4,
+				Assets.SBANK.kat5,
+				Assets.SBANK.kat6,
+				Assets.SBANK.kat7,
+				Assets.SBANK.kat8,
 			];
+			//var all = [
+				//Assets.SBANK.cat0,
+				//Assets.SBANK.cat1,
+				//Assets.SBANK.cat2,
+				//Assets.SBANK.cat3,
+				//Assets.SBANK.cat4,
+			//];
 			var s = all[Std.random(all.length)]();
 			s.play( (sightCheck(hero)?1:0.4) * ( 0.1 + 0.5 * MLib.fclamp(1-distCase(hero)/10,0,1) ) );
 		}

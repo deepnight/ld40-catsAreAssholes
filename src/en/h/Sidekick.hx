@@ -45,9 +45,6 @@ class Sidekick extends en.Hero {
 		spr.anim.registerStateAnim("sideIdleTv",1, 0.6, function() return cx==restX && cy==restY && dir==-1);
 		spr.anim.registerStateAnim("sideIdle",0);
 
-		spr.lib.defineAnim("sideWalk", "0(2),1,2(2),1");
-		spr.lib.defineAnim("sideIdleTv", "0,1,2(2),1(3),2,1,0(2),2,1,0,2(2),1,0,1,0");
-
 		enableShadow(1.5);
 		pointers = [];
 		for(i in 0...3) {
