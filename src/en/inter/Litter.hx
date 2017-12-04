@@ -12,7 +12,7 @@ class Litter extends en.Interactive {
 	public function new(x,y) {
 		super(x,y);
 		ALL.push(this);
-		zPrio = -99;
+		zPrio = -999;
 		weight = 1;
 	}
 
@@ -31,7 +31,7 @@ class Litter extends en.Interactive {
 	override public function onActivate(by:Hero) {
 		super.onActivate(by);
 		if( stock>0 ) {
-			by.pick(Trash);
+			by.pick(-1, Trash);
 			stock = 0;
 		}
 	}
@@ -44,6 +44,9 @@ class Litter extends en.Interactive {
 		super.postUpdate();
 		spr.y+=10;
 		spr.set("litter", stock>=max ? 3 : stock>=max*0.5 ? 2 : stock>0 ? 1 : 0);
+
+		if( isFull() && !cd.hasSetS("warning",1) )
+			blink();
 	}
 
 	//override public function update() {

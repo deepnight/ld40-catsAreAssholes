@@ -38,8 +38,11 @@ class TrashCan extends en.Interactive {
 
 	override public function onActivate(by:Hero) {
 		super.onActivate(by);
-		if( by.item!=null && canBeTrashed(by.item) )
+		if( by.item!=null && canBeTrashed(by.item) ) {
+			jump(0.2);
+			cd.setS("shake",2);
 			by.destroyItem();
+		}
 	}
 
 	override function onTouch(e:Entity) {
@@ -54,5 +57,7 @@ class TrashCan extends en.Interactive {
 
 	override public function postUpdate() {
 		super.postUpdate();
+		if( cd.has("shake") )
+			spr.x+=cd.getRatio("shake")*Math.cos(game.ftime*0.5)*1;
 	}
 }

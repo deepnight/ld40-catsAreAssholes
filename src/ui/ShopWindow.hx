@@ -229,6 +229,7 @@ class ShopWindow extends mt.Process {
 
 		money.text = "You have $"+Game.ME.hero.money;
 
+		var g = Game.ME;
 		for(i in items)
 			i.f.alpha = 0.7;
 		var i = items[curIdx];
@@ -238,13 +239,13 @@ class ShopWindow extends mt.Process {
 			cursor.x = 5 - MLib.fabs(Math.sin(ftime*0.2)*5);
 			cursor.y += ( i.f.y + i.f.outerHeight*0.5 - cursor.y ) * 0.3;
 
-			if( Key.isPressed(Key.DOWN) && curIdx<items.length-1 )
+			if( Main.ME.keyPressed(Key.DOWN) && curIdx<items.length-1 )
 				curIdx++;
 
-			if( Key.isPressed(Key.UP) && curIdx>0 )
+			if( Main.ME.keyPressed(Key.UP) && curIdx>0 )
 				curIdx--;
 
-			if( !cd.has("lock") && ( Key.isPressed(Key.ENTER) || Key.isPressed(Key.SPACE) ) ) {
+			if( !cd.has("lock") && ( Main.ME.keyPressed(Key.ENTER) || Main.ME.keyPressed(Key.SPACE) ) ) {
 				if( Game.ME.hero.money>=i.p ) {
 					Game.ME.hero.money-=i.p;
 					i.cb();
@@ -253,10 +254,10 @@ class ShopWindow extends mt.Process {
 			}
 		}
 
-		if( !cd.has("lock") && door.hasAnyEvent() && Key.isPressed(Key.SPACE) )
+		if( !cd.has("lock") && door.hasAnyEvent() && Main.ME.keyPressed(Key.SPACE) )
 			close();
 
-		if( Key.isPressed(Key.ESCAPE) )
+		if( Main.ME.keyPressed(Key.ESCAPE) )
 			close();
 	}
 }

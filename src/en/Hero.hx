@@ -6,15 +6,17 @@ import mt.heaps.slib.*;
 class Hero extends Entity {
 	public var item : Null<Data.ItemKind>;
 	public var itemIcon : Null<h2d.Bitmap>;
+	public var itemUid : Int;
 
 	private function new(x,y) {
 		super(x,y);
 		weight = -1;
 	}
 
-	public function pick(i:Data.ItemKind) {
+	public function pick(itemUid:Int, i:Data.ItemKind) {
 		dropItem();
 		item = i;
+		this.itemUid = itemUid>0 ? itemUid : Const.UNIQ++;
 		itemIcon = new h2d.Bitmap(Assets.getItem(item), spr);
 		itemIcon.tile.setCenterRatio(0.5,1);
 		itemIcon.y = -20;
@@ -28,6 +30,7 @@ class Hero extends Entity {
 		item = null;
 		itemIcon.remove();
 		itemIcon = null;
+		itemUid = -1;
 	}
 
 	function getThrowAng() {
@@ -50,13 +53,11 @@ class Hero extends Entity {
 
 			default :
 				var a = getThrowAng() + rnd(0,0.1,true);
-				var e = new en.inter.ItemDrop(item, cx,cy);
+				var e = new en.inter.ItemDrop(itemUid, item, cx,cy);
 				e.dx = Math.cos(a) * 0.3;
 				e.dy = Math.sin(a) * 0.3;
 
-				item = null;
-				itemIcon.remove();
-				itemIcon = null;
+				destroyItem();
 		}
 	}
 

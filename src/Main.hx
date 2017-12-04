@@ -43,6 +43,18 @@ class Main extends mt.Process {
 		onResize();
 	}
 
+	var presses : Map<Int,Bool>;
+	public function keyPressed(k:Int) {
+		if( presses==null )
+			presses = new Map();
+
+		if( presses.exists(k) )
+			return false;
+
+		presses.set(k, true);
+		return hxd.Key.isDown(k);
+	}
+
 	override public function onResize() {
 		super.onResize();
 		cached.width = MLib.ceil(Boot.ME.s2d.width/cached.scaleX);
@@ -72,5 +84,13 @@ class Main extends mt.Process {
 			new Game( new h2d.Sprite(cached) );
 			tw.createS(Game.ME.root.alpha, 0>1, 0.4);
 		}
+	}
+
+	override function postUpdate() {
+		super.postUpdate();
+
+		for(k in presses.keys())
+			if( !hxd.Key.isDown(k) )
+				presses.remove(k);
 	}
 }

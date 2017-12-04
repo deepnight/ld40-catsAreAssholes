@@ -59,7 +59,8 @@ class Viewport extends mt.Process {
 		y+=dy;
 		dx*=0.8;
 		dy*=0.8;
-		game.scroller.x = Std.int( -(x+2*level.wid*0.5*Const.GRID)*0.33 + wid*0.5 );
-		game.scroller.y = Std.int( -(y+2*level.hei*0.5*Const.GRID)*0.33 + hei*0.5 );
+		var prioCenter = 0.3;
+		game.scroller.x = Std.int( -(x+prioCenter*level.wid*0.5*Const.GRID)/(1+prioCenter) + wid*0.5 );
+		game.scroller.y = Std.int( -(y+prioCenter*level.hei*0.5*Const.GRID)/(1+prioCenter) + hei*0.5 );
 	}
 }

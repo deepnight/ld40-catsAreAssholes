@@ -54,7 +54,7 @@ class Fridge extends en.Interactive {
 			by.destroyItem();
 		}
 		else {
-			by.pick(FishCan);
+			by.pick(-1, FishCan);
 			stock--;
 		}
 	}

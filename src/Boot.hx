@@ -17,7 +17,10 @@ class Boot extends hxd.App {
 
 		engine.backgroundColor = 0xff<<24|0x0e0828;
 		onResize();
-
+#if hl
+		@:privateAccess hxd.Stage.getInstance().window.vsync = true;
+		@:privateAccess hxd.Stage.getInstance().window.displayMode = Borderless;
+#end
 		new Main();
 	}
 
@@ -40,7 +43,7 @@ class Boot extends hxd.App {
 		accu+=dt*speed;
 		mt.heaps.slib.SpriteLib.DT = dt*speed;
 		while( accu>=1 ) {
-			mt.Process.updateAll(dt);
+			mt.Process.updateAll(1);
 			accu--;
 		}
 	}

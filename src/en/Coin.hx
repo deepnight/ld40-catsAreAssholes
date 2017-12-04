@@ -31,7 +31,7 @@ class Coin extends Entity {
 		dy = rnd(0,0.1,true);
 
 		cd.setS("lock", rnd(0.4,0.8));
-		spr.anim.playAndLoop(Std.random(2)==0?"coin":"scoin").setSpeed(rnd(0.1,0.2)).unsync();
+		spr.anim.playAndLoop(v>1?"coin":"scoin").setSpeed(rnd(0.1,0.2)).unsync();
 		cd.setS("alive", 15);
 	}
 

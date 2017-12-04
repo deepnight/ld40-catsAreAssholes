@@ -7,11 +7,14 @@ import hxd.Key;
 class ItemDrop extends en.Interactive {
 	public static var ALL : Array<ItemDrop> = [];
 
+	public var itemUid : Int;
 	public var k : Data.ItemKind;
 	public var skew = 0.;
 
-	public function new(k:Data.ItemKind, x,y) {
+	public function new(?iid:Int, k:Data.ItemKind, x,y) {
 		super(x,y);
+
+		itemUid = iid!=null ? iid : Const.UNIQ++;
 		ALL.push(this);
 		radius = Const.GRID*0.3;
 		this.k = k;
@@ -20,11 +23,15 @@ class ItemDrop extends en.Interactive {
 		weight = 5;
 		zPrio = -8;
 
+		if( k==Trash )
+			cd.setS("loss",10);
+
 		spr.set("empty");
 		cd.setS("shake",rnd(1,2.5));
 
 		var icon = new h2d.Bitmap(Assets.getItem(k), spr);
 		icon.tile.setCenterRatio(0.5,1);
+		icon.colorAdd = cAdd;
 
 		if( Data.item.get(k).decayS>0 )
 			cd.setS("alive", Data.item.get(k).decayS, function() {
@@ -56,6 +63,9 @@ class ItemDrop extends en.Interactive {
 		spr.scaleX = (1-skew)*dir;
 		spr.scaleY = (1-skew);
 		skew += (0-skew)*0.3;
+
+		//if( k==Shit && !cd.hasSetS("warning",1) )
+			//blink();
 	}
 
 	override public function onActivate(by:Hero) {
@@ -75,10 +85,10 @@ class ItemDrop extends en.Interactive {
 				ui.Life.ME.blink();
 
 			case Shit :
-				by.pick(Trash);
+				by.pick(itemUid, Trash);
 
 			default :
-				by.pick(k);
+				by.pick(itemUid, k);
 		}
 		destroy();
 	}
@@ -91,6 +101,18 @@ class ItemDrop extends en.Interactive {
 		else
 			frict = 0.75;
 
+		switch( k ) {
+			case Shit :
+				if( !cd.hasSetS("loss",10) ) {
+					game.hero.loseMoney(this,10);
+				}
+			case Trash :
+				if( !cd.hasSetS("loss",10) ) {
+					game.hero.loseMoney(this,2);
+				}
+			default :
+		}
+
 		if( k==CatBox && !cd.hasSetS("shake",rnd(0.2,0.5)) ) {
 			dx+=rnd(0,0.02,true);
 			dy+=rnd(0,0.02,true);
@@ -101,5 +123,9 @@ class ItemDrop extends en.Interactive {
 			spr.alpha = spr.alpha==0.6 ? 0 : 0.6;
 		else if( cd.has("alive") && cd.getS("alive")>1 && cd.getS("alive")<=3 && !cd.hasSetS("blink",0.09) )
 			spr.alpha = spr.alpha==1 ? 0.3 : 1;
+
+		#if debug
+		setLabel("uid="+itemUid);
+		#end
 	}
 }

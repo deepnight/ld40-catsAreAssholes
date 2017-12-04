@@ -104,91 +104,112 @@
 							"y": 2,
 							"marker": "Door",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						},
 						{
 							"x": 15,
 							"y": 2,
 							"marker": "Shop",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						},
 						{
 							"x": 19,
 							"y": 3,
 							"marker": "TrashCan",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						},
 						{
 							"x": 5,
 							"y": 4,
 							"marker": "Cat",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						},
 						{
 							"x": 28,
 							"y": 4,
 							"marker": "Litter",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						},
 						{
 							"x": 6,
 							"y": 5,
 							"marker": "Ball",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
+						},
+						{
+							"x": 26,
+							"y": 11,
+							"marker": "FoodTray",
+							"width": 1,
+							"height": 1,
+							"data": "empty"
 						},
 						{
 							"x": 6,
 							"y": 11,
 							"marker": "Ball",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						},
 						{
 							"x": 18,
 							"y": 11,
 							"marker": "Fridge",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						},
 						{
 							"x": 13,
 							"y": 13,
 							"marker": "Grandma",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						},
 						{
 							"x": 20,
 							"y": 13,
 							"marker": "Cat",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						},
 						{
 							"x": 3,
 							"y": 15,
 							"marker": "Ball",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						},
 						{
 							"x": 23,
 							"y": 15,
 							"marker": "FoodTray",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						},
 						{
 							"x": 13,
 							"y": 16,
 							"marker": "Ball",
 							"width": 1,
-							"height": 1
+							"height": 1,
+							"data": ""
 						}
 					]
 				}
@@ -402,6 +423,10 @@
 					"typeStr": "3",
 					"name": "height",
 					"display": null
+				},
+				{
+					"typeStr": "1",
+					"name": "data"
 				}
 			]
 		},
@@ -528,7 +553,7 @@
 						"y": 0
 					},
 					"desc": "Moar cats! The moar the better?",
-					"deliveryS": 5,
+					"deliveryS": 3,
 					"scaledCosts": [
 						{
 							"v": 0
@@ -586,7 +611,7 @@
 					},
 					"desc": "Fish cans for your fridge.",
 					"cost": 10,
-					"deliveryS": 10,
+					"deliveryS": 3,
 					"scaledCosts": [],
 					"cond": "Kid",
 					"name": ""
@@ -601,7 +626,7 @@
 						"y": 0
 					},
 					"desc": "Extra food Bowl.",
-					"deliveryS": 10,
+					"deliveryS": 5,
 					"scaledCosts": [
 						{
 							"v": 30
@@ -625,7 +650,7 @@
 							"v": 100
 						}
 					],
-					"deliveryS": 10,
+					"deliveryS": 5,
 					"decayS": 0,
 					"icon": {
 						"file": "items.png",
@@ -640,7 +665,7 @@
 				{
 					"id": "FridgeUp",
 					"desc": "Upgrade Fridge capacity.",
-					"deliveryS": 10,
+					"deliveryS": 5,
 					"decayS": 0,
 					"icon": {
 						"file": "items.png",
@@ -694,39 +719,40 @@
 				{
 					"id": "Ball",
 					"cd": 5,
-					"value": 2,
+					"value": 4,
 					"index": 0,
-					"maxValue": 4
+					"maxValue": 6
 				},
 				{
 					"id": "FightCat",
 					"cd": 0,
-					"value": 10,
+					"value": 15,
 					"index": 1
 				},
 				{
 					"id": "NewCat",
 					"cd": 0,
-					"value": 15,
+					"value": 0,
 					"index": 2
 				},
 				{
 					"id": "PoopLitter",
 					"cd": 0,
-					"value": 2,
+					"value": 3,
 					"index": 3,
-					"maxValue": 3
+					"maxValue": 5
 				},
 				{
 					"id": "Lick",
 					"cd": 2,
 					"value": 1,
-					"index": 4
+					"index": 4,
+					"maxValue": 2
 				},
 				{
 					"id": "Love",
 					"cd": 0,
-					"value": 5,
+					"value": 10,
 					"index": 5,
 					"maxValue": 7
 				}

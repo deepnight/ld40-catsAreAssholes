@@ -114,6 +114,26 @@ class Entity {
 		game.delayer.addS("clearSay"+uid, clearWords.bind(), 2+str.length*0.05);
 	}
 
+	public function pop(str:String, ?c=0x30D9E7) {
+		var tf = new h2d.Text(Assets.font);
+		game.scroller.add(tf, Const.DP_UI);
+		tf.text = str;
+		tf.textColor = c;
+
+		tf.x = Std.int(footX-tf.textWidth*0.5);
+		tf.y = Std.int( footY-5 );
+		game.tw.createS(tf.y, tf.y-20, 0.15);
+		game.tw.createS(tf.scaleY, 0>1, 0.15);
+		game.delayer.addS( function() {
+			game.tw.createS(tf.y, tf.y-15,1);
+		}, 0.15);
+		game.delayer.addS( function() {
+			game.tw.createS(tf.alpha, 1>0, 0.4).end(function() {
+				tf.remove();
+			});
+		}, 2);
+	}
+
 	public function emote(id:String, ?sec=2.0) {
 		clearEmote();
 		emoteIcon = Assets.gameElements.h_get(id,0, 0.5,1);
@@ -235,7 +255,7 @@ class Entity {
 		}
 
 		if( emoteIcon!=null ) {
-			emoteIcon.setPos(footX, footY-20);
+			emoteIcon.setPos(footX, footY-20 - Math.sin(game.ftime*0.1)*2);
 			if( !cd.has("saying") ) {
 				emoteIcon.alpha-=0.03;
 				if( emoteIcon.alpha<=0 )

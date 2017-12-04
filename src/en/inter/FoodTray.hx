@@ -43,6 +43,9 @@ class FoodTray extends en.Interactive {
 			spr.set("foodFull",2);
 
 		spr.rotation+=(0-spr.rotation)*0.15;
+
+		if( isEmpty() && !cd.hasSetS("warning",1) )
+			blink();
 	}
 
 	public function isEmpty() return stock<=0;
@@ -73,6 +76,7 @@ class FoodTray extends en.Interactive {
 			by.emote("eFishCan");
 		}
 	}
+
 
 	override public function update() {
 		super.update();

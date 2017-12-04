@@ -45,6 +45,11 @@ class Grandma extends en.Hero {
 		cd.setS("talking", 1);
 	}
 
+
+	override public function emote(id:String, ?sec = 2.0) {
+		super.emote(id, sec);
+		cd.setS("talking",1);
+	}
 	override function clearWords(?immediate = false) {
 		super.clearWords(immediate);
 		cd.unset("talking");
@@ -68,6 +73,14 @@ class Grandma extends en.Hero {
 		focus.remove();
 	}
 
+	public function loseMoney(?source:Entity, v:Int) {
+		(source==null?this:source).pop("-$"+v, 0xFF0000);
+		money-=v;
+		if( money<0 )
+			money = 0;
+		ui.Money.ME.set(money);
+		ui.Money.ME.blink();
+	}
 	override function hasCircCollWith(e:Entity) {
 		if( isDead() )
 			return true;
@@ -101,6 +114,10 @@ class Grandma extends en.Hero {
 				itemIcon.x += Math.sin(game.ftime*0.22)*1;
 				itemIcon.y += Math.cos(game.ftime*0.61)*2;
 			}
+		}
+
+		if( emoteIcon!=null ) {
+			emoteIcon.y-=7;
 		}
 
 		spr.alpha += ((cd.has("dashing") ? 0.5 : 1)-spr.alpha)*0.3;
@@ -186,7 +203,7 @@ class Grandma extends en.Hero {
 
 			// Use
 			var dh = new DecisionHelper(en.Interactive.ALL);
-			dh.remove( function(e) return !e.canBeActivated(this) || !sightCheck(e) || distCase(e)>1.5 );
+			dh.remove( function(e) return !e.canBeActivated(this) || !sightCheck(e) || distCase(e)>2.1 );
 			dh.score( function(e) return isLookingAt(e) ? 2 : 0 );
 			dh.score( function(e) return distCase(e)<=1.5 ? 5 : 0 );
 			dh.score( function(e) return -distCase(e) );
@@ -195,7 +212,7 @@ class Grandma extends en.Hero {
 			if( useTarget!=null )
 				focus.setPos(useTarget.footX, useTarget.footY-10 - MLib.fabs( Math.sin(game.ftime*0.2)*6) );
 
-			if( Key.isPressed(Key.SPACE) ) {
+			if( Main.ME.keyPressed(Key.SPACE) ) {
 				if( useTarget!=null && ( !useTarget.is(en.inter.ItemDrop) || item==null ) ) {
 					useTarget.activate(this);
 				}
@@ -205,11 +222,11 @@ class Grandma extends en.Hero {
 
 			if( side!=null ) {
 				// Call sidekick
-				if( Key.isPressed(Key.C) && useTarget!=null )
+				if( Main.ME.keyPressed(Key.C) && useTarget!=null )
 					side.callOn(useTarget);
 
 				// Cancel sidekick
-				if( Key.isPressed(Key.ESCAPE) )
+				if( Main.ME.keyPressed(Key.ESCAPE) )
 					side.reset();
 			}
 
@@ -241,10 +258,12 @@ class Grandma extends en.Hero {
 		}
 
 		#if debug
-		if( Key.isPressed(Key.NUMPAD_ENTER) ) {
-			Tutorial.ME.tryToStart("test", "hllow world");
+		// Test
+		if( Main.ME.keyPressed(Key.NUMPAD_ENTER) ) {
+			//Tutorial.ME.tryToStart("test", "hllow world");
+			//pop("hello");
 			//hit(this, 1);
-			//new en.Coin(5, cx+3, cy);
+			new en.inter.ItemDrop(Shit, cx+3, cy);
 		}
 		#end
 
@@ -277,6 +296,9 @@ class Grandma extends en.Hero {
 				if( xr<=0.5 && yr>=0.7 && level.hasColl(cx,cy+1) && !level.hasColl(cx-1,cy+1) ) dx-=spd*0.5;
 			}
 		}
+
+		if( Console.ME.has("fps") )
+			setLabel( ""+pretty(hxd.Timer.fps(),1)+" "+pretty(dt,2) );
 
 		if( isDead() && !cd.hasSetS("autoGain",rnd(0.6,1)) )
 			gainFollowers(en.Cat.ALL.length*100, true);

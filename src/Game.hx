@@ -69,16 +69,15 @@ class Game extends mt.Process {
 		// Updates
 		for(e in Entity.ALL) {
 			scroller.over(e.spr);
-			@:privateAccess e.dt = dt;
+			@:privateAccess e.dt = 1;
 			if( !e.destroyed ) e.preUpdate();
 			if( !e.destroyed ) e.update();
 			if( !e.destroyed ) e.postUpdate();
 		}
 		gc();
 
-		if( hxd.Key.isPressed(hxd.Key.R) )
+		if( Main.ME.keyPressed(hxd.Key.R) )
 			Main.ME.restartGame();
-
 
 		Tutorial.ME.tryToStart("controls", "Use ARROWS to move.");
 
