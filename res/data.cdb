@@ -142,6 +142,27 @@
 							"height": 1
 						},
 						{
+							"x": 12,
+							"y": 8,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 12,
+							"y": 9,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 12,
+							"y": 10,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
 							"x": 6,
 							"y": 11,
 							"marker": "Ball",
@@ -149,9 +170,23 @@
 							"height": 1
 						},
 						{
+							"x": 12,
+							"y": 11,
+							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
 							"x": 18,
 							"y": 11,
 							"marker": "Fridge",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 12,
+							"y": 12,
+							"marker": "Cat",
 							"width": 1,
 							"height": 1
 						},
@@ -173,6 +208,41 @@
 							"x": 20,
 							"y": 13,
 							"marker": "Cat",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 11,
+							"y": 15,
+							"marker": "FoodTray",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 12,
+							"y": 15,
+							"marker": "FoodTray",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 13,
+							"y": 15,
+							"marker": "FoodTray",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 14,
+							"y": 15,
+							"marker": "FoodTray",
+							"width": 1,
+							"height": 1
+						},
+						{
+							"x": 15,
+							"y": 15,
+							"marker": "FoodTray",
 							"width": 1,
 							"height": 1
 						},
@@ -534,10 +604,10 @@
 							"v": 0
 						},
 						{
-							"v": 0
+							"v": 5
 						},
 						{
-							"v": 0
+							"v": 10
 						},
 						{
 							"v": 20

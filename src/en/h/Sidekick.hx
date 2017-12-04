@@ -65,7 +65,7 @@ class Sidekick extends en.Hero {
 			1000;
 			hero.sayWords("Ho, hi Mark.");
 			1300;
-			clearSay();
+			clearWords();
 			Tutorial.ME.tryToStart("side", "Press C near something useful (like a bowl, or a dirty litter box) to ask Mark to take care of it.");
 			onDone();
 		});
@@ -118,7 +118,7 @@ class Sidekick extends en.Hero {
 				return;
 
 		if( actions.length>0 ) {
-			say("eQuestion",0.5);
+			emote("eQuestion",0.5);
 			if( queue.length<maxQueue )
 				queue.push(e);
 			return;
@@ -128,7 +128,7 @@ class Sidekick extends en.Hero {
 		if( e.is(en.inter.Litter) ) {
 			var e = e.as(en.inter.Litter);
 			var t = pickTrashCan();
-			say("eShit");
+			emote("eShit");
 			actions = [
 				GoInter(e),
 				AbandonIf(function() return item==null),
@@ -137,20 +137,20 @@ class Sidekick extends en.Hero {
 		}
 
 		if( e.is(en.inter.Shop) ) {
-			say("eQuestion");
+			emote("eQuestion");
 			//var e = e.as(en.inter.Shop);
-			//say("eCall");
+			//emote("eCall");
 			//actions = [
 				//GoInter(e),
 			//];
 		}
 
 		if( e.is(en.inter.Fridge) ) {
-			say("eQuestion");
+			emote("eQuestion");
 			//var f = e.as(en.inter.Fridge);
 			//var t = pickFoodTray();
 			//if( t!=null ) {
-				//say("eFood");
+				//emote("eFood");
 				//actions = [
 					//GoInter(f),
 					//RepeatPrevIf(function() return item==null, 4),
@@ -161,17 +161,17 @@ class Sidekick extends en.Hero {
 
 		if( e.is(en.inter.FoodTray) ) {
 			if( e.as(en.inter.FoodTray).isFull() ) {
-				say("eQuestion");
+				emote("eQuestion");
 			}
 			else {
 				var from : en.Interactive = pickFridge(true,e);
 				if( from==null )
 					from = pickItem(FishCan);
 				if( from==null )
-					say("eError");
+					emote("eError");
 				else {
 					var t = e.as(en.inter.FoodTray);
-					say("eFood");
+					emote("eFood");
 					actions = [
 						GoInter(from),
 						RepeatPrevIf(function() return item==null, 4),
@@ -186,32 +186,32 @@ class Sidekick extends en.Hero {
 			switch( e.k ) {
 				case Data.ItemKind.FishCan :
 					var t = pickFoodTray();
-					say("eFood");
+					emote("eFood");
 					if( t!=null )
 						actions = [ GoInter(e), GoInter(t) ];
 					else
-						say("eQuestion");
+						emote("eQuestion");
 
 				case Data.ItemKind.FoodBox :
 					var t = pickFridge(false);
 					if( t!=null ) {
-						say("eFood");
+						emote("eFood");
 						actions = [ GoInter(e), GoInter(t) ];
 					}
 					else
-						say("eQuestion");
+						emote("eQuestion");
 
 				case Data.ItemKind.FridgeUp :
 					var t = pickFridge(false);
 					if( t!=null ) {
-						say("eUp");
+						emote("eUp");
 						actions = [ GoInter(e), GoInter(t) ];
 					}
 					else
-						say("eQuestion");
+						emote("eQuestion");
 
 				case Data.ItemKind.Trash, Data.ItemKind.Shit :
-					say("eShit");
+					emote("eShit");
 					var t = pickTrashCan();
 					actions = [ GoInter(e), GoInter(t) ];
 
@@ -219,7 +219,7 @@ class Sidekick extends en.Hero {
 					actions = [ GoInter(e) ];
 
 				default :
-					say("eQuestion");
+					emote("eQuestion");
 			}
 		}
 
@@ -242,7 +242,7 @@ class Sidekick extends en.Hero {
 	}
 
 	function abandon() {
-		say("eError", 1.5);
+		emote("eError", 1.5);
 		clearActions();
 		onDone();
 	}

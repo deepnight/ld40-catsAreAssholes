@@ -253,7 +253,7 @@ class ShopWindow extends mt.Process {
 			}
 		}
 
-		if( door.hasAnyEvent() && Key.isPressed(Key.SPACE) )
+		if( !cd.has("lock") && door.hasAnyEvent() && Key.isPressed(Key.SPACE) )
 			close();
 
 		if( Key.isPressed(Key.ESCAPE) )

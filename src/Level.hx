@@ -60,7 +60,7 @@ class Level extends mt.Process {
 			en.Cat.ALL[0].startEat();
 
 		if( en.Cat.ALL.length>=2 )
-			en.Cat.ALL[1].startPlay();
+			en.Cat.ALL[1].startShit();
 	}
 
 	public inline function hasColl(cx:Int, cy:Int) {

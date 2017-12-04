@@ -23,6 +23,9 @@ class Tutorial extends mt.Process {
 	}
 
 	public function tryToStart(k:String, str:String) {
+		if( Game.ME.hero.isDead() )
+			return false;
+
 		if( cd.has("lock") )
 			return false;
 
@@ -47,5 +50,6 @@ class Tutorial extends mt.Process {
 
 	override public function update() {
 		super.update();
+		//Game.ME.hero.setLabel(""+done);
 	}
 }

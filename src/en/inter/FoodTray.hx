@@ -70,7 +70,7 @@ class FoodTray extends en.Interactive {
 			Tutorial.ME.complete("food");
 		}
 		else {
-			by.say("eFishCan");
+			by.emote("eFishCan");
 		}
 	}
 

@@ -170,7 +170,7 @@ class Cat extends Entity {
 	}
 
 	function startHeroAttack(r:String) {
-		say(r, 6);
+		emote(r, 6);
 		lookAt(game.hero);
 		startJob( Fight(hero,r), 999 );
 		cd.setS("lock", rnd(2.5,3.5));
@@ -185,7 +185,7 @@ class Cat extends Entity {
 	}
 
 	function startWait(?t:Float) {
-		clearSay();
+		clearEmote();
 		var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(cx,cy, 2) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
 		dh.score( function(pt) return -Lib.distance(cx,cy,pt.x,pt.y) );
@@ -216,7 +216,7 @@ class Cat extends Entity {
 		return true;
 	}
 
-	function startShit() {
+	public function startShit() {
 		if( shitStock<=0 )
 			return false;
 
@@ -393,7 +393,7 @@ class Cat extends Entity {
 						case "eReqFood" :
 							for(e in en.inter.FoodTray.ALL)
 								if( !e.isEmpty() && sightCheck(e) ) {
-									clearSay();
+									clearEmote();
 									startEat();
 									break;
 								}
@@ -401,7 +401,7 @@ class Cat extends Entity {
 						case "eReqShit" :
 							for(e in en.inter.Litter.ALL)
 								if( !e.isFull() && sightCheck(e) ) {
-									clearSay();
+									clearEmote();
 									startWait(1);
 									break;
 								}
@@ -419,7 +419,7 @@ class Cat extends Entity {
 						if( distCase(e)<=2 && sightCheck(e) ) {
 							if( !cd.hasSetS("love",rnd(25,50)) ) {
 								game.moneyMan.trigger(this, Love);
-								say("eLove", 1);
+								emote("eLove", 1);
 							}
 							stop();
 						}
@@ -429,7 +429,7 @@ class Cat extends Entity {
 
 				case Fight(e,r) :
 					if( r!=null && distCase(e)<=6 )
-						say(r, 2);
+						emote(r, 2);
 
 					if( e.destroyed )
 						startRandom();
@@ -628,7 +628,7 @@ class Cat extends Entity {
 			else {
 				#if debug
 				if( Console.ME.has("job") )
-					setLabel("lock="+pretty(cd.getS("lock"))+"s onGround="+onGround);
+					setLabel("lock="+pretty(cd.getS("lock"))+"s onGround="+onGround+" alt="+altitude+" dalt="+dalt);
 				#end
 				rebootF+=dt;
 				if( rebootF>=Const.FPS*5 ) {

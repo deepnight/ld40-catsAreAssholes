@@ -21,12 +21,14 @@ class Grandma extends en.Hero {
 
 		spr.anim.registerStateAnim("heroDead",11, function() return isDead() );
 		spr.anim.registerStateAnim("heroHit",10, function() return cd.has("recentHit") );
+		spr.anim.registerStateAnim("heroTalk",9,0.4, function() return cd.has("talking") );
 		spr.anim.registerStateAnim("heroPostRollEnd",4, function() return cd.has("rolling") && cd.getRatio("rolling")<0.2 );
 		spr.anim.registerStateAnim("heroPostRoll",3, function() return cd.getRatio("rolling")>=0.2 && cd.getRatio("rolling")<0.5 );
 		spr.anim.registerStateAnim("heroRoll",2, 0.17, function() return cd.getRatio("rolling")>=0.5 );
 		spr.anim.registerStateAnim("heroWalk",1, 0.25, function() return cd.has("walking") );
 		spr.anim.registerStateAnim("heroIdle",0);
 
+		spr.lib.defineAnim("heroTalk", "0,1,2(2),1,0,1,0,2,1(2),2,0,1(2),2,0,2");
 		spr.lib.defineAnim("heroRoll", "0");
 		spr.lib.defineAnim("heroWalk", "0(2),1,2,3,4(2),3,2,1");
 
@@ -36,6 +38,16 @@ class Grandma extends en.Hero {
 		game.scroller.add(focus, Const.DP_UI);
 
 		enableShadow(2);
+	}
+
+	override public function sayWords(str:String, ?c = 0xFFFFFF) {
+		super.sayWords(str, c);
+		cd.setS("talking", 1);
+	}
+
+	override function clearWords(?immediate = false) {
+		super.clearWords(immediate);
+		cd.unset("talking");
 	}
 
 	public function gainFollowers(n:Int, ?major=true) {
@@ -91,6 +103,8 @@ class Grandma extends en.Hero {
 			}
 		}
 
+		spr.alpha += ((cd.has("dashing") ? 0.5 : 1)-spr.alpha)*0.3;
+
 		shadow.y+=1;
 	}
 
@@ -119,6 +133,9 @@ class Grandma extends en.Hero {
 			zPrio = -20;
 			radius = Const.GRID*0.4;
 			sayWords("AAAH HEEEEEELP ME!!",0xFF0000);
+			game.delayer.addS(function() {
+				new ui.TutorialTip(null, "Press R to restart");
+			},1.2);
 		}
 		ui.Life.ME.set(life/maxLife);
 	}
@@ -131,8 +148,8 @@ class Grandma extends en.Hero {
 	override public function update() {
 		super.update();
 
-		var spd = 0.03 * (cd.has("turbo") ? 2 : 1);
-		if( cd.has("turbo") )
+		var spd = 0.03 * (cd.has("dashing") ? 2 : 1);
+		if( cd.has("dashing") )
 			spr.anim.setStateAnimSpeed("heroWalk",0.6);
 		else
 			spr.anim.setStateAnimSpeed("heroWalk",0.25);
@@ -200,9 +217,9 @@ class Grandma extends en.Hero {
 			//}
 
 			// Run
-			if( ( Key.isDown(Key.SHIFT) || Key.isDown(Key.CTRL) ) && !cd.has("turboLock") ) {
-				cd.setS("turbo", 0.4);
-				cd.setS("turboLock", 1);
+			if( ( Key.isDown(Key.SHIFT) || Key.isDown(Key.CTRL) ) && !cd.has("dashLock") ) {
+				cd.setS("dashing", 0.4);
+				cd.setS("dashLock", 1);
 				dx*=1.5;
 				dy*=1.5;
 			}
@@ -262,5 +279,6 @@ class Grandma extends en.Hero {
 
 		if( followers>0 && !isDead() && !cd.hasSetS("autoGain",rnd(1,2)) )
 			gainFollowers(en.Cat.ALL.length<=2 ? irnd(0,1) : en.Cat.ALL.length*2, false);
+
 	}
 }

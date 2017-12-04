@@ -16,8 +16,8 @@ class Entity {
 	public var spr : HSprite;
 	public var shadow : Null<HSprite>;
 	var debug : Null<h2d.Graphics>;
-	var emote : Null<HSprite>;
-	var talk : Null<h2d.Text>;
+	var emoteIcon : Null<HSprite>;
+	var talkTf : Null<h2d.Text>;
 	var label : Null<h2d.Text>;
 	var cAdd : h3d.Vector;
 	var dt : Float;
@@ -81,40 +81,43 @@ class Entity {
 		altitude++;
 	}
 
-	function clearSay(?immediate=false) {
-		if( emote!=null ) {
-			emote.remove();
-			emote = null;
+	function clearEmote() {
+		if( emoteIcon!=null ) {
+			emoteIcon.remove();
+			emoteIcon = null;
 		}
-		if( talk!=null ) {
+	}
+
+	function clearWords(?immediate=false) {
+		if( talkTf!=null ) {
 			if( immediate )
-				talk.remove();
+				talkTf.remove();
 			else {
-				var e = talk;
+				var e = talkTf;
 				game.tw.createS(e.alpha, 0, 0.3).end( e.remove );
 			}
-			talk = null;
+			talkTf = null;
 		}
 	}
 
 	public function sayWords(str:String, ?c=0xFFFFFF) {
-		clearSay();
-		talk = new h2d.Text(Assets.font);
-		game.scroller.add(talk, Const.DP_UI);
-		talk.text = str;
-		talk.textColor = c;
-		talk.maxWidth = 150;
-		var e = talk;
+		clearWords();
+		talkTf = new h2d.Text(Assets.font);
+		game.scroller.add(talkTf, Const.DP_UI);
+		talkTf.text = str;
+		talkTf.textColor = c;
+		talkTf.maxWidth = 150;
+		var e = talkTf;
 		game.tw.createS(e.scaleX, 0>1, 0.1);
 
 		game.delayer.cancelById("clearSay"+uid);
-		game.delayer.addS("clearSay"+uid, clearSay.bind(), 2+str.length*0.05);
+		game.delayer.addS("clearSay"+uid, clearWords.bind(), 2+str.length*0.05);
 	}
 
-	public function say(id:String, ?sec=2.0) {
-		clearSay();
-		emote = Assets.gameElements.h_get(id,0, 0.5,1);
-		game.scroller.add(emote, Const.DP_UI);
+	public function emote(id:String, ?sec=2.0) {
+		clearEmote();
+		emoteIcon = Assets.gameElements.h_get(id,0, 0.5,1);
+		game.scroller.add(emoteIcon, Const.DP_UI);
 		cd.setS("saying",sec);
 	}
 
@@ -203,7 +206,10 @@ class Entity {
 			label.remove();
 		if( debug!=null )
 			debug.remove();
-		clearSay(true);
+		if( emoteIcon!=null )
+			emoteIcon.remove();
+		if( talkTf!=null )
+			talkTf.remove();
 	}
 
 	public function preUpdate() {
@@ -223,17 +229,17 @@ class Entity {
 		if( label!=null )
 			label.setPos(footX-label.textWidth*0.5, footY+2);
 
-		if( talk!=null ) {
-			talk.x = Std.int(footX-talk.textWidth*0.5);
-			talk.y = Std.int(footY-24-talk.textHeight);
+		if( talkTf!=null ) {
+			talkTf.x = Std.int(footX-talkTf.textWidth*0.5);
+			talkTf.y = Std.int(footY-24-talkTf.textHeight);
 		}
 
-		if( emote!=null ) {
-			emote.setPos(footX, footY-20);
+		if( emoteIcon!=null ) {
+			emoteIcon.setPos(footX, footY-20);
 			if( !cd.has("saying") ) {
-				emote.alpha-=0.03;
-				if( emote.alpha<=0 )
-					clearSay();
+				emoteIcon.alpha-=0.03;
+				if( emoteIcon.alpha<=0 )
+					clearEmote();
 			}
 
 		}
@@ -355,13 +361,11 @@ class Entity {
 			dalt+=-gravity;
 			altitude+=dalt;
 			dalt*=0.95;
+			if( MLib.fabs(dalt)<=0.1 )
+				dalt = 0;
 			if( altitude<=0 ) {
-				if( MLib.fabs(dalt)<=0.1 )
-					dalt = 0;
-				else {
-					dalt = MLib.fabs(dalt)*bounceFrict;
-					onBounce( MLib.fclamp(MLib.fabs(dalt)/1.6, 0, 1) );
-				}
+				dalt = MLib.fabs(dalt)*bounceFrict;
+				onBounce( MLib.fclamp(MLib.fabs(dalt)/1.6, 0, 1) );
 				altitude = 0;
 			}
 		}
