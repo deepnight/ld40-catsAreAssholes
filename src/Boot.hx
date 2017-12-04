@@ -32,13 +32,17 @@ class Boot extends hxd.App {
 	override function update(dt:Float) {
 		super.update(dt);
 
-		if( Key.isPressed(Key.NUMPAD_SUB) )
-			speed = speed==1 ? 0.35 : speed==0.35 ? 0.1 : 1;
+		#if debug
+		if( !Console.ME.isActive() ) {
+			if( Key.isPressed(Key.NUMPAD_SUB) )
+				speed = speed==1 ? 0.35 : speed==0.35 ? 0.1 : 1;
 
-		if( Key.isDown(Key.NUMPAD_ADD) )
-			speed = 6;
-		else if( speed>1 )
-			speed = 1;
+			if( Key.isDown(Key.NUMPAD_ADD) )
+				speed = 15;
+			else if( speed>1 )
+				speed = 1;
+		}
+		#end
 
 		accu+=dt*speed;
 		mt.heaps.slib.SpriteLib.DT = dt*speed;

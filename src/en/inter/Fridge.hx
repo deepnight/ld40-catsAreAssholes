@@ -46,7 +46,9 @@ class Fridge extends en.Interactive {
 			by.destroyItem();
 		}
 		else if( by.item==FridgeUp ) {
+			var old = max;
 			upgrade++;
+			stock+=max-old;
 			by.destroyItem();
 		}
 		else if( by.item==FishCan ) {

@@ -15,6 +15,7 @@ class TutorialTip extends mt.Process {
 		if( ME!=null )
 			ME.close();
 
+		cAdd = new h3d.Vector();
 		this.tutoId = tutoId;
 		ME = this;
 		createRootInLayers(Game.ME.root, Const.DP_UI);
@@ -28,23 +29,25 @@ class TutorialTip extends mt.Process {
 		flow.paddingBottom = 2;
 
 		var tf = new h2d.Text(Assets.font,flow);
-		tf.text = "Tip";
+		tf.text = "Tutorial tip";
 		tf.textColor = 0xFFB300;
+		tf.colorAdd = cAdd;
 
 		var tf = new h2d.Text(Assets.font,flow);
 		tf.text = txt;
 		tf.textColor = 0x15FFA8;
 		tf.maxWidth = 220;
-
-		cAdd = new h3d.Vector();
-		tf.colorAdd = cAdd;
+		//tf.colorAdd = cAdd;
 
 		tw.createS(flow.y, 100>0, TElasticEnd, 0.3);
-		delayer.addS(function() {
-			cAdd.r = 0.9;
-			cAdd.g = 0.9;
-			cAdd.b = 0.9;
-		},0.7);
+		for(i in 0...8)
+			delayer.addS(blink, 0.5+i*0.33);
+	}
+
+	function blink() {
+		cAdd.r = 0.9;
+		cAdd.g = 0.9;
+		cAdd.b = 0.9;
 	}
 
 	public function close() {
@@ -63,7 +66,7 @@ class TutorialTip extends mt.Process {
 	override public function postUpdate() {
 		super.postUpdate();
 		root.x = Std.int( Game.ME.vp.wid*0.5 - flow.outerWidth*0.5 );
-		root.y = Std.int( Game.ME.vp.hei - flow.outerHeight - 20 );
+		root.y = Std.int( Game.ME.vp.hei - flow.outerHeight - 40 );
 	}
 
 	override public function update() {

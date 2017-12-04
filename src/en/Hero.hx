@@ -23,7 +23,7 @@ class Hero extends Entity {
 	}
 
 	override function hasCircCollWith(e:Entity) {
-		return super.hasCircCollWith(e) && ( e.is(en.f.Ball) || e.is(Hero) );
+		return super.hasCircCollWith(e) && ( e.is(en.f.Ball) || e.is(Hero) ) && !e.cd.has("dashing");
 	}
 
 	public function destroyItem() {
