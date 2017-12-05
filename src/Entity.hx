@@ -344,32 +344,32 @@ class Entity {
 				}
 
 		// X
-		xr+=dx;
+		xr+=dx*dt;
 		if( hasColl ) {
 			if( xr>0.7 && level.hasColl(cx+1,cy) ) {
 				xr = 0.7;
-				dx-=0.05;
+				dx-=0.05*dt;
 				onTouchWallX();
 			}
 			if( xr>=0.6 && level.hasColl(cx+1,cy) ) {
-				dx-=0.03;
+				dx-=0.03*dt;
 			}
 			if( xr<0.3 && level.hasColl(cx-1,cy) ) {
 				xr = 0.3;
-				dx+=0.05;
+				dx+=0.05*dt;
 				onTouchWallX();
 			}
 			if( xr<0.4 && level.hasColl(cx-1,cy) ) {
-				dx+=0.03;
+				dx+=0.03*dt;
 			}
 		}
-		dx*=frict;
+		dx*=Math.pow(frict,dt);
 		while( xr>1 ) { xr--; cx++; }
 		while( xr<0 ) { xr++; cx--; }
 		if( MLib.fabs(dx)<=0.001 ) dx = 0;
 
 		// Y
-		yr+=dy;
+		yr+=dy*dt;
 		if( hasColl ) {
 			if( yr>1 && level.hasColl(cx,cy+1) ) {
 				yr = 1;
@@ -380,17 +380,17 @@ class Entity {
 				onTouchWallY();
 			}
 		}
-		dy*=frict;
+		dy*=Math.pow(frict,dt);
 		while( yr>1 ) { yr--; cy++; }
 		while( yr<0 ) { yr++; cy--; }
 		if( MLib.fabs(dy)<=0.001 ) dy = 0;
 
 		// Gravity
 		if( altitude>0 || dalt!=0 ) {
-			dalt+=-gravity;
-			altitude+=dalt;
-			dalt*=0.95;
-			if( MLib.fabs(dalt)<=0.1 )
+			dalt+=-gravity*dt;
+			altitude+=dalt*dt;
+			dalt*=Math.pow(0.95,dt);
+			if( MLib.fabs(dalt)<=0.1*dt )
 				dalt = 0;
 			if( altitude<=0 ) {
 				dalt = MLib.fabs(dalt)*bounceFrict;

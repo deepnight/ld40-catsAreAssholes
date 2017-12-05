@@ -419,7 +419,7 @@ class Sidekick extends en.Hero {
 
 		// Follow path
 		if( !game.hasCinematic() && path.length>0 && !cd.has("lock") ) {
-			var spd = 0.02;
+			var spd = 0.02*dt;
 			var next = path[0];
 			if( cx==next.x && cy==next.y ) {
 				path.shift();

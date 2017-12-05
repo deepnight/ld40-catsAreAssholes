@@ -158,16 +158,8 @@ class Main extends mt.Process {
 
 		mt.heaps.Controller.beforeUpdate();
 
-		if( ctrl.lxValue()!=0 || ctrl.lyValue()!=0 || ctrl.aDown() || ctrl.bDown() || ctrl.xDown() || ctrl.yDown() )
+		if( ctrl.lxValue()!=0 || ctrl.lyValue()!=0 )
 			ctrlMaster.setGamePad();
-
-		//for(b in pad.buttons)
-			//if( b )
-				//ctrlMaster.setGamePad();
-
-		//for(v in pad.values)
-			//if( v!=0 )
-				//ctrlMaster.setGamePad();
 
 		if( keyPressed(hxd.Key.M) )
 			mt.deepnight.Sfx.toggleMuteGroup(1);

@@ -185,7 +185,7 @@ class Grandma extends en.Hero {
 	override public function update() {
 		super.update();
 
-		var spd = 0.03 * (cd.has("dashing") ? 2 : 1);
+		var spd = 0.03 * (cd.has("dashing") ? 2 : 1) * dt;
 		if( cd.has("dashing") )
 			spr.anim.setStateAnimSpeed("heroWalk",0.6);
 		else
@@ -264,6 +264,18 @@ class Grandma extends en.Hero {
 					side.reset();
 			}
 
+			if( ctrl.isKeyboard() )
+				rollAng =
+					ctrl.upDown() && ctrl.rightDown() ? -MLib.PIHALF*0.5 :
+					ctrl.downDown() && ctrl.rightDown() ? MLib.PIHALF*0.5 :
+					ctrl.upDown() && ctrl.leftDown() ? -MLib.PIHALF*1.5 :
+					ctrl.downDown() && ctrl.leftDown() ? MLib.PIHALF*1.5 :
+					ctrl.upDown() ? -MLib.PIHALF :
+					ctrl.rightDown() ? 0 :
+					ctrl.downDown() ? MLib.PIHALF :
+					ctrl.leftDown() ? MLib.PI :
+					rollAng;
+
 			// Run
 			if( ctrl.bDown() && !cd.has("dashLock") ) {
 				cd.setS("dashing", 0.4);
@@ -272,17 +284,6 @@ class Grandma extends en.Hero {
 				dy*=1.5;
 			}
 
-			if( ctrl.isKeyboard() )
-				rollAng =
-					Key.isDown(Key.UP) && Key.isDown(Key.RIGHT) ? -MLib.PIHALF*0.5 :
-					Key.isDown(Key.DOWN) && Key.isDown(Key.RIGHT) ? MLib.PIHALF*0.5 :
-					Key.isDown(Key.UP) && Key.isDown(Key.LEFT) ? -MLib.PIHALF*1.5 :
-					Key.isDown(Key.DOWN) && Key.isDown(Key.LEFT) ? MLib.PIHALF*1.5 :
-					Key.isDown(Key.UP) ? -MLib.PIHALF :
-					Key.isDown(Key.RIGHT) ? 0 :
-					Key.isDown(Key.DOWN) ? MLib.PIHALF :
-					Key.isDown(Key.LEFT) ? MLib.PI :
-					rollAng;
 		}
 
 		#if debug
@@ -298,10 +299,10 @@ class Grandma extends en.Hero {
 
 		if( !isDead() ) {
 			// Roll effect
-			if( cd.has("rolling") ) {
-				dx += Math.cos(rollAng)*0.098 * (0.+1*cd.getRatio("rolling"));
-				dy += Math.sin(rollAng)*0.098 * (0.+1*cd.getRatio("rolling"));
-			}
+			//if( cd.has("dashing") ) {
+				//dx += Math.cos(rollAng)*0.098 * (0.+1*cd.getRatio("rolling")) * dt;
+				//dy += Math.sin(rollAng)*0.098 * (0.+1*cd.getRatio("rolling")) * dt;
+			//}
 
 			// Assist movement near collisions
 			if( dx<0 ) {

@@ -44,7 +44,7 @@ class Ball extends en.Furn {
 			Assets.SBANK.ball0(0.3);
 			cd.setS("flat", 0.1*pow);
 		}
-		else
+		else if( pow>=0.1 )
 			Assets.SBANK.ball0(0.1);
 	}
 
