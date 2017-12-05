@@ -568,7 +568,14 @@
 					},
 					"desc": "Use this to get your next cat immediately. Moar cats! The moar the better?",
 					"deliveryS": 0,
-					"scaledCosts": [],
+					"scaledCosts": [
+						{
+							"v": 0
+						},
+						{
+							"v": 20
+						}
+					],
 					"cond": "Kid",
 					"name": "",
 					"maxBuy": 10,

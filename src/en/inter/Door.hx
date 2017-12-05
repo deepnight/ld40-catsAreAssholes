@@ -10,7 +10,7 @@ enum DoorEvent {
 
 class Door extends en.Interactive {
 	public static var ALL : Array<Door> = [];
-	static var AUTO_CAT = [ 20, 45, 60 ];
+	static var AUTO_CAT = [ 30, 35, 40 ];
 	var events : Array<{ k:DoorEvent, frames:Float }>;
 
 	var cats = 0;
@@ -79,10 +79,12 @@ class Door extends en.Interactive {
 		var s = Assets.gameElements.h_get("doorOpen",0, 0.5,1);
 		s.x = footX;
 		s.y = footY+16;
+		Assets.SBANK.openDoor(0.75);
 		game.scroller.add(s, Const.DP_BG);
 		game.tw.createS(s.alpha, 0>1, 0.2)
 			.chainMs(1000|0)
 			.end( function() {
+				Assets.SBANK.drop2(0.7);
 				s.remove();
 			});
 	}

@@ -24,6 +24,7 @@ class Ball extends en.Furn {
 			dx+=rnd(0,0.2,true);
 			dy+=rnd(0,0.2,true);
 			jump(rnd(0.6,1));
+			Assets.SBANK.ball0(0.5);
 			if( e.is(Cat) && e.as(Cat).isOnJob(Play(null)) )
 				game.moneyMan.trigger(e, Ball);
 		}
@@ -39,7 +40,11 @@ class Ball extends en.Furn {
 
 	override function onBounce(pow:Float) {
 		super.onBounce(pow);
-		if( pow>=0.6 )
+		if( pow>=0.6 ) {
+			Assets.SBANK.ball0(0.3);
 			cd.setS("flat", 0.1*pow);
+		}
+		else
+			Assets.SBANK.ball0(0.1);
 	}
 }

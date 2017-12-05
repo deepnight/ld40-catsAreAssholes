@@ -225,8 +225,10 @@ class Sidekick extends en.Hero {
 			}
 		}
 
-		if( actions.length>0 )
+		if( actions.length>0 ) {
 			Tutorial.ME.complete("side");
+			Assets.SBANK.bleep3(1);
+		}
 	}
 
 	function goto(x,y) {

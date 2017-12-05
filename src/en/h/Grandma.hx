@@ -7,11 +7,17 @@ import hxd.Key;
 class Grandma extends en.Hero {
 	var rollAng = 0.;
 	var focus : HSprite;
+	static var STEPS = [
+		Assets.SBANK.step1,
+		Assets.SBANK.step0,
+		//Assets.SBANK.step2,
+	];
 
 	public var life : Int;
 	public var maxLife = 5;
-	public var money = 50;
+	public var money = 10;
 	public var followers = 0;
+	var stepId = 0;
 
 	public function new(x,y) {
 		super(x,y);
@@ -48,8 +54,9 @@ class Grandma extends en.Hero {
 	}
 
 	override public function dropItem() {
+		if( item!=null )
+			Assets.SBANK.drop0(1);
 		super.dropItem();
-		Assets.SBANK.drop0(1);
 	}
 
 	override public function sayWords(str:String, ?c = 0xFFFFFF) {
@@ -309,6 +316,13 @@ class Grandma extends en.Hero {
 				if( xr<=0.5 && yr>=0.7 && level.hasColl(cx,cy+1) && !level.hasColl(cx-1,cy+1) ) dx-=spd*0.5;
 			}
 		}
+
+		if( spr.anim.isPlaying("heroWalk") ) {
+			if( spr.frame==2 && !cd.hasSetS("footStep",0.2) )
+				STEPS[(stepId++)%STEPS.length](0.4);
+		}
+		else
+			stepId = 0;
 
 		if( Console.ME.has("fps") )
 			setLabel( ""+pretty(hxd.Timer.fps(),1)+" "+pretty(dt,2) );

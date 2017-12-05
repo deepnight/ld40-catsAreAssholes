@@ -86,6 +86,7 @@ class ItemDrop extends en.Interactive {
 				e.flee(this);
 				hero.gainFollowers(1000);
 				game.moneyMan.trigger(this,NewCat);
+				Assets.SBANK.drop0(1);
 				fx.dirt(footX, footY, 80, 0xA2BDCA, 0x85562C);
 
 			case Heal :

@@ -50,6 +50,7 @@ class Tutorial extends mt.Process {
 
 	override public function update() {
 		super.update();
+		trace(done.get("controls"));
 		//Game.ME.hero.setLabel(""+done);
 	}
 }

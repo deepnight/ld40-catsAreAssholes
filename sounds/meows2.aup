@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="meows2_data" version="1.3.0" audacityversion="2.2.0" sel0="3.3436734694" sel1="4.0199546485" vpos="0" h="0.0000000000" zoom="344.5312500000" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + millisecondes" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags/>
+	<wavetrack name="Piste audio" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="270848">
+				<waveblock start="0">
+					<simpleblockfile filename="e00004f0.au" len="262144" min="-0.329168" max="0.307103" rms="0.056551"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e0000b0f.au" len="8704" min="-0.124478" max="0.133201" rms="0.038795"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Piste audio" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="270848">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000bc9.au" len="262144" min="-0.328848" max="0.306643" rms="0.056553"/>
+				</waveblock>
+				<waveblock start="262144">
+					<simpleblockfile filename="e0000d9b.au" len="8704" min="-0.12424" max="0.133203" rms="0.038795"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>

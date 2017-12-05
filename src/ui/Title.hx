@@ -47,11 +47,17 @@ class Title extends mt.Process {
 		//house.scaleX = -1;
 		//house.y = 3;
 
-		var t = 7;
-		tw.createS(grandma.x, -50>-40, TEaseOut, t);
-		tw.createS(cat0.x, 30>10, TEaseOut, t);
-		tw.createS(cat1.x, 40>30, TEaseOut, t);
-		//tw.createS(house.x, 80>90, TEaseOut, t);
+		var t = 1.5;
+		tw.createS(grandma.x, 80>-50, TEaseOut, t);
+		tw.createS(cat0.x, 90>30, TEaseOut, t);
+		tw.createS(cat1.x, 90>40, TEaseOut, t);
+		delayer.addS(function() {
+			var t = 7;
+			tw.createS(grandma.x, -50>-40, TEaseOut, t);
+			tw.createS(cat0.x, 30>10, TEaseOut, t);
+			tw.createS(cat1.x, 40>30, TEaseOut, t);
+			//tw.createS(house.x, 80>90, TEaseOut, t);
+		},t);
 
 		about = new h2d.Flow(root);
 		about.visible = false;
@@ -115,8 +121,10 @@ class Title extends mt.Process {
 		if( Main.ME.keyPressed(Key.SPACE) || Main.ME.keyPressed(Key.ESCAPE) ) {
 			if( about.visible ) {
 				close();
+				Assets.SBANK.bleep2(1);
 			}
 			else {
+				Assets.SBANK.menu0(1);
 				about.visible = true;
 				tw.createS(about.alpha,0>1,0.3);
 				tw.createS(about.y,-about.outerHeight>10,0.3);
