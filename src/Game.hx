@@ -1,5 +1,6 @@
 import mt.Process;
 import mt.MLib;
+import hxd.Pad;
 
 class Game extends mt.Process {
 	public static var ME : Game;
@@ -14,11 +15,14 @@ class Game extends mt.Process {
 	public var catIdx = 0;
 
 	public var hudWrapper : h2d.Flow;
+	public var ctrl : mt.heaps.Controller.ControllerAccess;
 
 	public function new(ctx:h2d.Sprite) {
 		super(Main.ME);
 
 		ME = this;
+		ctrl = Main.ME.ctrlMaster.createAccess("game");
+		ctrl.leftDeadZone = 0.15;
 		createRoot(ctx);
 
 		hudWrapper = new h2d.Flow();
@@ -51,6 +55,7 @@ class Game extends mt.Process {
 		for(e in Entity.ALL)
 			e.destroy();
 		gc();
+		ctrl.dispose();
 	}
 
 	function gc() {

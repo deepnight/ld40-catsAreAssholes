@@ -17,10 +17,12 @@ class ShopWindow extends mt.Process {
 	var curIdx = 0;
 	var items : Array<{ f:h2d.Flow, p:Int, cb:Void->Void } >;
 	var door : en.inter.Door;
+	var ctrl : mt.heaps.Controller.ControllerAccess;
 
 	public function new() {
 		super(Main.ME);
 		ME = this;
+		ctrl = Main.ME.ctrlMaster.createAccess("shop",true);
 
 		door = en.inter.Door.ALL[0];
 
@@ -205,6 +207,7 @@ class ShopWindow extends mt.Process {
 		super.onDispose();
 		if( ME==this )
 			ME = null;
+		ctrl.dispose();
 		Game.ME.resume();
 	}
 
@@ -237,13 +240,13 @@ class ShopWindow extends mt.Process {
 			cursor.x = 5 - MLib.fabs(Math.sin(ftime*0.2)*5);
 			cursor.y += ( i.f.y + i.f.outerHeight*0.5 - cursor.y ) * 0.3;
 
-			if( Main.ME.keyPressed(Key.DOWN) && curIdx<items.length-1 )
+			if( ctrl.downPressed() && curIdx<items.length-1 )
 				curIdx++;
 
-			if( Main.ME.keyPressed(Key.UP) && curIdx>0 )
+			if( ctrl.upPressed() && curIdx>0 )
 				curIdx--;
 
-			if( !cd.has("lock") && ( Main.ME.keyPressed(Key.ENTER) || Main.ME.keyPressed(Key.SPACE) ) ) {
+			if( !cd.has("lock") && ctrl.aPressed() ) {
 				if( Game.ME.hero.money>=i.p ) {
 					Game.ME.hero.money-=i.p;
 					i.cb();
@@ -252,10 +255,10 @@ class ShopWindow extends mt.Process {
 			}
 		}
 
-		if( !cd.has("lock") && door.hasAnyEvent() && Main.ME.keyPressed(Key.SPACE) )
+		if( !cd.has("lock") && door.hasAnyEvent() && ctrl.aPressed() )
 			close();
 
-		if( Main.ME.keyPressed(Key.ESCAPE) )
+		if( ctrl.bPressed() || Key.isPressed(Key.ESCAPE) )
 			close();
 	}
 }

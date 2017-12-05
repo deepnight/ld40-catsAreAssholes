@@ -1,5 +1,6 @@
 import mt.Process;
 import mt.MLib;
+import hxd.Key;
 
 class Main extends mt.Process {
 	public static var BG = 0x0e0829;
@@ -7,6 +8,9 @@ class Main extends mt.Process {
 	public var console : Console;
 	public var cached : h2d.CachedBitmap;
 	var black : h2d.Bitmap;
+	public var ctrlMaster : mt.heaps.Controller;
+	var ctrl : mt.heaps.Controller.ControllerAccess;
+	var pad : hxd.Pad;
 
 	public function new() {
 		super();
@@ -43,6 +47,24 @@ class Main extends mt.Process {
 
 		black = new h2d.Bitmap(h2d.Tile.fromColor(BG,1,1), root);
 		black.visible = false;
+
+		pad = hxd.Pad.createDummy();
+		ctrlMaster = new mt.heaps.Controller(Boot.ME.s2d);
+		ctrlMaster.bind(A, hxd.Key.SPACE, hxd.Key.ENTER, hxd.Key.U);
+		ctrlMaster.bind(B, hxd.Key.CTRL, hxd.Key.SHIFT);
+		ctrlMaster.bind(X, hxd.Key.C, hxd.Key.I);
+		ctrlMaster.bind(AXIS_LEFT_X_NEG, hxd.Key.LEFT, hxd.Key.Q, hxd.Key.A);
+		ctrlMaster.bind(AXIS_LEFT_X_POS, hxd.Key.RIGHT, hxd.Key.D);
+		ctrlMaster.bind(AXIS_LEFT_Y_NEG, hxd.Key.DOWN, hxd.Key.S);
+		ctrlMaster.bind(AXIS_LEFT_Y_POS, hxd.Key.UP, hxd.Key.Z, hxd.Key.W);
+		ctrl = ctrlMaster.createAccess("main");
+		ctrl.leftDeadZone = 0.15;
+		Boot.ME.s2d.addEventListener(function(e) {
+			switch( e.kind ) {
+				case EKeyDown : ctrlMaster.setKeyboard();
+				default :
+			}
+		});
 
 		#if debug
 		restartGame();
@@ -131,9 +153,21 @@ class Main extends mt.Process {
 				presses.remove(k);
 	}
 
-
 	override function update() {
 		super.update();
+
+		mt.heaps.Controller.beforeUpdate();
+
+		if( ctrl.lxValue()!=0 || ctrl.lyValue()!=0 || ctrl.aDown() || ctrl.bDown() || ctrl.xDown() || ctrl.yDown() )
+			ctrlMaster.setGamePad();
+
+		//for(b in pad.buttons)
+			//if( b )
+				//ctrlMaster.setGamePad();
+
+		//for(v in pad.values)
+			//if( v!=0 )
+				//ctrlMaster.setGamePad();
 
 		if( keyPressed(hxd.Key.M) )
 			mt.deepnight.Sfx.toggleMuteGroup(1);

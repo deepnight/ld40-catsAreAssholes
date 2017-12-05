@@ -10,6 +10,7 @@ class Entity {
 	public var fx(get,never) : Fx; inline function get_fx() return Game.ME.fx;
 	public var hero(get,never) : en.h.Grandma; inline function get_hero() return Game.ME.hero;
 	public var side(get,never) : en.h.Sidekick; inline function get_side() return Game.ME.side;
+	public var ctrl(get,never) : mt.heaps.Controller.ControllerAccess; inline function get_ctrl() return Game.ME.ctrl;
 	public var destroyed(default,null) = false;
 	public var cd : mt.Cooldown;
 
