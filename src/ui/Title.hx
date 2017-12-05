@@ -50,12 +50,12 @@ class Title extends mt.Process {
 		var t = 1.5;
 		tw.createS(grandma.x, 80>-50, TEaseOut, t);
 		tw.createS(cat0.x, 90>30, TEaseOut, t);
-		tw.createS(cat1.x, 90>40, TEaseOut, t);
+		tw.createS(cat1.x, 110>50, TEaseOut, t);
 		delayer.addS(function() {
 			var t = 7;
-			tw.createS(grandma.x, -50>-40, TEaseOut, t);
-			tw.createS(cat0.x, 30>10, TEaseOut, t);
-			tw.createS(cat1.x, 40>30, TEaseOut, t);
+			tw.createS(grandma.x, -40, TEaseOut, t);
+			tw.createS(cat0.x, 0, TEaseOut, t);
+			tw.createS(cat1.x, 30, TEaseOut, t);
 			//tw.createS(house.x, 80>90, TEaseOut, t);
 		},t);
 
@@ -92,7 +92,7 @@ class Title extends mt.Process {
 		bg.x = getWid()*0.5;
 		bg.y = getHei()*0.5;
 		chars.x = getWid()*0.5;
-		chars.y = getHei()*0.5 + 30;
+		chars.y = getHei()*0.5 + 31;
 		about.x = getWid()*0.5 - about.outerWidth*0.5;
 		//about.y = getHei() - about.outerHeight - 20;
 		about.y = 10;
