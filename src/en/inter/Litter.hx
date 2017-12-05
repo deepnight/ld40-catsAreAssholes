@@ -53,8 +53,10 @@ class Litter extends en.Interactive {
 			blink();
 	}
 
-	//override public function update() {
-		//super.update();
-		//setLabel(stock+"/"+max);
-	//}
+	override public function update() {
+		super.update();
+		#if debug
+		stock = 0;
+		#end
+	}
 }

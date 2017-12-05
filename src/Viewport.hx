@@ -60,7 +60,13 @@ class Viewport extends mt.Process {
 		dx*=0.8;
 		dy*=0.8;
 		var prioCenter = 0.3;
-		game.scroller.x = Std.int( -(x+prioCenter*level.wid*0.5*Const.GRID)/(1+prioCenter) + wid*0.5 );
-		game.scroller.y = Std.int( -(y+prioCenter*level.hei*0.5*Const.GRID)/(1+prioCenter) + hei*0.5 );
+		if( Console.ME.has("screen") ) {
+			game.scroller.x = -level.wid*0.5*Const.GRID + wid*0.5;
+			game.scroller.y = -level.hei*0.5*Const.GRID + hei*0.5;
+		}
+		else {
+			game.scroller.x = Std.int( -(x+prioCenter*level.wid*0.5*Const.GRID)/(1+prioCenter) + wid*0.5 );
+			game.scroller.y = Std.int( -(y+prioCenter*level.hei*0.5*Const.GRID)/(1+prioCenter) + hei*0.5 );
+		}
 	}
 }

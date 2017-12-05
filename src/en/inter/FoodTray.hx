@@ -89,6 +89,10 @@ class FoodTray extends en.Interactive {
 			jump(rnd(0,0.1));
 		}
 
+		#if debug
+		stock = max;
+		#end
+
 		if( stock>0 && stock<max )
 			Tutorial.ME.tryToStart("food", "Take some food from the FRIDGE to fill your cat food bowls. Or they will eat you.");
 	}

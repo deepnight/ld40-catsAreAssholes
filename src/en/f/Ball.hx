@@ -47,4 +47,10 @@ class Ball extends en.Furn {
 		else
 			Assets.SBANK.ball0(0.1);
 	}
+
+	override public function postUpdate() {
+		super.postUpdate();
+		//spr.visible = !Console.ME.has("screen");
+		//shadow.visible = !Console.ME.has("screen");
+	}
 }

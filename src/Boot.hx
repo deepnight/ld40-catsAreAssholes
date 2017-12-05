@@ -19,7 +19,9 @@ class Boot extends hxd.App {
 		onResize();
 		#if hl
 		@:privateAccess hxd.Stage.getInstance().window.vsync = true;
+		#if !debug
 		@:privateAccess hxd.Stage.getInstance().window.displayMode = Borderless;
+		#end
 		#end
 		new Main();
 	}
