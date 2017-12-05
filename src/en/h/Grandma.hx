@@ -325,7 +325,7 @@ class Grandma extends en.Hero {
 			stepId = 0;
 
 		if( Console.ME.has("fps") )
-			setLabel( ""+pretty(hxd.Timer.fps(),1)+" "+pretty(dt,2) );
+			setLabel( ""+MLib.round(hxd.Timer.fps())+" "+pretty(dt,2) );
 
 		if( isDead() && !cd.hasSetS("autoGain",rnd(0.6,1)) )
 			gainFollowers(en.Cat.ALL.length*100, true);
