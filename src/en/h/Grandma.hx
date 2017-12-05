@@ -282,8 +282,8 @@ class Grandma extends en.Hero {
 			//Tutorial.ME.tryToStart("test", "hllow world");
 			//pop("hello");
 			//hit(this, 1);
-			//new en.inter.ItemDrop(Shit, cx+3, cy);
-			fx.dirt(footX, footY, 30, 0xA2BDCA, 0x85562C);
+			new en.inter.ItemDrop(Shit, cx+3, cy);
+			//fx.dirt(footX, footY, 30, 0xA2BDCA, 0x85562C);
 		}
 		#end
 

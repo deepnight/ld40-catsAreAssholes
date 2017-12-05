@@ -72,7 +72,7 @@ class Title extends mt.Process {
 		addAbout("I created this game in 3 days for the Ludum Dare 40 game jam.");
 		addAbout("The theme was \"The more you have, the worse it is\".");
 		addAbout("Have fun!");
-		addAbout("Sébastien Bénard\n@deepnightFR\nwww.deepnight.net)", 0x633862);
+		addAbout("Sébastien Bénard\n@deepnightFR\nwww.deepnight.net)", 0x894E88);
 
 		press = new h2d.Text(Assets.font, root);
 		press.text = "Press SPACE to start";
@@ -136,6 +136,8 @@ class Title extends mt.Process {
 				tw.createS(about.y,-about.outerHeight>10,0.3);
 			}
 		}
+
+		press.alpha = 0.65 + Math.sin(ftime*0.1)*0.35;
 	}
 }
 

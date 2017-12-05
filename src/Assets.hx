@@ -11,7 +11,7 @@ class Assets {
 
 	public static function init() {
 		Sfx.setGroupVolume(0, 1);
-		Sfx.setGroupVolume(1, 0.4);
+		Sfx.setGroupVolume(1, 0.25);
 		music = Assets.SBANK.jazz();
 		music.playOnGroup(1,true);
 		#if debug

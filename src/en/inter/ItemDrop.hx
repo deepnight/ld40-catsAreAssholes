@@ -113,18 +113,21 @@ class ItemDrop extends en.Interactive {
 		switch( k ) {
 			case Shit :
 				if( !cd.hasSetS("loss",10) ) {
+					Assets.SBANK.error0(1);
 					blink();
 					game.hero.loseMoney(this,50);
 				}
 
 			case Vomit :
 				if( !cd.hasSetS("loss",10) ) {
+					Assets.SBANK.error0(1);
 					blink();
 					game.hero.loseMoney(this,15);
 				}
 
 			case Trash :
 				if( !cd.hasSetS("loss",10) ) {
+					Assets.SBANK.error0(1);
 					blink();
 					game.hero.loseMoney(this,15);
 				}
