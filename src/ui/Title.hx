@@ -15,6 +15,7 @@ class Title extends mt.Process {
 	var cat0 : HSprite;
 	var cat1 : HSprite;
 	var chars : h2d.Sprite;
+	var press : h2d.Text;
 
 	public function new() {
 		super(Main.ME);
@@ -73,6 +74,9 @@ class Title extends mt.Process {
 		addAbout("Have fun!");
 		addAbout("Sébastien Bénard\n@deepnightFR\nwww.deepnight.net)", 0x633862);
 
+		press = new h2d.Text(Assets.font, root);
+		press.text = "Press SPACE to start";
+
 		onResize();
 	}
 
@@ -89,6 +93,8 @@ class Title extends mt.Process {
 	override public function onResize() {
 		super.onResize();
 
+		press.x = Std.int( getWid()*0.5 - press.textWidth*0.5 );
+		press.y = getHei()-20;
 		bg.x = getWid()*0.5;
 		bg.y = getHei()*0.5;
 		chars.x = getWid()*0.5;
