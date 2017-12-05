@@ -286,6 +286,12 @@ class Entity {
 		cAdd.r*=0.9;
 		cAdd.g*=0.75;
 		cAdd.b*=0.75;
+
+		if( Console.ME.has("screen") ) {
+			clearEmote();
+			clearWords();
+			setLabel();
+		}
 	}
 
 	function hasCircColl() {

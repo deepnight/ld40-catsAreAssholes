@@ -47,10 +47,4 @@ class Tutorial extends mt.Process {
 		if( ME==this )
 			ME = null;
 	}
-
-	override public function update() {
-		super.update();
-		trace(done.get("controls"));
-		//Game.ME.hero.setLabel(""+done);
-	}
 }

@@ -55,6 +55,9 @@ class Main extends mt.Process {
 
 	var presses : Map<Int,Bool>;
 	public function keyPressed(k:Int) {
+		if( console.isActive() )
+			return false;
+
 		if( presses==null )
 			presses = new Map();
 
@@ -126,5 +129,13 @@ class Main extends mt.Process {
 		for(k in presses.keys())
 			if( !hxd.Key.isDown(k) )
 				presses.remove(k);
+	}
+
+
+	override function update() {
+		super.update();
+
+		if( keyPressed(hxd.Key.M) )
+			mt.deepnight.Sfx.toggleMuteGroup(1);
 	}
 }

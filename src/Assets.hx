@@ -14,10 +14,6 @@ class Assets {
 		Sfx.setGroupVolume(1, 0.4);
 		music = Assets.SBANK.jazz();
 		music.playOnGroup(1,true);
-		//#if js
-		//Sfx.muteGroup(0);
-		//Sfx.muteGroup(1);
-		//#end
 
 		font = hxd.Res.minecraftiaOutline.toFont();
 		items = hxd.Res.items.toTile();

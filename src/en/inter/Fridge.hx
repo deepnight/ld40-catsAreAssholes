@@ -66,8 +66,10 @@ class Fridge extends en.Interactive {
 
 	override public function postUpdate() {
 		super.postUpdate();
-		label.x+=3;
-		label.y -= 32;
+		if( label!=null ) {
+			label.x+=3;
+			label.y -= 32;
+		}
 	}
 	override public function update() {
 		super.update();
