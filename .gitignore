@@ -8,3 +8,7 @@
 /redist/client.js
 /redist/client.swf
 /redist/minimalist
+/res/.tmp/*.batlas
+/res/.tmp/*.json
+/res/.tmp/*.bfnt
+/res/.tmp/*.dat
