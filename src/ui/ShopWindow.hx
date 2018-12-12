@@ -25,7 +25,6 @@ class ShopWindow extends mt.Process {
 		door = en.inter.Door.ALL[0];
 
 		createRootInLayers(Main.ME.root, Const.DP_UI);
-		root.setScale(Const.SCALE);
 		items = [];
 
 		mask = new h2d.Graphics(root);

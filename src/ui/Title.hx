@@ -14,7 +14,7 @@ class Title extends mt.Process {
 	var about : h2d.Flow;
 	var cat0 : HSprite;
 	var cat1 : HSprite;
-	var chars : h2d.Sprite;
+	var chars : h2d.Object;
 	var press : h2d.Text;
 
 	public function new() {
@@ -22,11 +22,10 @@ class Title extends mt.Process {
 		ME = this;
 
 		createRoot(Main.ME.root);
-		root.setScale(Const.SCALE);
 
 		bg = Assets.gameElements.h_get("title",0.5,0.5, root);
 
-		chars = new h2d.Sprite(root);
+		chars = new h2d.Object(root);
 		grandma = Assets.gameElements.h_getAndPlay("heroWalk",chars);
 		grandma.setCenterRatio(0.5,1);
 		grandma.anim.setSpeed(0.2);

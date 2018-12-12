@@ -30,7 +30,7 @@ class Life extends mt.Process {
 		bg.height = 26;
 
 		// Bar
-		var s = new h2d.Sprite(root);
+		var s = new h2d.Object(root);
 		s.x = 24;
 		s.y = 12-barHei*0.5;
 		var outline = new h2d.Graphics(s);

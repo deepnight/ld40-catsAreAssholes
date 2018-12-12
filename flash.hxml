@@ -1,5 +1,4 @@
--swf bin/client.swf
--swf-header 960:720:60:000000
--swf-version 17.0
--lib stb_ogg_sound
 base.hxml
+-swf bin/client.swf
+-swf-header 1400:700:60:000000
+-swf-version 24.0

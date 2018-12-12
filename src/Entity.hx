@@ -248,7 +248,7 @@ class Entity {
 
 		if( label!=null ) {
 			label.visible = !game.hasCinematic();
-			label.setPos( Std.int(footX-label.textWidth*0.5), Std.int(footY+2));
+			label.setPosition( Std.int(footX-label.textWidth*0.5), Std.int(footY+2));
 		}
 
 		if( talkTf!=null ) {
@@ -276,7 +276,7 @@ class Entity {
 				debug.lineStyle(1,0xFFFF00,0.7);
 				debug.drawCircle(0,0,radius);
 			}
-			debug.setPos(footX, footY);
+			debug.setPosition(footX, footY);
 		}
 		if( !Console.ME.has("bounds") && debug!=null ) {
 			debug.remove();

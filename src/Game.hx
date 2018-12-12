@@ -15,7 +15,7 @@ class Game extends mt.Process {
 
 	public var hudWrapper : h2d.Flow;
 
-	public function new(ctx:h2d.Sprite) {
+	public function new(ctx:h2d.Object) {
 		super(Main.ME);
 
 		ME = this;
@@ -26,7 +26,6 @@ class Game extends mt.Process {
 		hudWrapper.verticalAlign = Middle;
 		hudWrapper.horizontalSpacing = 8;
 
-		//root.scale(Const.SCALE);
 		scroller = new h2d.Layers(root);
 		vp = new Viewport();
 		fx = new Fx();

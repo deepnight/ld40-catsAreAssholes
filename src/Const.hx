@@ -2,6 +2,7 @@ class Const {
 	public static var FPS = 60;
 	public static var GRID = 16;
 	public static var SCALE = 2;
+	public static var AUTO_SCALE_TARGET_HEIGHT = 380;
 
 	public static var UNIQ = 0;
 

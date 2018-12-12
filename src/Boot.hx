@@ -18,9 +18,9 @@ class Boot extends hxd.App {
 		engine.backgroundColor = 0xff<<24|Main.BG;
 		onResize();
 		#if hl
-		@:privateAccess hxd.Stage.getInstance().window.vsync = true;
+		@:privateAccess hxd.Window.getInstance().window.vsync = true;
 		#if !debug
-		@:privateAccess hxd.Stage.getInstance().window.displayMode = Borderless;
+		@:privateAccess hxd.Window.getInstance().window.displayMode = Borderless;
 		#end
 		#end
 		new Main();
@@ -34,6 +34,7 @@ class Boot extends hxd.App {
 	override function update(dt:Float) {
 		super.update(dt);
 
+		var tmod = hxd.Timer.tmod;
 		#if debug
 		if( !Console.ME.isActive() ) {
 			if( Key.isPressed(Key.NUMPAD_SUB) )
@@ -49,8 +50,8 @@ class Boot extends hxd.App {
 		}
 		#end
 
-		accu+=dt*speed;
-		mt.heaps.slib.SpriteLib.DT = dt*speed;
+		accu+=tmod*speed;
+		mt.heaps.slib.SpriteLib.DT = tmod*speed;
 		while( accu>=1 ) {
 			mt.Process.updateAll(1);
 			accu--;
