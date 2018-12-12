@@ -1,14 +1,4 @@
-/bin/*.hl
+/redist
 /art/export/*.png
-/bin/*.js
-/bin/*.swf
 /sounds/jazz.wav
-/redist/CatsAreAssholes.zip
-/redist/CatsAreAssholes/hlboot.dat
-/redist/client.js
-/redist/client.swf
-/redist/minimalist
-/res/.tmp/*.batlas
-/res/.tmp/*.json
-/res/.tmp/*.bfnt
-/res/.tmp/*.dat
+/res/.tmp
