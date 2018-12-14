@@ -13,18 +13,27 @@ class Main extends mt.Process {
 
 		ME = this;
 
+		// Engine init
+		engine.backgroundColor = 0xff<<24|Main.BG;
+		#if hl
+			@:privateAccess hxd.Window.getInstance().window.vsync = true;
+			#if !debug
+				@:privateAccess hxd.Window.getInstance().window.displayMode = Borderless;
+			#end
+		#end
+
+		// Resources
+		#if debug
+		hxd.Res.initLocal();
+        #else
+        hxd.Res.initEmbed({compressSounds:true});
+        #end
+
 		createRoot(Boot.ME.s2d);
 
 		cached = new h2d.Object(root);
 		cached.filter = new h2d.filter.ColorMatrix();
 
-
-		#if debug
-		hxd.Res.initLocal();
-		hxd.res.Resource.LIVE_UPDATE = true;
-		#else
-		hxd.Res.initEmbed();
-		#end
 
 		Assets.init();
 		Data.load( hxd.Res.data.entry.getText() );

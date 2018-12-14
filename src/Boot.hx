@@ -14,16 +14,8 @@ class Boot extends hxd.App {
 	// Engine ready
 	override function init() {
 		ME = this;
-
-		engine.backgroundColor = 0xff<<24|Main.BG;
-		onResize();
-		#if hl
-		@:privateAccess hxd.Window.getInstance().window.vsync = true;
-		#if !debug
-		@:privateAccess hxd.Window.getInstance().window.displayMode = Borderless;
-		#end
-		#end
 		new Main();
+		onResize();
 	}
 
 	override function onResize() {
