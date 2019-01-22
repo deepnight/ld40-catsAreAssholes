@@ -83,6 +83,7 @@ mt_deepnight_Sfx.setGroupVolume = function(id,v) {
 mt_deepnight_Sfx.toggleMuteGroup = function(id) {
 	var g = mt_deepnight_Sfx.getGlobalGroup(id);
 	g.set_muted(!g.muted);
+	return g.muted;
 };
 mt_deepnight_Sfx.prototype = {
 	play: function(loop,vol) {
