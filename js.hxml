@@ -1,2 +1,3 @@
 base.hxml
+-lib stb_ogg_sound
 -js bin/client.js
