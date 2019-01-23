@@ -39,6 +39,7 @@ class Main extends mt.Process {
 		Data.load( hxd.Res.data.entry.getText() );
 		hxd.Timer.wantedFPS = Const.FPS;
 		console = new Console();
+		new mt.deepnight.GameFocusHelper(root, Assets.font);
 
 		#if debug
 		hxd.Res.data.watch( function() {
