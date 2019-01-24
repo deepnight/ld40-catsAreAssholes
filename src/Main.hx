@@ -40,7 +40,7 @@ class Main extends mt.Process {
 		hxd.Timer.wantedFPS = Const.FPS;
 		console = new Console();
 		new mt.deepnight.GameFocusHelper(Boot.ME.s2d, Assets.font);
-		mt.deepnight.Lib.ludumProtection(this);
+		// mt.deepnight.Lib.ludumProtection(this);
 
 		#if debug
 		hxd.Res.data.watch( function() {
