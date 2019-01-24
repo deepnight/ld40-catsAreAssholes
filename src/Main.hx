@@ -39,7 +39,8 @@ class Main extends mt.Process {
 		Data.load( hxd.Res.data.entry.getText() );
 		hxd.Timer.wantedFPS = Const.FPS;
 		console = new Console();
-		new mt.deepnight.GameFocusHelper(root, Assets.font);
+		new mt.deepnight.GameFocusHelper(Boot.ME.s2d, Assets.font);
+		mt.deepnight.Lib.ludumProtection(this);
 
 		#if debug
 		hxd.Res.data.watch( function() {
@@ -55,13 +56,21 @@ class Main extends mt.Process {
 		black = new h2d.Bitmap(h2d.Tile.fromColor(BG,1,1), root);
 		black.visible = false;
 
-		#if debug
-		restartGame();
-		#else
-		new ui.Title();
-		#end
+		delayer.addF(function() {
+			#if debug
+			restartGame();
+			#else
+			new ui.Title();
+			#end
 
-		onResize();
+			Assets.music.playOnGroup(1,true);
+			#if debug
+			mt.deepnight.Sfx.toggleMuteGroup(1);
+			#end
+
+			onResize();
+		}, 1);
+
 	}
 
 	var presses : Map<Int,Bool>;

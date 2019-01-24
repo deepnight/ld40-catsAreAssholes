@@ -18,7 +18,6 @@ class Level extends mt.Process {
 		pf = new mt.deepnight.PathFinder(wid, hei);
 
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
-		//var sheet = hxd.Res.cdbTiles.toTile();
 
 		for(l in lInfos.layers) {
 			var tileSet = lInfos.props.getTileset(Data.levelMap, l.data.file);

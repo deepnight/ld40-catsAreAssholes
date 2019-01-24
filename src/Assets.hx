@@ -4,7 +4,6 @@ import mt.deepnight.Sfx;
 class Assets {
 	public static var SBANK = Sfx.importDirectory("sfx");
 	public static var items : h2d.Tile;
-	public static var cdbTiles : h2d.Tile;
 	public static var gameElements : SpriteLib;
 	public static var font : h2d.Font;
 	public static var music : Sfx;
@@ -13,15 +12,9 @@ class Assets {
 		Sfx.setGroupVolume(0, 1);
 		Sfx.setGroupVolume(1, 0.25);
 		music = new mt.deepnight.Sfx( hxd.Res.jazz );
-		// music = Assets.SBANK.jazz();
-		music.playOnGroup(1,true);
-		#if debug
-		Sfx.toggleMuteGroup(1);
-		#end
 
 		font = hxd.Res.minecraftiaOutline.toFont();
 		items = hxd.Res.items.toTile();
-		cdbTiles = hxd.Res.cdbTiles.toTile();
 		gameElements = mt.heaps.slib.assets.Atlas.load("gameElements.atlas");
 
 		gameElements.defineAnim("heroTalk", "0,1,2(2),1,0,1,0,2,1(2),2,0,1(2),2,0,2");
