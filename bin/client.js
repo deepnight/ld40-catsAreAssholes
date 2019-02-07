@@ -3219,8 +3219,7 @@ var Main = function() {
 	h3d_Engine.CURRENT.backgroundColor = -16777216 | Main.BG;
 	hxd_Res.set_loader(new hxd_res_Loader(new hxd_fs_EmbedFileSystem(haxe_Unserializer.run("oy9:items.pngty8:jazz.mp3ty16:gameElements.pngty8:skin.pngty22:minecraftiaOutline.pngty3:sfxoy8:cat3.wavty9:coin0.wavty8:kat8.wavty9:menu0.wavty10:bleep2.wavty12:upgrade0.wavty9:drop1.wavty10:bleep0.wavty8:kat3.wavty8:cat1.wavty12:openDoor.wavty8:kat1.wavty9:ball0.wavty9:pick0.wavty9:step0.wavty9:step1.wavty9:drop2.wavty8:kat0.wavty8:kat4.wavty9:pick2.wavty8:cat0.wavty9:step2.wavty10:bleep1.wavty8:cat4.wavty8:kat7.wavty8:kat5.wavty8:kat2.wavty9:pick1.wavty10:error0.wavty9:drop0.wavty11:fridge0.wavty10:bleep3.wavty10:trash0.wavty8:kat6.wavty8:cat2.wavtgy12:cdbTiles.pngty18:gameElements.atlasty22:minecraftiaOutline.fntty8:data.cdbtg"))));
 	this.createRoot(Boot.ME.s2d);
-	this.cached = new h2d_Object(this.root);
-	this.cached.set_filter(new h2d_filter_ColorMatrix());
+	this.root.set_filter(new h2d_filter_ColorMatrix());
 	Assets.init();
 	Data.load(hxd_Res.get_loader().loadCache("data.cdb",hxd_res_Resource).entry.getText());
 	hxd_Timer.wantedFPS = Const.FPS;
@@ -3323,7 +3322,7 @@ Main.prototype = $extend(mt_Process.prototype,{
 			this.setBlack(true,function() {
 				Game.ME.destroyed = true;
 				_gthis.delayer.addS(null,function() {
-					new Game(new h2d_Object(_gthis.cached));
+					new Game(new h2d_Object(_gthis.root));
 					var _tween = _gthis.tw.create_(function() {
 						return Game.ME.root.alpha;
 					},function(_setV) {
@@ -3333,7 +3332,7 @@ Main.prototype = $extend(mt_Process.prototype,{
 				},0.5);
 			});
 		} else {
-			new Game(new h2d_Object(this.cached));
+			new Game(new h2d_Object(this.root));
 			var _tween1 = this.tw.create_(function() {
 				return Game.ME.root.alpha;
 			},function(_setV1) {
