@@ -5,7 +5,6 @@ class Main extends mt.Process {
 	public static var BG = 0x0e0829;
 	public static var ME : Main;
 	public var console : Console;
-	public var cached : h2d.Object;
 	var black : h2d.Bitmap;
 
 	public function new() {
@@ -30,10 +29,7 @@ class Main extends mt.Process {
         #end
 
 		createRoot(Boot.ME.s2d);
-
-		cached = new h2d.Object(root);
-		cached.filter = new h2d.filter.ColorMatrix();
-
+		root.filter = new h2d.filter.ColorMatrix();
 
 		Assets.init();
 		Data.load( hxd.Res.data.entry.getText() );
@@ -114,8 +110,6 @@ class Main extends mt.Process {
 			Const.SCALE = MLib.ceil( h()/Const.AUTO_SCALE_TARGET_HEIGHT );
 		root.setScale(Const.SCALE);
 
-		// cached.width = MLib.ceil(Boot.ME.s2d.width/cached.scaleX);
-		// cached.height = MLib.ceil(Boot.ME.s2d.height/cached.scaleY);
 		black.scaleX = Boot.ME.s2d.width;
 		black.scaleY = Boot.ME.s2d.height;
 	}
@@ -134,14 +128,14 @@ class Main extends mt.Process {
 			setBlack(true, function() {
 				Game.ME.destroy();
 				delayer.addS(function() {
-					new Game( new h2d.Object(cached) );
+					new Game( new h2d.Object(root) );
 					tw.createS(Game.ME.root.alpha, 0>1, 0.4);
 					setBlack(false);
 				},0.5);
 			});
 		}
 		else {
-			new Game( new h2d.Object(cached) );
+			new Game( new h2d.Object(root) );
 			tw.createS(Game.ME.root.alpha, 0>1, 0.4);
 			setBlack(false);
 		}
