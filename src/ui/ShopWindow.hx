@@ -12,7 +12,7 @@ class ShopWindow extends dn.Process {
 	var curIdx = 0;
 	var items : Array<{ f:h2d.Flow, p:Int, cb:Void->Void } >;
 	var door : en.inter.Door;
-	var ctrl : mt.heaps.Controller.ControllerAccess;
+	var ctrl : dn.heaps.Controller.ControllerAccess;
 
 	public function new() {
 		super(Main.ME);

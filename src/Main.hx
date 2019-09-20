@@ -3,8 +3,8 @@ class Main extends dn.Process {
 	public static var ME : Main;
 	public var console : Console;
 	var black : h2d.Bitmap;
-	public var ctrlMaster : mt.heaps.Controller;
-	var ctrl : mt.heaps.Controller.ControllerAccess;
+	public var ctrlMaster : dn.heaps.Controller;
+	var ctrl : dn.heaps.Controller.ControllerAccess;
 	var pad : hxd.Pad;
 
 	public function new() {
@@ -53,7 +53,7 @@ class Main extends dn.Process {
 		black.visible = false;
 
 		pad = hxd.Pad.createDummy();
-		ctrlMaster = new mt.heaps.Controller(Boot.ME.s2d);
+		ctrlMaster = new dn.heaps.Controller(Boot.ME.s2d);
 		ctrlMaster.bind(A, hxd.Key.SPACE, hxd.Key.ENTER, hxd.Key.U);
 		ctrlMaster.bind(B, hxd.Key.CTRL, hxd.Key.SHIFT);
 		ctrlMaster.bind(X, hxd.Key.C, hxd.Key.I);
@@ -172,7 +172,7 @@ class Main extends dn.Process {
 	override function update() {
 		super.update();
 
-		mt.heaps.Controller.beforeUpdate();
+		dn.heaps.Controller.beforeUpdate();
 
 		if( ctrl.lxValue()!=0 || ctrl.lyValue()!=0 )
 			ctrlMaster.setGamePad();

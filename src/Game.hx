@@ -13,7 +13,7 @@ class Game extends dn.Process {
 	public var catIdx = 0;
 
 	public var hudWrapper : h2d.Flow;
-	public var ctrl : mt.heaps.Controller.ControllerAccess;
+	public var ctrl : dn.heaps.Controller.ControllerAccess;
 
 	public function new(ctx:h2d.Object) {
 		super(Main.ME);

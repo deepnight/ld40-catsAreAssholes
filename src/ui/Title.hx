@@ -10,7 +10,7 @@ class Title extends dn.Process {
 	var cat1 : HSprite;
 	var chars : h2d.Object;
 	var press : h2d.Text;
-	var ctrl : mt.heaps.Controller.ControllerAccess;
+	var ctrl : dn.heaps.Controller.ControllerAccess;
 
 	public function new() {
 		super(Main.ME);

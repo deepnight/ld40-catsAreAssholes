@@ -264,14 +264,14 @@ class Grandma extends en.Hero {
 
 			if( ctrl.isKeyboard() )
 				rollAng =
-					ctrl.upDown() && ctrl.rightDown() ? -MLib.PIHALF*0.5 :
-					ctrl.downDown() && ctrl.rightDown() ? MLib.PIHALF*0.5 :
-					ctrl.upDown() && ctrl.leftDown() ? -MLib.PIHALF*1.5 :
-					ctrl.downDown() && ctrl.leftDown() ? MLib.PIHALF*1.5 :
-					ctrl.upDown() ? -MLib.PIHALF :
+					ctrl.upDown() && ctrl.rightDown() ? -M.PIHALF*0.5 :
+					ctrl.downDown() && ctrl.rightDown() ? M.PIHALF*0.5 :
+					ctrl.upDown() && ctrl.leftDown() ? -M.PIHALF*1.5 :
+					ctrl.downDown() && ctrl.leftDown() ? M.PIHALF*1.5 :
+					ctrl.upDown() ? -M.PIHALF :
 					ctrl.rightDown() ? 0 :
-					ctrl.downDown() ? MLib.PIHALF :
-					ctrl.leftDown() ? MLib.PI :
+					ctrl.downDown() ? M.PIHALF :
+					ctrl.leftDown() ? M.PI :
 					rollAng;
 
 			// Run
