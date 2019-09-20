@@ -3,6 +3,9 @@ class Main extends dn.Process {
 	public static var ME : Main;
 	public var console : Console;
 	var black : h2d.Bitmap;
+	public var ctrlMaster : mt.heaps.Controller;
+	var ctrl : mt.heaps.Controller.ControllerAccess;
+	var pad : hxd.Pad;
 
 	public function new() {
 		super();
@@ -48,6 +51,24 @@ class Main extends dn.Process {
 
 		black = new h2d.Bitmap(h2d.Tile.fromColor(BG,1,1), root);
 		black.visible = false;
+
+		pad = hxd.Pad.createDummy();
+		ctrlMaster = new mt.heaps.Controller(Boot.ME.s2d);
+		ctrlMaster.bind(A, hxd.Key.SPACE, hxd.Key.ENTER, hxd.Key.U);
+		ctrlMaster.bind(B, hxd.Key.CTRL, hxd.Key.SHIFT);
+		ctrlMaster.bind(X, hxd.Key.C, hxd.Key.I);
+		ctrlMaster.bind(AXIS_LEFT_X_NEG, hxd.Key.LEFT, hxd.Key.Q, hxd.Key.A);
+		ctrlMaster.bind(AXIS_LEFT_X_POS, hxd.Key.RIGHT, hxd.Key.D);
+		ctrlMaster.bind(AXIS_LEFT_Y_NEG, hxd.Key.DOWN, hxd.Key.S);
+		ctrlMaster.bind(AXIS_LEFT_Y_POS, hxd.Key.UP, hxd.Key.Z, hxd.Key.W);
+		ctrl = ctrlMaster.createAccess("main");
+		ctrl.leftDeadZone = 0.15;
+		Boot.ME.s2d.addEventListener(function(e) {
+			switch( e.kind ) {
+				case EKeyDown : ctrlMaster.setKeyboard();
+				default :
+			}
+		});
 
 		delayer.addF(function() {
 			#if debug
@@ -148,9 +169,13 @@ class Main extends dn.Process {
 				presses.remove(k);
 	}
 
-
 	override function update() {
 		super.update();
+
+		mt.heaps.Controller.beforeUpdate();
+
+		if( ctrl.lxValue()!=0 || ctrl.lyValue()!=0 )
+			ctrlMaster.setGamePad();
 
 		if( keyPressed(hxd.Key.M) )
 			dn.heaps.Sfx.toggleMuteGroup(1);

@@ -1,3 +1,5 @@
+import hxd.Pad;
+
 class Game extends dn.Process {
 	public static var ME : Game;
 	public var scroller : h2d.Layers;
@@ -11,11 +13,14 @@ class Game extends dn.Process {
 	public var catIdx = 0;
 
 	public var hudWrapper : h2d.Flow;
+	public var ctrl : mt.heaps.Controller.ControllerAccess;
 
 	public function new(ctx:h2d.Object) {
 		super(Main.ME);
 
 		ME = this;
+		ctrl = Main.ME.ctrlMaster.createAccess("game");
+		ctrl.leftDeadZone = 0.15;
 		createRoot(ctx);
 
 		hudWrapper = new h2d.Flow();
@@ -47,6 +52,7 @@ class Game extends dn.Process {
 		for(e in Entity.ALL)
 			e.destroy();
 		gc();
+		ctrl.dispose();
 	}
 
 	function gc() {
@@ -80,7 +86,7 @@ class Game extends dn.Process {
 		// Updates
 		for(e in Entity.ALL) {
 			scroller.over(e.spr);
-			@:privateAccess e.dt = 1;
+			@:privateAccess e.dt = dt;
 			if( !e.destroyed ) e.preUpdate();
 			if( !e.destroyed ) e.update();
 			if( !e.destroyed ) e.postUpdate();

@@ -135,8 +135,10 @@ class Cat extends Entity {
 		if( cd.hasSetS("atkLimit", 15) )
 			return false;
 
-		if( e!=null )
+		if( e!=null ) {
 			startJob( Fight(e), rnd(5,6) );
+			return true;
+		}
 		else {
 			var dh = new DecisionHelper(ALL);
 			dh.remove( function(e) return e==this || e.destroyed );
@@ -147,12 +149,11 @@ class Cat extends Entity {
 				startJob( Fight(e), rnd(8,12) );
 				jump(1);
 				cd.setS("lock", 1);
+				return true;
 			}
 			else
 				return false;
 		}
-
-		return true;
 	}
 
 	function startHeroAttack(r:String) {
@@ -350,6 +351,8 @@ class Cat extends Entity {
 			switch( job ) {
 				case Fight(te) :
 					if( te.is(Cat) && e.is(Cat) ) {
+						Assets.SBANK.bleep0(0.4);
+						Assets.SBANK.bleep1(1);
 						var e : Cat = Std.instance(e,Cat);
 						e.flee(this);
 						e.cd.setS("lock", rnd(1.2,1.6));
@@ -495,7 +498,7 @@ class Cat extends Entity {
 				case Lick :
 			}
 
-			var spd = isAngry() || cd.has("fleeing") ? 0.05 : 0.03;
+			var spd = ( isAngry() || cd.has("fleeing") ? 0.05 : 0.03 ) * dt;
 
 			// Dash movement
 			if( cd.has("dashing") ) {
@@ -506,8 +509,8 @@ class Cat extends Entity {
 
 					default :
 				}
-				dx+=Math.cos(dashAng)*0.08;
-				dy+=Math.sin(dashAng)*0.08;
+				dx+=Math.cos(dashAng)*0.08*dt;
+				dy+=Math.sin(dashAng)*0.08*dt;
 			}
 
 			#if debug
@@ -570,7 +573,8 @@ class Cat extends Entity {
 				// Job update
 				var doingIt = switch( job ) {
 					case Follow(e) : distCase(e)<=6;
-					case Lick, Wait : atTarget();
+					case Lick : atTarget();
+					case Wait : atTarget();
 					case Shit : atTarget();
 					case Vomit(_) : atTarget();
 					case Eat(e, _) : distCase(e)<=1.8;
@@ -621,6 +625,7 @@ class Cat extends Entity {
 							frames-=dt;
 							if( frames<=0 ) {
 								shitStock = 0;
+								Assets.SBANK.error0(0.35);
 								var e = new en.inter.ItemDrop(Vomit, cx,cy);
 								e.hasColl = false;
 								e.xr = xr+dir*0.45;

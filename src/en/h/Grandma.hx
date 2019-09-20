@@ -183,7 +183,7 @@ class Grandma extends en.Hero {
 	override public function update() {
 		super.update();
 
-		var spd = 0.03 * (cd.has("dashing") ? 2 : 1);
+		var spd = 0.03 * (cd.has("dashing") ? 2 : 1) * dt;
 		if( cd.has("dashing") )
 			spr.anim.setStateAnimSpeed("heroWalk",0.6);
 		else
@@ -194,28 +194,43 @@ class Grandma extends en.Hero {
 
 		if( !game.hasCinematic() && !cd.has("locked") && onGround && !isDead() ) {
 			// Movement
-			if( Key.isDown(Key.RIGHT) ) {
-				Tutorial.ME.complete("controls");
-				dir = 1;
-				dx += dir*spd;
-				cd.setS("walking",0.1);
+			if( ctrl.isGamePad() ) {
+				var px = ctrl.lxValue();
+				var py = -ctrl.lyValue();
+				var d = Math.sqrt(px*px+py*py);
+				if( d>0 ) {
+					var a = Math.atan2(py,px);
+					dx+=Math.cos(a)*d*spd;
+					dy+=Math.sin(a)*d*spd;
+					dir = px>=ctrl.leftDeadZone*0.5 ? 1 : px<=ctrl.leftDeadZone*0.5 ? -1 : dir;
+					cd.setS("walking",0.1);
+					rollAng = a;
+				}
 			}
-			else if( Key.isDown(Key.LEFT) ) {
-				Tutorial.ME.complete("controls");
-				dir = -1;
-				dx += dir*spd;
-				cd.setS("walking",0.1);
-			}
+			else {
+				if( ctrl.rightDown() ) {
+					Tutorial.ME.complete("controls");
+					dir = 1;
+					dx += dir*spd;
+					cd.setS("walking",0.1);
+				}
+				else if( ctrl.leftDown() ) {
+					Tutorial.ME.complete("controls");
+					dir = -1;
+					dx += dir*spd;
+					cd.setS("walking",0.1);
+				}
 
-			if( Key.isDown(Key.UP) ) {
-				Tutorial.ME.complete("controls");
-				dy -= spd;
-				cd.setS("walking",0.1);
-			}
-			else if( Key.isDown(Key.DOWN) ) {
-				Tutorial.ME.complete("controls");
-				dy += spd;
-				cd.setS("walking",0.1);
+				if( ctrl.upDown() ) {
+					Tutorial.ME.complete("controls");
+					dy -= spd;
+					cd.setS("walking",0.1);
+				}
+				else if( ctrl.downDown() ) {
+					Tutorial.ME.complete("controls");
+					dy += spd;
+					cd.setS("walking",0.1);
+				}
 			}
 
 			// Use
@@ -229,7 +244,7 @@ class Grandma extends en.Hero {
 			if( useTarget!=null )
 				focus.setPos(useTarget.footX, useTarget.footY-10 - M.fabs( Math.sin(game.ftime*0.2)*6) );
 
-			if( Main.ME.keyPressed(Key.SPACE) ) {
+			if( ctrl.aPressed() ) {
 				if( useTarget!=null && ( !useTarget.is(en.inter.ItemDrop) || item==null ) ) {
 					useTarget.activate(this);
 				}
@@ -239,39 +254,34 @@ class Grandma extends en.Hero {
 
 			if( side!=null ) {
 				// Call sidekick
-				if( Main.ME.keyPressed(Key.C) && useTarget!=null )
+				if( ctrl.xPressed() && useTarget!=null )
 					side.callOn(useTarget);
 
 				// Cancel sidekick
-				if( Main.ME.keyPressed(Key.ESCAPE) )
+				if( ctrl.yPressed() )
 					side.reset();
 			}
 
-			// Roll
-			//if( Key.isDown(Key.CTRL) && !cd.has("rollLock") ) {
-				//cd.setS("rollLock",0.5);
-				//cd.setS("locked",0.4);
-				//cd.setS("rolling",0.4);
-			//}
+			if( ctrl.isKeyboard() )
+				rollAng =
+					ctrl.upDown() && ctrl.rightDown() ? -MLib.PIHALF*0.5 :
+					ctrl.downDown() && ctrl.rightDown() ? MLib.PIHALF*0.5 :
+					ctrl.upDown() && ctrl.leftDown() ? -MLib.PIHALF*1.5 :
+					ctrl.downDown() && ctrl.leftDown() ? MLib.PIHALF*1.5 :
+					ctrl.upDown() ? -MLib.PIHALF :
+					ctrl.rightDown() ? 0 :
+					ctrl.downDown() ? MLib.PIHALF :
+					ctrl.leftDown() ? MLib.PI :
+					rollAng;
 
 			// Run
-			if( ( Key.isDown(Key.SHIFT) || Key.isDown(Key.CTRL) ) && !cd.has("dashLock") ) {
+			if( ctrl.bDown() && !cd.has("dashLock") ) {
 				cd.setS("dashing", 0.4);
 				cd.setS("dashLock", 1);
 				dx*=1.5;
 				dy*=1.5;
 			}
 
-			rollAng =
-				Key.isDown(Key.UP) && Key.isDown(Key.RIGHT) ? -M.PIHALF*0.5 :
-				Key.isDown(Key.DOWN) && Key.isDown(Key.RIGHT) ? M.PIHALF*0.5 :
-				Key.isDown(Key.UP) && Key.isDown(Key.LEFT) ? -M.PIHALF*1.5 :
-				Key.isDown(Key.DOWN) && Key.isDown(Key.LEFT) ? M.PIHALF*1.5 :
-				Key.isDown(Key.UP) ? -M.PIHALF :
-				Key.isDown(Key.RIGHT) ? 0 :
-				Key.isDown(Key.DOWN) ? M.PIHALF :
-				Key.isDown(Key.LEFT) ? M.PI :
-				rollAng;
 		}
 
 		#if debug
@@ -287,10 +297,10 @@ class Grandma extends en.Hero {
 
 		if( !isDead() ) {
 			// Roll effect
-			if( cd.has("rolling") ) {
-				dx += Math.cos(rollAng)*0.098 * (0.+1*cd.getRatio("rolling"));
-				dy += Math.sin(rollAng)*0.098 * (0.+1*cd.getRatio("rolling"));
-			}
+			//if( cd.has("dashing") ) {
+				//dx += Math.cos(rollAng)*0.098 * (0.+1*cd.getRatio("rolling")) * dt;
+				//dy += Math.sin(rollAng)*0.098 * (0.+1*cd.getRatio("rolling")) * dt;
+			//}
 
 			// Assist movement near collisions
 			if( dx<0 ) {

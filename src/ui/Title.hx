@@ -10,10 +10,12 @@ class Title extends dn.Process {
 	var cat1 : HSprite;
 	var chars : h2d.Object;
 	var press : h2d.Text;
+	var ctrl : mt.heaps.Controller.ControllerAccess;
 
 	public function new() {
 		super(Main.ME);
 		ME = this;
+		ctrl = Main.ME.ctrlMaster.createAccess("title");
 
 		createRoot(Main.ME.root);
 
@@ -101,6 +103,7 @@ class Title extends dn.Process {
 		super.onDispose();
 		if( ME==this )
 			ME = null;
+		ctrl.dispose();
 	}
 
 	function close() {
@@ -117,7 +120,7 @@ class Title extends dn.Process {
 		if( cd.has("closing") )
 			return;
 
-		if( Main.ME.keyPressed(Key.SPACE) || Main.ME.keyPressed(Key.ESCAPE) ) {
+		if( ctrl.aPressed() || ctrl.bPressed() || ctrl.xPressed() ) {
 			if( about.visible ) {
 				close();
 				Assets.SBANK.bleep2(1);
