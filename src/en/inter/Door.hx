@@ -1,9 +1,5 @@
 package en.inter;
 
-import mt.MLib;
-import mt.heaps.slib.*;
-import hxd.Key;
-
 enum DoorEvent {
 	Deliver(k:Data.ItemKind);
 }
@@ -114,12 +110,12 @@ class Door extends en.Interactive {
 		super.update();
 
 		autoCatCptF+=dt;
-		var next = AUTO_CAT[MLib.min(cats,AUTO_CAT.length-1)];
+		var next = AUTO_CAT[M.imin(cats,AUTO_CAT.length-1)];
 		if( autoCatCptF>=next*Const.FPS ) {
 			doEvent(Deliver(CatBox));
 			onNextCat();
 		}
-		var t = MLib.ceil(next-autoCatCptF/Const.FPS);
+		var t = M.ceil(next-autoCatCptF/Const.FPS);
 		if( t<60 )
 			setLabel(t+"s");
 		else

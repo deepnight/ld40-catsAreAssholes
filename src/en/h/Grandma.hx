@@ -1,7 +1,5 @@
 package en.h;
 
-import mt.MLib;
-import mt.heaps.slib.*;
 import hxd.Key;
 
 class Grandma extends en.Hero {
@@ -78,7 +76,7 @@ class Grandma extends en.Hero {
 		game.delayer.addS( function() {
 			if( destroyed )
 				return;
-			followers += MLib.round(n*rnd(0.9,1.1)) ;
+			followers += M.round(n*rnd(0.9,1.1)) ;
 			//ui.Followers.ME.set(followers, major);
 		}, rnd(0.9,1.3));
 	}
@@ -129,7 +127,7 @@ class Grandma extends en.Hero {
 		if( itemIcon!=null ) {
 			itemIcon.x = 10;
 			itemIcon.y = -1;
-			if( MLib.fabs(dx)>=0.01 || MLib.fabs(dy)>=0.01 ) {
+			if( M.fabs(dx)>=0.01 || M.fabs(dy)>=0.01 ) {
 				itemIcon.x += Math.sin(game.ftime*0.22)*1;
 				itemIcon.y += Math.cos(game.ftime*0.61)*2;
 			}
@@ -229,7 +227,7 @@ class Grandma extends en.Hero {
 			var useTarget = dh.getBest();
 			focus.visible = useTarget!=null;
 			if( useTarget!=null )
-				focus.setPos(useTarget.footX, useTarget.footY-10 - MLib.fabs( Math.sin(game.ftime*0.2)*6) );
+				focus.setPos(useTarget.footX, useTarget.footY-10 - M.fabs( Math.sin(game.ftime*0.2)*6) );
 
 			if( Main.ME.keyPressed(Key.SPACE) ) {
 				if( useTarget!=null && ( !useTarget.is(en.inter.ItemDrop) || item==null ) ) {
@@ -265,14 +263,14 @@ class Grandma extends en.Hero {
 			}
 
 			rollAng =
-				Key.isDown(Key.UP) && Key.isDown(Key.RIGHT) ? -MLib.PIHALF*0.5 :
-				Key.isDown(Key.DOWN) && Key.isDown(Key.RIGHT) ? MLib.PIHALF*0.5 :
-				Key.isDown(Key.UP) && Key.isDown(Key.LEFT) ? -MLib.PIHALF*1.5 :
-				Key.isDown(Key.DOWN) && Key.isDown(Key.LEFT) ? MLib.PIHALF*1.5 :
-				Key.isDown(Key.UP) ? -MLib.PIHALF :
+				Key.isDown(Key.UP) && Key.isDown(Key.RIGHT) ? -M.PIHALF*0.5 :
+				Key.isDown(Key.DOWN) && Key.isDown(Key.RIGHT) ? M.PIHALF*0.5 :
+				Key.isDown(Key.UP) && Key.isDown(Key.LEFT) ? -M.PIHALF*1.5 :
+				Key.isDown(Key.DOWN) && Key.isDown(Key.LEFT) ? M.PIHALF*1.5 :
+				Key.isDown(Key.UP) ? -M.PIHALF :
 				Key.isDown(Key.RIGHT) ? 0 :
-				Key.isDown(Key.DOWN) ? MLib.PIHALF :
-				Key.isDown(Key.LEFT) ? MLib.PI :
+				Key.isDown(Key.DOWN) ? M.PIHALF :
+				Key.isDown(Key.LEFT) ? M.PI :
 				rollAng;
 		}
 
@@ -325,7 +323,7 @@ class Grandma extends en.Hero {
 			stepId = 0;
 
 		if( Console.ME.has("fps") )
-			setLabel( ""+MLib.round(hxd.Timer.fps())+" "+pretty(dt,2) );
+			setLabel( ""+M.round(hxd.Timer.fps())+" "+pretty(dt,2) );
 
 		if( isDead() && !cd.hasSetS("autoGain",rnd(0.6,1)) )
 			gainFollowers(en.Cat.ALL.length*100, true);

@@ -1,9 +1,6 @@
 package ui;
 
-import mt.heaps.slib.*;
-import mt.MLib;
-
-class Money extends mt.Process {
+class Money extends dn.Process {
 	public static var ME : Money;
 	var flow : h2d.Flow;
 	var money : h2d.Text;

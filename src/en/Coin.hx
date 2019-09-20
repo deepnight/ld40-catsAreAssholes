@@ -1,7 +1,5 @@
 package en;
 
-import mt.MLib;
-import mt.heaps.slib.*;
 import hxd.Key;
 
 class Coin extends Entity {
@@ -46,7 +44,7 @@ class Coin extends Entity {
 
 	override public function postUpdate() {
 		super.postUpdate();
-		var a = MLib.fclamp(1-altitude/10,0,1);
+		var a = M.fclamp(1-altitude/10,0,1);
 		shadow.setScale(0.2 + 0.3*a);
 		shadow.y+=1;
 	}

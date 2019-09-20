@@ -1,7 +1,5 @@
 package en;
 
-import mt.MLib;
-import mt.heaps.slib.*;
 import hxd.Key;
 
 class Furn extends Entity {

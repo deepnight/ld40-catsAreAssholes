@@ -1,10 +1,6 @@
 package ui;
 
-import mt.heaps.slib.*;
-import mt.MLib;
-import mt.deepnight.Tweenie;
-
-class TutorialTip extends mt.Process {
+class TutorialTip extends dn.Process {
 	public static var ME : TutorialTip;
 	var flow : h2d.Flow;
 	var cAdd : h3d.Vector;

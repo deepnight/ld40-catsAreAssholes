@@ -1,7 +1,7 @@
-import mt.deepnight.CdbHelper;
-import mt.deepnight.PathFinder;
+import dn.CdbHelper;
+import dn.PathFinder;
 
-class Level extends mt.Process {
+class Level extends dn.Process {
 	var lInfos : Data.LevelMap;
 	var collMap : Map<Int,Bool>;
 	public var wid : Int;
@@ -15,7 +15,7 @@ class Level extends mt.Process {
 		collMap = new Map();
 		wid = lInfos.width;
 		hei = lInfos.height;
-		pf = new mt.deepnight.PathFinder(wid, hei);
+		pf = new dn.PathFinder(wid, hei);
 
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
 

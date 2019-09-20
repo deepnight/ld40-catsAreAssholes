@@ -1,9 +1,6 @@
 package ui;
 
-import mt.heaps.slib.*;
-import mt.MLib;
-
-class Followers extends mt.Process {
+class Followers extends dn.Process {
 	public static var ME : Followers;
 	var flow : h2d.Flow;
 	var field : h2d.Text;
@@ -63,14 +60,14 @@ class Followers extends mt.Process {
 		cAdd.b*=0.8;
 
 		if( curVal!=targetVal || curVal==0 ) {
-			curVal += MLib.ceil((targetVal-curVal)*0.04);
+			curVal += M.ceil((targetVal-curVal)*0.04);
 
 			if( curVal<majorUntil && curVal!=0 && !cd.hasSetS("blinkRoll",0.1) ) {
 				cd.setS("shake,",1);
 				blink();
 			}
 
-			if( MLib.fabs(curVal-targetVal)<=2 )
+			if( M.fabs(curVal-targetVal)<=2 )
 				curVal = targetVal;
 			field.text = curVal<=1 ? (curVal+" follower") : (curVal+" followers");
 		}

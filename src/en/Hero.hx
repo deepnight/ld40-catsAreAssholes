@@ -1,8 +1,5 @@
 package en;
 
-import mt.MLib;
-import mt.heaps.slib.*;
-
 class Hero extends Entity {
 	public var item : Null<Data.ItemKind>;
 	public var itemIcon : Null<h2d.Bitmap>;

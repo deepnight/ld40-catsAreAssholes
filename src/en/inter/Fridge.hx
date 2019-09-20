@@ -1,9 +1,5 @@
 package en.inter;
 
-import mt.MLib;
-import mt.heaps.slib.*;
-import hxd.Key;
-
 class Fridge extends en.Interactive {
 	public static var ALL : Array<Fridge> = [];
 	var max(get,never) : Int;

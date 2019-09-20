@@ -1,9 +1,6 @@
 package en;
 
-import mt.MLib;
-import mt.heaps.slib.*;
 import hxd.Key;
-import mt.deepnight.Lib;
 import en.inter.FoodTray;
 
 enum Job {
@@ -29,7 +26,7 @@ class Cat extends Entity {
 	var dashAng = 0.;
 	var shitStock = 0;
 	var target : Null<CPoint>;
-	var path : Null<mt.deepnight.PathFinder.Path>;
+	var path : Null<dn.PathFinder.Path>;
 	var pathEnd : Null<{ x:Int, y:Int }>;
 	var rebootF = 0.;
 
@@ -59,8 +56,8 @@ class Cat extends Entity {
 		spr.anim.registerStateAnim(skin+"LickLook",11, function() return atTarget() && job==Lick && cd.has("stare"));
 		spr.anim.registerStateAnim(skin+"Lick",10, 0.15, function() return atTarget() && job==Lick);
 
-		spr.anim.registerStateAnim(skin+"AngryWalk",4, 0.25, function() return isAngry() && ( MLib.fabs(dx)>0 || MLib.fabs(dy)>0 ) );
-		spr.anim.registerStateAnim(skin+"Walk",3, 0.2, function() return MLib.fabs(dx)>0 || MLib.fabs(dy)>0 );
+		spr.anim.registerStateAnim(skin+"AngryWalk",4, 0.25, function() return isAngry() && ( M.fabs(dx)>0 || M.fabs(dy)>0 ) );
+		spr.anim.registerStateAnim(skin+"Walk",3, 0.2, function() return M.fabs(dx)>0 || M.fabs(dy)>0 );
 
 		spr.anim.registerStateAnim(skin+"Fall",15, function() return altitude>=3);
 		spr.anim.registerStateAnim(skin+"Observe",2, 0.5, function() return cd.has("observing"));
@@ -68,7 +65,7 @@ class Cat extends Entity {
 		spr.anim.registerStateAnim(skin+"IdleAngry",0, function() return isAngry());
 		spr.anim.registerStateAnim(skin+"Idle",0, function() return !isAngry());
 
-		spr.colorMatrix = mt.deepnight.Color.getColorizeMatrixH2d( mt.deepnight.Color.makeColorHsl(rnd(0,1), 0.5, 1), rnd(0,0.3));
+		spr.colorMatrix = dn.Color.getColorizeMatrixH2d( dn.Color.makeColorHsl(rnd(0,1), 0.5, 1), rnd(0,0.3));
 
 		shitStock = irnd(0,2);
 		startWait();
@@ -84,7 +81,7 @@ class Cat extends Entity {
 		if( e.destroyed ) return false;
 		if( isOnJob(Vomit(0)) ) return false;
 		if( !e.is(Cat) || cd.has("dashing") || e.cd.has("dashing") ) return true;
-		return mt.deepnight.Lib.angularDistanceRad(getMoveAng(), e.getMoveAng())<=0.7;
+		return M.radDistance(getMoveAng(), e.getMoveAng())<=0.7;
 	}
 
 	function get_pathEnd() {
@@ -104,7 +101,7 @@ class Cat extends Entity {
 	function startRandom() {
 		rebootF = 0;
 
-		var rlist = new mt.RandList();
+		var rlist = new dn.RandList();
 		rlist.add( startShit, 5*shitStock );
 		rlist.add( startVomit, Std.int(shitStock * (catIdx==4 ? 3 : 0.5 )) );
 		rlist.add( startEat, 17-4*shitStock );
@@ -175,7 +172,7 @@ class Cat extends Entity {
 
 	function startWait(?t:Float) {
 		clearEmote();
-		var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(cx,cy, 2) );
+		var dh = new DecisionHelper( dn.Bresenham.getDisc(cx,cy, 2) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
 		dh.score( function(pt) return -Lib.distance(cx,cy,pt.x,pt.y) );
 		dh.score( function(pt) return Entity.countNearby(pt.x,pt.y, 1)==0 ? 3 : 0 );
@@ -192,7 +189,7 @@ class Cat extends Entity {
 	}
 
 	function startLick() {
-		var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(cx,cy, 6) );
+		var dh = new DecisionHelper( dn.Bresenham.getDisc(cx,cy, 6) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
 		dh.score( function(pt) return Lib.distance(cx,cy,pt.x,pt.y) );
 		dh.score( function(pt) return sightCheckCase(pt.x,pt.y) ? 0 : -3 );
@@ -219,7 +216,7 @@ class Cat extends Entity {
 		}
 		else {
 			// Shit on the ground
-			var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(cx,cy, 8) );
+			var dh = new DecisionHelper( dn.Bresenham.getDisc(cx,cy, 8) );
 			dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
 			dh.score( function(pt) return Lib.distance(cx,cy,pt.x,pt.y) );
 			dh.score( function(pt) return sightCheckCase(pt.x,pt.y) ? 0 : -3 );
@@ -238,7 +235,7 @@ class Cat extends Entity {
 		if( shitStock<=0 )
 			return false;
 
-		var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(cx,cy, 4) );
+		var dh = new DecisionHelper( dn.Bresenham.getDisc(cx,cy, 4) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
 		dh.score( function(pt) return Lib.distance(cx,cy,pt.x,pt.y) );
 		dh.score( function(pt) return sightCheckCase(pt.x,pt.y) ? 0 : -3 );
@@ -255,7 +252,7 @@ class Cat extends Entity {
 
 
 	public function flee(e:Entity) {
-		var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(cx,cy, 10) );
+		var dh = new DecisionHelper( dn.Bresenham.getDisc(cx,cy, 10) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
 		dh.score( function(pt) return Lib.distance(e.cx,e.cy,pt.x,pt.y) );
 		dh.score( function(pt) return !e.sightCheckCase(pt.x,pt.y) ? 2 : 0 );
@@ -319,7 +316,7 @@ class Cat extends Entity {
 	}
 
 	function gotoNearby(e:Entity, minDist:Int, maxDist:Int) {
-		var dh = new DecisionHelper( mt.deepnight.Bresenham.getDisc(e.cx,e.cy, maxDist) );
+		var dh = new DecisionHelper( dn.Bresenham.getDisc(e.cx,e.cy, maxDist) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) || !e.sightCheckCase(pt.x,pt.y) || Lib.distance(e.cx,e.cy,pt.x,pt.y)<=minDist );
 		dh.score( function(pt) return -Lib.distance(e.cx,e.cy,pt.x,pt.y) );
 		dh.score( function(pt) return rnd(0,2) );
@@ -505,7 +502,7 @@ class Cat extends Entity {
 				rebootF = 0;
 				switch( job ) {
 					case Fight(e) :
-						dashAng += Lib.angularSubstractionRad(Math.atan2(e.footY-footY, e.footX-footX), dashAng)*0.04;
+						dashAng += M.radSubstract(Math.atan2(e.footY-footY, e.footX-footX), dashAng)*0.04;
 
 					default :
 				}
@@ -700,7 +697,7 @@ class Cat extends Entity {
 				//Assets.SBANK.cat4,
 			//];
 			var s = all[Std.random(all.length)]();
-			s.play( (sightCheck(hero)?1:0.4) * ( 0.1 + 0.5 * MLib.fclamp(1-distCase(hero)/10,0,1) ) );
+			s.play( (sightCheck(hero)?1:0.4) * ( 0.1 + 0.5 * M.fclamp(1-distCase(hero)/10,0,1) ) );
 		}
 
 	}

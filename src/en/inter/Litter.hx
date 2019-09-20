@@ -1,9 +1,5 @@
 package en.inter;
 
-import mt.MLib;
-import mt.heaps.slib.*;
-import hxd.Key;
-
 class Litter extends en.Interactive {
 	public static var ALL : Array<Litter> = [];
 	var max = 5;
@@ -41,7 +37,7 @@ class Litter extends en.Interactive {
 	}
 
 	public function addShit(n) {
-		stock = MLib.min(stock+n, max);
+		stock = M.imin(stock+n, max);
 	}
 
 	override public function postUpdate() {

@@ -1,9 +1,5 @@
 package en;
 
-import mt.MLib;
-import mt.heaps.slib.*;
-import hxd.Key;
-
 class Interactive extends Entity {
 	public static var ALL : Array<Interactive> = [];
 

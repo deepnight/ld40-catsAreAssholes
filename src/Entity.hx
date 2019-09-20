@@ -1,7 +1,3 @@
-import mt.MLib;
-import mt.heaps.slib.*;
-import mt.deepnight.Lib;
-
 class Entity {
 	public static var ALL : Array<Entity> = [];
 
@@ -11,7 +7,7 @@ class Entity {
 	public var hero(get,never) : en.h.Grandma; inline function get_hero() return Game.ME.hero;
 	public var side(get,never) : en.h.Sidekick; inline function get_side() return Game.ME.side;
 	public var destroyed(default,null) = false;
-	public var cd : mt.Cooldown;
+	public var cd : dn.Cooldown;
 
 	public var spr : HSprite;
 	public var shadow : Null<HSprite>;
@@ -50,11 +46,11 @@ class Entity {
 		uid = Const.UNIQ++;
 		ALL.push(this);
 
-		cd = new mt.Cooldown(Const.FPS);
+		cd = new dn.Cooldown(Const.FPS);
 		radius = Const.GRID*0.6;
 		setPosCase(x,y);
 
-		spr = new mt.heaps.slib.HSprite(Assets.gameElements);
+		spr = new dn.heaps.slib.HSprite(Assets.gameElements);
 		game.scroller.add(spr, Const.DP_HERO);
 		spr.setCenterRatio(0.5,1);
 		spr.colorAdd = cAdd = new h3d.Vector();
@@ -178,7 +174,7 @@ class Entity {
 
 	public inline function rnd(min,max,?sign) return Lib.rnd(min,max,sign);
 	public inline function irnd(min,max,?sign) return Lib.irnd(min,max,sign);
-	public inline function pretty(v,?p=1) return Lib.prettyFloat(v,p);
+	public inline function pretty(v,?p=1) return M.pretty(v,p);
 
 	public inline function distCase(e:Entity) {
 		return Lib.distance(cx+xr, cy+yr, e.cx+e.xr, e.cy+e.yr);
@@ -193,11 +189,11 @@ class Entity {
 	public inline function sightCheck(e:Entity) {
 		if( level.hasColl(cx,cy) || level.hasColl(e.cx,e.cy) )
 			return true;
-		return mt.deepnight.Bresenham.checkThinLine(cx, cy, e.cx, e.cy, canSeeThrough);
+		return dn.Bresenham.checkThinLine(cx, cy, e.cx, e.cy, canSeeThrough);
 	}
 
 	public inline function sightCheckCase(x,y) {
-		return mt.deepnight.Bresenham.checkThinLine(cx, cy, x, y, canSeeThrough);
+		return dn.Bresenham.checkThinLine(cx, cy, x, y, canSeeThrough);
 	}
 
 	public inline function getMoveAng() {
@@ -365,7 +361,7 @@ class Entity {
 		dx*=frict;
 		while( xr>1 ) { xr--; cx++; }
 		while( xr<0 ) { xr++; cx--; }
-		if( MLib.fabs(dx)<=0.001 ) dx = 0;
+		if( M.fabs(dx)<=0.001 ) dx = 0;
 
 		// Y
 		yr+=dy;
@@ -382,18 +378,18 @@ class Entity {
 		dy*=frict;
 		while( yr>1 ) { yr--; cy++; }
 		while( yr<0 ) { yr++; cy--; }
-		if( MLib.fabs(dy)<=0.001 ) dy = 0;
+		if( M.fabs(dy)<=0.001 ) dy = 0;
 
 		// Gravity
 		if( altitude>0 || dalt!=0 ) {
 			dalt+=-gravity;
 			altitude+=dalt;
 			dalt*=0.95;
-			if( MLib.fabs(dalt)<=0.1 )
+			if( M.fabs(dalt)<=0.1 )
 				dalt = 0;
 			if( altitude<=0 ) {
-				dalt = MLib.fabs(dalt)*bounceFrict;
-				onBounce( MLib.fclamp(MLib.fabs(dalt)/1.6, 0, 1) );
+				dalt = M.fabs(dalt)*bounceFrict;
+				onBounce( M.fclamp(M.fabs(dalt)/1.6, 0, 1) );
 				altitude = 0;
 			}
 		}

@@ -1,8 +1,4 @@
-import mt.heaps.slib.*;
-import mt.MLib;
-import mt.deepnight.Tweenie;
-
-class Tutorial extends mt.Process {
+class Tutorial extends dn.Process {
 	public static var ME : Tutorial;
 
 	var done : Map<String,Bool>;

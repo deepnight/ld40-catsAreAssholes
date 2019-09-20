@@ -1,9 +1,6 @@
 package ui;
 
-import mt.heaps.slib.*;
-import mt.MLib;
-
-class Life extends mt.Process {
+class Life extends dn.Process {
 	static var NORMAL_BEAT = 0.85;
 	public static var ME : Life;
 
@@ -78,7 +75,7 @@ class Life extends mt.Process {
 		if( cd.has("shake") )
 			root.y += Math.cos(ftime*0.7)*2 * cd.getRatio("shake");
 
-		bar.scaleX += ( MLib.fclamp(value,0,1) - bar.scaleX ) * 0.4;
+		bar.scaleX += ( M.fclamp(value,0,1) - bar.scaleX ) * 0.4;
 
 		var recalSpd = 0.1 + 0.2*(1-value);
 		front.setPos(17,14);

@@ -1,6 +1,3 @@
-import mt.MLib;
-import mt.deepnight.Lib;
-
 class CPoint {
 	public var cx = 0;
 	public var cy = 0;

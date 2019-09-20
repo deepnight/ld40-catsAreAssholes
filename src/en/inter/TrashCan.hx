@@ -1,9 +1,5 @@
 package en.inter;
 
-import mt.MLib;
-import mt.heaps.slib.*;
-import hxd.Key;
-
 class TrashCan extends en.Interactive {
 	public static var ALL : Array<TrashCan> = [];
 	public function new(x,y) {

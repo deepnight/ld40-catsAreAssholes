@@ -1,5 +1,5 @@
-import mt.heaps.slib.*;
-import mt.deepnight.Sfx;
+import dn.heaps.slib.*;
+import dn.heaps.Sfx;
 
 class Assets {
 	public static var SBANK = Sfx.importDirectory("sfx");
@@ -11,11 +11,11 @@ class Assets {
 	public static function init() {
 		Sfx.setGroupVolume(0, 1);
 		Sfx.setGroupVolume(1, 0.25);
-		music = new mt.deepnight.Sfx( hxd.Res.jazz );
+		music = new Sfx( hxd.Res.jazz );
 
 		font = hxd.Res.minecraftiaOutline.toFont();
 		items = hxd.Res.items.toTile();
-		gameElements = mt.heaps.slib.assets.Atlas.load("gameElements.atlas");
+		gameElements = dn.heaps.slib.assets.Atlas.load("gameElements.atlas");
 
 		gameElements.defineAnim("heroTalk", "0,1,2(2),1,0,1,0,2,1(2),2,0,1(2),2,0,2");
 		gameElements.defineAnim("heroRoll", "0");
@@ -49,6 +49,6 @@ class Assets {
 	}
 
 	public static function getItem(k:Data.ItemKind) {
-		return mt.deepnight.CdbHelper.getH2dTile(items, Data.item.get(k).icon);
+		return dn.CdbHelper.getH2dTile(items, Data.item.get(k).icon);
 	}
 }

@@ -1,12 +1,6 @@
 package ui;
 
-import mt.MLib;
-import mt.deepnight.Lib;
-import mt.heaps.slib.*;
-import hxd.Key;
-import mt.deepnight.Tweenie;
-
-class Title extends mt.Process {
+class Title extends dn.Process {
 	public static var ME : Title;
 
 	var bg : HSprite;

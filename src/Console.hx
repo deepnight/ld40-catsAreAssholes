@@ -1,5 +1,3 @@
-import mt.MLib;
-
 class Console extends h2d.Console {
 	public static var ME : Console;
 

@@ -1,9 +1,5 @@
 package en.inter;
 
-import mt.MLib;
-import mt.heaps.slib.*;
-import hxd.Key;
-
 class FoodTray extends en.Interactive {
 	public static var ALL : Array<FoodTray> = [];
 

@@ -1,5 +1,3 @@
-import mt.data.GetText;
-
 class Lang {
 	public static function init(id:String) {
 	}

@@ -1,7 +1,4 @@
-import mt.Process;
-import mt.MLib;
-
-class Main extends mt.Process {
+class Main extends dn.Process {
 	public static var BG = 0x0e0829;
 	public static var ME : Main;
 	public var console : Console;
@@ -35,8 +32,8 @@ class Main extends mt.Process {
 		Data.load( hxd.Res.data.entry.getText() );
 		hxd.Timer.wantedFPS = Const.FPS;
 		console = new Console();
-		new mt.deepnight.GameFocusHelper(Boot.ME.s2d, Assets.font);
-		// mt.deepnight.Lib.ludumProtection(this);
+		new dn.heaps.GameFocusHelper(Boot.ME.s2d, Assets.font);
+		// dn.Lib.ludumProtection(this);
 
 		#if debug
 		hxd.Res.data.watch( function() {
@@ -61,7 +58,7 @@ class Main extends mt.Process {
 
 			Assets.music.playOnGroup(1,true);
 			#if debug
-			mt.deepnight.Sfx.toggleMuteGroup(1);
+			dn.heaps.Sfx.toggleMuteGroup(1);
 			#end
 
 			onResize();
@@ -107,7 +104,7 @@ class Main extends mt.Process {
 
 		// Auto scaling
 		if( Const.AUTO_SCALE_TARGET_HEIGHT>0 )
-			Const.SCALE = MLib.ceil( h()/Const.AUTO_SCALE_TARGET_HEIGHT );
+			Const.SCALE = M.ceil( h()/Const.AUTO_SCALE_TARGET_HEIGHT );
 		root.setScale(Const.SCALE);
 
 		black.scaleX = Boot.ME.s2d.width;
@@ -156,6 +153,6 @@ class Main extends mt.Process {
 		super.update();
 
 		if( keyPressed(hxd.Key.M) )
-			mt.deepnight.Sfx.toggleMuteGroup(1);
+			dn.heaps.Sfx.toggleMuteGroup(1);
 	}
 }

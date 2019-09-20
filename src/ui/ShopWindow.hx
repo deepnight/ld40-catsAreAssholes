@@ -1,11 +1,6 @@
 package ui;
 
-import mt.MLib;
-import mt.deepnight.Lib;
-import mt.heaps.slib.*;
-import hxd.Key;
-
-class ShopWindow extends mt.Process {
+class ShopWindow extends dn.Process {
 	public static var ME : ShopWindow;
 	var mask : h2d.Graphics;
 	//var bg : h2d.ScaleGrid;
@@ -119,7 +114,7 @@ class ShopWindow extends mt.Process {
 		var cost = inf.cost!=null ? inf.cost : 0;
 		if( inf.scaledCosts.length>0 ) {
 			var n = en.inter.Shop.ME.countPreviousBoughts(k);
-			cost = inf.scaledCosts[ MLib.min(n, inf.scaledCosts.length-1) ].v;
+			cost = inf.scaledCosts[ M.imin(n, inf.scaledCosts.length-1) ].v;
 		}
 		if( cost>0 ) {
 			var tf = new h2d.Text(Assets.font, w);
@@ -233,7 +228,7 @@ class ShopWindow extends mt.Process {
 		cursor.visible = i!=null;
 		if( i!=null ) {
 			i.f.alpha = 1;
-			cursor.x = 5 - MLib.fabs(Math.sin(ftime*0.2)*5);
+			cursor.x = 5 - M.fabs(Math.sin(ftime*0.2)*5);
 			cursor.y += ( i.f.y + i.f.outerHeight*0.5 - cursor.y ) * 0.3;
 
 			if( Main.ME.keyPressed(Key.DOWN) && curIdx<items.length-1 )

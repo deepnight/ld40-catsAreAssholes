@@ -1,10 +1,5 @@
 package en.h;
 
-import mt.MLib;
-import mt.heaps.slib.*;
-import mt.deepnight.Lib;
-import hxd.Key;
-
 enum Action {
 	GoCoord(cx:Int,cy:Int, cb:Void->Void);
 	GoInter(e:en.Interactive);
@@ -18,7 +13,7 @@ class Sidekick extends en.Hero {
 	var actionIdx = 0;
 	var maxTries = 3;
 	var tries = 0;
-	var path : mt.deepnight.PathFinder.Path;
+	var path : dn.PathFinder.Path;
 
 	var maxQueue = 2;
 	var queue : Array<Entity>;
@@ -41,7 +36,7 @@ class Sidekick extends en.Hero {
 		restX = 11;
 		restY = 11;
 
-		spr.anim.registerStateAnim("sideWalk",3, 0.2, function() return MLib.fabs(dx)>0 || MLib.fabs(dy)>0 );
+		spr.anim.registerStateAnim("sideWalk",3, 0.2, function() return M.fabs(dx)>0 || M.fabs(dy)>0 );
 		spr.anim.registerStateAnim("sideIdleTv",1, 0.6, function() return cx==restX && cy==restY && dir==-1);
 		spr.anim.registerStateAnim("sideIdle",0);
 
@@ -292,7 +287,7 @@ class Sidekick extends en.Hero {
 		var e = pointers[id];
 		e.visible = true;
 		e.x = x;
-		e.y = y - 8 - MLib.fabs( Math.sin(game.ftime*0.1)*9 );
+		e.y = y - 8 - M.fabs( Math.sin(game.ftime*0.1)*9 );
 	}
 
 
@@ -324,7 +319,7 @@ class Sidekick extends en.Hero {
 		if( itemIcon!=null ) {
 			itemIcon.x = 10;
 			itemIcon.y = -3;
-			if( MLib.fabs(dx)>=0.01 || MLib.fabs(dy)>=0.01 ) {
+			if( M.fabs(dx)>=0.01 || M.fabs(dy)>=0.01 ) {
 				itemIcon.x += Math.sin(game.ftime*0.22)*1;
 				itemIcon.y += Math.cos(game.ftime*0.61)*1;
 			}

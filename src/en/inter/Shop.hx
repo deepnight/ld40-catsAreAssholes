@@ -1,9 +1,5 @@
 package en.inter;
 
-import mt.MLib;
-import mt.heaps.slib.*;
-import hxd.Key;
-
 class Shop extends en.Interactive {
 	public static var ME : Shop;
 	var door(get,never) : en.inter.Door; inline function get_door() return en.inter.Door.ALL[0];

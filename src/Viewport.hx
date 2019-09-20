@@ -1,7 +1,4 @@
-import mt.deepnight.Lib;
-import mt.MLib;
-
-class Viewport extends mt.Process {
+class Viewport extends dn.Process {
 	var game(get,never) : Game; inline function get_game() return Game.ME;
 	var level(get,never) : Level; inline function get_level() return Game.ME.level;
 	public var target(default,set) : Null<Entity>;
@@ -23,11 +20,11 @@ class Viewport extends mt.Process {
 	inline function get_screenHei() return Boot.ME.s2d.height;
 
 	inline function get_wid() {
-		return MLib.ceil( Boot.ME.s2d.width / Const.SCALE );
+		return M.ceil( Boot.ME.s2d.width / Const.SCALE );
 	}
 
 	inline function get_hei() {
-		return MLib.ceil( Boot.ME.s2d.height / Const.SCALE );
+		return M.ceil( Boot.ME.s2d.height / Const.SCALE );
 	}
 
 	function set_target(e:Entity) {
@@ -47,9 +44,9 @@ class Viewport extends mt.Process {
 
 		if( target!=null ) {
 			var a = Math.atan2(target.footY-y, target.footX-x);
-			var d = mt.deepnight.Lib.distance(x, y, target.footX, target.footY);
+			var d = dn.Lib.distance(x, y, target.footX, target.footY);
 			if( d>=20 ) {
-				var s = 0.5 * MLib.fclamp(d/100,0,1);
+				var s = 0.5 * M.fclamp(d/100,0,1);
 				dx+=Math.cos(a)*s;
 				dy+=Math.sin(a)*s;
 			}

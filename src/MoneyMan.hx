@@ -1,4 +1,4 @@
-class MoneyMan extends mt.Process {
+class MoneyMan extends dn.Process {
 	public function new() {
 		super(Game.ME);
 	}

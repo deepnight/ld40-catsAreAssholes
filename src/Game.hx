@@ -1,7 +1,4 @@
-import mt.Process;
-import mt.MLib;
-
-class Game extends mt.Process {
+class Game extends dn.Process {
 	public static var ME : Game;
 	public var scroller : h2d.Layers;
 	public var vp : Viewport;
@@ -10,7 +7,7 @@ class Game extends mt.Process {
 	public var side : en.h.Sidekick;
 	public var fx : Fx;
 	public var moneyMan : MoneyMan;
-	public var cm : mt.deepnight.Cinematic;
+	public var cm : dn.Cinematic;
 	public var catIdx = 0;
 
 	public var hudWrapper : h2d.Flow;
@@ -34,7 +31,7 @@ class Game extends mt.Process {
 		//new ui.Followers();
 		moneyMan = new MoneyMan();
 		new Tutorial();
-		cm = new mt.deepnight.Cinematic(Const.FPS);
+		cm = new dn.Cinematic(Const.FPS);
 
 		level = new Level(Home);
 		level.attachEntities();
