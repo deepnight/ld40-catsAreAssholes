@@ -175,7 +175,7 @@ class Cat extends Entity {
 		clearEmote();
 		var dh = new DecisionHelper( dn.Bresenham.getDisc(cx,cy, 2) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
-		dh.score( function(pt) return -Lib.distance(cx,cy,pt.x,pt.y) );
+		dh.score( function(pt) return -M.dist(cx,cy,pt.x,pt.y) );
 		dh.score( function(pt) return Entity.countNearby(pt.x,pt.y, 1)==0 ? 3 : 0 );
 		var pt = dh.getBest();
 		if( pt!=null )
@@ -192,9 +192,9 @@ class Cat extends Entity {
 	function startLick() {
 		var dh = new DecisionHelper( dn.Bresenham.getDisc(cx,cy, 6) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
-		dh.score( function(pt) return Lib.distance(cx,cy,pt.x,pt.y) );
+		dh.score( function(pt) return M.dist(cx,cy,pt.x,pt.y) );
 		dh.score( function(pt) return sightCheckCase(pt.x,pt.y) ? 0 : -3 );
-		dh.score( function(pt) return Lib.distance(cx,cy, pt.x,pt.y)<=3 ? -1 : 0 );
+		dh.score( function(pt) return M.dist(cx,cy, pt.x,pt.y)<=3 ? -1 : 0 );
 		dh.score( function(pt) return Entity.countNearby(pt.x,pt.y, 2)==0 ? 3 : 0 );
 
 		var pt = dh.getBest();
@@ -219,9 +219,9 @@ class Cat extends Entity {
 			// Shit on the ground
 			var dh = new DecisionHelper( dn.Bresenham.getDisc(cx,cy, 8) );
 			dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
-			dh.score( function(pt) return Lib.distance(cx,cy,pt.x,pt.y) );
+			dh.score( function(pt) return M.dist(cx,cy,pt.x,pt.y) );
 			dh.score( function(pt) return sightCheckCase(pt.x,pt.y) ? 0 : -3 );
-			dh.score( function(pt) return Lib.distance(cx,cy, pt.x,pt.y)<=3 ? -1 : 0 );
+			dh.score( function(pt) return M.dist(cx,cy, pt.x,pt.y)<=3 ? -1 : 0 );
 			dh.score( function(pt) return rnd(0,2) );
 			dh.score( function(pt) return Entity.countNearby(this, pt.x,pt.y, 2)==0 ? 3 : 0 );
 
@@ -238,9 +238,9 @@ class Cat extends Entity {
 
 		var dh = new DecisionHelper( dn.Bresenham.getDisc(cx,cy, 4) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
-		dh.score( function(pt) return Lib.distance(cx,cy,pt.x,pt.y) );
+		dh.score( function(pt) return M.dist(cx,cy,pt.x,pt.y) );
 		dh.score( function(pt) return sightCheckCase(pt.x,pt.y) ? 0 : -3 );
-		dh.score( function(pt) return Lib.distance(cx,cy, pt.x,pt.y)<=2 ? -1 : 0 );
+		dh.score( function(pt) return M.dist(cx,cy, pt.x,pt.y)<=2 ? -1 : 0 );
 		dh.score( function(pt) return rnd(0,1) );
 		dh.score( function(pt) return Entity.countNearby(this, pt.x,pt.y, 2)==0 ? 3 : 0 );
 
@@ -255,7 +255,7 @@ class Cat extends Entity {
 	public function flee(e:Entity) {
 		var dh = new DecisionHelper( dn.Bresenham.getDisc(cx,cy, 10) );
 		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) );
-		dh.score( function(pt) return Lib.distance(e.cx,e.cy,pt.x,pt.y) );
+		dh.score( function(pt) return M.dist(e.cx,e.cy,pt.x,pt.y) );
 		dh.score( function(pt) return !e.sightCheckCase(pt.x,pt.y) ? 2 : 0 );
 		dh.score( function(pt) return rnd(0,1) );
 
@@ -318,8 +318,8 @@ class Cat extends Entity {
 
 	function gotoNearby(e:Entity, minDist:Int, maxDist:Int) {
 		var dh = new DecisionHelper( dn.Bresenham.getDisc(e.cx,e.cy, maxDist) );
-		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) || !e.sightCheckCase(pt.x,pt.y) || Lib.distance(e.cx,e.cy,pt.x,pt.y)<=minDist );
-		dh.score( function(pt) return -Lib.distance(e.cx,e.cy,pt.x,pt.y) );
+		dh.remove( function(pt) return level.hasColl(pt.x, pt.y) || !e.sightCheckCase(pt.x,pt.y) || M.dist(e.cx,e.cy,pt.x,pt.y)<=minDist );
+		dh.score( function(pt) return -M.dist(e.cx,e.cy,pt.x,pt.y) );
 		dh.score( function(pt) return rnd(0,2) );
 
 		var pt = dh.getBest();

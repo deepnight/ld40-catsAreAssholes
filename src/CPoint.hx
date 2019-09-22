@@ -16,7 +16,7 @@ class CPoint {
 	}
 
 	public function distEnt(e:Entity) {
-		return Lib.distance(e.cx+e.xr,e.cy+e.yr,cx+0.5,cy+0.5);
+		return M.dist(e.cx+e.xr,e.cy+e.yr,cx+0.5,cy+0.5);
 	}
 
 	inline function get_centerX() return (cx+0.5)*Const.GRID;

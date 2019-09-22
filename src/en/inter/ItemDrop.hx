@@ -50,7 +50,7 @@ class ItemDrop extends en.Interactive {
 	public static function countNearby(k:Data.ItemKind, x,y, d) {
 		var n = 0;
 		for(e in ALL)
-			if( e.k==k && dn.Lib.distanceSqr(e.cx,e.cy,x,y)<=d*d )
+			if( e.k==k && dn.M.distSqr(e.cx,e.cy,x,y)<=d*d )
 				n++;
 		return n;
 	}

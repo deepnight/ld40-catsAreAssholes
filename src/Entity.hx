@@ -141,7 +141,7 @@ class Entity {
 	public static function countNearby(?except:Entity, x,y, d) {
 		var n = 0;
 		for(e in ALL)
-			if( e!=except && Lib.distanceSqr(e.cx,e.cy,x,y)<=d*d )
+			if( e!=except && M.distSqr(e.cx,e.cy,x,y)<=d*d )
 				n++;
 		return n;
 	}
@@ -178,11 +178,11 @@ class Entity {
 	public inline function pretty(v,?p=1) return M.pretty(v,p);
 
 	public inline function distCase(e:Entity) {
-		return Lib.distance(cx+xr, cy+yr, e.cx+e.xr, e.cy+e.yr);
+		return M.dist(cx+xr, cy+yr, e.cx+e.xr, e.cy+e.yr);
 	}
 
 	public inline function distPx(e:Entity) {
-		return Lib.distance(footX, footY, e.footX, e.footY);
+		return M.dist(footX, footY, e.footX, e.footY);
 	}
 
 	function canSeeThrough(x,y) return !level.hasColl(x,y);

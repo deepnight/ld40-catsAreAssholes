@@ -44,7 +44,7 @@ class Viewport extends dn.Process {
 
 		if( target!=null ) {
 			var a = Math.atan2(target.footY-y, target.footX-x);
-			var d = dn.Lib.distance(x, y, target.footX, target.footY);
+			var d = dn.M.dist(x, y, target.footX, target.footY);
 			if( d>=20 ) {
 				var s = 0.5 * M.fclamp(d/100,0,1);
 				dx+=Math.cos(a)*s;
