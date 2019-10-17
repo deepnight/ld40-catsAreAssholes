@@ -96,6 +96,15 @@ class Game extends dn.Process {
 		if( Main.ME.keyPressed(hxd.Key.R) )
 			Main.ME.restartGame();
 
+		#if hl
+		// Exit
+		if( Main.ME.keyPressed(Key.ESCAPE) )
+			if( !cd.hasSetS("exitWarn",3) )
+				new ui.Message("Press ESCAPE again to exit.");
+			else
+				hxd.System.exit();
+		#end
+
 		Tutorial.ME.tryToStart("controls", "Use ARROWS to move.");
 
 		if( Tutorial.ME.hasDone("food") )
