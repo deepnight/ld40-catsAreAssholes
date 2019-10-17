@@ -5,7 +5,6 @@ class Main extends dn.Process {
 	var black : h2d.Bitmap;
 	public var ctrlMaster : dn.heaps.Controller;
 	var ctrl : dn.heaps.Controller.ControllerAccess;
-	var pad : hxd.Pad;
 
 	public function new() {
 		super();
@@ -52,7 +51,6 @@ class Main extends dn.Process {
 		black = new h2d.Bitmap(h2d.Tile.fromColor(BG,1,1), root);
 		black.visible = false;
 
-		pad = hxd.Pad.createDummy();
 		ctrlMaster = new dn.heaps.Controller(Boot.ME.s2d);
 		ctrlMaster.bind(A, hxd.Key.SPACE, hxd.Key.ENTER, hxd.Key.U);
 		ctrlMaster.bind(B, hxd.Key.CTRL, hxd.Key.SHIFT);
@@ -173,9 +171,6 @@ class Main extends dn.Process {
 		super.update();
 
 		dn.heaps.Controller.beforeUpdate();
-
-		if( ctrl.lxValue()!=0 || ctrl.lyValue()!=0 )
-			ctrlMaster.setGamePad();
 
 		if( keyPressed(hxd.Key.M) )
 			dn.heaps.Sfx.toggleMuteGroup(1);
