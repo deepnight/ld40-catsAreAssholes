@@ -353,7 +353,7 @@ class Cat extends Entity {
 					if( te.is(Cat) && e.is(Cat) ) {
 						Assets.SBANK.bleep0(0.4);
 						Assets.SBANK.bleep1(1);
-						var e : Cat = Std.instance(e,Cat);
+						var e : Cat = Std.downcast(e,Cat);
 						e.flee(this);
 						e.cd.setS("lock", rnd(1.2,1.6));
 						e.cd.setS("fear", e.cd.getS("lock"));

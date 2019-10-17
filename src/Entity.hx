@@ -211,7 +211,7 @@ class Entity {
 	}
 
 	public function is<T:Entity>(c:Class<T>) return Std.is(this, c);
-	public function as<T:Entity>(c:Class<T>) : T return Std.instance(this, c);
+	public function as<T:Entity>(c:Class<T>) : T return Std.downcast(this, c);
 
 	public function dispose() {
 		ALL.remove(this);

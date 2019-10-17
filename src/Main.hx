@@ -25,7 +25,7 @@ class Main extends dn.Process {
 		#if debug
 		hxd.Res.initLocal();
         #else
-        hxd.Res.initEmbed({compressSounds:true});
+        hxd.Res.initEmbed();
         #end
 
 		createRoot(Boot.ME.s2d);
@@ -62,7 +62,7 @@ class Main extends dn.Process {
 		ctrlMaster.bind(AXIS_LEFT_Y_NEG, hxd.Key.DOWN, hxd.Key.S);
 		ctrlMaster.bind(AXIS_LEFT_Y_POS, hxd.Key.UP, hxd.Key.Z, hxd.Key.W);
 		ctrl = ctrlMaster.createAccess("main");
-		ctrl.leftDeadZone = 0.15;
+		ctrl.setLeftDeadZone(0.15);
 		Boot.ME.s2d.addEventListener(function(e) {
 			switch( e.kind ) {
 				case EKeyDown : ctrlMaster.setKeyboard();

@@ -20,7 +20,7 @@ class Game extends dn.Process {
 
 		ME = this;
 		ctrl = Main.ME.ctrlMaster.createAccess("game");
-		ctrl.leftDeadZone = 0.15;
+		ctrl.setLeftDeadZone(0.15);
 		createRoot(ctx);
 
 		hudWrapper = new h2d.Flow();

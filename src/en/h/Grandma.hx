@@ -202,7 +202,7 @@ class Grandma extends en.Hero {
 					var a = Math.atan2(py,px);
 					dx+=Math.cos(a)*d*spd;
 					dy+=Math.sin(a)*d*spd;
-					dir = px>=ctrl.leftDeadZone*0.5 ? 1 : px<=ctrl.leftDeadZone*0.5 ? -1 : dir;
+					@:privateAccess dir = px>=ctrl.leftDeadZone*0.5 ? 1 : px<=ctrl.leftDeadZone*0.5 ? -1 : dir;
 					cd.setS("walking",0.1);
 					rollAng = a;
 				}

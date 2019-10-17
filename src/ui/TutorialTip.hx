@@ -19,7 +19,7 @@ class TutorialTip extends dn.Process {
 		flow = new h2d.Flow(root);
 		flow.backgroundTile = Assets.gameElements.getTile("hudBox");
 		flow.borderWidth = flow.borderHeight = 8;
-		flow.isVertical = true;
+		flow.layout = Vertical;
 		flow.verticalSpacing = 4;
 		flow.horizontalAlign = Middle;
 		flow.paddingBottom = 2;

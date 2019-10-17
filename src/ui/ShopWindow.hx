@@ -31,7 +31,7 @@ class ShopWindow extends dn.Process {
 
 		wFlow = new h2d.Flow(root);
 		wFlow.padding = 8;
-		wFlow.isVertical = true;
+		wFlow.layout = Vertical;
 		wFlow.horizontalAlign = Middle;
 		wFlow.backgroundTile = Assets.gameElements.getTile("window");
 		wFlow.borderHeight = wFlow.borderWidth = 8;
@@ -41,7 +41,7 @@ class ShopWindow extends dn.Process {
 		wFlow.getProperties(money).paddingBottom = 8;
 
 		iFlow = new h2d.Flow(wFlow);
-		iFlow.isVertical = true;
+		iFlow.layout = Vertical;
 		iFlow.verticalSpacing = 1;
 
 		wFlow.addSpacing(8);
