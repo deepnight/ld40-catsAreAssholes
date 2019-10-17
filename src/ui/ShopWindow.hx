@@ -193,8 +193,8 @@ class ShopWindow extends dn.Process {
 		mask.drawRect(0,0,getWid(),getHei());
 
 		wFlow.reflow();
-		wFlow.x = getWid()*0.5 - wFlow.outerWidth*0.5;
-		wFlow.y = getHei()*0.5 - wFlow.outerHeight*0.5;
+		wFlow.x = Std.int( getWid()*0.5 - wFlow.outerWidth*0.5 );
+		wFlow.y = Std.int( getHei()*0.5 - wFlow.outerHeight*0.5 );
 	}
 
 	override public function onDispose() {
