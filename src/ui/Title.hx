@@ -60,7 +60,7 @@ class Title extends dn.Process {
 		about.backgroundTile = Assets.gameElements.getTile("window");
 		about.borderHeight = about.borderWidth = 8;
 		about.padding = 10;
-		about.isVertical = true;
+		about.layout = Vertical;
 		about.verticalSpacing = 10;
 		about.horizontalAlign = Left;
 		addAbout("Hi there!", 0xFFBF00);
