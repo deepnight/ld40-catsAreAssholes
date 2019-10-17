@@ -11,7 +11,11 @@ class Assets {
 	public static function init() {
 		Sfx.setGroupVolume(0, 1);
 		Sfx.setGroupVolume(1, 0.25);
-		music = new Sfx( hxd.Res.jazz );
+		#if hl
+		music = new Sfx( hxd.Res.jazz_hl );
+		#else
+		music = new Sfx( hxd.Res.jazz_js );
+		#end
 
 		font = hxd.Res.minecraftiaOutline.toFont();
 		items = hxd.Res.items.toTile();
