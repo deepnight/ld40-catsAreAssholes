@@ -173,6 +173,6 @@ class Main extends dn.Process {
 		dn.heaps.Controller.beforeUpdate();
 
 		if( keyPressed(hxd.Key.M) )
-			dn.heaps.Sfx.toggleMuteGroup(1);
+			Assets.music.togglePlay(true);
 	}
 }
