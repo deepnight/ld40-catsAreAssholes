@@ -63,7 +63,7 @@ class Sidekick extends en.Hero {
 			1300;
 			clearWords();
 			if( Game.ME.ctrl.isGamePad() )
-				Tutorial.ME.tryToStart("side", "Press [X] (GamePad) near something useful (like a bowl, or a dirty litter box) to ask Mark to take care of it.");
+				Tutorial.ME.tryToStart("side", "Press [X-Button] near something useful (like a bowl, or a dirty litter box) to ask Mark to take care of it.");
 			else
 				Tutorial.ME.tryToStart("side", "Press [C] near something useful (like a bowl, or a dirty litter box) to ask Mark to take care of it.");
 			onDone();

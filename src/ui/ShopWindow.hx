@@ -46,10 +46,16 @@ class ShopWindow extends dn.Process {
 
 		wFlow.addSpacing(8);
 		var tf = new h2d.Text(Assets.font, wFlow);
-		if( door.hasAnyEvent() )
-			tf.text = "SPACE to continue";
+		if( Game.ME.ctrl.isGamePad() )
+			if( door.hasAnyEvent() )
+				tf.text = "[A-Button] to continue";
+			else
+				tf.text = "[A-Button] to buy, [B-Button] to cancel";
 		else
-			tf.text = "SPACE to buy, ESCAPE to cancel";
+			if( door.hasAnyEvent() )
+				tf.text = "SPACE to continue";
+			else
+				tf.text = "SPACE to buy, ESCAPE to cancel";
 		tf.textColor = 0x805337;
 
 		cd.setS("lock", 0.2);

@@ -70,7 +70,7 @@ class Title extends dn.Process {
 		addAbout("Sébastien Bénard\n@deepnightFR\nwww.deepnight.net)", 0x894E88);
 
 		press = new h2d.Text(Assets.font, root);
-		press.text = "Press SPACE to start";
+		press.text = "Press [SPACE] or [A-Button] to start";
 
 		onResize();
 	}
