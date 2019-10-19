@@ -21,7 +21,7 @@
         "priority": 5
       },
       {
-        "text": "(Run HL)",
+        "text": "Run HL",
         "color": "orange",
         "command": "hl bin/client.hl",
         "alignment": "right",
@@ -38,7 +38,7 @@
         "priority": 3
       },
       {
-        "text": "(Run JS)",
+        "text": "Run JS",
         "color": "yellow",
         "command": "start js.html",
         "alignment": "right",
