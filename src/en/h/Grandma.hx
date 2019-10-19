@@ -198,7 +198,8 @@ class Grandma extends en.Hero {
 				var px = ctrl.lxValue();
 				var py = -ctrl.lyValue();
 				var d = Math.sqrt(px*px+py*py);
-				if( d>0 ) {
+				if( d>=0.2 ) {
+					Tutorial.ME.complete("controls");
 					var a = Math.atan2(py,px);
 					dx+=Math.cos(a)*d*spd;
 					dy+=Math.sin(a)*d*spd;

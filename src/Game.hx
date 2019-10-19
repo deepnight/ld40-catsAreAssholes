@@ -105,7 +105,7 @@ class Game extends dn.Process {
 				hxd.System.exit();
 		#end
 
-		Tutorial.ME.tryToStart("controls", "Use ARROWS to move.");
+		Tutorial.ME.tryToStart("controls", "Use ARROWS or GamePad to move.");
 
 		if( Tutorial.ME.hasDone("food") )
 			Tutorial.ME.tryToStart("shop", "You should call your grandson Mark to help you here. Use the phone.");
