@@ -173,6 +173,6 @@ class Main extends dn.Process {
 		dn.heaps.Controller.beforeUpdate();
 
 		if( keyPressed(hxd.Key.M) )
-			Assets.music.togglePlay(true);
+			Assets.music.togglePlayPause();
 	}
 }

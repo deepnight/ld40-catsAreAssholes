@@ -2,7 +2,7 @@ import dn.heaps.slib.*;
 import dn.heaps.Sfx;
 
 class Assets {
-	public static var SBANK = Sfx.importDirectory("sfx");
+	public static var SBANK = dn.heaps.assets.SfxDirectory.load("sfx");
 	public static var items : h2d.Tile;
 	public static var gameElements : SpriteLib;
 	public static var font : h2d.Font;
@@ -19,7 +19,7 @@ class Assets {
 
 		font = hxd.Res.minecraftiaOutline.toFont();
 		items = hxd.Res.items.toTile();
-		gameElements = dn.heaps.slib.assets.Atlas.load("gameElements.atlas");
+		gameElements = dn.heaps.assets.Atlas.load("gameElements.atlas");
 
 		gameElements.defineAnim("heroTalk", "0,1,2(2),1,0,1,0,2,1(2),2,0,1(2),2,0,2");
 		gameElements.defineAnim("heroRoll", "0");
