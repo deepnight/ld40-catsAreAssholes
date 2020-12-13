@@ -1,12 +1,12 @@
 import dn.CdbHelper;
-import dn.PathFinder;
+import dn.pathfinder.AStar;
 
 class Level extends dn.Process {
 	var lInfos : Data.LevelMap;
 	var collMap : Map<Int,Bool>;
 	public var wid : Int;
 	public var hei : Int;
-	public var pf : PathFinder;
+	public var pf : AStar<{x:Int, y:Int}>;
 
 	public function new(id:Data.LevelMapKind) {
 		super(Game.ME);
@@ -15,7 +15,7 @@ class Level extends dn.Process {
 		collMap = new Map();
 		wid = lInfos.width;
 		hei = lInfos.height;
-		pf = new dn.PathFinder(wid, hei);
+		pf = new AStar( (x,y)->{ x:x, y:y } );
 
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
 
@@ -28,7 +28,7 @@ class Level extends dn.Process {
 			if( l.name=="coll" ) {
 				// Collisions
 				for(t in tiles) {
-					pf.setCollision(t.cx, t.cy);
+					// pf.setCollision(t.cx, t.cy);
 					collMap.set(coordToId(t.cx,t.cy), true);
 				}
 			}
@@ -38,6 +38,7 @@ class Level extends dn.Process {
 					bg.add(t.x, t.y, t.t);
 			}
 		}
+		pf.init( wid, hei, (cx,cy)->hasColl(cx,cy) );
 	}
 
 	public function attachEntities() {

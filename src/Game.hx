@@ -77,7 +77,7 @@ class Game extends dn.Process {
 	override public function update() {
 		super.update();
 
-		cm.update(dt);
+		cm.update(tmod);
 
 		// Z sort
 		if( !cd.hasSetS("zsort",0.1) )
@@ -86,7 +86,7 @@ class Game extends dn.Process {
 		// Updates
 		for(e in Entity.ALL) {
 			scroller.over(e.spr);
-			@:privateAccess e.dt = dt;
+			@:privateAccess e.dt = tmod;
 			if( !e.destroyed ) e.preUpdate();
 			if( !e.destroyed ) e.update();
 			if( !e.destroyed ) e.postUpdate();

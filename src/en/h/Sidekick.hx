@@ -13,7 +13,7 @@ class Sidekick extends en.Hero {
 	var actionIdx = 0;
 	var maxTries = 3;
 	var tries = 0;
-	var path : dn.PathFinder.Path;
+	var path : Array<{ x:Int, y:Int }>;
 
 	var maxQueue = 2;
 	var queue : Array<Entity>;
@@ -232,8 +232,7 @@ class Sidekick extends en.Hero {
 	function goto(x,y) {
 		if( level.hasColl(x,y) )
 			y++;
-		path = level.pf.getPath( { x:cx, y:cy, } , { x:x, y:y } );
-		path = level.pf.smooth(path);
+		path = level.pf.getPath( cx, cy, x, y );
 	}
 
 	function clearActions() {

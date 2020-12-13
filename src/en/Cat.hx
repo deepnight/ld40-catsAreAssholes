@@ -26,7 +26,7 @@ class Cat extends Entity {
 	var dashAng = 0.;
 	var shitStock = 0;
 	var target : Null<CPoint>;
-	var path : Null<dn.PathFinder.Path>;
+	var path : Null< Array<{ x:Int, y:Int }> >;
 	var pathEnd : Null<{ x:Int, y:Int }>;
 	var rebootF = 0.;
 
@@ -541,10 +541,8 @@ class Cat extends Entity {
 					}
 					else {
 						// Find path
-						if( path==null && !cd.has("pfLock") ) {
-							path = level.pf.getPath( { x:cx, y:cy, } , { x:target.cx, y:target.cy } );
-							path = level.pf.smooth(path);
-						}
+						if( path==null && !cd.has("pfLock") )
+							path = level.pf.getPath( cx, cy, target.cx, target.cy );
 
 						// Follow path
 						if( path!=null ) {
